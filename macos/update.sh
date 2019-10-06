@@ -1,0 +1,2 @@
+brew upgrade
+cask upgrade

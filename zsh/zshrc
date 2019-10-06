@@ -1,0 +1,26 @@
+export ADRYDDOTFILES="$HOME/.adryd"
+source "$ADRYDDOTFILES/zsh/path"
+
+export ZSH="$HOME/.adryd/zsh/oh-my-zsh" # oh my zsh wants this
+
+HISTSIZE=10000
+SAVEHIST=10000
+
+EDITOR='vim'
+
+source "${ADRYDDOTFILES}/zsh/oh-my-zsh/oh-my-zsh.sh"
+ZSH_CUSTOM="${ADRYDDOTFILES}/zsh/custom"
+plugins=(wakatime git)
+
+source "${ADRYDDOTFILES}/zsh/aliases.zsh"
+source "${ADRYDDOTFILES}/zsh/personal.zsh"
+source "${ADRYDDOTFILES}/zsh/fuckery.zsh"
+source "${ADRYDDOTFILES}/themer/zshrc.zsh"
+source "${ADRYDDOTFILES}/zsh/plugins/iterm2/iterm2_shell_integration.zsh"
+source "${ADRYDDOTFILES}/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "${ADRYDDOTFILES}/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+eval $(thefuck --alias)
+
+alias rl='reset && source ~/.zshrc'
+
+artheme

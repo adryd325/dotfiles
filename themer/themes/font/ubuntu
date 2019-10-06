@@ -1,0 +1,11 @@
+{
+    "horizontalSpacing": 0.9,
+    "verticalSpacing": 1,
+    "normalFont": "UbuntuMono-Regular",
+    "normalFontSize": "16",
+    "nonAsciiFont": "UbuntuMono-Regular",
+    "nonAsciiFontSize": "16",
+    "useNonAsciiFont": false,
+    "supportsLignatures": true,
+    "hasPowerline": false
+ }

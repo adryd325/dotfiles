@@ -1,0 +1,11 @@
+{
+  "horizontalSpacing": 1,
+  "verticalSpacing": 1,
+  "normalFont": "Monaco",
+  "normalFontSize": "12",
+  "nonAsciiFont": "PragmataPro 14",
+  "nonAsciiFontSize": "14",
+  "useNonAsciiFont": true,
+  "supportsLignatures": false,
+  "hasPowerline": false
+}

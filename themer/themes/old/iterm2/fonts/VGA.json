@@ -1,0 +1,7 @@
+{
+        "horizontalSpacing": 1,
+        "verticalSpacing" : 0.9,
+        "normalFont" : "MorePerfectDOSVGA 16",
+        "nonAsciiFont" : "PragmataPro 13",
+        "useNonAsciiFont": true
+    }

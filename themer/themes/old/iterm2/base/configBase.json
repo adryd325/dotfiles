@@ -1,0 +1,48 @@
+{
+  "Name": "Adryd - Dynamic",
+  "Guid": "ba19744f-6af3-434d-aaa6-0a48e0969958",
+  "Tags": [],
+
+  "Use Bold Font": true,
+  "Use Bright Bold": false,
+  "Use Italic Font": true,
+
+  "Rows": 25,
+  "Columns": 80,
+
+  "Window Type": 13,
+  "Screen": -1,
+
+  "Unlimited Scrollback": true,
+  "Scrollback Lines": 1000,
+
+  "Terminal Type": "xterm-256color-italic",
+  "Character Encoding": 4,
+  "Mouse Reporting": true,
+  "Disable Window Resizing": false,
+
+  "Close Sessions On End": true,
+  "Prompt Before Closing 2": false,
+  "Jobs to Ignore": [
+    "rlogin",
+    "ssh",
+    "slogin",
+    "telnet"
+  ],
+
+  "Option Key Sends": 0,
+  "Right Option Key Sends": 2,
+
+  "Default Bookmark": "No",
+
+  "Sync Title": false,
+  "BM Growl": true,
+
+  "Triggers" : [
+    {
+      "regex" : ".*",
+      "action" : "ScriptTrigger",
+      "parameter" : "wakatime --entity Terminal --entity-type app --plugin \"iterm2-wakatime\/0.0.1\" --project \"<<LAST_PROJECT>>\""
+    }
+  ]
+}
