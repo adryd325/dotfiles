@@ -28,6 +28,7 @@ ln -s ~/.config/Code\ -\ Insiders
 mkdir ~/.config/Code/User/
 echo "{}" > ~/.config/Code/User/settings.json
 ln -s ~/.config/Code/User/settings.json ~/.adryd/themer/vscode.json
+~/.adryd/install/global/vscode.sh
 
 # terminfo
 cp -rf ~/.adryd/install/global/files/terminfo ~/.terminfo  
