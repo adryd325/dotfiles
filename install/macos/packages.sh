@@ -121,5 +121,3 @@ c audacity
 n http-server
 n asar
 n firebase-tools
-
-~/.adryd/install/macos/unwravel.sh

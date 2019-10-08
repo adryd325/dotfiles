@@ -64,5 +64,3 @@ chsh -s /usr/local/bin/zsh
 sudo cp -rf ~/.adryd/install/macos/files/sudo /etc/pam.d/sudo
 
 sudo cp ~/.adryd/install/macos/files/startup.app /Applications/startup.app
-
-~/.adryd/install/global/unwravel.sh

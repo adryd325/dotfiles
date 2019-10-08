@@ -16,14 +16,18 @@ then
   echo "detected macOS"
   export OS="mac"
   ~/.adryd/install/macos/brew.sh
+  ~/.adryd/install/macos/packages.sh
+  ~/.adryd/install/macos/preferences.sh
+  ~/.adryd/install/macos/unwravel.sh
+  all
 elif [[ $KERNEL = "Linux" ]]
 then
   cat /etc/os-release | grep NAME=\"Ubuntu\" &> /dev/null
   if [[ $? -eq 0 ]]; then
     echo "detected Ubuntu"
     export OS="ubuntu"
-    #~/.adryd/install/ubuntu/packages.sh
-    #~/.adryd/install/ubuntu/unwravel.sh 
+    ~/.adryd/install/ubuntu/packages.sh
+    ~/.adryd/install/ubuntu/unwravel.sh 
     all
   else
     echo "unsupported"
