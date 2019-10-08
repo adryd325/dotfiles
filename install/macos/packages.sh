@@ -1,17 +1,17 @@
 
 b() {
   echo "> installing" "$@" "via brew"
-  brew install "$@" >/dev/null
+  brew install "$@" >/dev/null 2>/dev/null
 }
 
 c() {
   echo "> installing" "$@" "via cask"
-  brew cask install "$@" >/dev/null
+  brew cask install "$@" >/dev/null 2>/dev/null
 }
 
 n() {
   echo "> installing" "$@" "via npm"
-  npm install -g "$@" >/dev/null
+  npm install -g "$@" >/dev/null 2>/dev/null
 }
 
 brew tap homebrew/cask-versions >/dev/null

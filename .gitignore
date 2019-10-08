@@ -19,4 +19,4 @@ themer-old/*
 vim/bundle/*
 zsh/oh-my-zsh
 zsh/oh-my-zsh/*
-zsh/plugins/*.DS_Store
+zsh/plugins

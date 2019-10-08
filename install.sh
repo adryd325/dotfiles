@@ -1,5 +1,8 @@
 # Installer that may be curl'ed and run quickly
 # curl -fsSL https://adryd.co/install | sh
-git clone https://gitlab.com/adryd/dotfiles ~/.adryd
-chmod +x ~/.adryd/install/install.sh
-~/.adryd/install/install.sh
+cd ~
+curl -fsSL https://codeload.github.com/adryd325/dotfiles/zip/master > adryd.zip # raw.githubusercontent.com is blocked
+unzip adryd.zip
+mv -f ./dotfiles-master ./.adryd-test
+rm -rf ./adryd.zip
+~/.adryd-test/install/install.sh
