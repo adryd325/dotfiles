@@ -5,3 +5,4 @@ unzip brew.zip
 wait
 rm -rf ./brew.zip
 rm -rf ./install-master
+~/.adryd/install/macos/packages.sh
