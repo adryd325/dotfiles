@@ -3,6 +3,6 @@
 cd ~
 curl -fsSL https://codeload.github.com/adryd325/dotfiles/zip/master > adryd.zip # raw.githubusercontent.com is blocked
 unzip adryd.zip
-mv -f ./dotfiles-master ./.adryd-test
+mv -f ./dotfiles-master ./.adryd
 rm -rf ./adryd.zip
-~/.adryd-test/install/install.sh
+~/.adryd/install/install.sh

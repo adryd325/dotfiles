@@ -3,7 +3,7 @@ echo "\033[0;32m####\033[0;33m  .adryd"
 echo "\033[0;32m###"
 echo "\033[0;39m"
 echo "Waiting 10 seconds before installation"
-#sleep 10
+sleep 10
 echo ""
 
 all () {
@@ -15,11 +15,7 @@ if [[ $KERNEL = "Darwin" ]]
 then 
   echo "detected macOS"
   export OS="mac"
-  ~/.adryd/install/macos/brew.sh
-  ~/.adryd/install/macos/packages.sh
-  ~/.adryd/install/macos/preferences.sh
-  ~/.adryd/install/macos/unwravel.sh
-  all
+  ~/.adryd/install/macos/brew.sh && ~/.adryd/install/macos/packages.sh && ~/.adryd/install/macos/preferences.sh && ~/.adryd/install/macos/unwravel.sh && all
 elif [[ $KERNEL = "Linux" ]]
 then
   cat /etc/os-release | grep NAME=\"Ubuntu\" &> /dev/null
