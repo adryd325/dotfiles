@@ -38,6 +38,8 @@ function itermFonts(theme) {
   work['Non Ascii Font'] = `${theme.nonAsciiFont} ${theme.nonAsciiFontSize}`;
   work['Use Non-ASCII Font'] = theme.useNonAsciiFont;
   work['Draw Powerline Glyphs'] = !theme.hasPowerline;
+  work['ASCII Anti Aliased'] = theme.antialiased;
+  work['Non-ASCII Anti Aliased'] = theme.antialiased;
   return work;
 }
 

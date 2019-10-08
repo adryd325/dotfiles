@@ -3,9 +3,8 @@
     "verticalSpacing": 1,
     "normalFont": "PragmataProLiga",
     "normalFontSize": "15",
-    "nonAsciiFont": "MutantStandard-sbixOT",
-    "nonAsciiFontSize": "15",
     "useNonAsciiFont": false,
     "supportsLignatures": true,
-    "hasPowerline": true
+    "hasPowerline": true,
+    "antialiased": true
  }

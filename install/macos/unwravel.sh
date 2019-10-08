@@ -47,7 +47,8 @@ sudo spctl --master-disable
 
 mkdir ~/Library/Application\ Support/iTerm2/
 mkdir ~/Library/Application\ Support/iTerm2/DynamicProfiles
-echo "" > ~/Library/Application\ Support/iTerm2/DynamicProfiles/adryd
+rm -rf ~/.adryd/themer/iterm.json
+echo "{}" > ~/Library/Application\ Support/iTerm2/DynamicProfiles/adryd
 ln -s ~/Library/Application\ Support/iTerm2/DynamicProfiles/adryd ~/.adryd/themer/iterm.json
 cp ~/.adryd/setup/files/com.googlecode.iterm2.plist ~/Library/Prefrences/com.googlecode.iterm2.plist
 
