@@ -15,7 +15,11 @@ if [[ $KERNEL = "Darwin" ]]
 then 
   echo "detected macOS"
   export OS="mac"
-  ~/.adryd/install/macos/brew.sh && ~/.adryd/install/macos/packages.sh && ~/.adryd/install/macos/preferences.sh && ~/.adryd/install/macos/unwravel.sh && all
+  ~/.adryd/install/macos/brew.sh
+  ~/.adryd/install/macos/packages.sh
+  ~/.adryd/install/macos/preferences.sh
+  ~/.adryd/install/macos/unwravel.sh
+  all
 elif [[ $KERNEL = "Linux" ]]
 then
   cat /etc/os-release | grep NAME=\"Ubuntu\" &> /dev/null
