@@ -1,7 +1,7 @@
 #!/bin/bash
 # .adryd netinstall v4.0
-# curl -fsL https://adryd.co/installv4.sh | bash
-# wget https://adryd.co/installv4.sh -Oq- | bash
+# curl -fsL https://adryd.co/install.sh | bash
+# wget https://adryd.co/install.sh -Oq- | bash
 
 echo 
 echo -e " \x1b[30;44m            _                _ \x1b[0m"
