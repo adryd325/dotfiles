@@ -12,7 +12,7 @@ echo -e " \x1b[30;44m(_)__,_|\__,_|_|   \__, |\__,_|\x1b[0m"
 echo -e " \x1b[30;44m        version 4.0|___/       \x1b[0m"
 echo
 echo -e " \x1b[30;44m \x1b[0m netinstall"
-echo -e " \x1b[30;44m \x1b[0m version 3.2"
+echo -e " \x1b[30;44m \x1b[0m version 4.0"
 echo
 
 # constants
