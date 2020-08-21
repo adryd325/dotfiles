@@ -16,19 +16,11 @@ echo -e " \x1b[30;44m \x1b[0m version 4.0"
 echo
 
 # constants
-arGitRepo="https://github.com/adryd325/dotfiles.git" # https in case there are no SSH keys
-arGitBranch="master" # the repo was made prior to githubs transition to main
-arDownloadBaseUrl="https://codeload.github.com/adryd325/dotfiles/"
-arDate="$(date +%y%m%d%H%M%S)"
-arDotfilesDir=~/.adryd
+AR_GIT_REPO"https://github.com/adryd325/dotfiles.git" # https in case there are no SSH keys
+AR_DOWNLOAD_BASEURL="https://codeload.github.com/adryd325/dotfiles/"
+AR_DOTFILES_DIR=~/.adryd
 
-#logStuff
-arModuleName="netinstall"
-arLogError=0
-arLogWarning=1
-arLogInfo=2
-arLogProgress=3
-arLogVerbose=4
+arDate="$(date +%y%m%d%H%M%S)"
 
 function getExtract() {
     if [[ -x "$(command -v tar)" ]]; then
@@ -50,18 +42,18 @@ function getDownload() {
     fi
 }
 
-if [[ -e $arDotfilesDir ]]; then
-    echo "$arDotfilesDir already exists. Please remove it to proceed with the installation"
+if [[ -e $AR_DOTFILES_DIR ]]; then
+    echo "$AR_DOTFILES_DIR already exists. Please remove it to proceed with the installation"
     exit 1
 fi
 
 if [[ -x "$(command -v git)" ]]; then
-    git clone $arGitRepo $arDotfilesDir
+    git clone $AR_GIT_REPO $AR_DOTFILES_DIR
     # we done now
 elif [[ -x "$(command -v curl)" ]]; then
     getDownload
     getExtract
-    arDownloadUrl="$arDownloadBaseUrl/$arExtract/$arGitBranch"
+    arDownloadUrl="$AR_DOWNLOAD_BASEURL/$arExtract/master"
     arTmpFolder="/tmp/dotadryd-$arDate"
     arDownloadedArchive="$arTmpFolder/dotfiles.$arExtract"
     mkdir $arTmpFolder
@@ -75,7 +67,7 @@ elif [[ -x "$(command -v curl)" ]]; then
     elif [[ $arExtract == "zip" ]]; then
         unzip $arDownloadedArchive -d $arTmpFolder
     fi
-    mv -f "$arTmpFolder/dotfiles-$arGitBranch" $arDotfilesDir
+    mv -f "$arTmpFolder/dotfiles-master" $arDotfilesDir
     rm -rf $arTmpFolder
 fi
 
