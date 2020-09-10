@@ -16,7 +16,8 @@ echo -e " \x1b[30;44m \x1b[0m version 4.0"
 echo
 
 # constants
-AR_GIT_REPO"https://github.com/adryd325/dotfiles.git" # https in case there are no SSH keys
+AR_GIT_REPO="https://github.com/adryd325/dotfiles.git" # https in case there are no SSH keys
+AR_GIT_SSH_REPO="git@github.com:adryd325/dotfiles" # if .ssh exists
 AR_DOWNLOAD_BASEURL="https://codeload.github.com/adryd325/dotfiles/"
 AR_DOTFILES_DIR=~/.adryd
 
@@ -24,8 +25,10 @@ arDate="$(date +%y%m%d%H%M%S)"
 
 function getExtract() {
     if [[ -x "$(command -v tar)" ]]; then
-       arExtract="tar.gz"
+        echo "> Using tar"
+        arExtract="tar.gz"
     elif [[ -x "$(command -v unzip)" ]]; then
+        echo "> Using unzip"
         arExtract="zip"
     else
         echo "No program was found to extract zip or tar.gz archives."
@@ -34,8 +37,10 @@ function getExtract() {
 
 function getDownload() {
     if [[ -x "$(command -v curl)" ]]; then
-       arDownload="curl"
+        echo "> Using curl"
+        arDownload="curl"
     elif [[ -x "$(command -v wget)" ]]; then
+        echo "> Using wget"
         arDownload="wget"
     else
         echo "No program was found to download files with https."
@@ -48,7 +53,12 @@ if [[ -e $AR_DOTFILES_DIR ]]; then
 fi
 
 if [[ -x "$(command -v git)" ]]; then
-    git clone $AR_GIT_REPO $AR_DOTFILES_DIR
+    echo "> Using git"
+    arGitRepo=$AR_GIT_REPO
+    if [[ -e ~/.ssh ]]; then
+        arGitRepo=$AR_GIT_SSH_REPO
+    fi
+    git clone $arGitRepo $AR_DOTFILES_DIR
     # we done now
 elif [[ -x "$(command -v curl)" ]]; then
     getDownload
@@ -67,9 +77,9 @@ elif [[ -x "$(command -v curl)" ]]; then
     elif [[ $arExtract == "zip" ]]; then
         unzip $arDownloadedArchive -d $arTmpFolder
     fi
-    mv -f "$arTmpFolder/dotfiles-master" $arDotfilesDir
+    mv -f "$arTmpFolder/dotfiles-master" $AR_DOTFILES_DIR
     rm -rf $arTmpFolder
 fi
 
-chmod +x $arDotfilesDir/install.sh
-$arDotfilesDir/install.sh
+chmod +x $AR_DOTFILES_DIR/install.sh # just in case
+$AR_DOTFILES_DIR/install.sh
