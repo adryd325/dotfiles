@@ -16,9 +16,10 @@ echo -e " \x1b[30;44m \x1b[0m version 4.0"
 echo
 
 # constants
-AR_GIT_REPO="https://github.com/adryd325/dotfiles.git" # https in case there are no SSH keys
-AR_GIT_SSH_REPO="git@github.com:adryd325/dotfiles" # if .ssh exists
-AR_DOWNLOAD_BASEURL="https://codeload.github.com/adryd325/dotfiles/"
+AR_GIT_REPO='https://github.com/adryd325/dotfiles.git' # https in case there are no SSH keys
+AR_GIT_SSH_REPO='git@github.com:adryd325/dotfiles' # if .ssh exists
+AR_LOCALDOWNLOAD='http://popsicle.in.adryd/dotfiles.tar' # dont ask
+AR_DOWNLOAD_BASEURL='https://codeload.github.com/adryd325/dotfiles/'
 AR_DOTFILES_DIR=~/.adryd
 
 arDate="$(date +%y%m%d%H%M%S)"
@@ -64,6 +65,7 @@ elif [[ -x "$(command -v curl)" ]]; then
     getDownload
     getExtract
     arDownloadUrl="$AR_DOWNLOAD_BASEURL/$arExtract/master"
+    [[ $AR_INTERNAL = true ]] arDownloadUrl=$AR_LOCALDOWNLOAD
     arTmpFolder="/tmp/dotadryd-$arDate"
     arDownloadedArchive="$arTmpFolder/dotfiles.$arExtract"
     mkdir $arTmpFolder
