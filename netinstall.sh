@@ -65,7 +65,7 @@ elif [[ -x "$(command -v curl)" ]]; then
     getDownload
     getExtract
     arDownloadUrl="$AR_DOWNLOAD_BASEURL/$arExtract/master"
-    [[ $AR_INTERNAL = true ]] arDownloadUrl=$AR_LOCALDOWNLOAD
+    [[ $AR_INTERNAL = true ]] && arDownloadUrl=$AR_LOCALDOWNLOAD
     arTmpFolder="/tmp/dotadryd-$arDate"
     arDownloadedArchive="$arTmpFolder/dotfiles.$arExtract"
     mkdir $arTmpFolder
