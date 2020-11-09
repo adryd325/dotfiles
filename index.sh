@@ -1,27 +1,21 @@
-
 # set temp dir variable
 for AR_OS_TEMPDIR in "$TMPDIR" "$TMP" "$TEMP" /tmp
 do
   test -n "$AR_OS_TEMPDIR" && break
 done
 
-export AR_DOTFILES_DIR=$PWD
-export AR_TEMP_DIR="$AR_OS_TEMPDIR/dotadryd/"
-source $AR_DOTFILES_DIR/lib/logger.sh
+# make things quiets
+export AR_TTY=/dev/null
+[[ DEBUG ]] && export AR_TTY=$(tty)
 
-# # definitely not the best way to check for archiso
-# # but for my purposes it works
-log 0 'index' 'checking for archiso...'
-# lsblk -o name,mountpoint | grep 'loop0 *\/run/archiso/sfs/airootfs$' &> /dev/null
-# if [[ $? -eq 0 || true ]]; then
-#     log 2 'index' 'detected archiso'
-#     $AR_DOTFILES_DIR/utils/archiso.sh
-#     log 0 'index' 'archiso script done, shutting down...'
-#     init 0
-# fi
+export AR_DIR="$HOME/.adryd"
+export AR_TMP="$AR_OS_TEMPDIR/dotadryd/"
+source $AR_DIR/lib/logger.sh
 
-log 3 'index' 'Starting program install scripts.'
-scripts/install/discord.sh 
-
-log 4 'index' 'Starting semi-manual installations.'
-scripts/install/flstudio.sh &
+log 0 'index' 'Detecting archiso...'
+if [[ $HOSTNAME == 'archiso' ]]; then
+    log 2 'index' 'Detected archiso. Running Arch install script.'
+    $AR_DIR/modules/archinstall/index.sh
+    log 0 'index' 'Arch install script done, shutting down...'
+    [[ $AR_TESTING != true ]] && halt
+fi

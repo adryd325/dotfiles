@@ -15,7 +15,9 @@ function log() {
         arTitleString="\x1b[35m$2\x1b[0m "
         arLogString=$3
     fi
-    echo -e "${arLogLevelString[$1]}\x1b[0m $arTitleString$arLogString"
+    arLogEchoArgs=''
+    [[ $1 = 7 ]] && arLogEchoArgs='-n'
+    echo -e $arLogEchoArgs "${arLogLevelString[$1]}\x1b[0m $arTitleString$arLogString"
 }
 
 function bell() {
