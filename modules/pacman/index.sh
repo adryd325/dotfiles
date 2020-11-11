@@ -1,1 +1,1 @@
-# no
+reflector --ipv4 -n 50 -x uwaterloo -p https,rsync -c Canada,US -f 25 -l 25 > ./mirrorlist
