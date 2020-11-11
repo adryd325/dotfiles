@@ -19,3 +19,11 @@ if [[ $HOSTNAME == 'archiso' ]]; then
     log 0 'index' 'Arch install script done, shutting down...'
     [[ $AR_TESTING != true ]] && halt
 fi
+
+log 0 'index' 'Detecting LXC...'
+cat /etc/os-release | grep "NAME=\"Arch Linux\"" > /dev/null
+if [[ $(systemd-detect-virt) == 'lxc' && $? == '0' ]]; then
+    log 2 'index' 'Detected LXC. Running LXC setup script.'
+    $AR_DIR/modules/ctsetup/index.sh
+    log 0 'index' 'Arch LXC script done, shutting down...'
+fi
