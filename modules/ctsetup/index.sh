@@ -7,8 +7,8 @@ pacman-key --populate archlinux
 # no symlinking (security risk)
 mv -f $AR_DIR/modules/pacman/mirrorlist /etc/pacman.d/mirrorlist
 chmod 644 /etc/pacman.d/mirrorlist # just to be sure
-pacman -Syyu
-pacman -S sudo nano git openssh curl fail2ban
+pacman -Syyu --noconfirm
+pacman -S sudo nano git openssh curl fail2ban --noconfirm
 
 # create 'adryd' admin user
 useradd -mG wheel adryd
@@ -34,3 +34,4 @@ echo 'AllowUsers adryd' >> /etc/ssh/sshd_config
 # only allow publickey authorization
 echo 'AuthenticationMethods publickey' >> /etc/ssh/sshd_config
 systemctl enable --now sshd
+
