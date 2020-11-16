@@ -11,10 +11,8 @@ log 1 'ctsetup' 'Installing mirrorlist.'
 # no symlinking (security risk)
 mv -f $AR_DIR/modules/pacman/mirrorlist /etc/pacman.d/mirrorlist
 chmod 644 /etc/pacman.d/mirrorlist # just to be sure
-log 3 'ctsetup' 'Updating system.'
-pacman -Syyuq --noconfirm
-log 3 'ctsetup' 'Installing packages.'
-pacman -Sq sudo nano git openssh curl fail2ban
+log 3 'ctsetup' 'Updating system and installing packages.'
+pacman -Syyuq sudo nano git openssh curl fail2ban --noconfirm
 
 # create 'adryd' admin user
 log 3 'ctsetup' 'Creating admin user.'
@@ -45,3 +43,20 @@ echo 'AuthenticationMethods publickey' >> /etc/ssh/sshd_config
 log 3 'ctsetup' 'Enabling SSH.'
 systemctl enable --now sshd
 
+source $AR_DIR/lib/logger.sh
+# move ssh authorised keys from root to admin user
+log 3 'ctsetup' 'Putting SSH key in place.'
+mkdir -p /home/adryd/.ssh
+mv /root/.ssh/authorized_keys /home/adryd/.ssh/authorized_keys
+chown adryd:adryd /home/adryd/.ssh/authorized_keys
+
+log 3 'ctsetup' 'Locking root user.'
+chage -E 0 root
+
+log 3 'ctsetup' 'Setting admin password.'
+passwd adryd
+
+log 3 'ctsetup' 'Setup fail2ban.'
+cp -f $AR_DIR/modules/fail2ban/jail.local /etc/fail2ban/jail.local
+chmod 644 /etc/fail2ban/jail.local # just to be sure
+systemctl enable fail2ban
