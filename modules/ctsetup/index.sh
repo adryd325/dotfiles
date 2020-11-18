@@ -12,7 +12,7 @@ log 1 'ctsetup' 'Installing mirrorlist.'
 mv -f $AR_DIR/modules/pacman/mirrorlist /etc/pacman.d/mirrorlist
 chmod 644 /etc/pacman.d/mirrorlist # just to be sure
 log 3 'ctsetup' 'Updating system and installing packages.'
-pacman -Syyuq sudo nano git openssh curl fail2ban --noconfirm
+pacman -Syyuq sudo nano git openssh curl fail2ban base-devel --noconfirm
 
 # create 'adryd' admin user
 log 3 'ctsetup' 'Creating admin user.'
@@ -60,3 +60,11 @@ log 3 'ctsetup' 'Setup fail2ban.'
 cp -f $AR_DIR/modules/fail2ban/jail.local /etc/fail2ban/jail.local
 chmod 644 /etc/fail2ban/jail.local # just to be sure
 systemctl enable fail2ban
+
+log 3 'ctsetup' 'Installing AUR package manager'
+sudo -u adryd git clone https://aur.archlinux.org/yay.git /tmp/yay
+cd /tmp/yay
+sudo -u adryd makepkg -si
+
+log 3 'ctsetup' 'Adding ubuntu keyserver'
+# lazy ill add this later
