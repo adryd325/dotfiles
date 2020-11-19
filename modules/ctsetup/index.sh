@@ -12,7 +12,7 @@ log 1 'ctsetup' 'Installing mirrorlist.'
 mv -f $AR_DIR/modules/pacman/mirrorlist /etc/pacman.d/mirrorlist
 chmod 644 /etc/pacman.d/mirrorlist # just to be sure
 log 3 'ctsetup' 'Updating system and installing packages.'
-pacman -Syyuq sudo nano git openssh curl fail2ban base-devel --noconfirm
+pacman -Syyuq base-devel sudo nano git openssh curl fail2ban --noconfirm
 
 # create 'adryd' admin user
 log 3 'ctsetup' 'Creating admin user.'
