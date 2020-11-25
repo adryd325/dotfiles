@@ -1,70 +1,62 @@
 #!/bin/bash
-# Setup Pacman
-source $AR_DIR/lib/logger.sh
-log 3 'ctsetup' 'Setting up pacman-key.'
-pacman-key --init &> $AR_TTY
-log 3 'ctsetup' 'Populating pacman-key.'
-pacman-key --populate archlinux &> $AR_TTY
-# back up default mirror list
-log 1 'ctsetup' 'Installing mirrorlist.'
-[[ ! -e /etc/pacman.d/mirrorlist.orig ]] && cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
-# no symlinking (security risk)
-mv -f $AR_DIR/modules/pacman/mirrorlist /etc/pacman.d/mirrorlist
-chmod 644 /etc/pacman.d/mirrorlist # just to be sure
-log 3 'ctsetup' 'Updating system and installing packages.'
-pacman -Syyuq base-devel sudo nano git openssh curl fail2ban --noconfirm
+arCtFedoraInstallAdminUser=adryd
 
-# create 'adryd' admin user
+source $AR_DIR/lib/logger.sh
+log 3 'ctsetup' 'Updating packages.'
+dnf update -qy
+
 log 3 'ctsetup' 'Creating admin user.'
-useradd -mG wheel adryd 
+useradd -mG wheel $arCtFedoraInstallAdminUser
+log 3 'ctsetup' 'Setting admin password.'
+passwd $arCtFedoraInstallAdminUser
 
-# allow wheel to use sudo
-log 0 'ctsetup' 'Allowing wheel sudo access.'
-sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+log 3 'ctsetup' 'Installing SSH.'
+dnf install openssh-server -qy
+log 3 'ctsetup' 'Configuring SSH.'
+arCtFedoraInstallSshDir=/etc/ssh/sshd_config.d/100-adryd.conf
+if [[ ! -e $arCtFedoraInstallSshDir ]]; then
+    echo 'PermitRootLogin no' >> $arCtFedoraInstallSshDir
+    echo 'PasswordAuthentication no' >> $arCtFedoraInstallSshDir
+    echo 'PermitEmptyPasswords no' >> $arCtFedoraInstallSshDir
+    echo 'UsePAM no' >> $arCtFedoraInstallSshDir
+    echo "AllowUsers $arCtFedoraInstallAdminUser" >> $arCtFedoraInstallSshDir
+    echo 'AuthenticationMethods publickey' >> $arCtFedoraInstallSshDir
+else
+    log 4 'ctsetup' 'SSH config already exists.'
+fi
+log 3 'ctsetup' 'Enabling SSH.' 
+systemctl enable --now sshd # this package/service naming clusterfuck has to stop
 
-# fix ssh security
-# https://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html
-# bind only one address
-# cts on lemon should only bind 10.100 to 10.199, by the time I need to expand, I think this script will have been depracated
-# this is *probably* cursed
-log 0 'ctsetup' 'Setting SSH restrictions.'
-arCtArchInstallIpAddress="$(ip address | grep -oh 'inet 10.0.0.1[0-9][0-9]/24' | sed 's/inet //' | sed 's./24..')"
-sed -i "s/#ListenAddress 0.0.0.0/ListenAddress $arCtArchInstallIpAddress/" /etc/ssh/sshd_config
-# disable password auth
-sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
-sed -i 's/#PasswordAuthentication no/PasswordAuthentication no/' /etc/ssh/sshd_config
-sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/' /etc/ssh/sshd_config
-sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
-# ChallengeResponseAuthentication no (already set to no on Arch)
-# only allow the admin user to access the server over ssh
-echo 'AllowUsers adryd' >> /etc/ssh/sshd_config
-# only allow publickey authorization
-echo 'AuthenticationMethods publickey' >> /etc/ssh/sshd_config
-log 3 'ctsetup' 'Enabling SSH.'
-systemctl enable --now sshd
+log 3 'ctsetup' 'Installing SSH key.'
+mkdir -p /home/$arCtFedoraInstallAdminUser/.ssh
+mv /root/.ssh/authorized_keys /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys
+rm -r /root/.ssh # empty directory now
+chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys
 
-source $AR_DIR/lib/logger.sh
-# move ssh authorised keys from root to admin user
-log 3 'ctsetup' 'Putting SSH key in place.'
-mkdir -p /home/adryd/.ssh
-mv /root/.ssh/authorized_keys /home/adryd/.ssh/authorized_keys
-chown adryd:adryd /home/adryd/.ssh/authorized_keys
+log 3 'ctsetup' 'Installing development tools.'
+dnf install @development-tools -qy # Includes git (some cts may want mercurial or svn)
+
+log 3 'ctsetup' 'Swap text editors.'
+dnf remove vim-minimal -qy
+dnf install nano -qy
+git config --global core.editor nano
 
 log 3 'ctsetup' 'Locking root user.'
-chage -E 0 root
+# All this is "just in case", hence why it's dissabled in 3 ways
+cat /dev/urandom | tr -dc A-Za-z0-9 | head -c${1:-128} | passwd root --stdin &> $AR_TTY
+passwd -l root &> $AR_TTY
+chage -E 0 root &> $AR_TTY
 
-log 3 'ctsetup' 'Setting admin password.'
-passwd adryd
-
-log 3 'ctsetup' 'Setup fail2ban.'
+log 3 'ctsetup' 'Installing fail2ban.'
+dnf install fail2ban -qy 
+log 3 'ctsetup' 'Copying fail2ban configuration.'
 cp -f $AR_DIR/modules/fail2ban/jail.local /etc/fail2ban/jail.local
 chmod 644 /etc/fail2ban/jail.local # just to be sure
+log 3 'ctsetup' 'Enaling fail2ban.'
 systemctl enable fail2ban
 
-log 3 'ctsetup' 'Installing AUR package manager'
-sudo -u adryd git clone https://aur.archlinux.org/yay.git /tmp/yay
-cd /tmp/yay
-sudo -u adryd makepkg -si
+log 3 'ctsetup' 'Placing manual in home directory.'
+touch /home/$arCtFedoraInstallAdminUser/manual.txt
 
-log 3 'ctsetup' 'Adding ubuntu keyserver'
-# lazy ill add this later
+log 3 'ctsetup' 'Cleaning up.'
+rm -rf $AR_DIR
