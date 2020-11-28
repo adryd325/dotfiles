@@ -15,13 +15,6 @@ arDate="$(date +%y%m%d%H%M%S)"
 
 [[ -e $AR_DIR && $PWD == $AR_DIR ]] && $AR_DIR/index.sh && exit
 
-# echo 
-# echo -e " \x1b[30;44m            _                _ \x1b[0m"
-# echo -e " \x1b[30;44m   __ _  __| |_ __ _   _  __| |\x1b[0m"
-# echo -e " \x1b[30;44m  / _\` |/ _\` | '__| | | |/ _\` |\x1b[0m"
-# echo -e " \x1b[30;44m | (_| | (_| | |  | |_| | (_| |\x1b[0m"
-# echo -e " \x1b[30;44m(_)__,_|\__,_|_|   \__, |\__,_|\x1b[0m"
-# echo -e " \x1b[30;44m        version 4.0|___/       \x1b[0m"
 echo
 echo -e " \x1b[30;44m \x1b[0m .adryd"
 echo -e " \x1b[30;44m \x1b[0m version 4.1"

@@ -13,14 +13,15 @@ passwd $arCtFedoraInstallAdminUser
 log 3 'ctsetup' 'Installing SSH.'
 dnf install openssh-server -qy
 log 3 'ctsetup' 'Configuring SSH.'
-arCtFedoraInstallSshDir=/etc/ssh/sshd_config.d/100-adryd.conf
-if [[ ! -e $arCtFedoraInstallSshDir ]]; then
-    echo 'PermitRootLogin no' >> $arCtFedoraInstallSshDir
-    echo 'PasswordAuthentication no' >> $arCtFedoraInstallSshDir
-    echo 'PermitEmptyPasswords no' >> $arCtFedoraInstallSshDir
-    echo 'UsePAM no' >> $arCtFedoraInstallSshDir
-    echo "AllowUsers $arCtFedoraInstallAdminUser" >> $arCtFedoraInstallSshDir
-    echo 'AuthenticationMethods publickey' >> $arCtFedoraInstallSshDir
+arCtFedoraInstallSshConfig=/etc/ssh/sshd_config.d/80-adryd.conf
+if [[ ! -e $arCtFedoraInstallSshConfig ]]; then
+    echo 'PermitRootLogin no' >> $arCtFedoraInstallSshConfig
+    echo 'GSSAPIAuthentication no' >> $arCtFedoraInstallSshConfig
+    echo 'PasswordAuthentication no' >> $arCtFedoraInstallSshConfig
+    echo 'PermitEmptyPasswords no' >> $arCtFedoraInstallSshConfig
+    echo 'UsePAM no' >> $arCtFedoraInstallSshConfig
+    echo "AllowUsers $arCtFedoraInstallAdminUser" >> $arCtFedoraInstallSshConfig
+    echo 'AuthenticationMethods publickey' >> $arCtFedoraInstallSshConfig
 else
     log 4 'ctsetup' 'SSH config already exists.'
 fi
