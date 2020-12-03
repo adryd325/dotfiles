@@ -26,17 +26,16 @@ else
     log 4 'ctsetup' 'SSH config already exists.'
 fi
 log 3 'ctsetup' 'Enabling SSH.' 
-systemctl enable --now sshd # this package/service naming clusterfuck has to stop
+systemctl enable --now sshd > $AR_TTY # this package/service naming clusterfuck has to stop
 
 log 3 'ctsetup' 'Installing SSH key.'
 mkdir -p /home/$arCtFedoraInstallAdminUser/.ssh
 mv /root/.ssh/authorized_keys /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys
 rm -r /root/.ssh # empty directory now
-chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys
+chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser -R /home/$arCtFedoraInstallAdminUser/.ssh
 
 log 3 'ctsetup' 'Installing development tools.'
-dnf install @development-tools -qy # Includes git (some cts may want mercurial or svn)
-
+dnf install @development-tools
 log 3 'ctsetup' 'Swap text editors.'
 dnf remove vim-minimal -qy
 dnf install nano -qy
@@ -54,7 +53,7 @@ log 3 'ctsetup' 'Copying fail2ban configuration.'
 cp -f $AR_DIR/modules/fail2ban/jail.local /etc/fail2ban/jail.local
 chmod 644 /etc/fail2ban/jail.local # just to be sure
 log 3 'ctsetup' 'Enaling fail2ban.'
-systemctl enable fail2ban
+systemctl enable fail2ban > $AR_TTY
 
 log 3 'ctsetup' 'Placing manual in home directory.'
 touch /home/$arCtFedoraInstallAdminUser/manual.txt
