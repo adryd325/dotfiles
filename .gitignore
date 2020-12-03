@@ -1,2 +1,4 @@
 dotfiles.tar
 bundle-testing.sh
+
+modules/mkpkeygen/key.txt

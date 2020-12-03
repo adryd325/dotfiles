@@ -1,0 +1,21 @@
+{
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "compact",
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "window.zoomLevel": 0,
+    "extensions.showRecommendationsOnlyOnDemand": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.rulers": [
+        80
+    ],
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.fontFamily": "'IBM Plex Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.formatOnType": true,
+    "editor.fontSize": 14,
+    "editor.fontWeight": "500"
+}
