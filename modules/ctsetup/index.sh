@@ -35,7 +35,7 @@ rm -r /root/.ssh # empty directory now
 chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser -R /home/$arCtFedoraInstallAdminUser/.ssh
 
 log 3 'ctsetup' 'Installing development tools.'
-dnf install @development-tools
+dnf install @development-tools -qy
 log 3 'ctsetup' 'Swap text editors.'
 dnf remove vim-minimal -qy
 dnf install nano -qy
@@ -57,6 +57,7 @@ systemctl enable fail2ban > $AR_TTY
 
 log 3 'ctsetup' 'Placing manual in home directory.'
 touch /home/$arCtFedoraInstallAdminUser/manual.txt
+chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser manual.txt
 
 log 3 'ctsetup' 'Cleaning up.'
 rm -rf $AR_DIR
