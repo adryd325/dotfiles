@@ -21,10 +21,10 @@ if [[ $HOSTNAME == 'archiso' && $USER == 'root' ]]; then
 fi
 
 log 0 'index' 'Detecting LXC...'
-cat /etc/os-release | grep "NAME=Fedora" > /dev/null
+cat /etc/os-release | grep "NAME=Fedora" > $AR_TTY
 if [[ $? -eq 0 && $(systemd-detect-virt) == 'lxc' && $USER= ]]; then
     log 2 'index' 'Detected LXC. Running LXC setup script.'
     $AR_DIR/modules/ctsetup/index.sh
-    log 0 'index' 'Arch LXC script done. exiting'
+    log 0 'index' 'LXC install script done. exiting'
     exit 0
 fi
