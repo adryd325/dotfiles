@@ -57,7 +57,7 @@ systemctl enable fail2ban > $AR_TTY
 
 log 3 'ctsetup' 'Trusting internal CA.'
 curl -fsSL https://adryd.co/root-ca.pem > /tmp/root-ca.pem
-trust anchor --store root-ca.pem
+trust anchor --store /tmp/root-ca.pem
 rm /tmp/root-ca.pem
 
 log 3 'ctsetup' 'Placing manual in home directory.'
