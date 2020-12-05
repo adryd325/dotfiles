@@ -35,7 +35,7 @@ fi
 
 if [[ $arDownloader == "git" ]]; then
     arGitRepo=$AR_GIT_REPO
-    [[ -e ~/.ssh ]] && arGitRepo=$AR_GIT_SSH_REPO
+    [[ -e ~/.ssh/id_* ]] && arGitRepo=$AR_GIT_SSH_REPO
     echo -e '\x1b[36mprog \x1b[35mnetinstall \x1b[0mDownloading...'
     git clone $arGitRepo $AR_DIR 2> /dev/null
     # we done now
