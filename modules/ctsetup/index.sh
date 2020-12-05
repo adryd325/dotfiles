@@ -5,10 +5,12 @@ source $AR_DIR/lib/logger.sh
 log 3 'ctsetup' 'Updating packages.'
 dnf update -qy
 
-log 3 'ctsetup' 'Creating admin user.'
-useradd -mG wheel $arCtFedoraInstallAdminUser
-log 3 'ctsetup' 'Setting admin password.'
-passwd $arCtFedoraInstallAdminUser
+if id $arCtFedoraInstallAdminUser; then
+    log 3 'ctsetup' 'Creating admin user.'
+    useradd -mG wheel $arCtFedoraInstallAdminUser
+    log 3 'ctsetup' 'Setting admin password.'
+    passwd $arCtFedoraInstallAdminUser
+fi
 
 log 3 'ctsetup' 'Installing SSH.'
 dnf install openssh-server -qy
@@ -28,11 +30,13 @@ fi
 log 3 'ctsetup' 'Enabling SSH.' 
 systemctl enable --now sshd > $AR_TTY # this package/service naming clusterfuck has to stop
 
-log 3 'ctsetup' 'Installing SSH key.'
-mkdir -p /home/$arCtFedoraInstallAdminUser/.ssh
-mv /root/.ssh/authorized_keys /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys
-rm -r /root/.ssh # empty directory now
-chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser -R /home/$arCtFedoraInstallAdminUser/.ssh
+if [[ -e /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys ]]; then
+    log 3 'ctsetup' 'Installing SSH key.'
+    mkdir -p /home/$arCtFedoraInstallAdminUser/.ssh
+    mv /root/.ssh/authorized_keys /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys
+    rm -r /root/.ssh # empty directory now
+    chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser -R /home/$arCtFedoraInstallAdminUser/.ssh
+fi
 
 log 3 'ctsetup' 'Installing development tools.'
 dnf install @development-tools -qy
@@ -47,13 +51,15 @@ cat /dev/urandom | tr -dc A-Za-z0-9 | head -c${1:-128} | passwd root --stdin &> 
 passwd -l root &> $AR_TTY
 chage -E 0 root &> $AR_TTY
 
-log 3 'ctsetup' 'Installing fail2ban.'
-dnf install fail2ban -qy 
-log 3 'ctsetup' 'Copying fail2ban configuration.'
-cp -f $AR_DIR/modules/fail2ban/jail.local /etc/fail2ban/jail.local
-chmod 644 /etc/fail2ban/jail.local # just to be sure
-log 3 'ctsetup' 'Enaling fail2ban.'
-systemctl enable fail2ban > $AR_TTY
+if [[ ! -e /etc/fail2ban/jail.local ]]; then
+    log 3 'ctsetup' 'Installing fail2ban.'
+    dnf install fail2ban -qy 
+    log 3 'ctsetup' 'Copying fail2ban configuration.'
+    cp $AR_DIR/modules/fail2ban/jail.local /etc/fail2ban/jail.local
+    chmod 644 /etc/fail2ban/jail.local # just to be sure
+    log 3 'ctsetup' 'Enaling fail2ban.'
+    systemctl enable fail2ban > $AR_TTY
+fi
 
 log 3 'ctsetup' 'Trusting internal CA.'
 curl -fsSL https://adryd.co/root-ca.pem > /tmp/root-ca.pem
