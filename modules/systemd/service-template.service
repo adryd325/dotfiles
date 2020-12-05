@@ -1,0 +1,21 @@
+[Unit]
+Description=
+
+[Service]
+WorkingDirectory=
+
+User=
+Group=
+
+ExecStart=
+
+# A lot of this is excessive, but every bit of security counts
+PrivateUsers=true
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target
