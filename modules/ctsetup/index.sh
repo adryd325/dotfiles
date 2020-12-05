@@ -55,6 +55,11 @@ chmod 644 /etc/fail2ban/jail.local # just to be sure
 log 3 'ctsetup' 'Enaling fail2ban.'
 systemctl enable fail2ban > $AR_TTY
 
+log 3 'ctsetup' 'Trusting internal CA.'
+curl -fsSL https://adryd.co/root-ca.pem > /tmp/root-ca.pem
+trust anchor --store root-ca.pem
+rm /tmp/root-ca.pem
+
 log 3 'ctsetup' 'Placing manual in home directory.'
 touch /home/$arCtFedoraInstallAdminUser/manual.txt
 chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser manual.txt
