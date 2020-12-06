@@ -143,9 +143,5 @@ if [[ $arArchinstallConfirm = 'CoNtInUe' ]]; then
     mount -t btrfs -o subvol=home,$o_btrfs LABEL=system /mnt/home
     # ABSOLUTE MINIMUM BASE PACKAGES
     pacstrap /mnt base base-devel linux linux-firmware $(ucodepkg) nano grub
-
-    #bla bla bla
-    log 0 'archinstall' 'Enabling ntp...'
-    timedatectl set-ntp true
-    log 0 'archinstall' 'sex'
+    log 3 'archinstall' 'okay, you do the rest'
 fi
