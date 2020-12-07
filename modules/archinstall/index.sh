@@ -120,7 +120,7 @@ if [[ $arArchinstallConfirm = 'CoNtInUe' ]]; then
     mkfs.fat -F32 -n EFI /dev/disk/by-partlabel/EFI &> $AR_TTY
     log 0 'archinstall partitioning' 'Making luks partition for btrfs...'
     echo "$arArchinstallPassword" | cryptsetup luksFormat --align-payload=8192 -s 256 -c aes-xts-plain64 /dev/disk/by-partlabel/$arArchinstallHostname -q &> $AR_TTY
-    echo "$arArchinstallPassword" | cryptsetup open /dev/disk/by-partlabel/$arArchinstallHostname system &> $AR_TTY
+    echo "$arArchinstallPassword" | cryptsetup open /dev/disk/by-partlabel/$arArchinstallHostname $arArchinstallHostname &> $AR_TTY
     log 0 'archinstall partitioning' 'Making dm-crypt partition for swap...'
     cryptsetup open --type plain --key-file /dev/urandom /dev/disk/by-partlabel/swap swap &> $AR_TTY
     log 1 'archinstall partitioning' 'Making swap...'
