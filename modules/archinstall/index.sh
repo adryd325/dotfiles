@@ -142,6 +142,6 @@ if [[ $arArchinstallConfirm = 'CoNtInUe' ]]; then
     mount -t btrfs -o subvol=root,$o_btrfs LABEL=$arArchinstallHostname /mnt
     mount -t btrfs -o subvol=home,$o_btrfs LABEL=$arArchinstallHostname /mnt/home
     # ABSOLUTE MINIMUM BASE PACKAGES
-    pacstrap /mnt base base-devel linux linux-firmware $(ucodepkg) nano grub
+    pacstrap /mnt base base-devel linux linux-firmware $(ucodepkg) nano grub btrfs-progs
     log 3 'archinstall' 'okay, you do the rest'
 fi
