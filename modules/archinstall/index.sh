@@ -110,8 +110,8 @@ if [[ $arArchinstallConfirm = 'CoNtInUe' ]]; then
     log 3 'archinstall partitioning' "Creating partition table..."
     sgdisk --clear \
          --new=1:0:+1G                           --typecode=1:ef00 --change-name=1:EFI \
-         --new=2:0:+$arArchinstallPartitionRam   --typecode=2:8200 --change-name=2:cryptswap \
-         --new=3:0:0                             --typecode=3:8300 --change-name=3:cryptsystem \
+         --new=2:0:+$arArchinstallPartitionRam   --typecode=2:8200 --change-name=2:swap \
+         --new=3:0:0                             --typecode=3:8300 --change-name=3:$arArchinstallHostname \
            $arArchinstallBlockdevice &> $AR_TTY
     log 3 'archinstall partitioning' "Creating partitions..."
     # give the kernel a sec to catch up
@@ -119,28 +119,28 @@ if [[ $arArchinstallConfirm = 'CoNtInUe' ]]; then
     log 1 'archinstall partitioning' 'Making efi partition...'
     mkfs.fat -F32 -n EFI /dev/disk/by-partlabel/EFI &> $AR_TTY
     log 0 'archinstall partitioning' 'Making luks partition for btrfs...'
-    echo "$arArchinstallPassword" | cryptsetup luksFormat --align-payload=8192 -s 256 -c aes-xts-plain64 /dev/disk/by-partlabel/cryptsystem -q &> $AR_TTY
-    echo "$arArchinstallPassword" | cryptsetup open /dev/disk/by-partlabel/cryptsystem system &> $AR_TTY
+    echo "$arArchinstallPassword" | cryptsetup luksFormat --align-payload=8192 -s 256 -c aes-xts-plain64 /dev/disk/by-partlabel/$arArchinstallHostname -q &> $AR_TTY
+    echo "$arArchinstallPassword" | cryptsetup open /dev/disk/by-partlabel/$arArchinstallHostname system &> $AR_TTY
     log 0 'archinstall partitioning' 'Making dm-crypt partition for swap...'
-    cryptsetup open --type plain --key-file /dev/urandom /dev/disk/by-partlabel/cryptswap swap &> $AR_TTY
+    cryptsetup open --type plain --key-file /dev/urandom /dev/disk/by-partlabel/swap swap &> $AR_TTY
     log 1 'archinstall partitioning' 'Making swap...'
     mkswap -L swap /dev/mapper/swap &> $AR_TTY
     log 1 'archinstall partitioning' 'Enabling swap...'
     swapon -L swap &> $AR_TTY
     log 1 'archinstall partitioning' 'Making btrfs...'
-    mkfs.btrfs --force --label system /dev/mapper/system &> $AR_TTY
+    mkfs.btrfs --force --label $arArchinstallHostname /dev/mapper/$arArchinstallHostname &> $AR_TTY
     # not sure what this does, just following the instructions
     o=defaults,x-mount.mkdir
     o_btrfs=$o,compress=lzo,ssd,noatime
     log 0 'archinstall partitioning' 'Mounting btrfs...'
-    mount -t btrfs LABEL=system /mnt
+    mount -t btrfs LABEL=$arArchinstallHostname /mnt
     log 1 'archinstall partitioning' 'Creating btrfs subvolumes...'
     btrfs subvolume create /mnt/root
     btrfs subvolume create /mnt/home
     umount -R /mnt
     log 1 'archinstall partitioning' 'Mounting btrfs subvolumes...'
-    mount -t btrfs -o subvol=root,$o_btrfs LABEL=system /mnt
-    mount -t btrfs -o subvol=home,$o_btrfs LABEL=system /mnt/home
+    mount -t btrfs -o subvol=root,$o_btrfs LABEL=$arArchinstallHostname /mnt
+    mount -t btrfs -o subvol=home,$o_btrfs LABEL=$arArchinstallHostname /mnt/home
     # ABSOLUTE MINIMUM BASE PACKAGES
     pacstrap /mnt base base-devel linux linux-firmware $(ucodepkg) nano grub
     log 3 'archinstall' 'okay, you do the rest'
