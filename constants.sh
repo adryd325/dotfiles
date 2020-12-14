@@ -1,5 +1,6 @@
 #!/bin/bash
 # Constants/Environment variables that could exist
+# Reminder: Update netinstall.sh
 # ------------------:----------------------------------------------
 # AR_TTY            : TTY to output silenced commands
 # AR_DIR            : Base-directory for all adryd-dotfiles files

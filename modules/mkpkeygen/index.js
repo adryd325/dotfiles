@@ -1,9 +1,11 @@
+#!/usr/bin/env node
 // keygen for something that had such simple checking I decided to just crack it
 // Usage: node index.js <email> <key>
 const crypto = require('crypto');
 const argv = process.argv.slice(2);
 
 if (argv.length !== 2) {
+    console.log("Usage: node index.js <email> <key>")
     process.exit(1);
 }
 

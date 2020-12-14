@@ -1,5 +1,6 @@
 #!/bin/bash
 # .adryd v4.2
+
 source $AR_DIR/constants.sh
 
 [[ ! $AR_SPLASH ]] \

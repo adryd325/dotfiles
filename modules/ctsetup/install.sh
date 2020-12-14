@@ -4,8 +4,8 @@ arCtFedoraInstallAdminUser=adryd
 source $AR_DIR/lib/logger.sh
 log 3 'ctsetup' 'Updating packages.'
 dnf update -qy
-
-if id $arCtFedoraInstallAdminUser; then
+id $arCtFedoraInstallAdminUser > $AR_TTY
+if [[ $? -eq 0 ]]; then
     log 3 'ctsetup' 'Creating admin user.'
     useradd -mG wheel $arCtFedoraInstallAdminUser
     log 3 'ctsetup' 'Setting admin password.'

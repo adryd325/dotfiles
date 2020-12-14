@@ -3,7 +3,7 @@ source $AR_DOTFILES_DIR/lib/logger.sh
 # needs curl, wine, regkey
 
 arFlstudioDownloadUrl="https://support.image-line.com/redirect/flstudio20_win_installer"
-arFlstudioWorkDir="$AR_TEMP_DIR/flstudio/"
+arFlstudioWorkDir="/tmp/flstudio/"
 
 log 4 flstudio "This installer requires user interaction."
 

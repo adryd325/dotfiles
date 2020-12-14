@@ -98,4 +98,5 @@ else
 fi
 
 sleep 1
+cd $AR_DIR
 $AR_DIR/install.sh
