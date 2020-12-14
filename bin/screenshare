@@ -1,0 +1,33 @@
+#!/bin/bash
+# Made by https://github.com/mstrodl
+
+UNLOADED=false
+for name in MicLoopIn Combiner SourceWindow SrcLoopIn SpkLoopIn; do
+  IDS=$(pactl list modules short | grep $name | awk '{print $1}')
+  if [[ $? -eq 0 ]]; then
+    for MODULE in $IDS; do
+      pactl unload-module $MODULE;
+      UNLOADED=true
+    done
+  fi
+done
+
+if [[ "$UNLOADED" == "false" ]]; then
+  # Window => SpkLoop => Speakers
+  # Window => SrcLoop => Combiner
+  pactl load-module module-null-sink sink_name=SourceWindow sink_properties=device.description=SourceWindow
+  # SrcLoop+MicLoop => Combiner
+  pactl load-module module-null-sink sink_name=Combiner sink_properties=device.description=Combiner
+
+  # SourceWindow => SrcLoop => Combiner
+  pactl load-module module-loopback source=SourceWindow.monitor sink_input_properties=device.description=SrcLoopIn sink=Combiner
+  # SourceWindow => SpkLoop => Speakers
+  pactl load-module module-loopback source=SourceWindow.monitor sink_input_properties=device.description=SpkLoopIn sink=alsa_output.pci-0000_00_1f.3.analog-stereo
+
+  # Mic => MicLoop => Combiner
+  pactl load-module module-loopback source=alsa_input.pci-0000_00_1f.3.analog-stereo sink_input_properties=device.description=MicLoopIn sink=Combiner
+
+  echo "Loaded screenshare"
+else
+  echo "Unloaded screenshare"
+fi
