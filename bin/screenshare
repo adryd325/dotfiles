@@ -1,5 +1,5 @@
 #!/bin/bash
-# Made by https://github.com/mstrodl
+# Made by https://github.com/mstrodl (she's really smart)
 
 UNLOADED=false
 for name in MicLoopIn Combiner SourceWindow SrcLoopIn SpkLoopIn; do

@@ -21,6 +21,6 @@ export AR_TMP="$AR_OS_TMPDIR/adryd-dotfiles/"
 [[ ! $AR_TTY ]] && export AR_TTY=/dev/null
 [[ ! $AR_DIR ]] && export AR_DIR="$HOME/.adryd"
 
-[[ $AR_TESTING -eq true ]] \
+[[ $AR_TESTING == true ]] \
     && export AR_TTY=$(tty) \
     && export AR_DIR="$HOME/.adryd-testing"
