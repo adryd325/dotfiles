@@ -24,7 +24,7 @@ log 0 'install' 'Detecting LXC...'
 cat /etc/os-release | grep "NAME=Fedora" &> /dev/null
 if [[ $? -eq 0 ]] && [[ $(systemd-detect-virt) == 'lxc' ]]; then
     log 2 'index' 'Detected LXC. Running LXC setup script.'
-    $AR_DIR/modules/ctsetup/index.sh
+    $AR_DIR/modules/ctsetup/install.sh
     log 0 'index' 'LXC install script done. exiting.'
     exit 0
 fi
