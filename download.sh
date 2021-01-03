@@ -88,8 +88,8 @@ else
     [[ $arNetinstallDownloader == "wget" ]] && wget -O $arNetinstallArchive $arNetinstallDownloadURL 2> $AR_TTY
 
     echo -e "$arLogInfo $arLogModule Extracting..."
-    [[ $arNetinstallDownloader == "tar.gz" ]] && tar -xvf $arNetinstallArchive -C $AR_TMP 2> $AR_TTY
-    [[ $arNetinstallDownloader == "zip" ]] && unzip $arNetinstallArchive -d $AR_TMP 2> $AR_TTY
+    [[ $arNetinstallDownloader == "tar.gz" ]] && tar -xvf $arNetinstallArchive -C $AR_TMP > $AR_TTY
+    [[ $arNetinstallDownloader == "zip" ]] && unzip $arNetinstallArchive -d $AR_TMP > $AR_TTY
     ls $AR_TMP
     # probably a better way to do that /shrug
     [[ $AR_TESTING != true ]] && mv -f "$AR_TMP/dotfiles-master" $AR_DIR
