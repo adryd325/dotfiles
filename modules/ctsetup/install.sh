@@ -5,7 +5,7 @@ source $AR_DIR/lib/logger.sh
 log 3 'ctsetup' 'Updating packages.'
 dnf update -qy
 id $arCtFedoraInstallAdminUser > $AR_TTY
-if [[ $? -eq 0 ]]; then
+if [[ $? -eq 1 ]]; then
     log 3 'ctsetup' 'Creating admin user.'
     useradd -mG wheel $arCtFedoraInstallAdminUser
     log 3 'ctsetup' 'Setting admin password.'
@@ -69,7 +69,7 @@ fi
 
 log 3 'ctsetup' 'Placing manual in home directory.'
 touch /home/$arCtFedoraInstallAdminUser/manual.txt
-chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser manual.txt
+chown $arCtFedoraInstallAdminUser:$arCtFedoraInstallAdminUser /home/$arCtFedoraInstallAdminUser/manual.txt
 
 log 3 'ctsetup' 'Cleaning up.'
 rm -rf $AR_DIR
