@@ -88,7 +88,7 @@ else
     [[ $arNetinstallDownloader == "wget" ]] && wget -O $arNetinstallArchive $arNetinstallDownloadURL 2> $AR_TTY
 
     echo -e "$arLogInfo $arLogModule Extracting..."
-    [[ $arNetinstallExtractor == "tar.gz" ]] && tar -xvf $arNetinstallArchive -C $AR_TMP 2> $AR_TTY
+    [[ $arNetinstallExtractor == "tar.gz" ]] && tar -xf $arNetinstallArchive -C $AR_TMP 2> $AR_TTY
     [[ $arNetinstallExtractor == "zip" ]] && unzip $arNetinstallArchive -d $AR_TMP 2> $AR_TTY
     
     # probably a better way to do that /shrug
