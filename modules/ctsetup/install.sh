@@ -1,15 +1,25 @@
 #!/bin/bash
 arCtFedoraInstallAdminUser=adryd
+arCtFedoraInstallServicesUser=adryd-services
 
 source $AR_DIR/lib/logger.sh
 log 3 'ctsetup' 'Updating packages.'
 dnf update -qy
-id $arCtFedoraInstallAdminUser > $AR_TTY
+
+id $arCtFedoraInstallAdminUser &> $AR_TTY
 if [[ $? -eq 1 ]]; then
     log 3 'ctsetup' 'Creating admin user.'
     useradd -mG wheel $arCtFedoraInstallAdminUser
     log 3 'ctsetup' 'Setting admin password.'
     passwd $arCtFedoraInstallAdminUser
+fi
+
+id $arCtFedoraInstallServicesUser &> $AR_TTY
+if [[ $? -eq 1 ]]; then
+    log 3 'ctsetup' 'Creating services user.'
+    useradd $arCtFedoraInstallServicesUser
+    log 3 'ctsetup' 'Adding admin user to services group.'
+    usermod -aG $arCtFedoraInstallServicesUser $arCtFedoraInstallAdminUser
 fi
 
 log 3 'ctsetup' 'Installing SSH.'
@@ -46,10 +56,12 @@ dnf install nano -qy
 git config --global core.editor nano
 
 log 3 'ctsetup' 'Locking root user.'
-# All this is "just in case", hence why it's dissabled in 3 ways
+
+# All this is "just in case", hence why it's dissabled in 4 ways
 cat /dev/urandom | tr -dc A-Za-z0-9 | head -c${1:-128} | passwd root --stdin &> $AR_TTY
 passwd -l root &> $AR_TTY
 chage -E 0 root &> $AR_TTY
+usermod --shell /sbin/nologin root &> $AR_TTY
 
 if [[ ! -e /etc/fail2ban/jail.local ]]; then
     log 3 'ctsetup' 'Installing fail2ban.'
@@ -58,7 +70,7 @@ if [[ ! -e /etc/fail2ban/jail.local ]]; then
     cp $AR_DIR/modules/fail2ban/jail.local /etc/fail2ban/jail.local
     chmod 644 /etc/fail2ban/jail.local # just to be sure
     log 3 'ctsetup' 'Enaling fail2ban.'
-    systemctl enable fail2ban > $AR_TTY
+    systemctl enable fail2ban &> $AR_TTY
 fi
 
 # Web server is broken rn, this will fail
