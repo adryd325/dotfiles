@@ -40,7 +40,7 @@ fi
 log 3 'ctsetup' 'Enabling SSH.' 
 systemctl enable --now sshd > $AR_TTY # this package/service naming clusterfuck has to stop
 
-if [[ -e /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys ]]; then
+if [[ ! -e /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys ]]; then
     log 3 'ctsetup' 'Installing SSH key.'
     mkdir -p /home/$arCtFedoraInstallAdminUser/.ssh
     mv /root/.ssh/authorized_keys /home/$arCtFedoraInstallAdminUser/.ssh/authorized_keys
@@ -50,10 +50,8 @@ fi
 
 log 3 'ctsetup' 'Installing development tools.'
 dnf install @development-tools -qy
-log 3 'ctsetup' 'Swap text editors.'
-dnf remove vim-minimal -qy
+log 3 'ctsetup' 'Installing nano.'
 dnf install nano -qy
-git config --global core.editor nano
 
 log 3 'ctsetup' 'Locking root user.'
 
