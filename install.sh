@@ -28,5 +28,3 @@ if [[ $? -eq 0 ]] && [[ $(systemd-detect-virt) == 'lxc' ]]; then
     log 0 'index' 'LXC install script done. exiting.'
     exit 0
 fi
-
-$AR_DIR/modules/discord/discord.sh
