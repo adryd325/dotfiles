@@ -6,9 +6,9 @@ Wants=network-online.target
 [Service]
 Type=forking
 PIDFile=/run/nginx.pid
-ExecStartPre=/usr/share/nginx/sbin/nginx -t
-ExecStart=/usr/share/nginx/sbin/nginx
-ExecReload=/usr/share/nginx/sbin/nginx -s reload
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/usr/sbin/nginx -s reload
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
 
