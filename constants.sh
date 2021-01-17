@@ -8,6 +8,8 @@
 # AR_TMP            : adryd-dotfiles temp folder
 # AR_TESTING        : whether or not to run things in debug mode
 # AR_SPLASH         : whether or not the splash has shown
+# AR_NODE           : path to node executable
+# AR_RESOURCES      : resources url (ssl cert, ssh pubkey)
 # ------------------:----------------------------------------------
 
 for AR_OS_TMPDIR in "$TMPDIR" "$TMP" "$TEMP" /tmp
@@ -24,3 +26,5 @@ export AR_TMP="$AR_OS_TMPDIR/adryd-dotfiles/"
 [[ $AR_TESTING == true ]] \
     && export AR_TTY=$(tty) \
     && export AR_DIR="$HOME/.adryd-testing"
+
+export AR_RESOURCES='https://adryd.co'

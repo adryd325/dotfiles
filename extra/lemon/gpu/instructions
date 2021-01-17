@@ -1,0 +1,8 @@
+add "hookscript: local:snippets/leaf-hook.sh" to /etc/pve/qemu-server/vmid.conf
+make sure onboot: 1 or 0 exists somewhere in the above config
+put leaf-start somewhere in path
+put pcie-passthrough in /etc/modprobe.d
+put leaf-hook in /var/lib/vz/snippets/leaf-hook.sh
+
+Why????
+"AMD GPU Reset bug"

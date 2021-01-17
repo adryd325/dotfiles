@@ -1,30 +1,34 @@
 #!/bin/bash
-# .adryd v4.2
 
-source ~/.adryd/constants.sh
+source $AR_DIR/constants.sh
+source $AR_DIR/lib/logger.sh
 
 [[ ! $AR_SPLASH ]] \
     && echo \
     && echo -e " \x1b[30;44m \x1b[0m .adryd" \
-    && echo -e " \x1b[30;44m \x1b[0m version 4.2" \
+    && echo -e " \x1b[30;44m \x1b[0m version 5" \
     && echo \
-    && AR_SPLASH=true
+    && AR_SPLASH=1
 
-source $AR_DIR/lib/logger.sh
-
-log 0 'install' 'Detecting archiso...'
+log 0 'install' 'Checking for archiso'
 if [[ $HOSTNAME == 'archiso' ]] && [[ $USER == 'root' ]]; then
-    log 2 'index' 'Detected archiso. Running Arch install script.'
+    log 2 'index' 'Detected archiso. Running Arch install script'
     $AR_DIR/modules/archinstall/index.sh
-    log 0 'index' 'Arch install script done, exiting.'
+    log 0 'index' 'Arch install script done, exiting'
     exit 0
 fi
 
-log 0 'install' 'Detecting LXC...'
-cat /etc/os-release | grep "NAME=Fedora" &> /dev/null
+log 0 'install' 'Checking for Debian LXC'
+cat /etc/os-release | grep "ID=debian" &> /dev/null
 if [[ $? -eq 0 ]] && [[ $(systemd-detect-virt) == 'lxc' ]]; then
-    log 2 'index' 'Detected LXC. Running LXC setup script.'
-    $AR_DIR/modules/ctsetup/install.sh
-    log 0 'index' 'LXC install script done. exiting.'
-    exit 0
+    if [[ $USER == 'root' ]]; then
+        log 2 'index' 'Detected LXC. Running LXC setup script'
+        $AR_DIR/extra/lemon/lxcs/install.sh
+        log 0 'index' 'LXC install script done'
+        exit 0
+    else
+        log 2 'index' 'Detected LXC. Please run with escalated privelages'
+        exit 0
+    fi
 fi
+

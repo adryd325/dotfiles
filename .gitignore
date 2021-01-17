@@ -1,4 +1,3 @@
-dotfiles.tar
-bundle-testing.sh
-
-modules/mkpkeygen/key.txt
+dotfiles-testing.tar.gz
+.node
+.old
