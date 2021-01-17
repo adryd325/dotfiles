@@ -1,0 +1,10 @@
+#!/bin/bash
+
+function check() {
+    [[ -e ~/.ssh/id_* ]] && [[ -e ~/.local/Discord* ]] && return 0
+    return 1
+}
+
+function install() {
+    git clone git@gitlab.com:mstrodl/heckheating ~/.local/share/heckheating
+}
