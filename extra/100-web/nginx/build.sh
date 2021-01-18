@@ -6,9 +6,7 @@ arNginxSrcDir=/usr/local/src
 if [[ ! -e /etc/nginx ]]; then
     # hack to create the file structure n shit cause im lazy
     sudo apt-get install -qqy nginx
-    cp /etc/systemd/system/multi-user.target.wants/nginx.service /tmp/nginx.service
     sudo apt-get remove -qqy nginx
-    sudo mv /tmp/nginx.service /etc/systemd/system/nginx.service
     sudo apt-get autoremove
 fi
 
@@ -65,9 +63,10 @@ fi
 cd $arNginxSrcDir/nginx
 sudo hg pull
 log 3 $module 'Configuring'
-sudo ./auto/configure --with-cc-opt='-g -O2 -fdebug-prefix-map=/build/nginx-Cjs4TR/nginx-1.14.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Wdate-time -D_FORTIFY_SOURCE=2' --with-ld-opt='-Wl,-z,relro -Wl,-z,now -fPIC' --prefix=/usr/share/nginx \
+sudo ./auto/configure --with-cc-opt='-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Wdate-time -D_FORTIFY_SOURCE=2' --with-ld-opt='-Wl,-z,relro -Wl,-z,now -fPIC' \
+    --prefix=/usr/share/nginx \
     --conf-path=/etc/nginx/nginx.conf \
-    --sbin-path=/usr/sbin/nginx 
+    --sbin-path=/usr/sbin/nginx \
     --http-log-path=/var/log/nginx/access.log \
     --error-log-path=/var/log/nginx/error.log \
     --lock-path=/var/lock/nginx.lock \
@@ -106,6 +105,7 @@ sudo ./auto/configure --with-cc-opt='-g -O2 -fdebug-prefix-map=/build/nginx-Cjs4
     --add-module=/usr/local/src/ngx_http_geoip2_module \
     --add-module=/usr/local/src/headers-more-nginx-module \
     --add-module=/usr/local/src/nginx-dav-ext-module
+
 log 3 $module 'Building'
 sudo make
 log 3 $module 'Installing'
