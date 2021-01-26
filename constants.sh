@@ -17,14 +17,16 @@ do
   test -n "$AR_OS_TMPDIR" && break
 done
 
-export AR_OS_TMPDIR=$AR_OS_TMPDIR
-export AR_TMP="$AR_OS_TMPDIR/adryd-dotfiles/"
+export AR_TMP="$AR_OS_TMPDIR/adryd-dotfiles"
+export AR_SECRET="$HOME/.adryd-secret"
+export AR_LOGLEVEL=3
 
 [[ ! $AR_TTY ]] && export AR_TTY=/dev/null
 [[ ! $AR_DIR ]] && export AR_DIR="$HOME/.adryd"
 
 [[ $AR_TESTING == true ]] \
     && export AR_TTY=$(tty) \
-    && export AR_DIR="$HOME/.adryd-testing"
+    && export AR_DIR="$HOME/.adryd-testing" \
+    && export AR_LOGLEVEL=0
 
 export AR_RESOURCES='https://adryd.co'

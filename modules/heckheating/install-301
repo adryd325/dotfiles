@@ -1,0 +1,44 @@
+#!/bin/bash
+[[ ! $AR_DIR ]] && source $HOME/.adryd/constants.sh
+source $AR_DIR/constants.sh
+source $AR_DIR/lib/log.sh
+source $AR_DIR/lib/ensure.sh
+
+export AR_MODULE='heckheating'
+hhDir=$HOME/.local/share/heckheating
+hhLocal=$HOME/.local/share
+hhBranches=('stable' 'canary')
+
+function check() {
+    [[ -e ~/.ssh/id_* ]] && [[ -e ~/.local/Discord* ]] && return 0 #&& [[ -e $AR_SECRET/modules/heckheating/config/discord.json ]] && return 0
+    return 0
+}
+
+function install() {
+    ensure git nodejs npm
+    # clone the repo, or update to latest if not already
+    if [[ ! -e ~/.local/share/heckheating ]]; then 
+        git clone git@gitlab.com:mstrodl/heckheating $hhDir
+    else
+        cd ~/.local/share/heckheating
+        git pull --ff-only
+        cd $AR_DIR
+    fi
+
+    for hhBranch in "${hhBranches[@]}"; do
+        # Discord Naming Fixes
+        # keep in sync with modules/discord/install-300
+        log 0 'Variable setup'
+        if [[ $discordBranch = 'stable' ]]; then
+            hhDiscordName='Discord'
+        elif [[ $discordBranch = 'ptb' ]]; then
+            # ^^ capitalizes all characters
+            hhDiscordName="Discord${discordBranch^^}"
+        else
+            # ^ capitalizes first character
+            hhDiscordName="Discord${discordBranch^}"
+        fi
+        log 3 "Patching Discord $hhBranch"
+        node $hhDir/bin/cli.js $hhLocal/$hhDiscordName/$hhDiscordName > /dev/null
+    done
+}
