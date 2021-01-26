@@ -22,7 +22,6 @@ arDownloadHTTPS='https://codeload.github.com/adryd325/dotfiles/tar.gz/master'
 arDownloadLocal='http://10.0.0.31:8080/dotfiles-testing.tar.gz'
 
 # TODO: verify sha256 https://nodejs.org/dist/v14.15.4/SHASUMS256.txt.asc
-# TODO: arm cpus
 
 arNodeDownloadVersion='v14.15.4'
 arNodeDownloadBuild="node-$arNodeDownloadVersion-linux-x64"
@@ -79,7 +78,7 @@ else
 
     [[ -e $AR_TMP/dotfiles-master ]] && mv -f "$AR_TMP/dotfiles-master" $AR_DIR
     [[ -e $AR_TMP/dotfiles ]] && mv -f "$AR_TMP/dotfiles" $AR_DIR
-    [[ -e $AR_TMP/.adryd ]] && mv -f "$AR_TMP/.adryd" $AR_DIR
+    [[ -e $AR_TMP/.adryd ]] && mv -f "$AR_TMP/.ad# TODO: arm cpus ryd" $AR_DIR
     [[ -e $AR_TMP/.adryd-devel ]] && mv -f "$AR_TMP/.adryd-devel" $AR_DIR
     [[ -e $AR_TMP/.adryd-testing ]] && mv -f "$AR_TMP/.adryd-testing" $AR_DIR
 fi

@@ -1,0 +1,34 @@
+#!/bin/bash
+[[ ! $AR_DIR ]] && source $HOME/.adryd/constants.sh
+source $AR_DIR/constants.sh
+source $AR_DIR/lib/log.sh
+source $AR_DIR/lib/ensure.sh
+
+export AR_MODULE='flstudio'
+flstudioDownloadUrl="https://support.image-line.com/redirect/flstudio20_win_installer"
+flstudioTmp="$AR_TMP/flstudio"
+
+function check() {
+    return 0
+}
+
+function install() {
+    ensure wine
+    log 4 'This installer may require user interaction'
+
+    # Make temp folder
+    log 0 'Making temp folder'
+    mkdir -p $flstudioTmp
+
+    if [[ ! -e $flstudioTmp/flstudio.exe ]]; then
+        log 3 'Downloading installer exe'
+        curl -fsSL $flstudioDownloadUrl -o $flstudioTmp/flstudio.exe
+    else
+        log 2 'Download skipped'
+    fi
+
+    log 3 'Starting installer'
+    bell
+    wine $flstudioTmp/flstudio.exe /S &> /dev/null
+}
+

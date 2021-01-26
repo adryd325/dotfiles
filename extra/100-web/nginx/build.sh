@@ -113,7 +113,7 @@ sudo make install
 
 cd /etc/nginx
 log 3 $module 'Tidying up'
-sudo rm -rf fastcgi.conf fastcgi_params html mime.types.default nginx.conf.default scgi_params.default uwsgi_params.default fastcgi.conf.default fastcgi_params.default koi-utf koi-win scgi_params uwsgi_params modules-enabled proxy_params snippets sites-available sites-enabled
+sudo rm -rf fastcgi.conf fastcgi_params html mime.types.default nginx.conf.default scgi_params.default uwsgi_params.default fastcgi.conf.default fastcgi_params.default koi-utf koi-win scgi_params uwsgi_params modules-enabled proxy_params sites-available sites-enabled
 
 log 3 $module 'Restarting nginx service'
 sudo systemctl restart nginx

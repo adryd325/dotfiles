@@ -1,0 +1,18 @@
+#!/bin/bash
+[[ ! $AR_DIR ]] && source $HOME/.adryd/constants.sh
+source $AR_DIR/constants.sh
+source $AR_DIR/lib/log.sh
+source $AR_DIR/lib/ensure.sh
+
+export AR_MODULE='flstudio'
+
+function check() {
+    [[ -e $HOME/.wine/drive_c/Program\ Files/Image-Line ]] && [[ -e $AR_SECRET/modules/flstudio/FLRegkey.reg ]] && return 0
+    return 1
+}
+
+function install() {
+    log 3 'Applying license'
+    wine start regedit.exe "$AR_SECRET/modules/flstudio/FLRegkey.reg" &> /dev/null
+}
+
