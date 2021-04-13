@@ -4,7 +4,7 @@ source $AR_DIR/lib/tmp.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="discord"
 
-if [ "$AR_OS" == "linux_archlinux" ]; then
+if [ "$AR_KERNEL" == "linux" ]; then
     downloadEndpoint='https://discord.com/api/download'
     downloadOptions='?platform=linux&format=tar.gz'
 
