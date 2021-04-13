@@ -1,0 +1,17 @@
+[Unit]
+Description=log shutdown
+Before=poweroff.target halt.target shutdown.target reboot.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /usr/local/bin/ar-log-shutdown.sh
+
+PrivateUsers=true
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=shutdown.target

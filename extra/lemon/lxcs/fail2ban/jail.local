@@ -1,5 +1,0 @@
-[DEFAULT]
-bantime = 1h
-
-[sshd]
-enabled = true

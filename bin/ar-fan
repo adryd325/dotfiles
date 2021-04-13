@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ "$1" == "" ]; then
+    if cat /proc/acpi/ibm/fan | grep -P "level:\t*auto" > /dev/null; then
+        echo "level full-speed" | sudo tee /proc/acpi/ibm/fan
+    else
+        echo "level auto" | sudo tee /proc/acpi/ibm/fan
+    fi
+else
+    echo "level $1" | sudo tee /proc/acpi/ibm/fan
+fi

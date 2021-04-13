@@ -1,105 +1,192 @@
 #!/bin/bash
-# .adryd v5 (download)
-# sh <(curl -fsSL https://adryd.co/install.sh)
-# sh <(wget https://adryd.co/install.sh -Oq-)
+export AR_NOT_INSTALLED=1
 
-[[ ! $AR_SPLASH ]] \
-    && echo \
-    && echo -e " \x1b[30;44m \x1b[0m .adryd" \
-    && echo -e " \x1b[30;44m \x1b[0m version 5" \
-    && echo \
+# --- BEGIN CONSTANTS ---
+#!/bin/bash
+# This file is loaded at the start of every script
+# Keep it minimal
+
+[ ! $AR_SPLASH ] \
+    && echo -en "\n \x1b[30;44m \x1b[0m .adryd\n \x1b[30;44m \x1b[0m version 5\n\n" \
     && export AR_SPLASH=1
 
-export AR_TMP='/tmp/adryd-dotfiles'
-[[ ! $AR_DIR ]] && export AR_DIR="$HOME/.adryd"
-[[ $AR_TESTING -eq 1 ]] && export AR_DIR="$HOME/.adryd-testing"
+# Logs
+function log() {
 
-AR_MODULE='download'
-
-arDownloadGitHTTPS='https://github.com/adryd325/dotfiles.git'
-arDownloadGitSSH='git@github.com:adryd325/dotfiles'
-arDownloadHTTPS='https://codeload.github.com/adryd325/dotfiles/tar.gz/master'
-arDownloadLocal='http://10.0.0.31:8080/dotfiles-testing.tar.gz'
-
-# TODO: verify sha256 https://nodejs.org/dist/v14.15.4/SHASUMS256.txt.asc
-
-arNodeDownloadVersion='v14.15.4'
-arNodeDownloadBuild="node-$arNodeDownloadVersion-linux-x64"
-arNodeDownloadHTTPS="https://nodejs.org/dist/$arNodeDownloadVersion/$arNodeDownloadBuild.tar.xz"
-
-# log stuff cause we're not in node yet
-arLogModule="\x1b[35mdownload\x1b[0m"
-arLogInfo='\x1b[32minfo\x1b[0m'
-arLogWarn='\x1b[30;43mWARN\x1b[0m'
-arLogError='\x1b[31;40mERR!\x1b[0m'
-
-[[ $AR_TESTING ]] \
-    && echo -e "$arLogWarn $arLogModule \$AR_TESTING is set to true, Some protections are disabled." \
-    && echo -e "$arLogWarn $arLogModule For logging STDOUT and STDERR of quieted commands, put AR_TTY=\$(tty) in the env" \
-
-# if we're testing, nuke the existing dotfiles
-[[ -e $AR_DIR ]] && [[ $AR_TESTING ]] && rm -rf $AR_DIR
-
-[[ -e $AR_DIR ]] \
-    && echo -e "$arLogError $arLogModule $AR_DIR already exists. Please remove it to proceed with the installation." \
-    && exit 1
-
-# figure out what we'll be using to download the dotfiles bundle and node
-[[ -x "$(command -v wget)" ]] && arDownloadDownloader="wget"
-[[ -x "$(command -v curl)" ]] && arDownloadDownloader="curl"
-# we're out of options now, not much else we can do unless I wanna go wild and write an http request in bash somehow
-[[ $arDownloadDownloader == "" ]] \
-    && echo -e "$arLogError $arLogModule No program was found to download files over https or clone git repositories." \
-    && exit 1
-
-# If we have git, just take the shortcut, no reason to not do it.
-if [[ -x "$(command -v git)" ]] && [[ ! $AR_TESTING -eq 1 ]]; then
-    arDownloadGit=$arDownloadGitHTTPS
-    # SSH cloning is preferred, but only works if there are SSH keys installed
-    # we can always git remote set-url afterwards
-    [[ -e ~/.ssh/id_* ]] && arDownloadGit=$arDownloadGitSSH
-    echo -e "$arLogInfo $arLogModule Cloning dotfiles"
-    git clone $arDownloadGit $AR_DIR -q
-elif [[ $AR_TESTING -eq 1 && -e ~/.adryd-devel ]]; then
-    echo -e "$arLogInfo $arLogModule Copying dotfiles-devel"
-    cp ~/.adryd-devel $AR_DIR -rf
-else
-    [[ $AR_TESTING -eq 1 ]] && arDownloadHTTPS=$arDownloadLocal # download locally if in testing mode
-    arDownloadFile="$AR_TMP/dotfiles.tar.gz"
-    [[ -e $arDownloadFile ]] && rm $arDownloadFile # delete existing download
-    mkdir -p $AR_TMP
+    # Default echo args
+    local logEchoArgs="-e"
+    local logString=""
+    local logLevel=0
     
-    echo -e "$arLogInfo $arLogModule Downloading dotfiles bundle"
-    [[ $arDownloadDownloader == "curl" ]] && curl -sSLo $arDownloadFile $arDownloadHTTPS
-    [[ $arDownloadDownloader == "wget" ]] && wget -O $arDownloadFile $arDownloadHTTPS
+    # Get things set up for each log level
+    case $1 in
+        silly)
+            logLevel=0
+            logString+="\x1b[30;47msill\x1b[0m "
+            ;;
+        verb)
+            logLevel=1
+            logString+="\x1b[34;40mverb\x1b[0m "
+            ;;
+        info)
+            logLevel=2
+            logString+="\x1b[36minfo\x1b[0m "
+            ;;
+        warn)
+            logLevel=3
+            logString+="\x1b[30;43mWARN\x1b[0m "
+            ;;
+        error)
+            logLevel=4
+            logString+="\x1b[31;40mERR!\x1b[0m "
+            ;;
+        tell)
+            logLevel=5
+            logString+="\x1b[32mtell\x1b[0m "
+            ;;
+        ask)
+            logLevel=5
+            logString+="\x1b[32mask:\x1b[0m "
+            logEchoArgs="-en"
+            ;;
+    esac
+    
+    # If $AR_MODULE is set, prefix the log message
+    [ "$AR_MODULE" ] \
+        && logString+="\x1b[35m$AR_MODULE\x1b[0m "
+    
+    # Add the rest of the arguments (merged together) to $logString
+    logString+="${*:2}"
+    
+    # Don't print log if it's below our log level, and make sure to always show "ask" and "tell" log levels
+    [ "$AR_LOGLEVEL" ] && [[ $logLevel -gt $AR_LOGLEVEL ]] && [[ $logLevel -lt 5 ]] \
+        && return
+    
+    echo $logEchoArgs "$logString"
+}
 
-    echo -e "$arLogInfo $arLogModule Extracting dotfiles bundle"
-    tar -xf $arDownloadFile -C $AR_TMP
+# AR_DIR
+function ar_dir() {
+    local manifest="adryd-dotfiles-v5"
+    local defaultDir=".adryd"
 
-    [[ -e $AR_TMP/dotfiles-master ]] && mv -f "$AR_TMP/dotfiles-master" $AR_DIR
-    [[ -e $AR_TMP/dotfiles ]] && mv -f "$AR_TMP/dotfiles" $AR_DIR
-    [[ -e $AR_TMP/.adryd ]] && mv -f "$AR_TMP/.ad# TODO: arm cpus ryd" $AR_DIR
-    [[ -e $AR_TMP/.adryd-devel ]] && mv -f "$AR_TMP/.adryd-devel" $AR_DIR
-    [[ -e $AR_TMP/.adryd-testing ]] && mv -f "$AR_TMP/.adryd-testing" $AR_DIR
+    # Check if we're not installed. This variable is set before this script is loaded in download.sh
+    # in this case we're setting the install target
+    [[ $AR_NOT_INSTALLED -eq 1 ]] \
+        && export AR_DIR="$HOME/$defaultDir"
+
+    if [ ! "$AR_DIR" ]; then
+        # First we're checking if we're somewhere in a subdirectory of .adryd
+        # I'm comfortable with using $PWD cause it seems to be a bash builtin
+        # I'm sure there's a better way of doing this, but oh well
+        local oldPwd=$PWD
+        while [ $PWD != '/' ]; do
+            [ -e "$PWD/.manifest" ] \
+                && [ "$(cat $PWD/.manifest)" == "$manifest" ] \
+                && export AR_DIR=$PWD \
+                && break
+            cd ..
+        done
+        cd $oldPwd
+
+        # Check the default directory
+        [ -e "$HOME/$defaultDir/.manifest" ] \
+            && [ "$(cat $HOME/$defaultDir/.manifest)" == "$manifest" ] \
+            && export AR_DIR="$HOME/$defaultDir"
+
+        # Give up.
+        [ ! "$AR_DIR" ] \
+            && log error "Could not find AR_DIR, please set it manually" \
+            && exit 1
+    fi
+}
+ar_dir
+# --- END CONSTANTS ---
+AR_MODULE=download
+
+# All of this should be overwritable by the user in testing modes\
+[ ! "$AR_DOWNLOAD_HTTP_TAR" ] && AR_DOWNLOAD_HTTP_TAR="https://codeload.github.com/adryd325/dotfiles/tar.gz/master"
+[ ! "$AR_DOWNLOAD_HTTP_ARCHIVE_TARGET" ] && AR_DOWNLOAD_HTTP_ARCHIVE_TARGET="dotfiles-master"
+[ ! "$AR_DOWNLOAD_GIT_HTTP" ] && AR_DOWNLOAD_GIT_HTTP="https://github.com/adryd325/dotfiles"
+[ ! "$AR_DOWNLOAD_GIT_SSH" ] && AR_DOWNLOAD_GIT_SSH="git@github.com:adryd325/dotfiles"
+[ ! "$AR_DOWNLOAD_REPLACE_EXISTING" ] && AR_DOWNLOAD_REPLACE_EXISTING=0
+[ ! "$AR_DOWNLOAD_DESTINATION" ] && AR_DOWNLOAD_DESTINATION=$AR_DIR
+
+nodeVersion='v14.15.4'
+# i dont care that this is x64 only im about to fucking cry okay i just want to replace things multiline without dying
+nodeBuild="node-$nodeVersion-linux-x64"
+nodeDownload="https://nodejs.org/dist/$nodeVersion/$nodeBuild.tar.xz"
+
+
+# check if we can nuke the dotfiles
+if [ -e "$AR_DOWNLOAD_DESTINATION" ]; then
+    if [[ "$AR_DOWNLOAD_REPLACE_EXISTING" -eq 1 ]]; then
+        rm -rf "$AR_DOWNLOAD_DESTINATION"
+    else
+        log error "$AR_DOWNLOAD_DESTINATION already exists. Please remove it to proceed with the installation."
+        exit 1
+    fi
 fi
 
-# bootstrap nodejs
-# we want our own node version Just In Case:tm:
-if [[ -e $AR_DIR ]] && [[ ! -e $AR_DIR/.node ]]; then
-    arLogModule="\x1b[35mdownload node\x1b[0m"
-    arNodeDownloadFile="$AR_TMP/node.tar.xz"
-    mkdir -p $AR_TMP
+[[ -x "$(command -v wget)" ]] && downloader="wget"
+[[ -x "$(command -v curl)" ]] && downloader="curl"
 
-    echo -e "$arLogInfo $arLogModule Downloading node"
-    [[ $arDownloadDownloader == "curl" ]] && curl -so $arNodeDownloadFile $arNodeDownloadHTTPS
-    [[ $arDownloadDownloader == "wget" ]] && wget -qO $arNodeDownloadFile $arNodeDownloadHTTPS
+if [[ -x "$(command -v git)" ]] && [[ ! "$AR_DOWNLOAD_HTTP_FORCE" -eq 1 ]]; then
+    gitUrl="$AR_DOWNLOAD_GIT_HTTP"
+    [ -e ~/.ssh/id_* ] && gitUrl="$downloadGitSSH"
+    log info "Cloning dotfiles repo"
+    git clone "$gitUrl" "$AR_DOWNLOAD_DESTINATION" -q
+else
+    # Check if we can download over http
+    [ ! "$downloader" ] \
+        && log error "No programs were found to download over http or git" \
+        && exit 1
+    
+    # Check if we'll be able to extract the downloaded tar file
+    [[ ! -x "$(command -v tar)" ]] \
+        && log error "No programs were found to extract tar files" \
+        && exit 1
+    
+    # Temp file
+    destinationFile="/tmp/adryd-dotfiles-dl.tar"
 
-    echo -e "$arLogInfo $arLogModule Extracting node"
-    tar -xf $arNodeDownloadFile -C $AR_TMP
-    mv $AR_TMP/$arNodeDownloadBuild $AR_DIR/.node
-    export AR_NODE=$AR_DIR/.node
+    log info "Downloading dotfiles bundle"
+    # Download depending on which program we have
+    [ "$downloader" == "curl" ] && curl -sSLo "$destinationFile" "$AR_DOWNLOAD_HTTP_TAR"
+    [ "$downloader" == "wget" ] && wget -qO "$destinationFile" "$AR_DOWNLOAD_HTTP_TAR"
+    
+    # Make a temp folder
+    mkdir /tmp/adryd-dotfiles-dl/
+
+    log info "Extracting dotfiles bundle"
+    tar -xf "$destinationFile" -C /tmp/adryd-dotfiles-dl/
+
+    log info "Moving extracted bundle"
+
+    # if $AR_DOWNLOAD_HTTP_ARCHIVE_TARGET is empty, it coppies the folder itself to $AR_DOWNLOAD_DESTINATION
+    [ -e "/tmp/adryd-dotfiles-dl/$AR_DOWNLOAD_HTTP_ARCHIVE_TARGET" ] \
+        && cp -r "/tmp/adryd-dotfiles-dl/$AR_DOWNLOAD_HTTP_ARCHIVE_TARGET" "$AR_DOWNLOAD_DESTINATION"
+    rm -rf /tmp/adryd-dotfiles-dl/ "$destinationFile"
+fi
+
+# download node because i am fucking 2 and dont know how to MULTILINE REPLACE IN SHELL SCRIPT ITS TOO FUCKING SCARY AND 
+# UGH KILL ME FUCKING KILL ME FUCKING KILL ME FUCKING KILL ME
+if [ -e $AR_DIR ] && [ ! -e $AR_DIR/.node ]; then
+    destinationFile="/tmp/adryd-dotfiles-node/node.tar.xz"
+    mkdir -p /tmp/adryd-dotfiles-node
+
+    log info "Downloading node"
+    [ "$downloader" == "curl" ] && curl -sSLo "$destinationFile" "$nodeDownload"
+    [ "$downloader" == "wget" ] && wget -qO "$destinationFile" "$nodeDownload"
+
+    log info "Extracting node"
+    tar -xf "$destinationFile" -C /tmp/adryd-dotfiles-node/
+    mv "/tmp/adryd-dotfiles-node/$nodeBuild" "$AR_DIR/.node"
 fi 
 
+log info "Downloaded to $AR_DOWNLOAD_DESTINATION"
+
+export AR_NOT_INSTALLED=0
 sleep 1
-cd $AR_DIR
-$AR_DIR/install.sh
+cd $AR_DOWNLOAD_DESTINATION
+$AR_DOWNLOAD_DESTINATION/startup.sh
