@@ -12,6 +12,14 @@ user_pref("browser.devedition.theme.showCustomizeButton", true);
 user_pref("browser.tabs.drawInTitlebar", true);
 user_pref("browser.uidensity", 0);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("gnomeTheme.systemIcons", true);
+user_pref("gnomeTheme.hideSingleTab", true);
+
+// Disable Firefox's new "Proton" theme
+user_pref("browser.proton.contextmenus.enabled", false);
+user_pref("browser.proton.doorhangers.enabled", false);
+user_pref("browser.proton.enabled", false);
+user_pref("browser.proton.modals.enabled", false);
 
 // Enable SVG context-propertes (GNOME Theme)
 user_pref("svg.context-properties.content.enabled", true);

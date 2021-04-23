@@ -29,7 +29,7 @@ packages=(
     "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-shell" "gnome-shell-extensions" "gnome-software"
     "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "mutter" "nautilus"
     "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks" "chrome-gnome-shell" "gdm-prime"
-    "gnome-software-packagekit-plugin"
+    "gnome-software-packagekit-plugin" "gnome-system-monitor" "plymouth-git"
     # Base apps
     "firefox-developer-edition"
     # CLI tools
@@ -39,7 +39,7 @@ packages=(
     # Utilities
     "virt-viewer" "remmina" "freerdp" "libvncserver" "keepassxc" "mumble" "torbrowser-launcher" "dconf-editor" "audacity" "inkscape" "gimp"
     "libreoffice-still" "quassel-monolithic" "code" "deluge" "deluge-gtk" "obs-studio" "obs-v4l2sink" "v4l2loopback-dkms" "vlc" "telegram-desktop"
-    "xournalpp"
+    "xournalpp" "peek"
     # Build Tools
     "cmake" "meson" "ninja"
 )
