@@ -4,7 +4,8 @@ source $AR_DIR/lib/tmp.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="discord"
 
-if [ "$AR_KERNEL" == "linux" ]; then
+# not really dependent on any distros
+if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
     downloadEndpoint='https://discord.com/api/download'
     downloadOptions='?platform=linux&format=tar.gz'
 
@@ -61,7 +62,7 @@ if [ "$AR_KERNEL" == "linux" ]; then
          # Delete existing .desktop files
         if [ -e "$HOME/.local/share/applications/$discordLowercase.desktop" ]; then
             log verb "Deleting existing .desktop file."
-            rm -rf "$HOME.local/share/applications/$discordLowercase.desktop"
+            rm -rf "$HOME/.local/share/applications/$discordLowercase.desktop"
         fi
 
         # Symlink new .desktop files
