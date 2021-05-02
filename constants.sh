@@ -50,7 +50,8 @@ function log() {
     # If $AR_MODULE is set, prefix the log message
     [ "$AR_MODULE" ] \
         && logString+="\x1b[35m$AR_MODULE\x1b[0m "
-    
+    [ "$AR_LOG_PREFIX" != "" ] \
+        && logString+="\x1b[32m($AR_LOG_PREFIX)\x1b[0m "
     # Add the rest of the arguments (merged together) to $logString
     logString+="${*:2}"
     

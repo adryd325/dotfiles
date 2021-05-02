@@ -88,7 +88,7 @@ if [ "$AR_OS" == "linux_archlinux" ]; then
         && cd "$oldPwd"
 
     # Install everything with yay
-    yay -Sy --noconfirm --removemake ${packages[*]}
+    [ "$_002packagesSkipSystemInstall" != "" ] && yay -Sy --noconfirm --removemake ${packages[*]}
 fi
 
 

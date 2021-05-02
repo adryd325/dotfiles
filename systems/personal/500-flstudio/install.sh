@@ -7,13 +7,13 @@ AR_MODULE="flstudio"
 downloadURL="https://support.image-line.com/redirect/flstudio20_win_installer"
 workDir="$AR_TMP/flstudio"
 
-if [ "$AR_OS" == "linux_archlinux" ] && pacman -Q wine &> /dev/null; then
+if [ "$AR_OS" == "linux_archlinux" ] && pacman -Q wine &> /dev/null && [ "$_500flstudioSkipInstall" != "" ]; then
     if [ "$DISPLAY" != "" ]; then
         log info "Downloading FL Studio"
         mkdir -p $workDir
         if curl -fsSLo $workDir/flstudio.exe $downloadURL; then
             log info "Starting FL Studio installer"
-            wine $workDir/flstudio.exe
+            wine $workDir/flstudio.exe &> /dev/null
         fi
     else
         log info "Postponing FL Studio install until in DE"

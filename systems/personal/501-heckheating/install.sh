@@ -15,7 +15,7 @@ if [ "$AR_OS" == "linux_archlinux" ]; then
         oldPwd=$PWD
         cd $HOME/.local/share/hh3
         log info "Installing dependencies"
-        pnpm install --recursive
+        pnpm install --recursive --silent
         cd $HOME/.local/share/hh3/web
         log info "Building webextension"
         node buildExtension.js &> /dev/null
@@ -28,11 +28,13 @@ if [ "$AR_OS" == "linux_archlinux" ]; then
         fi
 
         for branch in "${branches[@]}"; do
+            AR_LOG_PREFIX="$branch"
             # fix variables for each branch
             source $AR_DIR/systems/personal/500-discord/discord-vars.sh
-            log info "Patching Discord $branch"
+            log info "Patching discord"
             node "$HOME/.local/share/hh3/bin/cli.js" "$HOME/.local/share/$discordName/$discordName" > /dev/null
         done
+        AR_LOG_PREFIX=""
 
         [ ! -e ~/.config/hh3 ] \
             && log info "Linking config folder" \
