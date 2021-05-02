@@ -4,13 +4,14 @@ source $AR_DIR/lib/os.sh
 AR_MODULE="de-preferences"
 
 if [ "$AR_OS" == "linux_archlinux" ]; then
+    log info "Writing misc dconf preferences"
     # Terminal
     gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
     gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false
 
     gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false
-    gsettings set org.gnome.desktop.privacy remove-old-temp-files false
-    gsettings set org.gnome.desktop.privacy remove-old-trash-files false
+    gsettings set org.gnome.desktop.privacy remove-old-temp-files true
+    gsettings set org.gnome.desktop.privacy remove-old-trash-files true
 
     # Shell
     gsettings set org.gnome.mutter center-new-windows true

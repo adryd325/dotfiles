@@ -15,7 +15,7 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("gnomeTheme.systemIcons", true);
 user_pref("gnomeTheme.hideSingleTab", true);
 
-// Disable Firefox's new "Proton" theme
+// Disable Firefox's new "Proton" theme (until firefox-gnome-theme works)
 user_pref("browser.proton.contextmenus.enabled", false);
 user_pref("browser.proton.doorhangers.enabled", false);
 user_pref("browser.proton.enabled", false);

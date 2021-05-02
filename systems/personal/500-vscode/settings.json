@@ -1,0 +1,16 @@
+{
+    "telemetry.enableTelemetry": false,
+    "workbench.iconTheme": null,
+    "editor.minimap.enabled": false,
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "toggle",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.suggest.showStatusBar": true,
+    "eslint.alwaysShowStatus": true,
+    "editor.fontFamily": "'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 15,
+    "workbench.colorTheme": "Monokai Pro",
+    "breadcrumbs.enabled": false
+}

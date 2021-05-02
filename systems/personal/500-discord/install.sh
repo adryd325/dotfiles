@@ -25,7 +25,7 @@ if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
 
         log info "Downloading Discord $branch"
         mkdir -p $workDir
-        curl -fsSL $downloadURL -o $workDir/$discordName.tar.gz
+        curl -fsSL $downloadURL -o $workDir/$discordName.tar.gz || continue
 
         if [ -e "$HOME/.local/share/$discordName/$discordName" ]; then
             log info "Deleting existing install."
@@ -33,7 +33,7 @@ if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
         fi
 
         log info "Extracting"
-        tar -xf "$workDir/$discordName.tar.gz" -C "$HOME/.local/share"
+        tar -xf "$workDir/$discordName.tar.gz" -C "$HOME/.local/share" || continue
 
         log info "Installing"
         # If no local icon folder exists, make one

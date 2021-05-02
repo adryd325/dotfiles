@@ -50,6 +50,8 @@ while [ ! -e "$installTargetDev" ]; do
     read installTargetDev
 done
 
+installTargetUUID=`lsblk -l $installTargetDev -o PATH,UUID | grep "$installTargetDev" | grep -oP "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"`
+
 [ "$timezone" == "" ] && timezone="America/Toronto"
 [ "$language" == "" ] && language="en_CA.UTF-8"
 [ "$keymap" == "" ] && keymap="us"
@@ -75,7 +77,7 @@ genfstab /mnt -U >> /mnt/etc/fstab
 log info "Copying over .adryd"
 cp -r $AR_DIR /mnt$AR_DIR
 
-username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap \
+username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap installTargetUUID=$installTargetUUID\
     arch-chroot /mnt bash $AR_DIR/systems/personal/arch-install/configure.sh
 
 passsword=

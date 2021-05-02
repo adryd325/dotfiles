@@ -27,7 +27,10 @@ log info "Configuring sudo"
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
 log info "Configuring grub"
-sed -i "s/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"loglevel=3 cryptdevice=\/dev\/disk\/by-partlabel\/$host:$host\"/" /etc/default/grub
+cp /etc/default/grub /etc/default/grub.arbak
+sed -i "s/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/" /etc/default/grub
+sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3 quiet\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\"/" /etc/default/grub
+sed -i "s/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"loglevel=3 rd.luks.name=$installTargetUUID=$host\"/" /etc/default/grub
 sed -i "s/GRUB_GFXMODE=auto/GRUB_GFXMODE=800x600/" /etc/default/grub
 sed -i "s/GRUB_GFXPAYLOAD_LINUX=keep/#GRUB_GFXPAYLOAD_LINUX=keep/" /etc/default/grub
 log info "Installing grub"
@@ -36,9 +39,11 @@ log info "Generating grub config"
 grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
 
 log info "Configuring mkinitcpio"
+cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.arbak
 sed -i "s:BINARIES=():BINARIES=(/usr/bin/btrfs):" /etc/mkinitcpio.conf
-sed -i "s/^HOOKS=([a-zA-Z0-9\-_ ]*)/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck encrypt)/" /etc/mkinitcpio.conf
+sed -i "s/^HOOKS=([a-zA-Z0-9\-_ ]*)/HOOKS=(base systemd autodetect keyboard modconf block sd-encrypt filesystems fsck)/" /etc/mkinitcpio.conf
 # popsicle needs battery or it will show completely wrong battery levels
-[ "$host" == "popsicle" ] && sed -i "s/MODULES=(.*)/MODULES=(battery)/" /etc/mkinitcpio.conf
+# also i915 to make no blinky
+[ "$host" == "popsicle" ] && sed -i "s/MODULES=(.*)/MODULES=(battery i915)/" /etc/mkinitcpio.conf
 log info "Rebuilding initramfs"
 mkinitcpio -P &> /dev/null
