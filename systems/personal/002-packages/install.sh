@@ -23,7 +23,7 @@ brewPackages=(
 masPackages=("407963104" "1037126344")
 packages=(
     # Extras
-    "gnu-free-fonts" "cups" "networkmanager-openvpn"
+    "gnu-free-fonts" "cups" "hplip" "networkmanager-openvpn"
     # GNOME base
     "eog" "file-roller" "gedit" "gnome-backgrounds" "gnome-color-manager" "gnome-control-center"
     "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-shell-performance" "gnome-shell-extensions" "gnome-software"

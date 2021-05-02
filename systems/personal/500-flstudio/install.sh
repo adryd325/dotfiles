@@ -8,14 +8,17 @@ downloadURL="https://support.image-line.com/redirect/flstudio20_win_installer"
 workDir="$AR_TMP/flstudio"
 
 if [ "$AR_OS" == "linux_archlinux" ] && pacman -Q wine &> /dev/null && [ "$_500flstudioSkipInstall" != "" ]; then
+    # Check to make sure we have a display
     if [ "$DISPLAY" != "" ]; then
         log info "Downloading FL Studio"
         mkdir -p $workDir
+        # if statement to make sure the rest doesn't happen if the download fails
         if curl -fsSLo $workDir/flstudio.exe $downloadURL; then
             log info "Starting FL Studio installer"
             wine $workDir/flstudio.exe &> /dev/null
         fi
     else
+        # We can't install from tty
         log info "Postponing FL Studio install until in DE"
     fi
 fi

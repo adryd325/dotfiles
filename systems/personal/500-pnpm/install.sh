@@ -5,5 +5,5 @@ AR_MODULE="pnpm"
 
 if [ "$AR_OS" == "darwin_macos" ]; then
     log info "Installing pnpm"
-    npm install -g pnpm
+    npm install -g pnpm --silent
 fi
