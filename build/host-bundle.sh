@@ -1,6 +1,6 @@
 #!/bin/bash
 PORT=7777
-HOST=10.0.1.2
+HOST=10.0.0.10
 source $HOME/.adryd/constants.sh
 log silly "Deleting old bundle"
 rm -rf $AR_DIR/build/out/dotfiles.tar.gz $AR_DIR/build/out/install.sh

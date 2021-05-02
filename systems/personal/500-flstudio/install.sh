@@ -11,9 +11,10 @@ if [ "$AR_OS" == "linux_archlinux" ] && pacman -Q wine &> /dev/null; then
     if [ "$DISPLAY" != "" ]; then
         log info "Downloading FL Studio"
         mkdir -p $workDir
-        curl -fsSLo $workDir/flstudio.exe $downloadURL
-        log info "Starting FL Studio installer"
-        wine $workDir/flstudio.exe
+        if curl -fsSLo $workDir/flstudio.exe $downloadURL; then
+            log info "Starting FL Studio installer"
+            wine $workDir/flstudio.exe
+        fi
     else
         log info "Postponing FL Studio install until in DE"
     fi

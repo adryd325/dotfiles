@@ -26,22 +26,26 @@ packages=(
     "gnu-free-fonts" "cups" "networkmanager-openvpn"
     # GNOME base
     "eog" "file-roller" "gedit" "gnome-backgrounds" "gnome-color-manager" "gnome-control-center"
-    "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-shell" "gnome-shell-extensions" "gnome-software"
-    "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "mutter" "nautilus"
+    "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-shell-performance" "gnome-shell-extensions" "gnome-software"
+    "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "mutter-performance" "nautilus"
     "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks" "chrome-gnome-shell" "gdm-prime"
-    "gnome-software-packagekit-plugin" "gnome-system-monitor" "plymouth-git"
+    "gnome-software-packagekit-plugin" "gnome-system-monitor"
     # Base apps
     "firefox-developer-edition"
     # CLI tools
     "htop" "ffmpeg" "youtube-dl" "openbsd-netcat" "reflector" "croc" "imagemagick"
     # Programming languages
-    "nodejs" "npm" "python" "go"
+    "nodejs" "npm" "pnpm" "python" "go" "jdk-openjdk" "jdk8-openjdk"
     # Utilities
     "virt-viewer" "remmina" "freerdp" "libvncserver" "keepassxc" "mumble" "torbrowser-launcher" "dconf-editor" "audacity" "inkscape" "gimp"
-    "libreoffice-still" "quassel-monolithic" "code" "deluge" "deluge-gtk" "obs-studio" "obs-v4l2sink" "v4l2loopback-dkms" "vlc" "telegram-desktop"
+    "libreoffice-still" "quassel-monolithic" "deluge" "deluge-gtk" "obs-studio" "obs-v4l2sink" "v4l2loopback-dkms" "vlc" "telegram-desktop"
     "xournalpp" "peek"
     # Build Tools
     "cmake" "meson" "ninja"
+    # Microsoft build of vscode :(
+    # Needed for live share
+    # Microsoft poopy   
+    "visual-studio-code-bin"
 )
 
 [ "$HOSTNAME" == "socks" ] \
@@ -49,7 +53,7 @@ packages=(
 
 [ "$HOSTNAME" == "popsicle" ] || [ "$HOSTNAME" == "leaf" ] \
     && packages+=(
-        "ttf-ms-fonts" "otf-san-francisco" "ttf-twemoji-color" "ttf-ibm-plex"
+        "noto-fonts" "otf-san-francisco" "ttf-twemoji-color" "ttf-cascadia-code"
         # Wine
         "wine-staging" "wine-mono" "wine-gecko"
         # Games
