@@ -8,7 +8,6 @@
 
 # Logs
 function log() {
-
     # Default echo args
     local logEchoArgs="-e"
     local logString=""

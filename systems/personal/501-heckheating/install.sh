@@ -4,6 +4,9 @@ source $AR_DIR/lib/tmp.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="heckheating"
 
+# TODO: make platform agnostic
+# .local/share == /.hh3/
+# .config == /library/application support/
 if [ "$AR_OS" == "linux_archlinux" ]; then
     # Clone the repo if we don't have it, and if we might have keys
     [ ! -e "$HOME/.local/share/hh3" ] && [ -e "$HOME/.ssh" ] \

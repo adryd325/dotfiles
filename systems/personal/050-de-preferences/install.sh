@@ -5,6 +5,7 @@ AR_MODULE="de-preferences"
 
 if [ "$AR_OS" == "linux_archlinux" ]; then
     log info "Writing misc dconf preferences"
+    
     # Terminal
     gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
     gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false
