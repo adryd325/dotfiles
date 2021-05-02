@@ -23,31 +23,6 @@ if [ "$AR_OS" == "linux_archlinux" ]; then
     
     # BELOW CODE MODIFIED FROM https://github.com/rafaelmardojai/firefox-gnome-theme/blob/master/scripts/install.sh
     # TODO: rewrite/cleanup
-    function modProfile() {
-        local profilePath="$1"
-        cd "$HOME/.mozilla/firefox/$profilePath"
-
-        mkdir -p chrome
-        cd chrome
-        [ ! -e "$PWD/firefox-gnome-theme" ] && ln -sF "$HOME/.local/share/firefox-gnome-theme" $PWD
-
-        if [ -s userChrome.css ]; then
-            # Remove older theme imports
-            sed 's/@import "firefox-gnome-theme.*.//g' userChrome.css | sed '/^\s*$/d' > userChrome.css
-            echo >> userChrome.css
-        else
-            echo >> userChrome.css
-        fi
-
-        # Import this theme at the beginning of the CSS files.
-        sed -i '1s/^/@import "firefox-gnome-theme\/userChrome.css";\n/' userChrome.css
-
-        cd ..
-
-        # Symlink user.js to ari's one.
-        [ -e user.js ] && rm user.js
-        ln -sf "$AR_DIR/systems/personal/500-firefox/user.js" user.js
-    }
 
     profilePaths=($(grep -E "^Path=" "$HOME/.mozilla/firefox/profiles.ini" | cut -d "=" -f2-))
 
@@ -59,8 +34,42 @@ if [ "$AR_OS" == "linux_archlinux" ]; then
     else
         log verb "${#profilePaths[@]} profiles found"
         for profilePath in "${profilePaths[@]}"; do
-            modProfile "$profilePath"
+            AR_LOG_PREFIX="$profilePath"
+            # Move to work dir
+            cd "$HOME/.mozilla/firefox/$profilePath"
+
+            [ ! -e "./chrome" ] \
+                && mkdir -p chrome \
+                && log info "Creating chrome dir"
+            cd chrome
+            
+            [ ! -e "$PWD/firefox-gnome-theme" ] \
+                && ln -sF "$HOME/.local/share/firefox-gnome-theme" $PWD \
+                && log info "Installing firefox-gnome-theme"
+
+            if [ -e "userChrome.css" ]; then
+                # Remove older theme imports
+                sed 's/@import "firefox-gnome-theme.*.//g' userChrome.css | sed '/^\s*$/d' > userChrome.css \
+                    && log info "Removing older theme imports"
+                echo >> "userChrome.css"
+            else
+                echo >> "userChrome.css"
+            fi
+
+            # Import this theme at the beginning of the CSS files.
+            sed -i '1s/^/@import "firefox-gnome-theme\/userChrome.css";\n/' userChrome.css \
+                && log info "Adding firefox-gnome-theme import to userChrome.css"
+
+            cd ..
+
+            # Symlink user.js to the sync'ed one
+            [ -e user.js ] \
+                && rm user.js \
+                && log verb "Removing old user.js"
+            ln -sf "$AR_DIR/systems/personal/500-firefox/user.js" user.js \
+                && log info "Installed user.js"
         done
+        AR_LOG_PREFIX=""
     fi  
     cd "$oldPwd"
 fi

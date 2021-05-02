@@ -22,13 +22,13 @@ if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
     for branch in "${branches[@]}"; do
         # fix variables for each branch
         source $AR_DIR/systems/personal/500-discord/discord-vars.sh
-
-        log info "Downloading Discord $branch"
+        AR_LOG_PREFIX="$branch"
+        log info "Downloading"
         mkdir -p $workDir
         curl -fsSL $downloadURL -o $workDir/$discordName.tar.gz || continue
 
         if [ -e "$HOME/.local/share/$discordName/$discordName" ]; then
-            log info "Deleting existing install."
+            log info "Deleting existing install"
             rm -rf "$HOME/.local/share/$discordName/"
         fi
 
@@ -61,12 +61,12 @@ if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
 
          # Delete existing .desktop files
         if [ -e "$HOME/.local/share/applications/$discordLowercase.desktop" ]; then
-            log verb "Deleting existing .desktop file."
+            log verb "Deleting existing .desktop file"
             rm -rf "$HOME/.local/share/applications/$discordLowercase.desktop"
         fi
 
         # Symlink new .desktop files
-        log verb "Installing .desktop file."
+        log verb "Installing .desktop file"
         mkdir -p "$HOME/.local/share/applications"
         cp "$HOME/.local/share/$discordName/$discordLowercase.desktop" "$HOME/.local/share/applications/$discordLowercase.desktop"
 
@@ -75,4 +75,5 @@ if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
         # log verb "Running Discord's postinstall script"
         # $HOME/.local/share/$discordName/postinst.sh &> /dev/null
     done
+    AR_LOG_PREFIX=""
 fi
