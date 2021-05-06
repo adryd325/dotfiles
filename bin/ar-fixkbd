@@ -1,0 +1,3 @@
+#!/bin/bash
+# I usually hang out on tty2, I should find a way to detect this but whatever
+sudo kbd_mode -sC /dev/tty2
