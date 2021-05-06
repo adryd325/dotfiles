@@ -38,7 +38,7 @@ packages=(
     "nodejs" "npm" "pnpm" "python" "go" "jdk-openjdk" "jdk8-openjdk"
     # Utilities
     "virt-viewer" "remmina" "freerdp" "libvncserver" "keepassxc" "mumble" "torbrowser-launcher" "dconf-editor" "audacity" "inkscape" "gimp"
-    "libreoffice-still" "quassel-monolithic" "deluge" "deluge-gtk" "obs-studio" "obs-v4l2sink" "v4l2loopback-dkms" "vlc" "telegram-desktop"
+    "libreoffice-still" "quassel-monolithic" "deluge" "deluge-gtk" "obs-studio-browser" "v4l2loopback-dkms" "vlc" "telegram-desktop"
     "xournalpp" "peek"
     # Build Tools
     "cmake" "meson" "ninja"
