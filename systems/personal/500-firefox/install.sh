@@ -13,7 +13,7 @@ if [ "$AR_OS" == "linux_archlinux" ]; then
     [ ! -e "$HOME/.local/share/firefox-gnome-theme" ] \
         && mkdir -p "$HOME/.local/share" \
         && log info "Cloning firefox-gnome-theme" \
-        && git clone https://github.com/rafaelmardojai/firefox-gnome-theme.git $HOME/.local/share/firefox-gnome-theme --quiet
+        && git clone https://github.com/rafaelmardojai/firefox-gnome-theme.git $HOME/.local/share/firefox-gnome-theme --quiet -b beta
 
     if [ -e "$HOME/.local/share/firefox-gnome-theme" ]; then
         cd "$HOME/.local/share/firefox-gnome-theme"
