@@ -3,7 +3,7 @@ source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="de-preferences"
 
-if [ "$AR_OS" == "linux_archlinux" ]; then
+if [ "$AR_OS" == "linux_arch" ]; then
     log info "Writing misc dconf preferences"
     
     # Terminal

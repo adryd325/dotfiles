@@ -75,7 +75,7 @@ packages=(
         "qemu-guest-agent"
     )
 
-if [ "$AR_OS" == "linux_archlinux" ]; then
+if [ "$AR_OS" == "linux_arch" ]; then
     sudo pacman -Sy
     # Install yay if it's not already installed
     oldPwd="$PWD"

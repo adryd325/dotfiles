@@ -4,7 +4,7 @@ source $AR_DIR/lib/os.sh
 source $AR_DIR/lib/node.sh
 AR_MODULE="pacman"
 
-if [ "$AR_OS" == "linux_archlinux" ]; then
+if [ "$AR_OS" == "linux_arch" ]; then
     log info "Changing pacman preferences"
     log silly "Enable color"
     [ ! -e /etc/pacman.conf.arbak ] && sudo cp /etc/pacman.conf /etc/pacman.conf.arbak

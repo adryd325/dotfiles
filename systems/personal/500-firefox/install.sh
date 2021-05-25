@@ -4,7 +4,7 @@ source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="firefox"
 
-if [ "$AR_OS" == "linux_archlinux" ]; then
+if [ "$AR_OS" == "linux_arch" ]; then
     oldPwd=$PWD
     log info "Starting Firefox to generate profiles"
     firefox-developer-edition -headless -silent &> /dev/null & ffPid=$!
