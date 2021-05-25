@@ -42,12 +42,22 @@ if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
             mkdir -p "$HOME/.local/share/icons/hicolor/256x256"
         fi
 
+        # The new (May 2021) icon looks too big on the GNOME dock
+        if [ -e "$(command -v convert)" ]; then
+            log verb "Add margin to the icon"
+            convert \
+                "$HOME/.local/share/$discordName/discord.png" \
+                -bordercolor Transparent \
+                -compose copy \
+                -border 16 \
+                -resize 256x256 \
+                "$HOME/.local/share/$discordName/discord.png"
+        fi
         # Check to make sure no existing icons exist
         if [ -e "$HOME/.local/share/icons/hicolor/256x256/$discordLowercase.png" ]; then
             log verb "Deleting existing icon"
             rm -rf "$HOME/.local/share/icons/hicolor/256x256/$discordLowercase.png"
         fi
-
         log verb "Linking icon"
         ln -s "$HOME/.local/share/$discordName/discord.png" "$HOME/.local/share/icons/hicolor/256x256/$discordLowercase.png"
         

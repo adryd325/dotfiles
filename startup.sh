@@ -11,3 +11,9 @@ if [ "$AR_OS" == "linux_archlinux" ]; then
             && $AR_DIR/systems/personal/install.sh
     fi
 fi
+
+if [ "$AR_OS" == "linux_debian" ]; then
+    if [ "$USER" == "root" ]; then
+        $AR_DIR/systems/server/vms/install.sh
+    fi
+fi
