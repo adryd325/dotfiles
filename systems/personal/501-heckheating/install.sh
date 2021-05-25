@@ -7,7 +7,7 @@ AR_MODULE="heckheating"
 # TODO: make platform agnostic
 # .local/share == /.hh3/
 # .config == /library/application support/
-if [ "$AR_OS" == "linux_archlinux" ]; then
+if [ "$AR_OS" == "linux_arch" ]; then
     # Clone the repo if we don't have it, and if we might have keys
     [ ! -e "$HOME/.local/share/hh3" ] && [ -e "$HOME/.ssh" ] \
         && mkdir -p "$HOME/.local/share" \

@@ -6,7 +6,7 @@ AR_MODULE="multimc"
 # brew check if multimc is installed
 # set multimc dir to a variable
 
-if [ "$AR_OS" == "linux_archlinux" ] && pacman -Q multimc-git &> /dev/null; then
+if [ "$AR_OS" == "linux_arch" ] && pacman -Q multimc-git &> /dev/null; then
     # Make multimc dir if it doesn't already exist
     [ -e "$HOME/.local/share/multimc" ] \
         || mkdir -p "$HOME/.local/share/multimc"

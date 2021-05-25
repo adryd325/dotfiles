@@ -9,10 +9,10 @@ extensions=(
 
 # Try being platform agnostinc
 # this is untested so be careful or your system might explode!!!
-if [ "$AR_OS" == "darwin_macos" ] || [ "$AR_OS" == "linux_archlinux" ] && pacman -Q code &> /dev/null; then
+if [ "$AR_OS" == "darwin_macos" ] || [ "$AR_OS" == "linux_arch" ] && pacman -Q code &> /dev/null; then
 
     # Set dataDir
-    [ $AR_OS = "linux_archlinux" ] && dataDir="$HOME/.config/Code"
+    [ $AR_OS = "linux_arch" ] && dataDir="$HOME/.config/Code"
     [ $AR_OS = "darwin_macos" ] && dataDir="$HOME/Library/Application Support/Code"
 
     # Create vscode data folder if it doesnt exist (seems to be used mostly for chromium crap)

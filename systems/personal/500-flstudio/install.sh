@@ -7,7 +7,7 @@ AR_MODULE="flstudio"
 downloadURL="https://support.image-line.com/redirect/flstudio20_win_installer"
 workDir="$AR_TMP/flstudio"
 
-if [ "$AR_OS" == "linux_archlinux" ] && pacman -Q wine &> /dev/null; then
+if [ "$AR_OS" == "linux_arch" ] && pacman -Q wine &> /dev/null; then
     # Check to make sure we have a display
     if [ "$DISPLAY" != "" ]; then
         log info "Downloading FL Studio"

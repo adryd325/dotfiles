@@ -43,7 +43,7 @@ apps=(
     "wine/Programs/ASIO4ALL v2/ASIO4ALL v2 Instruction Manual.desktop"
 )
 
-if [ "$AR_OS" == "linux_archlinux" ]; then
+if [ "$AR_OS" == "linux_arch" ]; then
     log info "Hiding internal apps"
     for appDir in "${appDirs[@]}"; do
         for app in "${apps[@]}"; do

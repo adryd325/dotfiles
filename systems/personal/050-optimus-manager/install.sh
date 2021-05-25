@@ -3,7 +3,7 @@ source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="optimus"
 
-if [ "$AR_OS" == "linux_archlinux" ]; then
+if [ "$AR_OS" == "linux_arch" ]; then
     # Make sure we have gdm, or something that provides gdm
     if pacman -Q gdm &> /dev/null; then
         log info "Disable Wayland"
