@@ -74,17 +74,18 @@ fi
 
 if [ ! -e /etc/fail2ban/jail.local ]; then
     log info'Installing fail2ban'
-    apt-get install fail2ban -qqy &> $AR_TTY
+    apt-get install fail2ban -qqy &> /dev/null
     log info 'Copying fail2ban configuration'
+    [ ! -e /etc/fail2ban ] && mkdir /etc/fail2ban 
     cp $AR_DIR/systems/server/vms/fail2ban/jail.local /etc/fail2ban/jail.local
     chmod 644 /etc/fail2ban/jail.local # just to be sure
     log info 'Enaling fail2ban'
-    systemctl enable fail2ban &> $AR_TTY
+    systemctl enable fail2ban &> /dev/null
 fi
 
 log info "Trusting internal CA"
 cp -f $AR_DIR/systems/server/vms/root-ca.pem /usr/local/share/ca-certificates/adryd-root-ca.crt
-update-ca-certificates &> $AR_TTY
+update-ca-certificates &> /dev/null
 
 log info "Placing manual in home directory"
 touch /home/$adminUser/manual.txt

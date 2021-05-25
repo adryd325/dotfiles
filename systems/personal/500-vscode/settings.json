@@ -12,5 +12,8 @@
     "editor.fontFamily": "'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 15,
     "workbench.colorTheme": "Monokai Pro",
-    "breadcrumbs.enabled": false
+    "breadcrumbs.enabled": false,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

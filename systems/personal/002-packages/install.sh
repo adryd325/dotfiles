@@ -27,7 +27,7 @@ packages=(
     # GNOME base
     "eog" "file-roller" "gedit" "gnome-backgrounds" "gnome-color-manager" "gnome-control-center"
     "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-shell-performance" "gnome-shell-extensions" "gnome-software"
-    "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "mutter-performance" "nautilus"
+    "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" "gvfs-afc" "mutter-performance" "nautilus"
     "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks" "chrome-gnome-shell" "gdm-prime"
     "gnome-software-packagekit-plugin" "gnome-system-monitor"
     # Base apps
@@ -88,7 +88,7 @@ if [ "$AR_OS" == "linux_archlinux" ]; then
         && cd "$oldPwd"
 
     # Install everything with yay
-    [ "$_002packagesSkipSystemInstall" != "" ] && yay -Sy --noconfirm --removemake ${packages[*]}
+    yay -Sy --noconfirm --removemake ${packages[*]}
 fi
 
 
