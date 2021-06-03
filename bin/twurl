@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -en "<$1>\n$(youtube-dl --get-url $1)" | xclip -selection clipboard

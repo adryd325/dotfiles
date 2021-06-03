@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 source $HOME/.adryd/constants.sh
 AR_MODULE="ctsetup"
 

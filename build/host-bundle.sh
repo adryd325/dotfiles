@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 PORT=7777
 HOST=10.0.0.10
 source $HOME/.adryd/constants.sh

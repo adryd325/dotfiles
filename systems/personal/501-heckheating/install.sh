@@ -1,25 +1,29 @@
-#!/bin/bash
+#!/usr/bin/env bash
 source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/tmp.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="heckheating"
 
 # TODO: make platform agnostic
-# .local/share == /.hh3/
-# .config == /library/application support/
-if [ "$AR_OS" == "linux_arch" ]; then
+if [ "$AR_OS" == "linux_arch" ] || [ "$AR_OS" == "darwin_macos" ]; then
+    hhDir="$HOME/.local/share/hh3"
+    configDir="$HOME/.config/hh3"
+    if [ "$AR_OS" == "darwin_macos" ]; then
+        hhDir="$HOME/.hh3"
+        configDir="$HOME/Library/Application Support/hh3"
+    fi
     # Clone the repo if we don't have it, and if we might have keys
-    [ ! -e "$HOME/.local/share/hh3" ] && [ -e "$HOME/.ssh" ] \
-        && mkdir -p "$HOME/.local/share" \
+    [ ! -e "$hhDir" ] && [ -e "$HOME/.ssh" ] \
+        && mkdir -p "$hhDir" \
         && log info "Cloning hh3" \
-        && git clone git@gitlab.com:mstrodl/hh3 $HOME/.local/share/hh3 --quiet
+        && git clone git@gitlab.com:mstrodl/hh3 "$hhDir" --quiet
 
-    if [ -e "$HOME/.local/share/hh3" ]; then
+    if [ -e "$hhDir" ]; then
         oldPwd=$PWD
-        cd $HOME/.local/share/hh3
+        cd "$hhDir"
         log info "Installing dependencies"
         pnpm install --recursive --silent
-        cd $HOME/.local/share/hh3/web
+        cd "$hhDir/web"
         log info "Building webextension"
         node buildExtension.js &> /dev/null
         cd $oldPwd
@@ -35,12 +39,16 @@ if [ "$AR_OS" == "linux_arch" ]; then
             # fix variables for each branch
             source $AR_DIR/systems/personal/500-discord/discord-vars.sh
             log info "Patching discord"
-            node "$HOME/.local/share/hh3/bin/cli.js" "$HOME/.local/share/$discordName/$discordName" > /dev/null
+            if [ "$AR_OS" == "darwin_macos" ]; then
+                node "$hhDir/bin/cli.js" "/Applications/$discordNameSpace.app/Contents/MacOS/$discordNameSpace" > /dev/null
+            else
+                node "$hhDir/bin/cli.js" "$HOME/.local/share/$discordName/$discordName" > /dev/null
+            fi
         done
         AR_LOG_PREFIX=""
 
-        [ ! -e ~/.config/hh3 ] \
+        [ ! -e "$configDir" ] \
             && log info "Linking config folder" \
-            && ln -s "$AR_DIR/systems/personal/501-heckheating/hh3" "$HOME/.config/hh3"
+            && ln -s "$AR_DIR/systems/personal/501-heckheating/hh3" "$configDir"
     fi
 fi

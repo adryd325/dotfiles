@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 export AR_NOT_INSTALLED=1
 
 # --- BEGIN CONSTANTS ---
-#!/bin/bash
+#!/usr/bin/env bash
 # This file is loaded at the start of every script
 # Keep it minimal
 
