@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This file is loaded at the start of every script
 # Keep it minimal
 

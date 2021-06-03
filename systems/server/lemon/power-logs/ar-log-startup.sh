@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 SAFE='; starting from power loss, kernel panic, or forced shutdown'
 [ -e /var/ar_shutdown ] && SAFE='' && rm /var/ar_shutdown
 WEBHOOK=https://discord.com/api/webhooks/doot

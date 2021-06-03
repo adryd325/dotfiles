@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="vscode"
@@ -9,7 +9,7 @@ extensions=(
 
 # Try being platform agnostinc
 # this is untested so be careful or your system might explode!!!
-if [ "$AR_OS" == "darwin_macos" ] || [ "$AR_OS" == "linux_arch" ] && pacman -Q code &> /dev/null; then
+if [ "$AR_OS" == "darwin_macos" ] || [ "$AR_OS" == "linux_arch" ]; then
 
     # Set dataDir
     [ $AR_OS = "linux_arch" ] && dataDir="$HOME/.config/Code"

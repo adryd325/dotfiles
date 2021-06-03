@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="de-preferences"
@@ -51,7 +51,8 @@ elif [ "$AR_OS" == "darwin_macos" ]; then
     dockApps=("/System/Applications/Launchpad.app" "/Applications/Firefox.app" "/Applications/Discord.app" 
         "/Applications/iTerm.app" "/Applications/Visual Studio Code.app" "/Applications/Affinity Designer.app" 
         "/Applications/Adobe Photoshop 2021/Adobe Photoshop 2021.app" "/Applications/Pixelmator.app")
-
+    
+    # TODO: Figure out why vscode, affinity and photoshop dont get added to dock; something with spaces in their name
     for app in "${dockApps[@]}"; do
         [ -e "$app" ] \
             && log silly "Adding $app to dock"\

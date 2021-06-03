@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # load .adryd constants so we have $AR_DIR
 # set splash to 1 so it doesnt fire when calling constants

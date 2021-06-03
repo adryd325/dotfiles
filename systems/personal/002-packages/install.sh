@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/os.sh
 source $AR_DIR/lib/tmp.sh
 AR_MODULE="packages"
 
-brewTaps=("homebrew/cask-versions" "homebrew/cask-drivers" "jeffreywildman/virt-manager")
+brewTaps=("homebrew/cask-versions" "homebrew/cask-drivers" "homebrew/cask-fonts" "jeffreywildman/virt-manager")
 brewPackages=(
     # GNU stuff and other CLI tools / libs
     "coreutils" "binutils" "ncurses" "diffutils" "ed" "findutils" "gawk" "gnu-indent" "gnu-sed" "gnu-tar" 
@@ -19,7 +19,7 @@ brewPackages=(
     # Base apps
     "firefox" "iterm2" "visual-studio-code" "discord" "discord-canary"
     # Extra
-    "tor-browser" "affinity-designer-beta" "adobe-creative-cloud")
+    "tor-browser" "affinity-designer-beta" "adobe-creative-cloud" "font-cascadia-code")
 masPackages=("407963104" "1037126344")
 packages=(
     # Extras
@@ -92,15 +92,17 @@ if [ "$AR_OS" == "linux_arch" ]; then
 fi
 
 
-if [ "$AR_OS" == "macos" ]; then
+if [ "$AR_OS" == "darwin_macos" ]; then
     # Install brew if it's not already installed
     [[ ! -x "$(command -v brew)" ]] \
         && log info "Running brew install script" \
         && bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     
+    log info "Updating brew"
     brew update --quiet &> /dev/null
 
     for tap in "${brewTaps[@]}"; do
+        log info "Tapping $tap"
         brew tap $tap --quiet > /dev/null
     done
 

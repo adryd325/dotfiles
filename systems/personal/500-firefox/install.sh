@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # I think the funniest thing about this, is you get the "welcome to firefox" message and the browser is already themed and half configured
 source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/os.sh
