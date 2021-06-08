@@ -54,8 +54,8 @@ fi
 
 log info "Locking root user"
 cat /dev/urandom | tr -dc A-Za-z0-9 | head -c${1:-128} | passwd root --stdin &> /dev/null
-passwd -l root &> /dev/null
-chage -E 0 root &> /dev/null
+# passwd -l root &> /dev/null
+# chage -E 0 root &> /dev/null
 
 if [ ! -e "$(command -v curl)" ]; then
     log info "Installing curl"

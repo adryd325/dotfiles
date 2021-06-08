@@ -13,7 +13,8 @@ ExecStart=
 # A lot of this is excessive, but every bit of security counts
 PrivateUsers=true
 ProtectSystem=full
-ProtectHome=true # disable this if the service uses git+ssh
+# disable this if the service uses git+ssh or access the home folder
+ProtectHome=true
 ProtectKernelTunables=true
 ProtectKernelModules=true
 ProtectControlGroups=true
