@@ -42,13 +42,13 @@ sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 log info "Installing boot loader"
 bootctl --path=/boot install
 log info "Configuring boot loader"
-echo > /boot/loader/loader.conf << EOF
+cat > /boot/loader/loader.conf << EOF
 timeout 0
 console-mode keep
 editor no
 EOF
 log info "Creating boot entry"
-echo > /boot/loader/entries/archlinux.conf << EOF
+cat > /boot/loader/entries/archlinux.conf << EOF
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
@@ -64,5 +64,6 @@ sed -i "s/^HOOKS=([a-zA-Z0-9\-_ ]*)/HOOKS=(base systemd autodetect keyboard modc
 # popsicle needs battery or it will show completely wrong battery levels
 # also i915 to make no blinky when xorg
 [ "$host" == "popsicle" ] && sed -i "s/MODULES=([a-zA-Z0-9\-_ ]*)/MODULES=(i915 nvidia battery)/" /etc/mkinitcpio.conf
+[ "$host" == "leaf" ] && sed -i "s/MODULES=([a-zA-Z0-9\-_ ]*)/MODULES=(amdgpu qxl)/" /etc/mkinitcpio.conf
 log info "Rebuilding initramfs"
 mkinitcpio -P &> /dev/null
