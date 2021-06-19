@@ -17,6 +17,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
 
     if [ -e "$HOME/.local/share/firefox-gnome-theme" ]; then
         cd "$HOME/.local/share/firefox-gnome-theme"
+        log info "Updating"
         git pull --ff-only --quiet
         cd "$oldPwd"
     fi

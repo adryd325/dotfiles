@@ -55,7 +55,7 @@ installTargetUUID=`lsblk -l $installTargetDev -o PATH,UUID | grep "$installTarge
 [ "$timezone" == "" ] && timezone="America/Toronto"
 [ "$language" == "" ] && language="en_CA.UTF-8"
 [ "$keymap" == "" ] && keymap="us"
-[ "$basePackages" == "" ] && basePackages=("linux" "linux-firmware" "linux-headers" "base" "base-devel" "man-db" "man-pages" "btrfs-progs" "grub" 
+[ "$basePackages" == "" ] && basePackages=("linux" "linux-firmware" "linux-headers" "base" "base-devel" "man-db" "man-pages" "btrfs-progs"
     "efibootmgr" "networkmanager" "neovim" "git" "zsh")
 
 log silly "Calling partitioning script"

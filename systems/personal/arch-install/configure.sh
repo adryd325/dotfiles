@@ -26,24 +26,43 @@ systemctl enable NetworkManager &> /dev/null
 log info "Configuring sudo"
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
-log info "Configuring grub"
-cp /etc/default/grub /etc/default/grub.arbak
-sed -i "s/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/" /etc/default/grub
-sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3 quiet\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\"/" /etc/default/grub
-sed -i "s/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"loglevel=3 rd.luks.name=$installTargetUUID=$host\"/" /etc/default/grub
-sed -i "s/GRUB_GFXMODE=auto/GRUB_GFXMODE=800x600/" /etc/default/grub
-sed -i "s/GRUB_GFXPAYLOAD_LINUX=keep/#GRUB_GFXPAYLOAD_LINUX=keep/" /etc/default/grub
-log info "Installing grub"
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB &> /dev/null
-log info "Generating grub config"
-grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
+# FORMER GRUB-BASED CONFIG
+# log info "Configuring grub for first boot"
+# cp /etc/default/grub /etc/default/grub.arbak
+# sed -i "s/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/" /etc/default/grub
+# sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3 quiet\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\"/" /etc/default/grub
+# sed -i "s/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"loglevel=3 vt.global_cursor_default=0 rd.luks.name=$installTargetUUID=$host\" splash/" /etc/default/grub
+# sed -i "s/GRUB_GFXMODE=auto/GRUB_GFXMODE=800x600/" /etc/default/grub
+# sed -i "s/GRUB_GFXPAYLOAD_LINUX=keep/#GRUB_GFXPAYLOAD_LINUX=keep/" /etc/default/grub
+# log info "Installing grub"
+# grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB &> /dev/null
+# log info "Generating grub config"
+# grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
+
+log info "Installing boot loader"
+bootctl --path=/boot install
+log info "Configuring boot loader"
+echo > /boot/loader/loader.conf << EOF
+timeout 0
+console-mode keep
+editor no
+EOF
+log info "Creating boot entry"
+echo > /boot/loader/entries/archlinux.conf << EOF
+title Arch Linux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+initrd /intel-ucode.img
+EOF
+echo "options rd.luks.name=$installTargetUUID=$host root=/dev/mapper/$host rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
+
 
 log info "Configuring mkinitcpio"
 cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.arbak
 sed -i "s:BINARIES=():BINARIES=(/usr/bin/btrfs):" /etc/mkinitcpio.conf
 sed -i "s/^HOOKS=([a-zA-Z0-9\-_ ]*)/HOOKS=(base systemd autodetect keyboard modconf block sd-encrypt filesystems fsck)/" /etc/mkinitcpio.conf
 # popsicle needs battery or it will show completely wrong battery levels
-# also i915 to make no blinky
-[ "$host" == "popsicle" ] && sed -i "s/MODULES=(.*)/MODULES=(battery i915)/" /etc/mkinitcpio.conf
+# also i915 to make no blinky when xorg
+[ "$host" == "popsicle" ] && sed -i "s/MODULES=([a-zA-Z0-9\-_ ]*)/MODULES=(i915 nvidia battery)/" /etc/mkinitcpio.conf
 log info "Rebuilding initramfs"
 mkinitcpio -P &> /dev/null
