@@ -62,14 +62,14 @@ if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
         ln -s "$HOME/.local/share/$discordName/discord.png" "$HOME/.local/share/icons/hicolor/256x256/$discordLowercase.png"
         
         log verb "Patching .desktop file"
-        sed -i "s/Exec=\/usr\/share\/$discordLowercase\/$discordName/Exec=\"\/home\/$USER\/.local\/share\/$discordName\/$discordName\"/" \
+        sed -i "s:Exec=/usr/share/$discordLowercase/$discordName:Exec=\"$HOME/.local/share/$discordName/$discordName\":" \
             $HOME/.local/share/$discordName/$discordLowercase.desktop
         sed -i "s/StartupWMClass=discord/StartupWMClass=$discordName/" \
             $HOME/.local/share/$discordName/$discordLowercase.desktop
-        sed -i "s/Icon=$discordLowercase/Icon=\/home\/$USER\/.local\/share\/icons\/hicolor\/256x256\/$discordLowercase.png/" \
+        sed -i "s:Icon=$discordLowercase:Icon=$HOME/.local/share/icons/hicolor/256x256/$discordLowercase.png:" \
             $HOME/.local/share/$discordName/$discordLowercase.desktop
 
-         # Delete existing .desktop files
+        # Delete existing .desktop files
         if [ -e "$HOME/.local/share/applications/$discordLowercase.desktop" ]; then
             log verb "Deleting existing .desktop file"
             rm -rf "$HOME/.local/share/applications/$discordLowercase.desktop"

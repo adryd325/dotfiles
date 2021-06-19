@@ -21,6 +21,8 @@ if [ "$AR_OS" == "linux_arch" ] || [ "$AR_OS" == "darwin_macos" ]; then
     if [ -e "$hhDir" ]; then
         oldPwd=$PWD
         cd "$hhDir"
+        log info "Pulling latest changes"
+        git pull --ff-only --quiet
         log info "Installing dependencies"
         pnpm install --recursive --silent
         cd "$hhDir/web"

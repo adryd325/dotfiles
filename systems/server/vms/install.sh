@@ -84,7 +84,7 @@ if [ ! -e /etc/fail2ban/jail.local ]; then
 fi
 
 log info "Trusting internal CA"
-cp -f $AR_DIR/systems/server/vms/ca-certificates/root-ca.pem /usr/local/share/ca-certificates/adryd-root-ca.crt
+cp -f $AR_DIR/common/ca-certificates/root-ca.pem /usr/local/share/ca-certificates/adryd-root-ca.crt
 update-ca-certificates &> /dev/null
 
 log info "Placing manual in home directory"

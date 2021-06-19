@@ -17,9 +17,14 @@ if [ "$AR_OS" == "linux_arch" ]; then
         if pacman -Q optimus-manager &> /dev/null; then
             log info "Copy optimus-manager config"
             mkdir -p /etc/optimus-manager
-            sudo cp -f "$AR_DIR/systems/personal/050-optimus-manager/optimus-manager.conf" /etc/optimus-manager/optimus-manager.conf
+            sudo cp -f "$AR_DIR/systems/personal/051-optimus-manager/optimus-manager.conf" /etc/optimus-manager/optimus-manager.conf
             log info "Enable optimus-manager"
             sudo systemctl enable optimus-manager
+        elif [ "$HOSTNAME" == "popsicle" ]
+            log info "Setting power management kernel option"
+            echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' | sudo tee /etc/modprobe.d/nvidia.conf > /dev/null
+            log info "Setting udev rules"
+            cp -f "$AR_DIR/systems/personal/051-optimus-manager/80-nvidia-pm.rules" /etc/udev/rules.d/80-nvidia-pm.rules
         fi
         if pacman -Q switcheroo-control &> /dev/null; then
             log info "Enable switcheroo-control"
