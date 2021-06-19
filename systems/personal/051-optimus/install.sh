@@ -11,7 +11,6 @@ if [ "$AR_OS" == "linux_arch" ]; then
         [ ! -e /etc/gdm/custom.conf.arbak ] \
             && sudo cp /etc/gdm/custom.conf /etc/gdm/custom.conf.arbak
         sudo sed -i "s/#WaylandEnable=false/WaylandEnable=false/" /etc/gdm/custom.conf
-
         # If we have optimus manager
         # The logs are rather self-explainatory so no need for more comment
         if [ "$HOSTNAME" == "popsicle" ]; then 

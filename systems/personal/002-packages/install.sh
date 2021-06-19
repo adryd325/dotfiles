@@ -28,8 +28,8 @@ packages=(
     "eog" "file-roller" "gedit" "gnome-backgrounds" "gnome-color-manager" "gnome-control-center"
     "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-software"
     "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" "gvfs-afc" "nautilus"
-    "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks" "chrome-gnome-shell" 
-    "gnome-software-packagekit-plugin" "gnome-system-monitor" "mutter" "gnome-shell"
+    "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks"
+    "gnome-software-packagekit-plugin" "gnome-system-monitor" "mutter" 
     # Base apps
     "firefox-developer-edition"
     # CLI tools
