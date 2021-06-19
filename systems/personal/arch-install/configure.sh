@@ -54,7 +54,7 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 initrd /intel-ucode.img
 EOF
-echo "options rd.luks.name=$installTargetUUID=$host root=/dev/mapper/$host rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
+echo "options rd.luks.name=$rootUUID=$host root=/dev/mapper/$host rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
 
 
 log info "Configuring mkinitcpio"
