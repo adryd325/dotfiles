@@ -5,5 +5,5 @@ AR_MODULE="internal-ca"
 
 if [ "$AR_OS" == "linux_arch" ] && [ "$USER" == "adryd" ]; then
     log info "Trusting internal CA"
-    sudo trust anchor --store "$AR_DIR/common/ca-certificates/adryd-root-ca.pem" \
+    sudo trust anchor --store "$AR_DIR/common/ca-certificates/adryd-root-ca.pem"
 fi

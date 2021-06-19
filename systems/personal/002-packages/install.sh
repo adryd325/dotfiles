@@ -26,10 +26,10 @@ packages=(
     "gnu-free-fonts" "cups" "hplip" "networkmanager-openvpn"
     # GNOME base
     "eog" "file-roller" "gedit" "gnome-backgrounds" "gnome-color-manager" "gnome-control-center"
-    "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-shell-performance" "gnome-shell-extensions" "gnome-software"
-    "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" "gvfs-afc" "mutter-performance" "nautilus"
-    "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks" "chrome-gnome-shell" "plymouth-git" "gdm-plymouth-prime"
-    "libgdm-plymouth-prime" "gnome-software-packagekit-plugin" "gnome-system-monitor"
+    "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-software"
+    "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" "gvfs-afc" "nautilus"
+    "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks" "chrome-gnome-shell" 
+    "gnome-software-packagekit-plugin" "gnome-system-monitor" "mutter" "gnome-shell"
     # Base apps
     "firefox-developer-edition"
     # CLI tools
