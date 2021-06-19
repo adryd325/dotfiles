@@ -17,4 +17,6 @@ EOF
     [ ! -e /etc/plymouth/plymouthd.conf.arbak ] && sudo cp /etc/plymouth/plymouthd.conf /etc/plymouth/plymouthd.conf.arbak
     sudo cp -f $AR_DIR/systems/personal/050-plymouth/plymouthd.conf cp /etc/plymouth/plymouthd.conf
     fi
+    log info "Regenerating initramfs"
+    sudo mkinitcpio -P
 fi  

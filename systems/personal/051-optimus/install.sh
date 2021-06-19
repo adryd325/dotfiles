@@ -14,13 +14,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
 
         # If we have optimus manager
         # The logs are rather self-explainatory so no need for more comment
-        if pacman -Q optimus-manager &> /dev/null; then
-            log info "Copy optimus-manager config"
-            mkdir -p /etc/optimus-manager
-            sudo cp -f "$AR_DIR/systems/personal/051-optimus-manager/optimus-manager.conf" /etc/optimus-manager/optimus-manager.conf
-            log info "Enable optimus-manager"
-            sudo systemctl enable optimus-manager
-        elif [ "$HOSTNAME" == "popsicle" ]
+        if [ "$HOSTNAME" == "popsicle" ]
             log info "Setting power management kernel option"
             echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' | sudo tee /etc/modprobe.d/nvidia.conf > /dev/null
             log info "Setting udev rules"

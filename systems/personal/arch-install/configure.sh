@@ -42,13 +42,13 @@ sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 log info "Installing boot loader"
 bootctl --path=/boot install
 log info "Configuring boot loader"
-cat > /boot/loader/loader.conf << EOF
+cat <<EOF > /boot/loader/loader.conf
 timeout 0
 console-mode keep
 editor no
 EOF
 log info "Creating boot entry"
-cat > /boot/loader/entries/archlinux.conf << EOF
+cat <<EOF > /boot/loader/entries/archlinux.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
