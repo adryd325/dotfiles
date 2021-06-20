@@ -30,6 +30,7 @@ packages=(
     "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" "gvfs-afc" "nautilus"
     "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks"
     "gnome-software-packagekit-plugin" "gnome-system-monitor" "mutter" 
+    "plymouth-git" "gdm-plymouth-prime" "libgdm-plymouth-prime" "gnome-shell-extensions" "gnome-shell" "chrome-gnome-shell"
     # Base apps
     "firefox-developer-edition"
     # CLI tools
@@ -46,6 +47,8 @@ packages=(
     # Needed for live share
     # Microsoft poopy   
     "visual-studio-code-bin"
+
+fi
 )
 
 [ "$HOSTNAME" == "socks" ] \
@@ -90,7 +93,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
         && cd "$oldPwd"
 
     # Install everything with yay
-    yay -Sy --noconfirm --removemake ${packages[*]}
+    yay -Sy --noconfirm --removemake --useask ${packages[*]}
 fi
 
 
