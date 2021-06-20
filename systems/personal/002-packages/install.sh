@@ -29,7 +29,7 @@ packages=(
     "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-software"
     "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" "gvfs-afc" "nautilus"
     "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks"
-    "gnome-software-packagekit-plugin" "gnome-system-monitor"
+    "gnome-software-packagekit-plugin" "gnome-system-monitor" "mutter-performance" "gnome-shell-performance"
     "plymouth-git" "gdm-plymouth-prime" "libgdm-plymouth-prime"
     "chrome-gnome-shell-git" "gnome-shell-extensions-git"
     # Base apps
