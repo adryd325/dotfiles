@@ -12,7 +12,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
     # fixes FPS issues on Intel iGPU
     sed -i "s/_merge_requests_to_use=()/_merge_requests_to_use=('1441')/" "$workDir/PKGBUILD"
     # fixes builds failing cause of no dbus or whatever
-    sed -i 's/meson test -C build --print-errorlogs/[ "$DISPLAY" != "" ] && meson test -C build --print-errorlogs/' "$workDir/PKGBUILD"
+    sed -i 's/meson test -C build --print-errorlogs//' "$workDir/PKGBUILD"
     oldPwd=$(pwd)
     cd "$workDir"
     makepkg -si
