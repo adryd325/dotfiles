@@ -78,7 +78,7 @@ log info "Copying over .adryd"
 cp -r $AR_DIR /mnt$AR_DIR
 
 rootUUID=`lsblk -o UUID,PARTLABEL | grep "$host" | grep -oP "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"`
-username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap rootUUID=$rootUUID cpuType=$cpuType\
+username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap rootUUID=$rootUUID ucode=`ucodepkg`\
     arch-chroot /mnt bash $AR_DIR/systems/personal/arch-install/configure.sh
 
 passsword=
