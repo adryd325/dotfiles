@@ -12,7 +12,7 @@
     "editor.fontFamily": "'Rec Mono Casual', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 15,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "workbench.colorTheme": "Monokai Pro",
+    "workbench.colorTheme": "Monokai Pro (Filter Machine)",
     "breadcrumbs.enabled": false,
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"

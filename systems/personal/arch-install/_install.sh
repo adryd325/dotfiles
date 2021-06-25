@@ -63,9 +63,9 @@ installTargetDev=$installTargetDev host=$host diskPassword=$diskPassword \
     $AR_DIR/systems/personal/arch-install/partition.sh
 
 function ucodepkg() {
-    arArchinstallCputype=`cat /proc/cpuinfo | grep vendor_id | sed "s/vendor_id\t: //g" | head -1`
-    [ "$arArchinstallCputype" == "GenuineIntel" ] && printf "intel-ucode"
-    [ "$arArchinstallCputype" == "AuthenticAmd" ] && printf "amd-ucode"
+    cpuType=`cat /proc/cpuinfo | grep vendor_id | sed "s/vendor_id\t: //g" | head -1`
+    [ "$cpuType" == "GenuineIntel" ] && printf "intel-ucode"
+    [ "$cpuType" == "AuthenticAmd" ] && printf "amd-ucode"
 }
 log silly "Detecting CPU for microcode package"
 basePackages+=(`ucodepkg`)
@@ -78,7 +78,7 @@ log info "Copying over .adryd"
 cp -r $AR_DIR /mnt$AR_DIR
 
 rootUUID=`lsblk -o UUID,PARTLABEL | grep "$host" | grep -oP "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"`
-username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap rootUUID=$rootUUID\
+username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap rootUUID=$rootUUID cpuType=$cpuType\
     arch-chroot /mnt bash $AR_DIR/systems/personal/arch-install/configure.sh
 
 passsword=
