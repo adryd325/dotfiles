@@ -48,12 +48,20 @@ console-mode keep
 editor no
 EOF
 log info "Creating boot entry"
-cat <<EOF > /boot/loader/entries/archlinux.conf
+if [ "$ucode" == "" ]; then
+    cat <<EOF > /boot/loader/entries/archlinux.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-initrd /intel-ucode.img
 EOF
+else 
+    cat <<EOF > /boot/loader/entries/archlinux.conf
+title Arch Linux
+linux /vmlinuz-linux
+initrd /$ucode.img
+initrd /initramfs-linux.img
+EOF
+fi
 echo "options rd.luks.name=$rootUUID=$host root=/dev/mapper/$host rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
 
 

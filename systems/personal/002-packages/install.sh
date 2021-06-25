@@ -8,8 +8,8 @@ brewTaps=("homebrew/cask-versions" "homebrew/cask-drivers" "homebrew/cask-fonts"
 brewPackages=(
     # GNU stuff and other CLI tools / libs
     "coreutils" "binutils" "ncurses" "diffutils" "ed" "findutils" "gawk" "gnu-indent" "gnu-sed" "gnu-tar" 
-    "gnu-which" "grep" "gzip" "watch" "wget" "bash" "less" "make" "nano" "git" "openssh" "rsync" "unzip" "vim" "zsh"
-    "tmux" "curl" "zstd"
+    "gnu-which" "grep" "gzip" "watch" "wget" "bash" "less" "make" "nano" "git" "openssh" "rsync" "unzip"
+    "vim" "zsh" "tmux" "curl" "zstd"
     # Programming languages
     "nodejs" "python"
     # CLI tools
@@ -27,11 +27,11 @@ packages=(
     # GNOME base
     "eog" "file-roller" "gedit" "gnome-backgrounds" "gnome-color-manager" "gnome-control-center"
     "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-software"
-    "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" "gvfs-afc" "nautilus"
-    "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" "gnome-tweaks"
-    "gnome-software-packagekit-plugin" "gnome-system-monitor" "mutter-performance" "gnome-shell-performance"
-    "plymouth-git" "gdm-plymouth-prime" "libgdm-plymouth-prime"
-    "chrome-gnome-shell-git" "gnome-shell-extensions-git"
+    "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" 
+    "gvfs-afc" "nautilus" "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" 
+    "gnome-tweaks" "gnome-software-packagekit-plugin" "gnome-system-monitor" "mutter-performance" 
+    "plymouth-git" "gdm-plymouth-prime" "libgdm-plymouth-prime" "chrome-gnome-shell-git"
+    "gnome-shell-extensions-git"
     # Base apps
     "firefox-developer-edition"
     # CLI tools
@@ -39,9 +39,9 @@ packages=(
     # Programming languages
     "nodejs" "npm" "pnpm" "python" "go" "jdk-openjdk" "jdk8-openjdk"
     # Utilities
-    "virt-viewer" "remmina" "freerdp" "libvncserver" "keepassxc" "mumble" "torbrowser-launcher" "dconf-editor" "audacity" "inkscape" "gimp"
-    "libreoffice-still" "quassel-monolithic" "deluge" "deluge-gtk" "obs-studio-browser" "v4l2loopback-dkms" "vlc-luajit" "telegram-desktop"
-    "xournalpp" "peek"
+    "virt-viewer" "remmina" "freerdp" "libvncserver" "keepassxc" "mumble" "torbrowser-launcher" 
+    "dconf-editor" "audacity" "inkscape" "gimp" "libreoffice-still" "quassel-monolithic" "deluge" "peek"
+    "deluge-gtk" "obs-studio-browser" "v4l2loopback-dkms" "vlc-luajit" "telegram-desktop" "xournalpp" 
     # Build Tools
     "cmake" "meson" "ninja"
     # Microsoft build of vscode :(
