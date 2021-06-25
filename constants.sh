@@ -55,7 +55,7 @@ function log() {
     logString+="${*:2}"
     
     # Don't print log if it's below our log level, and make sure to always show "ask" and "tell" log levels
-    [ "$AR_LOGLEVEL" ] && [[ $logLevel -gt $AR_LOGLEVEL ]] && [[ $logLevel -lt 5 ]] \
+    [ "$AR_LOGLEVEL" ] && [[ $logLevel -lt $AR_LOGLEVEL ]] && [[ $logLevel -lt 5 ]] \
         && return
     
     echo $logEchoArgs "$logString"

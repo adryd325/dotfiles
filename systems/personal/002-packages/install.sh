@@ -30,7 +30,7 @@ packages=(
     "gnome-terminal" "gnome-themes-extra" "gnome-weather" "gvfs" "gvfs-nfs" "gvfs-smb" "gvfs-gphoto2" 
     "gvfs-afc" "nautilus" "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" 
     "gnome-tweaks" "gnome-software-packagekit-plugin" "gnome-system-monitor" "gnome-shell-performance" 
-    "plymouth-git" "gdm-plymouth-prime" "libgdm-plymouth-prime" "chrome-gnome-shell-git"
+    "plymouth-git" "gdm-plymouth-prime" "libgdm-plymouth-prime" "chrome-gnome-shell-git" 
     "gnome-shell-extensions-git"
     # Base apps
     "firefox-developer-edition"
@@ -41,14 +41,14 @@ packages=(
     # Utilities
     "virt-viewer" "remmina" "freerdp" "libvncserver" "keepassxc" "mumble" "torbrowser-launcher" 
     "dconf-editor" "audacity" "inkscape" "gimp" "libreoffice-still" "quassel-monolithic" "deluge" "peek"
-    "deluge-gtk" "obs-studio-browser" "v4l2loopback-dkms" "vlc-luajit" "telegram-desktop" "xournalpp" 
+    "deluge-gtk" "v4l2loopback-dkms" "vlc-luajit" "cef-minimal" "obs-studio-browser" "telegram-desktop" 
+    "xournalpp" 
     # Build Tools
     "cmake" "meson" "ninja"
     # Microsoft build of vscode :(
     # Needed for live share
     # Microsoft poopy   
     "visual-studio-code-bin"
-fi
 )
 
 [ "$HOSTNAME" == "socks" ] \
@@ -81,19 +81,19 @@ fi
     )
 
 if [ "$AR_OS" == "linux_arch" ]; then
-    sudo pacman -Sy
-    # Install yay if it's not already installed
+    sudo pacman -Syu
+    # Install paru if it's not already installed
     oldPwd="$PWD"
-    yayDir="$AR_TMP/$AR_MODULE/yay"
-    [[ ! -x "$(command -v yay)" ]] \
-        && mkdir -p "$yayDir" \
-        && git clone https://aur.archlinux.org/yay.git "$yayDir" \
-        && cd "$yayDir" \
+    paruDir="$AR_TMP/$AR_MODULE/paru"
+    [[ ! -x "$(command -v paru)" ]] \
+        && mkdir -p "$paruDir" \
+        && git clone https://aur.archlinux.org/paru.git "$paruDir" \
+        && cd "$paruDir" \
         && makepkg -si --noconfirm\
         && cd "$oldPwd"
 
-    # Install everything with yay
-    yay -Sy --removemake --batchinstall --nocleanmenu --answerdiff None ${packages[*]}
+    # Install everything with paru
+    paru -Sy ${packages[*]}
 fi
 
 
