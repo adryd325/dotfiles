@@ -17,7 +17,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
             log info "Setting power management kernel option"
             echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' | sudo tee /etc/modprobe.d/nvidia.conf > /dev/null
             log info "Setting udev rules"
-            cp -f "$AR_DIR/systems/personal/051-optimus/80-nvidia-pm.rules" /etc/udev/rules.d/80-nvidia-pm.rules
+            sudo cp -f "$AR_DIR/systems/personal/051-optimus/80-nvidia-pm.rules" /etc/udev/rules.d/80-nvidia-pm.rules
         fi
         if pacman -Q switcheroo-control &> /dev/null; then
             log info "Enable switcheroo-control"

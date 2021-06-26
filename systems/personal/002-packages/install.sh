@@ -51,6 +51,9 @@ packages=(
     # Needed for live share
     # Microsoft poopy   
     "visual-studio-code-bin"
+    # FONTS!!!
+    "noto-fonts" "noto-fonts-cjk" "otf-san-francisco" "noto-fonts-emoji-apple" "ttf-cascadia-code"
+    "ttf-ms-fonts" "ttf-dejavu" "ttf-unifont"
 )
 
 [ "$HOSTNAME" == "socks" ] \
@@ -58,7 +61,6 @@ packages=(
 
 [ "$HOSTNAME" == "popsicle" ] || [ "$HOSTNAME" == "leaf" ] \
     && packages+=(
-        "noto-fonts" "otf-san-francisco" "ttf-twemoji-color" "ttf-cascadia-code"
         # Wine
         "wine-staging" "wine-mono" "wine-gecko"
         # Games
@@ -69,7 +71,7 @@ packages=(
     && packages+=(
         "multimc-git"
          # Drivers
-        "nvidia" "switcheroo-control" "nvidia-settings"
+        "nvidia" "switcheroo-control" "nvidia-settings" "nvidia-prime"
         # Needed for steam runing with dedicated gpu
         "lib32-nvidia-utils"
         # For /boot-less booting with keyring
