@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-source /home/adryd/.adryd/constants.sh
+export AR_DIR=/home/adryd/.adryd
+source $AR_DIR/constants.sh
 export AR_MODULE=''
 
 gpuVM=1000
