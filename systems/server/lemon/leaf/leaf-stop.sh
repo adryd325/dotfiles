@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-source /home/adryd/.adryd/lib/log.sh
+source /home/adryd/.adryd/constants.sh
 export AR_MODULE=''
 
 gpuVM=1000
 VM=$1
 
 if [ "$USER" != "root" ]; then
-    log 5 "please run as root"
+    log error "please run as root"
     exit 1
 fi
 
@@ -22,6 +22,6 @@ fi
 sleep 1
 
 qm set $gpuVM --onboot 1
-qm set $VM --onboot 0 --delete hostpci0,usb0,usb1,usb2,usb3,hookscript --vga qxl
+qm set $VM --onboot 0 --delete hostpci0,usb0,usb1,usb2,usb3 --vga qxl
 
 qm start $gpuVM

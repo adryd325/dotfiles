@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-source /home/adryd/.adryd/lib/log.sh
+export AR_DIR=/home/adryd/.adryd
+source $AR_DIR/constants.sh
 export AR_MODULE=''
 
 gpuVM=1000
 VM=$1
 
 if [ "$USER" != "root" ]; then
-    log 5 "please run as root"
+    log error "please run as root"
     exit 1
 fi
 
