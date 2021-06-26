@@ -23,7 +23,8 @@ brewPackages=(
 masPackages=("407963104" "1037126344")
 packages=(
     # Extras
-    "gnu-free-fonts" "cups" "hplip" "networkmanager-openvpn"
+    "gnu-free-fonts" "cups" "hplip" "networkmanager-openvpn" "networkmanager-wireguard-git"
+    "touchegg"
     # GNOME base
     "eog" "file-roller" "gedit" "gnome-backgrounds" "gnome-color-manager" "gnome-control-center"
     "gnome-keyring" "gnome-screenshot" "gnome-settings-daemon" "gnome-session" "gnome-software"
@@ -31,7 +32,7 @@ packages=(
     "gvfs-afc" "nautilus" "sushi" "totem" "tracker" "tracker3" "tracker-miners" "tracker3-miners" 
     "gnome-tweaks" "gnome-software-packagekit-plugin" "gnome-system-monitor" "gnome-shell" 
     "plymouth-git" "gdm-plymouth-prime" "libgdm-plymouth-prime" "chrome-gnome-shell-git" 
-    "gnome-shell-extensions-git"
+    "gnome-shell-extensions-git" "gnome-font-viewer"
     # Base apps
     "firefox-developer-edition"
     # CLI tools
@@ -40,9 +41,10 @@ packages=(
     "nodejs" "npm" "pnpm" "python" "go" "jdk-openjdk" "jdk8-openjdk"
     # Utilities
     "virt-viewer" "remmina" "freerdp" "libvncserver" "keepassxc" "mumble" "torbrowser-launcher" 
-    "dconf-editor" "audacity" "inkscape" "gimp" "libreoffice-still" "quassel-monolithic" "deluge" "peek"
-    "deluge-gtk" "v4l2loopback-dkms" "vlc-luajit" "cef-minimal" "obs-studio-browser" "telegram-desktop" 
-    "xournalpp" 
+    "gnome-contacts" "gnome-calendar" "chromium" "dconf-editor" "audacity" "inkscape" "gimp"
+    "libreoffice-still" "quassel-monolithic" "vlc-luajit" "deluge" "peek" "deluge-gtk" 
+    "v4l2loopback-dkms" "cef-minimal" "obs-studio-browser" "telegram-desktop" 
+    "xournalpp" "mesa-demos" "gnome-calculator" "gnome-system-monitor"
     # Build Tools
     "cmake" "meson" "ninja"
     # Microsoft build of vscode :(
