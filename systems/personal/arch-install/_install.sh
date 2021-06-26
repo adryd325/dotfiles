@@ -86,3 +86,5 @@ passsword=
 # Remove coppied dotfiles
 log silly "Remove coppied dotfiles"
 rm -rf /mnt/$AR_DIR
+log silly "Placing install script in new home folder"
+cp $AR_DIR/download.sh /mnt/home/$username/install.sh
