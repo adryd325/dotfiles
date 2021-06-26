@@ -9,7 +9,7 @@
     },
     "editor.suggest.showStatusBar": true,
     "eslint.alwaysShowStatus": true,
-    "editor.fontFamily": "'Rec Mono Casual', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 15,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "workbench.colorTheme": "Monokai Pro (Filter Machine)",
