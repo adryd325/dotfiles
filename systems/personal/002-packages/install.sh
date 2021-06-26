@@ -44,7 +44,7 @@ packages=(
     "gnome-contacts" "gnome-calendar" "chromium" "dconf-editor" "audacity" "inkscape" "gimp"
     "libreoffice-still" "quassel-monolithic" "vlc-luajit" "deluge" "peek" "deluge-gtk" 
     "v4l2loopback-dkms" "cef-minimal" "obs-studio-browser" "telegram-desktop" 
-    "xournalpp" "mesa-demos" "gnome-calculator" "gnome-system-monitor"
+    "xournalpp" "mesa-demos" "gnome-calculator" "gnome-system-monitor" "piavpn-bin"
     # Build Tools
     "cmake" "meson" "ninja"
     # Microsoft build of vscode :(
