@@ -10,12 +10,14 @@ if [ "$AR_OS" == "linux_arch" ]; then
     # Install paru if it's not already installed
     oldPwd="$PWD"
     paruDir="$AR_TMP/$AR_MODULE/paru"
-    [[ ! -x "$(command -v paru)" ]] \
-        && mkdir -p "$paruDir" \
-        && git clone https://aur.archlinux.org/paru.git "$paruDir" \
-        && cd "$paruDir" \
-        && makepkg -si --noconfirm\
-        && cd "$oldPwd"
+    if [ ! -e "$(command -v paru)" ]; then
+        [ -e "$paruDir" ] && rm -r "$paruDir"
+        mkdir -p "$paruDir"
+        git clone https://aur.archlinux.org/paru.git "$paruDir"
+        cd "$paruDir"
+        makepkg -si --noconfirm
+        cd "$oldPwd"
+    fi
 
     # Install everything with paru
     paru -Sy ${packages[*]}
@@ -25,10 +27,11 @@ fi
 if [ "$AR_OS" == "darwin_macos" ]; then
     source $AR_DIR/systems/personal/002-packages/packagelist-macos.sh
     # Install brew if it's not already installed
-    [[ ! -x "$(command -v brew)" ]] \
-        && log info "Running brew install script" \
-        && bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    
+    if [ ! -e "$(command -v brew)" ]; then
+        log info "Running brew install script"
+        bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
     log info "Updating brew"
     brew update --quiet &> /dev/null
 

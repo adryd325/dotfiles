@@ -54,9 +54,10 @@ elif [ "$AR_OS" == "darwin_macos" ]; then
     
     # TODO: Figure out why vscode, affinity and photoshop dont get added to dock; something with spaces in their name
     for app in "${dockApps[@]}"; do
-        [ -e "$app" ] \
-            && log silly "Adding $app to dock"\
-            && defaults-write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+        if [ -e "$app" ]; then
+            log silly "Adding $app to dock"
+            defaults-write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+        fi
     done
     killall Dock
 fi
