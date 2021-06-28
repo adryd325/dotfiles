@@ -1,5 +1,5 @@
 if [ ! $AR_TMP ]; then
-    for osTempDir in "$TMPDIR" "$TMP" "$TEMP" /tmp; do
+    for osTempDir in `mktemp 2> /dev/null` "$TMPDIR" "$TMP" "$TEMP" /tmp; do
         [ -e "$osTempDir" ] \
             && export AR_TMP=$osTempDir/adryd-dotfiles \
             && break

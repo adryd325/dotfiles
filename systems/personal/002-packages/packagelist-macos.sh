@@ -31,17 +31,19 @@ brewPackages=(
     "wget"
     "zsh"
     "zstd"
+    
     # Programming languages
     "nodejs"
     "python"
+
     # CLI tools
     "ffmpeg"
     "htop"
     "mas"
     "youtube-dl" 
+
     # Utilities
-    # apptrap always first
-    "apptrap"
+    "apptrap" # apptrap always first cask
     "blockblock"
     "keka"
     "knockknock"
@@ -49,12 +51,14 @@ brewPackages=(
     "netiquette"
     "suspicious-package"
     "virt-viewer"
+
     # Base apps
     "discord" 
     "discord-canary"
     "firefox"
     "iterm2"
     "visual-studio-code" 
+
     # Extra
     "affinity-designer-beta"
     "tor-browser"

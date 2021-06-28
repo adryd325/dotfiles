@@ -16,4 +16,5 @@ if [ "$AR_OS" == "linux_arch" ]; then
         log info "Enabling qemu-guest-agent"
         sudo systemctl enable qemu-guest-agent
     fi
+    sudo systemctl enable systemd-resolved
 fi

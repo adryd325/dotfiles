@@ -6,8 +6,10 @@ packages=(
     "hplip"
     "networkmanager-openvpn"
     "networkmanager-wireguard-git"
+    "systemd-resolvconf"
     "touchegg"
-    # GNOME base
+
+    # GNOME
     "chrome-gnome-shell-git"
     "eog"
     "file-roller"
@@ -42,8 +44,12 @@ packages=(
     "tracker-miners"
     "tracker3"
     "tracker3-miners"
+
     # Base apps
     "firefox-developer-edition"
+    "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
+    # usually a terminal and discord would go here, but those will get installed elsewhere
+
     # CLI tools
     "croc"
     "ffmpeg"
@@ -52,6 +58,7 @@ packages=(
     "openbsd-netcat"
     "reflector"
     "youtube-dl"
+
     # Programming languages and libs
     "go"
     "jdk-openjdk"
@@ -60,6 +67,7 @@ packages=(
     "npm"
     "pnpm"
     "python"
+
     # Utilities
     "audacity"
     "cef-minimal"
@@ -88,14 +96,14 @@ packages=(
     "torbrowser-launcher"
     "v4l2loopback-dkms"
     "virt-viewer"
-    "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
     "vlc-luajit"
     "xournalpp"
-    # 
+
     # Build Tools used frequently by things I use on the AUR
     "cmake"
     "meson"
     "ninja"
+
     # FONTS!!!
     "noto-fonts"
     "noto-fonts-cjk"
@@ -113,6 +121,7 @@ if [ "$HOSTNAME" == "popsicle" ] || [ "$HOSTNAME" == "leaf" ]; then
         "wine-gecko"
         "wine-mono" 
         "wine-staging" 
+
         # Games
         "powder-toy"
         "steam" 
@@ -121,14 +130,16 @@ fi
 
 if [ "$HOSTNAME" == "popsicle" ]; then
     packages+=(
+        # Games
         "multimc-git"
+
          # Drivers
         "nvidia"
         "nvidia-prime"
         "nvidia-settings"
         "switcheroo-control"
-        # Needed for steam runing with dedicated gpu
-        "lib32-nvidia-utils"
+        "lib32-nvidia-utils" # Needed for steam runing with dedicated gpu
+
         # For /boot-less booting with keyring
         "linux-lts"
         "nvidia-lts"
