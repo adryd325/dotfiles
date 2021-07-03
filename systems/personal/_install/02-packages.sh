@@ -13,7 +13,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
     if [ ! -e "$(command -v paru)" ]; then
         [ -e "$paruDir" ] && rm -r "$paruDir"
         mkdir -p "$paruDir"
-        git clone https://aur.archlinux.org/paru.git "$paruDir"
+        git clone https://aur.archlinux.org/paru-bin.git "$paruDir"
         cd "$paruDir"
         makepkg -si --noconfirm
         cd "$oldPwd"
