@@ -19,6 +19,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
     oldPwd=$(pwd)
     cd "$workDir"
     log info "Compiling and installing"
-    makepkg -si
+    # only way to get it to install unattended
+    yes | makepkg -si
     cd "$oldPwd"
 fi

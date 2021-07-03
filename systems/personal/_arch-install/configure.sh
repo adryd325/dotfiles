@@ -40,7 +40,7 @@ sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 # grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
 
 log info "Installing boot loader"
-bootctl --path=/boot install
+bootctl --path=/boot install > /dev/null
 log info "Configuring boot loader"
 cat <<EOF > /boot/loader/loader.conf
 timeout 0
