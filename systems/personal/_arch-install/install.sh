@@ -60,7 +60,7 @@ installTargetUUID=`lsblk -l $installTargetDev -o PATH,UUID | grep "$installTarge
 
 log silly "Calling partitioning script"
 installTargetDev=$installTargetDev host=$host diskPassword=$diskPassword \
-    $AR_DIR/systems/personal/arch-install/partition.sh
+    $AR_DIR/systems/personal/_arch-install/partition.sh
 
 function ucodepkg() {
     cpuType=`cat /proc/cpuinfo | grep vendor_id | sed "s/vendor_id\t: //g" | head -1`
@@ -84,7 +84,7 @@ cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 
 rootUUID=`lsblk -o UUID,PARTLABEL | grep "$host" | grep -oP "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"`
 username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap rootUUID=$rootUUID ucode=`ucodepkg`\
-    arch-chroot /mnt bash $AR_DIR/systems/personal/arch-install/configure.sh
+    arch-chroot /mnt bash $AR_DIR/systems/personal/_arch-install/configure.sh
 
 passsword=
 
