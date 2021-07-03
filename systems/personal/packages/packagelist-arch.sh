@@ -2,13 +2,14 @@ packages=(
     # Extras
     "cups"
     "hplip"
+    "jack2"
     "networkmanager-openvpn"
     "networkmanager-wireguard-git"
     "systemd-resolvconf"
     "touchegg"
 
     # GNOME
-    "chrome-gnome-shell-git"
+    "chrome-gnome-shell"
     "eog"
     "file-roller"
     "gdm-plymouth-prime"
@@ -22,7 +23,7 @@ packages=(
     "gnome-session"
     "gnome-settings-daemon"
     "gnome-shell"
-    "gnome-shell-extensions-git"
+    "gnome-shell-extensions"
     "gnome-system-monitor"
     "gnome-terminal"
     "gnome-themes-extra"
@@ -35,7 +36,7 @@ packages=(
     "gvfs-smb"
     "libgdm-plymouth-prime"
     "nautilus"
-    "plymouth-git"
+    "plymouth"
     "sushi"
     "totem"
     "tracker"
@@ -136,6 +137,9 @@ if [ "$HOSTNAME" == "popsicle" ]; then
         "nvidia"
         "nvidia-prime"
         "nvidia-settings"
+        "nvidia-utils"
+        "vulkan-intel"
+        "lib32-vulkan-intel"
         "switcheroo-control"
         "lib32-nvidia-utils" # Needed for steam runing with dedicated gpu
     )
@@ -145,5 +149,7 @@ if [ "$HOSTNAME" == "leaf" ]; then
     packages+=(
         # Drivers
         "qemu-guest-agent"
+        "amdvlk"
+        "lib32-amdvlk"
     )
 fi
