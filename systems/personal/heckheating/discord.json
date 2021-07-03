@@ -1,0 +1,22 @@
+{
+  "inspectAll": true,
+  "debugPatches": true,
+  "dangerMode": false,
+  "loggers": ["silly", "verbose"],
+  "defaultLoggerLevel": 400,
+  "modules": {
+    "pseudoscience": true,
+    "sentrynerf": true,
+    "crashScreen": true,
+    "loadingScreen": true,
+    "magicrequire": true,
+    "webpackIntercept": true,
+    "inspect": true,
+    "experiments": true,
+    "tardid": true,
+    "preserveToken": true,
+    "autoPatch": true,
+    "linuxUpdater": true,
+    "postnet": true
+  }
+}
