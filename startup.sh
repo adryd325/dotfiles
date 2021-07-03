@@ -5,7 +5,7 @@ AR_MODULE="startup"
 
 if [ "$AR_OS" == "linux_arch" ] || [ "$AR_OS" == "darwin_macos" ]; then
     if [ "$AR_OS" == "linux_arch" ] && [ "$USER" == "root" ] && [ "$HOSTNAME" == "archiso" ]; then
-        $AR_DIR/systems/personal/arch-install/_install.sh
+        $AR_DIR/systems/personal/_arch-install/install.sh
     else
         [ "$USER" != "root" ] \
             && $AR_DIR/systems/personal/install.sh
