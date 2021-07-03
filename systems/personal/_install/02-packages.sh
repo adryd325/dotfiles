@@ -27,7 +27,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
     fi
 
     # Install everything with paru
-    paru -Sy ${packages[*]}
+    paru -Sy --useask --removemake ${packages[*]}
 fi
 
 
