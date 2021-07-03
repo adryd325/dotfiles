@@ -12,7 +12,6 @@ export AR_NOT_INSTALLED=1
 
 # Logs
 function log() {
-
     # Default echo args
     local logEchoArgs="-e"
     local logString=""
@@ -54,12 +53,13 @@ function log() {
     # If $AR_MODULE is set, prefix the log message
     [ "$AR_MODULE" ] \
         && logString+="\x1b[35m$AR_MODULE\x1b[0m "
-    
+    [ "$AR_LOG_PREFIX" != "" ] \
+        && logString+="\x1b[32m($AR_LOG_PREFIX)\x1b[0m "
     # Add the rest of the arguments (merged together) to $logString
     logString+="${*:2}"
     
     # Don't print log if it's below our log level, and make sure to always show "ask" and "tell" log levels
-    [ "$AR_LOGLEVEL" ] && [[ $logLevel -gt $AR_LOGLEVEL ]] && [[ $logLevel -lt 5 ]] \
+    [ "$AR_LOGLEVEL" ] && [[ $logLevel -lt $AR_LOGLEVEL ]] && [[ $logLevel -lt 5 ]] \
         && return
     
     echo $logEchoArgs "$logString"
@@ -101,6 +101,7 @@ function ar_dir() {
     fi
 }
 ar_dir
+
 # --- END CONSTANTS ---
 AR_MODULE=download
 
