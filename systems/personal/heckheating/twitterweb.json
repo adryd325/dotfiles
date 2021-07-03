@@ -1,0 +1,11 @@
+{
+  "__note": "This is not automatically loaded, paste in hh-config in localstorage",
+  "modules": {
+    "sentrynerf": true,
+    "pseudoscience": true,
+    "loadingScreen": true,
+    "magicrequire": true,
+    "inspect": true,
+    "featureSwitches": true
+  }
+}
