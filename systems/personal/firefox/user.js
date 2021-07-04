@@ -114,3 +114,6 @@ user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.safebrowsing.phishing.enabled", false);
 user_pref("browser.safebrowsing.provider.google4.lastupdatetime", "0");
 user_pref("browser.safebrowsing.provider.google4.nextupdatetime", "9999999999999");
+
+// Fix emoji font
+user_pref("font.name-list.emoji", "Noto Color Emoji")

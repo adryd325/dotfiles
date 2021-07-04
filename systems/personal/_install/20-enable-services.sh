@@ -3,6 +3,7 @@ source $HOME/.adryd/constants.sh
 source $AR_DIR/lib/os.sh
 AR_MODULE="enable-services"
 
+# Enable services that otherwise don't need their own install script
 if [ "$AR_OS" == "linux_arch" ]; then
     if pacman -Q gdm &> /dev/null; then
         log info "Enabling gdm"
