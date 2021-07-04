@@ -14,14 +14,17 @@ if [ "$AR_OS" == "linux_arch" ]; then
         [ -e "$paruDir" ] && rm -r "$paruDir"
         mkdir -p "$paruDir"
         # go for bin variant cause rustc slow
-        git clone https://aur.archlinux.org/paru-bin.git "$paruDir"
+        log verb "Cloning paru"
+        git clone https://aur.archlinux.org/paru-bin.git "$paruDir" --quiet
         cd "$paruDir"
+        log verb "Building paru"
         makepkg -si --noconfirm
         cd "$oldPwd"
     fi
 
     # Add keyserver
     if ! grep "keyserver hkps://keyserver.ubuntu.com" $HOME/.gnupg/gpg.conf &> /dev/null; then
+        log info "Adding gpg keyserver"
         mkdir -p "$HOME/.gnupg"
         echo "keyserver hkps://keyserver.ubuntu.com" >> "$HOME/.gnupg/gpg.conf"
     fi

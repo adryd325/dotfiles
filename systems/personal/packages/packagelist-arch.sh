@@ -13,7 +13,6 @@ packages=(
     "eog"
     "file-roller"
     "gdm-plymouth-prime"
-    "gedit"
     "gnome-backgrounds"
     "gnome-color-manager"
     "gnome-control-center"
@@ -27,6 +26,7 @@ packages=(
     "gnome-system-monitor"
     "gnome-terminal"
     "gnome-themes-extra"
+    "gnome-text-editor"
     "gnome-tweaks"
     "gnome-weather"
     "gvfs"
@@ -56,6 +56,7 @@ packages=(
     "imagemagick"
     "openbsd-netcat"
     "reflector"
+    "xclip"
     "youtube-dl"
 
     # Programming languages and libs

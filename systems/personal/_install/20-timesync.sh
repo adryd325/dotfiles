@@ -10,7 +10,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
     fi
     if [ ! -e "/etc/systemd/timesyncd.conf.d/north-america.conf" ]; then
         log info "Installing timesyncd config"
-        sudo tee /etc/systemd/timesyncd.conf.d/north-america.conf << EOF
+        sudo tee /etc/systemd/timesyncd.conf.d/north-america.conf > /dev/null << EOF
 [Time]
 NTP=
 FallbackNTP=0.north-america.pool.ntp.org 1.north-america.pool.ntp.org 2.north-america.pool.ntp.org 3.north-america.pool.ntp.org

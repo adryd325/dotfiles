@@ -12,7 +12,6 @@
     "editor.fontFamily": "'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 15,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "workbench.colorTheme": "Monokai Pro",
     "breadcrumbs.enabled": false,
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -29,5 +28,6 @@
     "update.showReleaseNotes": false,
     "extensions.autoUpdate": false,
     "security.workspace.trust.enabled": false,
-    "explorer.confirmDragAndDrop": false
+    "explorer.confirmDragAndDrop": false,
+    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)"
 }
