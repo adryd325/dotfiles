@@ -54,7 +54,7 @@ if [ "$AR_OS" == "darwin_macos" ]; then
         # listCache exists for the sole reason that brew is slow. We get a list once, and if we haven't installed a new
         # package, we don't have to refresh it!
         [ ! "$listCache" ] && listCache=`brew list`
-        if echo "$listCache" | grep "^$package$/" > /dev/null; then 
+        if [ "$listCache" == "" ] || echo "$listCache" | grep "^$package$/" > /dev/null; then 
             log info "Installing $package with Homebrew"
             brew install "$package" --quiet > /dev/null || log warn "Installation failed for $package"
             listCache=`brew list`
