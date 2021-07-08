@@ -65,7 +65,7 @@ fi
 if [ ! -e /home/$adminUser/.ssh/authorized_keys ]; then
     log info "Installing SSH key"
     mkdir -p /home/$adminUser/.ssh
-    curl https://adryd.co/id_ed25519.pub > /home/$adminUser/.ssh/authorized_keys
+    curl -sSL https://adryd.co/id_ed25519.pub | cat > /home/$adminUser/.ssh/authorized_keys
     cat /home/$adminUser/.ssh/authorized_keys
     chown $adminUser:$adminUser -R /home/$adminUser/.ssh
     chmod 600 /home/$adminUser/.ssh/authorized_keys
@@ -81,7 +81,7 @@ if [ -e /etc/fail2ban/jail.local ]; then
 fi
 
 log info "Trusting internal CA"
-cp -f $AR_DIR/systems/common/ca-certificates/root-ca.pem /usr/local/share/ca-certificates/adryd-root-ca.crt
+cp -f $AR_DIR/systems/common/ca-certificates/adryd-root-ca.pem /usr/local/share/ca-certificates/adryd-root-ca.crt
 update-ca-certificates &> /dev/null
 
 log info "Placing manual in home directory"
