@@ -10,7 +10,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
     [ ! -e "/etc/mkinitcpio.conf.$AR_MODULE.arbak" ] && sudo cp /etc/mkinitcpio.conf "/etc/mkinitcpio.conf.$AR_MODULE.arbak"
     if ! grep "# .ADRYD LOCK ($AR_MODULE)" /etc/mkinitcpio.conf > /dev/null; then
         sudo tee -a /etc/mkinitcpio.conf > /dev/null <<EOF
-# .ADRYD LOCK (plymouth) (this is to prevent the deploy script from infinitely appending this config to the end of the file)
+# .ADRYD LOCK ($AR_MODULE) (this is to prevent the deploy script from infinitely appending this config to the end of the file)
 HOOKS+=(sd-plymouth)
 EOF
     fi
