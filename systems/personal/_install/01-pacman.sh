@@ -6,29 +6,34 @@ AR_MODULE="pacman"
 
 if [ "$AR_OS" == "linux_arch" ]; then
     log info "Changing pacman preferences"
-    log silly "Enable color"
     [ ! -e /etc/pacman.conf.arbak ] && sudo cp /etc/pacman.conf /etc/pacman.conf.arbak
+    log silly "Enable color"
     sudo sed -i "s/^#Color\$/Color/" /etc/pacman.conf
-    log silly "Enable multilib"
-    # I fucking hate shell scripting i am on the verge of tears just let me FUCKING REPLACE MULTILINE IN A FILE WITHOUT
-    # COMPLICATED FUCKERY HOLY SHIT FUCK BITCH DIE ok i need to not fucking die here please
-    sudo $AR_NODE -e "
-        const fs = require('fs');
-        let pacmanConfig = fs.readFileSync('/etc/pacman.conf','utf-8');
-        pacmanConfig = pacmanConfig.replace(
-            '#[multilib]\n#Include = /etc/pacman.d/mirrorlist',
-            '[multilib]\nInclude = /etc/pacman.d/mirrorlist'
-        );
-        fs.writeFileSync('/etc/pacman.conf', pacmanConfig);
-    "
-    [ ! -e /etc/makepkg.conf.arbak ] && sudo cp /etc/makepkg.conf /etc/makepkg.conf.arbak
-    log info "Fixing makepkg compiler args"
-    log silly "CFLAGS"
-    sudo sed -i 's|CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"|CFLAGS="-march=native -O3 -pipe -fno-plt"|' /etc/makepkg.conf
-    log silly "CXXFLAGS"
-    sudo sed -i 's|CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"|CXXFLAGS="-march=native -O3 -pipe -fno-plt"|' /etc/makepkg.conf
-    log silly "RUSTFLAGS"
-    sudo sed -i 's|#RUSTFLAGS="-C opt-level=2"|RUSTFLAGS="-C opt-level=2 -C target-cpu=native"|' /etc/makepkg.conf
-    log silly "MAKE"
-    sudo sed -i 's|#MAKEFLAGS="-j2"|MAKEFLAGS="-j$(expr $(nproc) - 2)"|' /etc/makepkg.conf
+    log silly "Enable parallel downloads"
+    sudo sed -i "s/^#ParallelDownloads = 5\$/ParallelDownloads = 5/" /etc/pacman.conf
+    if ! grep "# .ADRYD LOCK ($AR_MODULE)" /etc/pacman.conf > /dev/null; then
+        sudo tee -a /etc/pacman.conf > /dev/null <<EOF
+# .ADRYD LOCK ($AR_MODULE) (this is to prevent the deploy script from infinitely appending this config to the end of the file)
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+EOF
+        log info "Enable multilib"
+    fi
+    [ ! -e /etc/makepkg.conf.arbak ] && sudo cp /etc/makepkg.conf /etc/makepkg.conf
+    if ! grep "# .ADRYD LOCK ($AR_MODULE)" /etc/makepkg.conf > /dev/null; then
+        sudo tee -a /etc/makepkg.conf > /dev/null <<EOF
+# .ADRYD LOCK ($AR_MODULE) (this is to prevent the deploy script from infinitely appending this config to the end of the file)
+COMMON_FLAGS="-march=native -mtune=native -O2 -pipe -fno-plt -fexceptions -Wp,-D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -fstack-clash-protection -fcf-protection"
+CFLAGS="\${COMMON_FLAGS}"
+CXXFLAGS="\${COMMON_FLAGS} -Wp,-D_GLIBCXX_ASSERTIONS"
+RUSTFLAGS="-C opt-level=2 -C target-cpu=native"
+MAKEFLAGS="-j\$(expr \$(nproc) - 2)"
+EOF
+        log info "Apply custom compiler args"
+    fi
+    if [ "$USER" == "adryd" ]; then
+        # this doesn't apply outside of my area
+        [ ! -e /etc/pacman.d/mirrorlist.arbak ] && sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.arbak
+        sudo cp -f "$AR_DIR/systems/personal/$AR_MODULE/preferred-mirrorlist" /etc/pacman.d/mirrorlist
+    fi
 fi

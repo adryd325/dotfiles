@@ -9,6 +9,7 @@ packages=(
     "touchegg"
 
     # GNOME
+    "baobab"
     "chrome-gnome-shell"
     "eog"
     "file-roller"
