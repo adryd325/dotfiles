@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-source $HOME/.adryd/constants.sh
 AR_MODULE="ctsetup"
 
 adminUser=adryd
@@ -9,7 +8,7 @@ log info "Updating packages"
 apt-get update -qq &> /dev/null
 apt-get upgrade -qq &> /dev/null
 
-if ! id $adminUser 2> /dev/null; then
+if ! id $adminUser &> /dev/null; then
     log info "Creating admin user"
     useradd -mG sudo $adminUser
     log info "Setting admin password"
@@ -18,7 +17,7 @@ if ! id $adminUser 2> /dev/null; then
     usermod $adminUser -s /bin/bash
 fi
 
-if ! id $servicesUser 2> /dev/null; then
+if ! id $servicesUser &> /dev/null; then
     log info "Creating services user"
     useradd $servicesUser
     log info "Adding admin user to services group"

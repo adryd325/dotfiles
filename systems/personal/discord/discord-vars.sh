@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-source $HOME/.adryd/constants.sh
-
 downloadURL="$downloadEndpoint/$branch$downloadOptions"
 discordName="Discord${branch^}"
 discordNameSpace="Discord ${branch^}"

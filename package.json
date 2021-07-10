@@ -1,0 +1,11 @@
+{
+    "name": "dotfiles",
+    "version": "5.1.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://gitlab.com/adryd/dotfiles.git"
+    },
+    "author": "adryd (me@adryd.com)",
+    "license": "MIT",
+    "type": "module"
+}

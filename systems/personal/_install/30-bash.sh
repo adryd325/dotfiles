@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-source $HOME/.adryd/constants.sh
-
+[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
 [ -e "$HOME/.bashrc" ] && [ ! -e "$HOME/.bashrc.arbak" ] && cp "$HOME/.bashrc" "$HOME/.bashrc.arbak"
-rm "$HOME/.bashrc"
-ln -s "$AR_DIR/systems/personal/bash/.bashrc" "$HOME/.bashrc"
+ln -sf "$AR_DIR/systems/personal/bash/.bashrc" "$HOME/.bashrc"

@@ -1,4 +1,2 @@
-#!/bin/bash
-source $AR_DIR/lib/os.sh
-
+#!/usr/bin/env bash
 [ "$AR_OS" == "linux_arch" ] && alias open="xdg-open"
