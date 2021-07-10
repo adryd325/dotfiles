@@ -14,6 +14,7 @@ packages=(
     "pacman"
 
     # Extras
+    "bash-completion"
     "cups"
     "hplip"
     "jack2"
