@@ -34,7 +34,7 @@ function ar_dir() {
 ar_dir
 
 function ar_splash() {
-    if [[ -z "$AR_SPLASH" ]] && [[ "$0" = "$AR_DIR"* ]]; then
+    if [[ -z "$AR_SPLASH" ]] && [[ "$0" = "$AR_DIR"* ]] || [[ "$AR_MODULE" = "download" ]]; then
         echo -en "\n \x1b[30;44m \x1b[0m .adryd\n \x1b[30;44m \x1b[0m version 5.1\n\n"
         export AR_SPLASH=1
     fi
