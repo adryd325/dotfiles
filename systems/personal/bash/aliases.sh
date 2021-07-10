@@ -1,3 +1,2 @@
-#!/usr/bin/env bash
-ar_os
-[ "$AR_OS" == "linux_arch" ] && alias open="xdg-open"
+[[ "$AR_OS" = "linux_arch" ]] && alias open="xdg-open"
+alias ls="ls --color"

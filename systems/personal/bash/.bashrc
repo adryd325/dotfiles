@@ -110,9 +110,11 @@ function log() {
 
 export PATH="$AR_DIR/systems/personal/bin:$HOME/.local/bin:$PATH"
 export EDITOR="nvim"
+# export PS1="\e[1;31m\u@\H\e[0m:\e[1;34m\W\e[0m\$ "?
 
 export NODE_EXTRA_CA_CERTS="$AR_DIR/systems/common/ca-certificates/adryd-root-ca.pem"
 
+source "$AR_DIR/systems/personal/bash/prompts/robyrussel.sh"
 source "$AR_DIR/systems/personal/bash/aliases.sh"
 
 unset AR_OS

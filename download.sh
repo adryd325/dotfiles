@@ -131,7 +131,7 @@ function download() {
     # If we have git
     # TODO: Check if we don't actually have command-line tools
     if [[ -x "$(command -v git)" ]]; then
-        if [[ -f "$HOME/.ssh/id_"* ]]; then
+        if [[ -f "$HOME/.ssh/id_ed25519" ]] || [[ -f "$HOME/.ssh/id_rsa" ]]; then
             log info "Cloning dotfiles repo (git+ssh)"
             git clone "$AR_REMOTE_GIT_SSH" "$AR_DIR" -qq
             [[ -d "$AR_DIR" ]] && return
