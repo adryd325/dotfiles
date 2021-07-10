@@ -114,3 +114,7 @@ export EDITOR="nvim"
 export NODE_EXTRA_CA_CERTS="$AR_DIR/systems/common/ca-certificates/adryd-root-ca.pem"
 
 source "$AR_DIR/systems/personal/bash/aliases.sh"
+
+unset AR_OS
+unset AR_OS_DISTRO
+unset AR_OS_KERNEL
