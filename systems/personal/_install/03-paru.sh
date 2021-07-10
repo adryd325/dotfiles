@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 [[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
 ar_os
-AR_MODULE="pacman"
+AR_MODULE="paru"
 
 if [ "$AR_OS" == "linux_arch" ]; then
     log info "Changing pacman preferences"
-    [ ! -e /etc/pacman.conf.arbak ] && sudo cp /etc/pacman.conf /etc/pacman.conf.arbak
-    log silly "Enable color"
-    sudo sed -i "s/^#Color\$/Color/" /etc/pacman.conf
-    log silly "Enable parallel downloads"
-    sudo sed -i "s/^#ParallelDownloads = 5\$/ParallelDownloads = 12/" /etc/pacman.conf
+    [ ! -e /etc/paru.conf.arbak ] && sudo cp /etc/paru.conf /etc/paru.conf.arbak
+    log silly "Enable RemoveMake"
+    sudo sed -i "s/^#RemoveMake\$/RemoveMake/" /etc/pacman.conf
+    log silly "Enable CleanAfter"
+    sudo sed -i "s/^#CleanAfter\$/CleanAfter/" /etc/pacman.conf
     if ! grep "# .ADRYD LOCK ($AR_MODULE)" /etc/pacman.conf > /dev/null; then
         sudo tee -a /etc/pacman.conf > /dev/null <<EOF
 # .ADRYD LOCK ($AR_MODULE) (this is to prevent the deploy script from infinitely appending this config to the end of the file)

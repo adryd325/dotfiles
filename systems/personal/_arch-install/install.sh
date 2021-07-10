@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source $HOME/.adryd/constants.sh
+[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
 AR_MODULE="archinstall"
 
 # Username
@@ -72,18 +72,20 @@ basePackages+=(`ucodepkg`)
 
 log info "Run relfector to speed up installation"
 $AR_DIR/systems/personal/_install/03-reflector.sh
+log info "Enable parallel downloads"
+sed -i "s/^#ParallelDownloads = 5\$/ParallelDownloads = 12/" /etc/pacman.conf
 log info "Installing base system"
 pacstrap /mnt ${basePackages[*]}
 log info "Writing fstab"
 genfstab /mnt -U >> /mnt/etc/fstab
 log info "Copying over .adryd"
-cp -r $AR_DIR /mnt$AR_DIR
+cp -r "$AR_DIR" "/mnt$AR_DIR"
 log info "Copying over mirrorlist"
 mv /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.arbak
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 
 rootUUID=`lsblk -o UUID,PARTLABEL | grep "$host" | grep -oP "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"`
-username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap rootUUID=$rootUUID ucode=`ucodepkg`\
+AR_DIR=$AR_DIR username=$username password=$password host=$host timezone=$timezone language=$language keymap=$keymap rootUUID=$rootUUID ucode=`ucodepkg`\
     arch-chroot /mnt bash $AR_DIR/systems/personal/_arch-install/configure.sh
 
 passsword=

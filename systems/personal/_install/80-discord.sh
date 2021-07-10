@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-source $HOME/.adryd/constants.sh
-source $AR_DIR/lib/tmp.sh
-source $AR_DIR/lib/os.sh
+[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+ar_tmp
+ar_os
 AR_MODULE="discord"
 
 # not really dependent on any distros
-if [ "$AR_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
+if [ "$AR_OS_KERNEL" == "linux" ] && [ -e "$(command -v curl)" ]; then
     downloadEndpoint='https://discord.com/api/download'
     downloadOptions='?platform=linux&format=tar.gz'
 

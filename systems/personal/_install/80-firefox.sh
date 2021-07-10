@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# I think the funniest thing about this, is you get the "welcome to firefox" message and the browser is already themed and half configured
-source $HOME/.adryd/constants.sh
-source $AR_DIR/lib/os.sh
+[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+ar_os
 AR_MODULE="firefox"
+# I think the funniest thing about this, is you get the "welcome to firefox" message as if firefox usually looks like that
 
 if [ "$AR_OS" == "linux_arch" ]; then
     oldPwd=$PWD

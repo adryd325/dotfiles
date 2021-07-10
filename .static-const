@@ -1,0 +1,5 @@
+download.sh
+install.sh
+systems/server/lemon/leaf/leaf-start.sh
+systems/server/lemon/leaf/leaf-stop.sh
+systems/personal/bash/.bashrc

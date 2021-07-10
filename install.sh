@@ -107,10 +107,19 @@ function log() {
     echo $echoArgs "$logString"
 }
 # --- END CONSTANTS ---
+AR_MODULE="startup"
 
-export PATH="$AR_DIR/systems/personal/bin:$HOME/.local/bin:$PATH"
-export EDITOR="nvim"
+if [ "$AR_OS" == "linux_arch" ] || [ "$AR_OS" == "darwin_macos" ]; then
+    if [ "$AR_OS" == "linux_arch" ] && [ "$USER" == "root" ] && [ "$HOSTNAME" == "archiso" ]; then
+        $AR_DIR/systems/personal/_arch-install/install.sh
+    else
+        [ "$USER" != "root" ] \
+            && $AR_DIR/systems/personal/install.sh
+    fi
+fi
 
-export NODE_EXTRA_CA_CERTS="$AR_DIR/systems/common/ca-certificates/adryd-root-ca.pem"
-
-source "$AR_DIR/systems/personal/bash/aliases.sh"
+if [ "$AR_OS" == "linux_debian" ]; then
+    if [ "$USER" == "root" ]; then
+        $AR_DIR/systems/server/vms/install.sh
+    fi
+fi

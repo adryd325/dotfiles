@@ -1,10 +1,25 @@
 packages=(
+    # BASE
+    "linux"
+    "linux-firmware"
+    "linux-headers"
+    "base"
+    "base-devel"
+    "man-db"
+    "man-pages"
+    "btrfs-progs"
+    "networkmanager"
+    "neovim"
+    "git"
+    "pacman"
+
     # Extras
     "cups"
     "hplip"
     "jack2"
     "networkmanager-openvpn"
     "networkmanager-wireguard-git"
+    "pacman-contrib"
     "systemd-resolvconf"
     "touchegg"
 
