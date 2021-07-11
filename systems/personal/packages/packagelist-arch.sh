@@ -18,6 +18,7 @@ packages=(
     "neovim"
     "git"
     "pacman"
+    "openssh"
     "$(ucodepkg)"
 
     # Extras
