@@ -127,7 +127,7 @@ packages=(
     "noto-fonts-cjk"
     "noto-fonts-emoji-apple"
     "otf-san-francisco"
-    "ttf-cascadia-code"
+    "ttf-cascadia-code-git" # using main branch cause frustrated by cursive in italics
     "ttf-dejavu"
     "ttf-ms-fonts"
     "ttf-unifont"

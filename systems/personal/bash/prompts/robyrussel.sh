@@ -3,6 +3,12 @@ prompt_exitcode() {
     prompt+="\[\e[1;31m\]"
 }
 
+prompt_arrow() {
+    [[ -n "$TERM_PROGRAM" ]] && prompt+="→" && return
+    [[ -n "$GNOME_TERMINAL_SCREEN" ]] && prompt+="→" && return
+    prompt+="->"
+}
+
 prompt_git() {
     branch=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
     if [[ -n "$branch" ]]; then
@@ -25,7 +31,8 @@ prompt_git() {
 build_prompt() {
     exitCode=$?
     prompt_exitcode
-    prompt+="->\[\e[36m\] \w"
+    prompt_arrow
+    prompt+="\[\e[36m\] \w"
     prompt_git
     prompt+="\[\e[0m\] "
     PS1="$prompt"
