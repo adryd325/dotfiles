@@ -1,3 +1,9 @@
+function ucodepkg() {
+    cpuType="$(cat /proc/cpuinfo | grep vendor_id | sed 's/vendor_id\t: //g' | head -1)"
+    [[ "$cpuType" = "GenuineIntel" ]] && printf "intel-ucode"
+    [[ "$cpuType" = "AuthenticAmd" ]] && printf "amd-ucode"
+}
+
 packages=(
     # BASE
     "linux"
@@ -12,6 +18,7 @@ packages=(
     "neovim"
     "git"
     "pacman"
+    "$(ucodepkg)"
 
     # Extras
     "bash-completion"
@@ -133,7 +140,7 @@ packages=(
     "ttf-unifont"
 )
 
-if [ "$HOSTNAME" == "popsicle" ] || [ "$HOSTNAME" == "leaf" ]; then
+if [[ "$HOSTNAME" = "popsicle" ]] || [[ "$HOSTNAME" = "leaf" ]]; then
     packages+=(
         # Wine
         "wine-gecko"
@@ -146,7 +153,7 @@ if [ "$HOSTNAME" == "popsicle" ] || [ "$HOSTNAME" == "leaf" ]; then
     )
 fi
 
-if [ "$HOSTNAME" == "popsicle" ]; then
+if [[ "$HOSTNAME" = "popsicle" ]]; then
     packages+=(
         # Games
         "multimc-git"
@@ -156,17 +163,18 @@ if [ "$HOSTNAME" == "popsicle" ]; then
         "nvidia-prime"
         "nvidia-settings"
         "nvidia-utils"
+        "lib32-nvidia-utils" # Needed for steam runing with dedicated gpu
         "vulkan-intel"
         "lib32-vulkan-intel"
         "switcheroo-control"
-        "lib32-nvidia-utils" # Needed for steam runing with dedicated gpu
     )
 fi
 
-if [ "$HOSTNAME" == "leaf" ]; then
+if [[ "$HOSTNAME" = "leaf" ]]; then
     packages+=(
         # Drivers
         "qemu-guest-agent"
+        "spice-vdagent"
         "amdvlk"
         "lib32-amdvlk"
     )
