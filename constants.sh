@@ -9,7 +9,7 @@ function ar_dir() {
             return 1
         }
         local oldPwd=$PWD
-        cd "$(dirname $0)"
+        cd "$(dirname -- $0)"
         while [[ "$PWD" != '/' ]]; do check "$PWD" && return 0; cd ..; done
         cd "$oldPwd"
         while [[ "$PWD" != '/' ]]; do check "$PWD" && return 0; cd ..; done
