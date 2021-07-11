@@ -56,7 +56,7 @@ installTargetUUID=`lsblk -l $installTargetDev -o PATH,UUID | grep "$installTarge
 [ "$language" == "" ] && language="en_CA.UTF-8"
 [ "$keymap" == "" ] && keymap="us"
 [ "$basePackages" == "" ] && basePackages=("linux" "linux-firmware" "linux-headers" "base" "base-devel" "man-db" "man-pages" "btrfs-progs"
-    "efibootmgr" "networkmanager" "neovim" "git" "zsh")
+    "networkmanager" "neovim" "git" "bash")
 
 log silly "Calling partitioning script"
 installTargetDev=$installTargetDev host=$host diskPassword=$diskPassword \
