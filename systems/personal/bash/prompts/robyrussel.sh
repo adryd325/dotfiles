@@ -4,8 +4,7 @@ prompt_exitcode() {
 }
 
 prompt_arrow() {
-    [[ -n "$TERM_PROGRAM" ]] && prompt+="→" && return
-    [[ -n "$GNOME_TERMINAL_SCREEN" ]] && prompt+="→" && return
+    [[ "$TERM" = "xterm-256color" ]] && prompt+="→" && return
     prompt+="->"
 }
 
