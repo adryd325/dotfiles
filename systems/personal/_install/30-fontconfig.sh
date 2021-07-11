@@ -7,6 +7,6 @@ if [ "$AR_OS" == "linux_arch" ]; then
     if [ ! -e "$HOME/.config/fontconfig/fonts.conf" ]; then
         log info "Installing fontconfig"
         mkdir -p "$HOME/.config/fontconfig"
-        cp "$AR_DIR/systems/personal/$AR_MODULE/fonts.conf" "$HOME/.config/fontconfig/fonts.conf"
+        ln -s "$AR_DIR/systems/personal/$AR_MODULE/fonts.conf" "$HOME/.config/fontconfig/fonts.conf"
     fi
 fi

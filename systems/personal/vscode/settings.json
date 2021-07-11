@@ -9,7 +9,7 @@
     },
     "editor.suggest.showStatusBar": true,
     "eslint.alwaysShowStatus": true,
-    "editor.fontFamily": "'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Cascadia Mono', 'Droid Sans Fallback'",
     "editor.fontSize": 15,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "breadcrumbs.enabled": false,
@@ -29,5 +29,5 @@
     "extensions.autoUpdate": false,
     "security.workspace.trust.enabled": false,
     "explorer.confirmDragAndDrop": false,
-    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)"
+    "workbench.colorTheme": "Monokai Pro",
 }

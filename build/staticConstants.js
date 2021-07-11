@@ -22,3 +22,4 @@ for (const script of scriptsToPatch) {
     const scriptData = await fs.promises.readFile(scriptPath, { encoding: "utf-8" });
     fs.promises.writeFile(scriptPath, scriptData.replace(match, replacement));
 }
+//asdf
