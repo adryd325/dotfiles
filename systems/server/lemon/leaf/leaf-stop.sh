@@ -113,23 +113,23 @@ gpuVM=1000
 VM=$1
 
 if [ "$USER" != "root" ]; then
-    log error "please run as root"
+    log error "Please run as root"
     exit 1
 fi
 
 if [ ! -e /etc/pve/qemu-server/$VM.conf ]; then
-    log error "unknown VM: $VM"
+    log error "Unknown VM: $VM"
     exit 1
 fi
 
 if [ "$(qm status $VM)" == "status: running" ]; then
-    log info "shutting down $VM"
-    qm shutdown $VM || log info "forcing shut down $VM" && qm stop $VM
+    log info "Shutting down $VM"
+    qm shutdown $VM &> /dev/null || log info "forcing shut down $VM" && qm stop $VM
 fi
 sleep 1
 
-qm set $gpuVM --onboot 1
-qm set $VM --onboot 0 --delete hostpci0,usb0,usb1,usb2,usb3 --vga qxl
+qm set $gpuVM --onboot 1 > /dev/null && log info "Enable automatic boot on $gpuVM"
+qm set $VM --onboot 0 --delete hostpci0,usb0,usb1,usb2,usb3 --vga qxl > /dev/null && log info "Remove hardware from $VM"
 
 log info "starting $VM"
 qm start $gpuVM
