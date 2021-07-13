@@ -1,2 +1,5 @@
 [commit]
 	gpgsign = true
+[user]
+	email = me@adryd.com
+	name = adryd
