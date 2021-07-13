@@ -164,7 +164,8 @@ function ar_keyring() {
             fi
         fi
     fi
-}# --- END CONSTANTS ---
+}
+# --- END CONSTANTS ---
 ar_os
 AR_MODULE="startup"
 

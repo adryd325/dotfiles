@@ -173,7 +173,8 @@ function ar_keyring() {
             fi
         fi
     fi
-}# --- END CONSTANTS ---
+}
+# --- END CONSTANTS ---
 
 function extract() {
     if [[ -x "$(command -v tar)" ]]; then
