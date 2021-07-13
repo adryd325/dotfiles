@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 # --- BEGIN CONSTANTS --- 
+function ar_const() {
+    # Utility function to make constants prettier
+    [[ -z $"${1}" ]] && export $1=${*:2}
+}
+
+# Remote URLs
+ar_const AR_REMOTE_HTTPS_TAR "https://gitlab.com/adryd/dotfiles/-/archive/master/dotfiles-master.tar"
+ar_const AR_REMOTE_GIT_HTTPS "https://gitlab.com/adryd/dotfiles.git"
+ar_const AR_REMOTE_GIT_SSH "git@gitlab.com:adryd/dotfiles.git"
+
 function ar_dir() {
-    if [ ! "$AR_DIR" ]; then
+    if [[ -z "$AR_DIR" ]]; then
         function check() {
             if [[ -f "$1/.manifest" ]] && [[ "$(cat $1/.manifest)" = "adryd-dotfiles-v5.1" ]]; then
                 cd "$oldPwd"
@@ -48,12 +58,16 @@ function ar_os() {
 
 function ar_tmp() {
     if [[ -z "$AR_TMP" ]]; then
+        local tmpPrefix=""
+        if [[ -n "$AR_MODULE" ]]; then
+            tmpPrefix=".$AR_MODULE"
+        fi
         if [[ -x "$(command -v mktemp)" ]]; then
-            export AR_TMP="$(mktemp -d -t adryd-dotfiles.XXXXXXXXXX)"
+            export AR_TMP="$(mktemp -d -t \"adryd-dotfiles$tmpPrefix.XXXXXXXXXX\")"
         else
             for tempDir in "$TMPDIR" "$TMP" "$TEMP" /tmp; do
                 if [[ -d "$osTempDir" ]]; then
-                    export AR_TMP="$osTempDir/adryd-dotfiles.$RANDOM"
+                    export AR_TMP="$osTempDir/adryd-dotfiles$tmpPrefix.$RANDOM"
                     break
                 fi
             done
@@ -106,7 +120,51 @@ function log() {
     [[ -n $AR_LOGLEVEL ]] && [[ $logLevel -lt $AR_LOGLEVEL ]] && [[ $logLevel -lt 5 ]] && return
     echo $echoArgs "$logString"
 }
-# --- END CONSTANTS ---
+
+function ar_keyring() {
+    ar_os
+    
+    local keyringId="C63B-065C"
+    local keyringDev="/dev/disk/by-uuid/$keyringId"
+    if [[ "$AR_OS" = "linux_arch" ]] && [[ -e "$keyringDev" ]]; then
+        if [[ "$1" = "umount" ]]; then
+            if [[ -e "/dev/mapper/keyring-encrypt" ]]; then
+                sudo umount "/dev/mapper/keyring-encrypt"
+                sudo cryptsetup close "keyring-encrypt"
+            fi
+            if [[ -e "$keyringDev" ]]; then
+                sudo umount "$keyringDev"
+            fi
+        else 
+            local keyringDir
+            if mountpoint "/run/media/adryd/KEYRING" &> /dev/null; then
+                keyringDir=/run/media/adryd/KEYRING
+                keyringEncryptDir=/run/media/adryd/KEYRING/keyring-encrypt
+                if ! mountpoint "$keyringEncryptDir" &> /dev/null && [[ -d "$keyringEncryptDir" ]]; then
+                    if [[ -e "/dev/mapper/keyring-encrypt" ]]; then
+                        sudo cryptsetup close "keyring-encrypt"
+                    fi
+                    sudo cryptsetup open "$keyringDir/keyring-encrypt.ext4.luks2" "keyring-encrypt"
+                    sudo mount "/dev/mapper/keyring-encrypt" "$keyringEncryptDir"
+                fi
+                export AR_KEYRING=$keyringEncryptDir
+            else
+                keyringDir=/tmp/adryd-dotfiles-mnt/keyring
+                keyringEncryptDir=/tmp/adryd-dotfiles-mnt/keyring-encrypt
+                if ! mountpoint "$keyringEncryptDir" &> /dev/null; then
+                    if ! mountpoint "$keyringEncryptDir" &> /dev/null && [[ -e "/dev/mapper/keyring-encrypt" ]]; then
+                        sudo cryptsetup close "keyring-encrypt"
+                    fi
+                    sudo mkdir -p "$keyringDir" "$keyringEncryptDir"
+                    sudo mount "$keyringDev" "$keyringDir"
+                    sudo cryptsetup open "$keyringDir/keyring-encrypt.ext4.luks2" "keyring-encrypt"
+                    sudo mount "/dev/mapper/keyring-encrypt" "$keyringEncryptDir"
+                fi
+                export AR_KEYRING=$keyringEncryptDir
+            fi
+        fi
+    fi
+}# --- END CONSTANTS ---
 ar_os
 AR_MODULE="startup"
 
