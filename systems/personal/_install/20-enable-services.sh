@@ -7,15 +7,15 @@ AR_MODULE="enable-services"
 if [ "$AR_OS" == "linux_arch" ]; then
     if pacman -Q gdm &> /dev/null; then
         log info "Enabling gdm"
-        sudo systemctl enable gdm
+        sudo systemctl enable gdm --now > /dev/null
     fi
     if pacman -Q cups &> /dev/null; then
         log info "Enabling cups"
-        sudo systemctl enable cups
+        sudo systemctl enable cups --now > /dev/null
     fi
     if pacman -Q qemu-guest-agent &> /dev/null; then
         log info "Enabling qemu-guest-agent"
-        sudo systemctl enable qemu-guest-agent
+        sudo systemctl enable qemu-guest-agent --now  > /dev/null
     fi
-    sudo systemctl enable systemd-resolved
+    sudo systemctl enable systemd-resolved --now  > /dev/null
 fi
