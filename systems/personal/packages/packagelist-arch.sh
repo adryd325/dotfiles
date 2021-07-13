@@ -24,6 +24,7 @@ packages=(
     # Extras
     "bash-completion"
     "cups"
+    "git-crypt"
     "hplip"
     "jack2"
     "networkmanager-openvpn"
