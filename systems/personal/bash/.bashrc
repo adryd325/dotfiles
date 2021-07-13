@@ -164,7 +164,8 @@ function ar_keyring() {
             fi
         fi
     fi
-}# --- END CONSTANTS ---
+}
+# --- END CONSTANTS ---
 
 export PATH="$AR_DIR/systems/personal/bin:$HOME/.local/bin:$PATH"
 export EDITOR="nvim"

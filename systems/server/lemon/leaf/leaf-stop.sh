@@ -164,7 +164,8 @@ function ar_keyring() {
             fi
         fi
     fi
-}# --- END CONSTANTS ---
+}
+# --- END CONSTANTS ---
 export AR_MODULE=''
 
 gpuVM=1000

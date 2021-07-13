@@ -20,6 +20,6 @@ for (const script of scriptsToPatch) {
     if (script === "") continue;
     const scriptPath = path.join(AR_DIR, script);
     const scriptData = await fs.promises.readFile(scriptPath, { encoding: "utf-8" });
+    console.log("Patching " + script);
     fs.promises.writeFile(scriptPath, scriptData.replace(match, replacement));
 }
-//asdf
