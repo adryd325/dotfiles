@@ -67,8 +67,11 @@ if [ "$AR_OS" == "linux_arch" ]; then
             [ -e user.js ] \
                 && rm user.js \
                 && log verb "Removing old user.js"
-            ln -sf "$AR_DIR/systems/personal/$AR_MODULE/user.js" user.js \
+            cp "$AR_DIR/systems/personal/$AR_MODULE/user.js" user.js \
                 && log info "Installed user.js"
+            
+            ICCProfile="$(colormgr get-devices | grep 'Metadata:\s*OutputEdidMd5=' | grep -oP '[0-9a-f]{32}')"
+            sed -i "s|__REPLACE_ME__ICC_PROFILE_PATH__|$HOME/.local/share/icc/edid-${ICCProfile}.icc|g" user.js && log info "Applied ICC profile"
         done
         AR_LOG_PREFIX=""
     fi  
