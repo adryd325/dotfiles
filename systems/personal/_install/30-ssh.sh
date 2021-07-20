@@ -25,4 +25,5 @@ AllowUsers $USER
 AuthenticationMethods publickey
 EOF
     fi
+    sudo systemctl enable --now sshd > /dev/null
 fi
