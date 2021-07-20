@@ -24,7 +24,6 @@
     "noconmsg": true,
     "unravelMessage": true,
     "declutterTextButtons": true,
-    "showTag": true,
     "imageUrls": true,
     "consistentLayout": {
       "enabled": true,
@@ -91,13 +90,7 @@
     "electricSheep": {
       "enabled": true,
       "options": {
-        "__users": [
-          "Utsuho",
-          "C2",
-          "3595",
-          "lun-4",
-          "vin"
-        ],
+        "__users": ["Utsuho", "C2", "3595", "lun-4", "vin"],
         "users": [
           "132297363233570816",
           "220599756743770112",

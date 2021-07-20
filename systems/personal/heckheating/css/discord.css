@@ -1,16 +1,18 @@
 html {
-    --saturation-roles-factor: 1;
+  --saturation-roles-factor: 1;
 }
 .theme-dark {
-    --brightness: 1.35;
-    --contrast: 0.5;
+  --brightness: 1.35;
+  --contrast: 0.5;
 }
 .theme-light {
-    --brightness: 1;
-    --contrast: 0.8;
-    --saturation-roles-factor: 1;
+  --brightness: 1;
+  --contrast: 0.8;
+  --saturation-roles-factor: 1;
 }
-[class*="desaturateUserColors-"]{
-    -webkit-filter: saturate(var(--saturation-roles-factor,1)) contrast(var(--contrast,1)) brightness(var(--brightness,1)) !important;
-    filter: saturate(var(--saturation-roles-factor,1)) contrast(var(--contrast,1)) brightness(var(--brightness,1)) !important;
+[class*="desaturateUserColors-"] {
+  -webkit-filter: saturate(var(--saturation-roles-factor, 1))
+    contrast(var(--contrast, 1)) brightness(var(--brightness, 1)) !important;
+  filter: saturate(var(--saturation-roles-factor, 1))
+    contrast(var(--contrast, 1)) brightness(var(--brightness, 1)) !important;
 }

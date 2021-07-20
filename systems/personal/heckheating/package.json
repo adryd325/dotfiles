@@ -1,4 +1,7 @@
 {
   "name": "-",
-  "description": "This is to prevent Discord from thinking anything in this folder is an ES Module, since the parent package.json specifies the whole repo as ES Modules"
+  "description": "This is to prevent Discord from thinking anything in this folder is an ES Module, since the parent package.json specifies the whole repo as ES Modules",
+  "dependencies": {
+    "eslint": "^7.30.0"
+  }
 }

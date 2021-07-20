@@ -24,9 +24,10 @@
     "noconmsg": true,
     "unravelMessage": true,
     "declutterTextButtons": true,
-    "showTag": true,
     "imageUrls": true,
     "cynSpeaking": true,
+    "imgxis": true,
+    "3y3": true,
     "consistentLayout": {
       "enabled": true,
       "options": {
@@ -143,12 +144,10 @@
       "enabled": true
     },
     "platformStyles": {
+      "enabled": true,
       "options": {
-        "platformClass": "win",
-        "platformBorders": "win",
-        "showFrame": false
-      },
-      "enabled": true
+        "platformStyle": "win"
+      }
     },
     "commands": {
       "options": {
@@ -164,6 +163,15 @@
         ]
       }
     },
-    "pinnedDMs": true
+    "pinnedDMs": {
+      "options": {
+        "pinned": [
+          "394882761560948748",
+          "843580440853217292",
+          "810698798652981259"
+        ]
+      },
+      "enabled": true
+    }
   }
 }
