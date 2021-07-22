@@ -65,7 +65,7 @@ fi
 if [ ! -e /home/$adminUser/.ssh/authorized_keys ]; then
     log info "Installing SSH key"
     mkdir -p /home/$adminUser/.ssh
-    curl -sSL https://adryd.co/id_ed25519.pub | cat > /home/$adminUser/.ssh/authorized_keys
+    curl -sSL https://adryd.co/authorized_keys | cat > /home/$adminUser/.ssh/authorized_keys
     cat /home/$adminUser/.ssh/authorized_keys
     chown $adminUser:$adminUser -R /home/$adminUser/.ssh
     chmod 600 /home/$adminUser/.ssh/authorized_keys
@@ -79,6 +79,10 @@ if [ -e /etc/fail2ban/jail.local ]; then
     apt-get remove fail2ban -qqy &> /dev/null
     rm /etc/fail2ban
 fi
+
+log info "Running nodesource installer"
+curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+apt-get install -y nodejs
 
 log info "Trusting internal CA"
 cp -f $AR_DIR/systems/common/ca-certificates/adryd-root-ca.pem /usr/local/share/ca-certificates/adryd-root-ca.crt
