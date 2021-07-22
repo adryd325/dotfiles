@@ -10,6 +10,7 @@ ar_const AR_REMOTE_HTTPS_TAR "https://gitlab.com/adryd/dotfiles/-/archive/master
 ar_const AR_REMOTE_GIT_HTTPS "https://gitlab.com/adryd/dotfiles.git"
 ar_const AR_REMOTE_GIT_SSH "git@gitlab.com:adryd/dotfiles.git"
 
+
 function ar_dir() {
     if [[ -z "$AR_DIR" ]]; then
         function check() {
@@ -79,6 +80,17 @@ function ar_tmp() {
     fi
 }
 
+function ar_local {
+    ar_os
+    if [[ "$AR_KERNEL" = "darwin" ]]; then
+        ar_const AR_LOCAL "$HOME/Library/Application\ Support/adryd-dotfiles"
+        ar_const AR_CACHE "$HOME/Library/Caches/adryd-dotfiles"
+    else 
+        ar_const AR_LOCAL "$HOME/.config/adryd-dotfiles"
+        ar_const AR_CACHE "$HOME/.cache/adryd-dotfiles"
+    fi
+}
+
 function log() {
     local echoArgs="-e"
     local logString=""
@@ -123,7 +135,6 @@ function log() {
 
 function ar_keyring() {
     ar_os
-    
     local keyringId="C63B-065C"
     local keyringDev="/dev/disk/by-uuid/$keyringId"
     if [[ "$AR_OS" = "linux_arch" ]] && [[ -e "$keyringDev" ]]; then
@@ -166,17 +177,22 @@ function ar_keyring() {
     fi
 }
 # --- END CONSTANTS ---
-if [[ "$HOSTNAME" = "popsicle" ]]; then
-    export PATH="$AR_DIR/systems/personal/bin:$HOME/.local/bin:$PATH"
-    export EDITOR="nvim"
-fi
+export EDITOR="nvim"
+export VISUAL="nvim"
 
-# export PS1="\e[1;31m\u@\H\e[0m:\e[1;34m\W\e[0m\$ "?
+if [[ "$HOSTNAME" = "lemon" ]]; then
+    export PATH="$AR_DIR/systems/server/lemon/bin:$HOME/.local/bin:$PATH"
+else 
+    export PATH="$AR_DIR/systems/personal/bin:$HOME/.local/bin:$PATH"
+fi
 
 export NODE_EXTRA_CA_CERTS="$AR_DIR/systems/common/ca-certificates/adryd-root-ca.pem"
 
 source "$AR_DIR/systems/common/bash/prompts/robyrussel.sh"
 source "$AR_DIR/systems/common/bash/bash_aliases.sh"
+
+# glob (*) selects files that begin with a dot too
+shopt -s dotglob
 
 unset AR_OS
 unset AR_OS_DISTRO

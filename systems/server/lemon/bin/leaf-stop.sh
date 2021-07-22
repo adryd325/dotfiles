@@ -10,6 +10,7 @@ ar_const AR_REMOTE_HTTPS_TAR "https://gitlab.com/adryd/dotfiles/-/archive/master
 ar_const AR_REMOTE_GIT_HTTPS "https://gitlab.com/adryd/dotfiles.git"
 ar_const AR_REMOTE_GIT_SSH "git@gitlab.com:adryd/dotfiles.git"
 
+
 function ar_dir() {
     if [[ -z "$AR_DIR" ]]; then
         function check() {
@@ -79,6 +80,17 @@ function ar_tmp() {
     fi
 }
 
+function ar_local {
+    ar_os
+    if [[ "$AR_KERNEL" = "darwin" ]]; then
+        ar_const AR_LOCAL "$HOME/Library/Application\ Support/adryd-dotfiles"
+        ar_const AR_CACHE "$HOME/Library/Caches/adryd-dotfiles"
+    else 
+        ar_const AR_LOCAL "$HOME/.config/adryd-dotfiles"
+        ar_const AR_CACHE "$HOME/.cache/adryd-dotfiles"
+    fi
+}
+
 function log() {
     local echoArgs="-e"
     local logString=""
@@ -123,7 +135,6 @@ function log() {
 
 function ar_keyring() {
     ar_os
-    
     local keyringId="C63B-065C"
     local keyringDev="/dev/disk/by-uuid/$keyringId"
     if [[ "$AR_OS" = "linux_arch" ]] && [[ -e "$keyringDev" ]]; then

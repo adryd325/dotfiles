@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 # --- BEGIN CONSTANTS --- 
 function ar_const() {
-    # Utility function to make constants prettier
-    [[ -z $"${1}" ]] && export $1=${*:2}
+    # Utility function to make defining constants prettier
+    [[ -z "${!1}" ]] && export $1=${*:2}
 }
 
 # Remote URLs
 ar_const AR_REMOTE_HTTPS_TAR "https://gitlab.com/adryd/dotfiles/-/archive/master/dotfiles-master.tar"
 ar_const AR_REMOTE_GIT_HTTPS "https://gitlab.com/adryd/dotfiles.git"
 ar_const AR_REMOTE_GIT_SSH "git@gitlab.com:adryd/dotfiles.git"
+
 
 function ar_dir() {
     if [[ -z "$AR_DIR" ]]; then
@@ -63,7 +64,7 @@ function ar_tmp() {
             tmpPrefix=".$AR_MODULE"
         fi
         if [[ -x "$(command -v mktemp)" ]]; then
-            export AR_TMP="$(mktemp -d -t \"adryd-dotfiles$tmpPrefix.XXXXXXXXXX\")"
+            export AR_TMP="$(mktemp -d -t "adryd-dotfiles$tmpPrefix.XXXXXXXXXX")"
         else
             for tempDir in "$TMPDIR" "$TMP" "$TEMP" /tmp; do
                 if [[ -d "$osTempDir" ]]; then
@@ -76,6 +77,17 @@ function ar_tmp() {
             log error "Could not find temp folder"
             exit 1
         fi
+    fi
+}
+
+function ar_local {
+    ar_os
+    if [[ "$AR_KERNEL" = "darwin" ]]; then
+        ar_const AR_LOCAL "$HOME/Library/Application\ Support/adryd-dotfiles"
+        ar_const AR_CACHE "$HOME/Library/Caches/adryd-dotfiles"
+    else 
+        ar_const AR_LOCAL "$HOME/.config/adryd-dotfiles"
+        ar_const AR_CACHE "$HOME/.cache/adryd-dotfiles"
     fi
 }
 
@@ -123,7 +135,6 @@ function log() {
 
 function ar_keyring() {
     ar_os
-    
     local keyringId="C63B-065C"
     local keyringDev="/dev/disk/by-uuid/$keyringId"
     if [[ "$AR_OS" = "linux_arch" ]] && [[ -e "$keyringDev" ]]; then
