@@ -17,6 +17,7 @@
     "preserveToken": true,
     "autoPatch": true,
     "linuxUpdater": true,
+    "react": true,
     "postnet": true
   }
 }

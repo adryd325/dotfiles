@@ -17,8 +17,7 @@
     "preserveToken": true,
     "autoPatch": true,
     "linuxUpdater": true,
-    "iosLocalStorage": true,
-    "postnetIOS": true,
+    "react": true,
     "postnet": true,
 
     "noconmsg": true,
