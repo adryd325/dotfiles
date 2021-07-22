@@ -29,6 +29,6 @@
     "extensions.autoUpdate": false,
     "security.workspace.trust.enabled": false,
     "explorer.confirmDragAndDrop": false,
-    "workbench.colorTheme": "Monokai Pro",
-    "editor.renderWhitespace": "none",
+    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
+    "editor.renderWhitespace": "none"
 }
