@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd /sys/class/drm/card0
+sudo cp gt_max_freq_mhz gt_min_freq_mhz
+
