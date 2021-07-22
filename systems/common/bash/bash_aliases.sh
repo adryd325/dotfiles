@@ -6,3 +6,9 @@ alias l='ls --color=auto -CF'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias cd..="cd .."
