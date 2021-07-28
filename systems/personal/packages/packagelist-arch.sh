@@ -116,9 +116,8 @@ packages=(
     "obs-studio-browser"
     "pavucontrol"
     "peek"
-    "piavpn-bin" # fuck andrew lee
-    "quassel-monolithic"
     "remmina"
+    "signal-desktop"
     "telegram-desktop"
     "torbrowser-launcher"
     "v4l2loopback-dkms"
