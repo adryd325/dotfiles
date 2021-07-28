@@ -8,7 +8,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
     oldPwd=$PWD
     log info "Starting Firefox to generate profiles"
     firefox-developer-edition -headless -silent &> /dev/null & ffPid=$!
-    sleep 5 && kill "$ffPid" >> /dev/null
+    sleep 2 && kill "$ffPid" &> /dev/null
 
     [ ! -e "$HOME/.local/share/firefox-gnome-theme" ] \
         && mkdir -p "$HOME/.local/share" \
@@ -37,6 +37,10 @@ if [ "$AR_OS" == "linux_arch" ]; then
         for profilePath in "${profilePaths[@]}"; do
             AR_LOG_PREFIX="$profilePath"
             # Move to work dir
+            if [[ ! -d "$HOME/.mozilla/firefox/$profilePath" ]]; then
+                log warn "$profilePath does not exist"
+                continue;
+            fi
             cd "$HOME/.mozilla/firefox/$profilePath"
 
             [ ! -e "./chrome" ] \
