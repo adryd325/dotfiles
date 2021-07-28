@@ -118,7 +118,7 @@ function log() {
             ;;
         error)
             logLevel=4
-            logString+="\x1b[31;40mERR!\x1b[0m "
+            logString+="\x1b[30;41mERR!\x1b[0m "
             ;;
         tell)
             logLevel=5
