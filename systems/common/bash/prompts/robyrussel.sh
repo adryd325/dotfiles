@@ -4,8 +4,9 @@ __ar_prompt_exitCodeColor() {
 }
 
 __ar_prompt_arrow() {
-    [[ "$TERM" = "xterm-256color" ]] && __ar_prompt+="→" && return
+    [[ "$TERM" = "xterm-256color" ]] && __ar_prompt+="→" && __ar_ps2="→" && return
     __ar_prompt+="->"
+    __ar_ps2="->"
 }
 
 __ar_prompt_ssh() {
@@ -35,13 +36,18 @@ __ar_prompt_git() {
 
 __ar_build_prompt() {
     __ar_prompt_exitCode=$?
+    # title
+    __ar_prompt+="\[\e]2;\u@\H:\w\a\]"
     __ar_prompt_exitCodeColor
     __ar_prompt_arrow
     __ar_prompt_ssh
+    # dirname
     __ar_prompt+="\[\e[36m\] \w"
     __ar_prompt_git
+    # end prompt
     __ar_prompt+="\[\e[0m\] "
     PS1="$__ar_prompt"
+    PS2="$__ar_ps2"
     __ar_prompt=""
 }
 
