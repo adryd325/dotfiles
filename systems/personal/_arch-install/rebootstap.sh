@@ -63,6 +63,7 @@ log info "Mounting"
 mountOptions=defaults,x-mount.mkdir
 btrfsOptions=$mountOptions,compress=zstd,ssd,noatime,discard
 mount -t btrfs -o "subvol=root,$btrfsOptions" LABEL=$host /mnt
+mount -t btrfs -o "subvol=home,$btrfsOptions" LABEL=$host /mnt/home
 mount -o "$mountOptions" /dev/disk/by-partlabel/EFI /mnt/boot
 
 function ucodepkg() {
@@ -81,6 +82,8 @@ log info "Installing base system"
 pacstrap /mnt "${basePackages[@]}"
 log info "Writing fstab"
 genfstab /mnt -U >> /mnt/etc/fstab
+log info "Unmounting home for safety"
+umount /mnt/home
 log info "Copying over .adryd"
 cp -r "$AR_DIR" "/mnt$AR_DIR"
 log info "Copying over mirrorlist"
