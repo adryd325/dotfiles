@@ -3,7 +3,7 @@
 [[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "$AR_DIR"/constants.sh
 AR_MODULE="archinstall"
 
-log ask "Re-bootstrap preserves user data but deletes root and boot partitions."
+log tell "Re-bootstrap preserves user data but deletes root and boot partitions."
 log ask "Is this a re-bootstrap of a current install? [y/N] "
 read -r rebootstrapAsk
 if [[ "${rebootstrapAsk^^}" = "y" ]]; then
@@ -64,7 +64,7 @@ export host
 unset failHostname
 
 # Installation Target
-if [[ -n "$rebootstrap" ]]; then
+if [[ -z "$rebootstrap" ]]; then
     while [ ! -e "$installTargetDev" ]; do
         [ ! -e "$installTargetDev" ] && [ "$installTargetDev" != "" ] && log tell "Invalid block device"
         [ "$installTargetDev" = "l" ] && lsblk | less
@@ -98,7 +98,7 @@ log tell "WARNING: This script may behave unpredictabily. Please read the follow
 [[ -z "$rebootstrap" ]] && log tell "\"$installTargetDev\", \"/dev/disk/by-partlabel/EFI\" and \"/dev/disk/by-partlabel/$host\" will be formatted."
 [[ -n "$rebootstrap" ]] && log tell "\"/dev/disk/by-partlabel/$host\" will mounted. btrfs partition \"root\" and \"/dev/disk/by-partlabel/EFI\" will be cleared."
 while [[ "$confirmation" != "$confirmationStr" ]]; do
-    log tell "Type \"$confirmationStr\" to continue or \"exit\" to exit"
+    log ask "Type \"$confirmationStr\" to continue or \"exit\" to exit"
     read -r confirmation
     [[ "$confirmation" = "exit" ]] && exit 0
 done
