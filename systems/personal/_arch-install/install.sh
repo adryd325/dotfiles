@@ -48,7 +48,7 @@ unset diskPasswordConfirm
 
 # Hostname
 if [[ "$host" = "" ]]; then
-    if [[ -n "$rebootstrap" ]]; then
+    if [[ -z "$rebootstrap" ]]; then
         failHostname="adryd-machine-$RANDOM"
         log ask "Hostname [$failHostname]: "
         read -r host
@@ -104,7 +104,7 @@ while [[ "$confirmation" != "$confirmationStr" ]]; do
 done
 unset confirmation
 
-if [[ -n "$rebootstrap" ]]; then
+if [[ -z "$rebootstrap" ]]; then
     log silly "Calling partitioning script"
     "$AR_DIR"/systems/personal/_arch-install/partition.sh
 else
@@ -140,7 +140,7 @@ sed -i "s/^#ParallelDownloads = 5\$/ParallelDownloads = 12/" /etc/pacman.conf
 log info "Installing base system"
 pacstrap /mnt "${basePackages[@]}"
 
-if [[ -z "$rebootstrap" ]]; then
+if [[ -n "$rebootstrap" ]]; then
     log info "Restoring fstab"
     cp /tmp/old-fstab /mnt/etc/fstab
 else
