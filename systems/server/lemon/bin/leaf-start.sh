@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # --- BEGIN CONSTANTS --- 
+#!/usr/bin/env bash
 function ar_const() {
     # Utility function to make defining constants prettier
-    [[ -z "${!1}" ]] && export $1=${*:2}
+    [[ -z "${!1}" ]] && export "$1"="${*:2}"
 }
 
 # Remote URLs
@@ -14,19 +15,19 @@ ar_const AR_REMOTE_GIT_SSH "git@gitlab.com:adryd/dotfiles.git"
 function ar_dir() {
     if [[ -z "$AR_DIR" ]]; then
         function check() {
-            if [[ -f "$1/.manifest" ]] && [[ "$(cat $1/.manifest)" = "adryd-dotfiles-v5.1" ]]; then
-                cd "$oldPwd"
+            if [[ -f "$1/.manifest" ]] && [[ "$(cat "$1"/.manifest)" = "adryd-dotfiles-v5.1" ]]; then
+                cd "$oldPwd" || exit 1
                 export AR_DIR="$1"
                 return 0
             fi
             return 1
         }
         local oldPwd=$PWD
-        cd "$(dirname -- $0)"
+        cd "$(dirname -- "$0")" || exit 1
         while [[ "$PWD" != '/' ]]; do check "$PWD" && return 0; cd ..; done
-        cd "$oldPwd"
+        cd "$oldPwd" || exit 1
         while [[ "$PWD" != '/' ]]; do check "$PWD" && return 0; cd ..; done
-        cd "$oldPwd"
+        cd "$oldPwd" || exit 1
         check "$HOME/.adryd" && return
         check "/root/.adryd" && return
         return 1
@@ -44,17 +45,22 @@ function ar_splash() {
 ar_splash
 
 function ar_os() {
-    export AR_OS_KERNEL="$(uname -s | tr '[:upper:]' '[:lower:]')"
+    AR_OS_KERNEL="$(uname -s | tr '[:upper:]' '[:lower:]')"
+    AR_OS_DISTRO="unk"
+    AR_OS="unk"
+    export AR_OS_KERNEL
     if [[ "$AR_OS_KERNEL" = "linux" ]]; then
         # This is what neofetch does, so I feel safe doing the same
         [[ -f /etc/os-release ]] && source /etc/os-release
-        export AR_OS_DISTRO="$(echo $ID | sed 's/ //g' | tr '[:upper:]' '[:lower:]')"
-        export AR_OS="${AR_OS_KERNEL}_$AR_OS_DISTRO"
+        AR_OS_DISTRO="$(echo $ID | sed 's/ //g' | tr '[:upper:]' '[:lower:]')"
+        AR_OS="${AR_OS_KERNEL}_$AR_OS_DISTRO"
     fi
     if [[ "$AR_OS_KERNEL" = "darwin" ]]; then
-        export AR_OS_DISTRO="macos"
-        export AR_OS="${AR_OS_KERNEL}_$AR_OS_DISTRO"
+        AR_OS_DISTRO="macos"
+        AR_OS="${AR_OS_KERNEL}_$AR_OS_DISTRO"
     fi
+    export AR_OS_DISTRO
+    export AR_OS
 }
 
 function ar_tmp() {
@@ -64,11 +70,13 @@ function ar_tmp() {
             tmpPrefix=".$AR_MODULE"
         fi
         if [[ -x "$(command -v mktemp)" ]]; then
-            export AR_TMP="$(mktemp -d -t "adryd-dotfiles$tmpPrefix.XXXXXXXXXX")"
+            AR_TMP="$(mktemp -d -t "adryd-dotfiles$tmpPrefix.XXXXXXXXXX")" 
+            export AR_TMP
         else
             for tempDir in "$TMPDIR" "$TMP" "$TEMP" /tmp; do
-                if [[ -d "$osTempDir" ]]; then
-                    export AR_TMP="$osTempDir/adryd-dotfiles$tmpPrefix.$RANDOM"
+                if [[ -d "$tempDir" ]]; then
+                    AR_TMP="$tempDir/adryd-dotfiles$tmpPrefix.$RANDOM"
+                    export AR_TMP
                     break
                 fi
             done
@@ -179,7 +187,7 @@ function ar_keyring() {
 # --- END CONSTANTS ---
 export AR_MODULE=''
 
-gpuVM=1000
+gpuVM="1000"
 VM=$1
 
 if [ "$USER" != "root" ]; then
@@ -187,19 +195,19 @@ if [ "$USER" != "root" ]; then
     exit 1
 fi
 
-if [ ! -e /etc/pve/qemu-server/$VM.conf ]; then
+if [ ! -e "/etc/pve/qemu-server/$VM.conf" ]; then
     log error "Unknown VM: $VM"
     exit 1
 fi
 
 if [ "$(qm status $gpuVM)" == "status: running" ]; then
     log info "Shutting down $gpuVM"
-    qm shutdown $gpuVM &> /dev/null || log info "Forcing shut down $gpuVM" && qm stop $gpuVM
+    qm shutdown "$gpuVM" &> /dev/null || log info "Forcing shut down $gpuVM" && qm stop "$gpuVM"
 fi
 sleep 1
 
-qm set $gpuVM --onboot 0 > /dev/null && log info "Disable automatic boot on $gpuVM"
-qm set $VM --onboot 1 --hostpci0 01:00,pcie=1,x-vga=1 --usb0 host=046d:c332 --usb1 host=046d:c336 --usb2 host=1-9 --usb3 host=2-9 --vga none > /dev/null && log info "Passthrough hardware to $VM"
+qm set "$gpuVM" --onboot 0 > /dev/null && log info "Disable automatic boot on $gpuVM"
+qm set "$VM" --onboot 1 --hostpci0 01:00,pcie=1,x-vga=1 --usb0 host=046d:c332 --usb1 host=046d:c336 --usb2 host=1-9 --usb3 host=2-9 --vga none > /dev/null && log info "Passthrough hardware to $VM"
 
 log info "Starting $VM"
-qm start $VM
+qm start "$VM"
