@@ -1,5 +1,6 @@
+#!/bin/bash
 function ucodepkg() {
-    cpuType="$(cat /proc/cpuinfo | grep vendor_id | sed 's/vendor_id\t: //g' | head -1)"
+    cpuType="$(grep vendor_id < /proc/cpuinfo | sed 's/vendor_id\t: //g' | head -1)"
     [[ "$cpuType" = "GenuineIntel" ]] && printf "intel-ucode"
     [[ "$cpuType" = "AuthenticAmd" ]] && printf "amd-ucode"
 }
@@ -21,18 +22,6 @@ packages=(
     "openssh"
     "$(ucodepkg)"
 
-    # Extras
-    "bash-completion"
-    "cups"
-    "git-crypt"
-    "hplip"
-    "jack2"
-    "networkmanager-openvpn"
-    "networkmanager-wireguard-git"
-    "pacman-contrib"
-    "systemd-resolvconf"
-    "touchegg"
-
     # GNOME
     "baobab"
     "chrome-gnome-shell"
@@ -52,7 +41,6 @@ packages=(
     "gnome-system-monitor"
     "gnome-terminal"
     "gnome-themes-extra"
-    "gnome-text-editor"
     "gnome-tweaks"
     "gnome-weather"
     "gvfs"
@@ -71,19 +59,9 @@ packages=(
     "tracker3-miners"
 
     # Base apps
-    "firefox-developer-edition"
+    "chromium" # i've given up on firefox, there's a whole list of reasons
     "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
     # usually a terminal and discord would go here, but those will get installed elsewhere
-
-    # CLI tools
-    "croc"
-    "ffmpeg"
-    "htop"
-    "imagemagick"
-    "openbsd-netcat"
-    "reflector"
-    "xclip"
-    "youtube-dl"
 
     # Programming languages and libs
     "go"
@@ -91,13 +69,14 @@ packages=(
     "jdk8-openjdk"
     "nodejs"
     "npm"
+    "nvm"
     "pnpm"
     "python"
+    "rust"
 
     # Utilities
     "audacity"
     "cef-minimal"
-    "chromium"
     "dconf-editor"
     "deluge"
     "deluge-gtk"
@@ -122,8 +101,38 @@ packages=(
     "torbrowser-launcher"
     "v4l2loopback-dkms"
     "virt-viewer"
-    "vlc-luajit"
+    "vlc-luajit" # dep of obs-studio-browser, need a video player anyways
     "xournalpp"
+
+    # Extras
+    "aria2"
+    "bash-completion"
+    "croc"
+    "cups"
+    "fd" # find clone
+    "ffmpeg"
+    "git-crypt"
+    "hplip"
+    "htop"
+    "imagemagick"
+    "jack2"
+    "jq"
+    "mpv"
+    "networkmanager-openvpn"
+    "networkmanager-wireguard-git"
+    "openbsd-netcat"
+    "pacman-contrib"
+    "pipewire"
+    "pipewire-pulse"
+    "reflector"
+    "ripgrep"
+    "sd" # sed clone
+    "shellcheck"
+    "systemd-resolvconf"
+    "tlp"
+    "touchegg"
+    "xclip"
+    "youtube-dl"
 
     # Build Tools used frequently by things I use on the AUR
     "cmake"
@@ -131,14 +140,18 @@ packages=(
     "ninja"
 
     # FONTS!!!
-    "noto-fonts"
+    "cantarell-fonts" # Cantarell
+    "gsfonts" # Nimbus Roman
+    "noto-fonts" # Noto Serif, Noto Sans, Noto Sans UI, Noto Sans Mono
     "noto-fonts-cjk"
-    "noto-fonts-emoji-apple"
-    "otf-san-francisco"
-    "ttf-cascadia-code-git" # using main branch cause frustrated by cursive in italics
-    "ttf-dejavu"
-    "ttf-ms-fonts"
-    "ttf-unifont"
+    "noto-fonts-emoji-apple" # Noto Color Emoji
+    "ttf-unifont" # Unifont
+    # "otf-inter-local" # Inter
+    # "otf-recursive-code-local" # Recursive
+
+    # Extra kernel
+    "linux-lts"
+    "linux-lts-headers"
 )
 
 if [[ "$HOSTNAME" = "popsicle" ]] || [[ "$HOSTNAME" = "leaf" ]]; then
@@ -161,6 +174,7 @@ if [[ "$HOSTNAME" = "popsicle" ]]; then
 
          # Drivers
         "nvidia"
+        "nvidia-lts"
         "nvidia-prime"
         "nvidia-settings"
         "nvidia-utils"

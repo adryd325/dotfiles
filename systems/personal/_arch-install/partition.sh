@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+# shellcheck source=../../../constants.sh
+[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "$AR_DIR"/constants.sh
 AR_MODULE="archinstall partitioning"
 log tell "\"$installTargetDev\", \"/dev/disk/by-partlabel/EFI\" and \"/dev/disk/by-partlabel/$host\" will be formatted"
 
 mountOptions=defaults,x-mount.mkdir
-btrfsOptions=$mountOptions,compress=zlib,ssd,noatime
+btrfsOptions=$mountOptions,compress=zstd,ssd,noatime,discard
 
 log info "Clearing partition data"
 log silly "Wipefs"
@@ -48,6 +49,8 @@ log silly "Making root"
 btrfs subvolume create /mnt/root > /dev/null
 log silly "Making home"
 btrfs subvolume create /mnt/home > /dev/null
+log silly "Making swap"
+btrfs subvolume create /mnt/swap > /dev/null
 
 log silly "Unmounting"
 umount -R /mnt

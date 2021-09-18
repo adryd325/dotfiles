@@ -1,43 +1,46 @@
 #!/usr/bin/env bash
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+# shellcheck source=../../../constants.sh
+[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "$AR_DIR"/constants.sh
 ar_os
 ar_tmp
 AR_MODULE="packages"
 
-if [ "$AR_OS" == "linux_arch" ]; then
+if [[ "$AR_OS" = "linux_arch" ]]; then
+    # shellcheck source=../packages/packagelist-arch.sh
     source "$AR_DIR/systems/personal/$AR_MODULE/packagelist-arch.sh"
     sudo pacman -Syu
     # Install paru if it's not already installed
     oldPwd="$PWD"
     paruDir="$AR_TMP/$AR_MODULE/paru"
-    if [ ! -e "$(command -v paru)" ]; then
-        [ -e "$paruDir" ] && rm -r "$paruDir"
+    if [[ ! -x "$(command -v paru)" ]]; then
+        [[ -d "$paruDir" ]] && rm -r "$paruDir"
         mkdir -p "$paruDir"
         # go for bin variant cause rustc slow
         log verb "Cloning paru"
         git clone https://aur.archlinux.org/paru-bin.git "$paruDir" --quiet
-        cd "$paruDir"
+        cd "$paruDir" || return
         log verb "Building paru"
         makepkg -si --noconfirm
-        cd "$oldPwd"
+        cd "$oldPwd" || return
     fi
 
     # Add keyserver
-    if ! grep "keyserver hkps://keyserver.ubuntu.com" $HOME/.gnupg/gpg.conf &> /dev/null; then
+    if ! grep "keyserver hkps://keyserver.ubuntu.com" "$HOME/.gnupg/gpg.conf" &> /dev/null; then
         log info "Adding gpg keyserver"
         mkdir -p "$HOME/.gnupg"
         echo "keyserver hkps://keyserver.ubuntu.com" >> "$HOME/.gnupg/gpg.conf"
     fi
 
     # Install everything with paru
-    paru -Sy --noconfirm --useask --removemake ${packages[*]}
+    paru -Sy --noconfirm --useask --asexplicit --removemake "${packages[@]}"
 fi
 
 
-if [ "$AR_OS" == "darwin_macos" ]; then
+if [[ "$AR_OS" = "darwin_macos" ]]; then
+    # shellcheck source=../packages/packagelist-macos.sh
     source "$AR_DIR/systems/personal/$AR_MODULE/packagelist-macos.sh"
     # Install brew if it's not already installed
-    if [ ! -e "$(command -v brew)" ]; then
+    if [[ ! -x "$(command -v brew)" ]]; then
         log info "Running brew install script"
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
@@ -47,34 +50,34 @@ if [ "$AR_OS" == "darwin_macos" ]; then
 
     for tap in "${brewTaps[@]}"; do
         log info "Tapping $tap"
-        brew tap $tap --quiet > /dev/null
+        brew tap "$tap" --quiet > /dev/null
     done
 
     for package in "${brewPackages[@]}"; do
         # listCache exists for the sole reason that brew is slow. We get a list once, and if we haven't installed a new
         # package, we don't have to refresh it!
-        [ ! "$listCache" ] && listCache=`brew list`
+        [[ ! "$listCache" ]] && listCache=$(brew list)
         if echo "$listCache" | grep "^$package$/" > /dev/null; then 
             log verb "Skipped installing $package, It's already installed"
         else             
             log info "Installing $package with Homebrew"
             brew install "$package" --quiet > /dev/null || log warn "Installation failed for $package"
-            listCache=`brew list`
+            listCache=$(brew list)
             log silly Updated package list cache  
         fi
     done
 
     if ! mas account &> /dev/null; then
         log ask "Please sign into the App Store and press any key to continue"
-        read
+        read -r
     fi
 
     if mas account &> /dev/null; then
         for package in "${masPackages[@]}"; do
-            prettyName="`mas info "$package" 2> /dev/null | head -1 | sed 's/ [0-9.]* [[0-9.]*\]$//'` ($package)"
-            if ! mas list | grep -w $package > /dev/null; then
+            prettyName="$(mas info "$package" 2> /dev/null | head -1 | sed 's/ [0-9.]* [[0-9.]*\]$//') ($package)"
+            if ! mas list | grep -w "$package" > /dev/null; then
                 log info "Installing $prettyName from the App Store"
-                mas install $package > /dev/null || log warn "Installation failed for $prettyName"
+                mas install "$package" > /dev/null || log warn "Installation failed for $prettyName"
             else
                 log verb "Skipped installing $prettyName, It's already installed"
             fi

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+# shellcheck source=../../../constants.sh
+[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "$AR_DIR"/constants.sh
 AR_MODULE="archinstall configure"
 
 log info "Creating user"
@@ -64,6 +65,11 @@ EOF
 fi
 echo "options rd.luks.name=$rootUUID=$host root=/dev/mapper/$host rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
 
+log info "Creating LTS backup boot entry (will not work until later installation stages)"
+cp /boot/loader/entries/archlinux.conf /boot/loader/entries/archlinux-lts.conf
+sed -i "s/Arch Linux/Arch Linux (LTS)/" /boot/loader/entries/archlinux-lts.conf
+sed -i "s/vmlinuz-linux/vmlinuz-linux-lts/" /boot/loader/entries/archlinux-lts.conf
+sed -i "s/initramfs-linux/initramfs-linux-lts/" /boot/loader/entries/archlinux-lts.conf
 
 log info "Configuring mkinitcpio"
 cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.arbak
