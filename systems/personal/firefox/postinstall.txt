@@ -6,14 +6,12 @@ HTTPS Everywhere: https://addons.mozilla.org/en-US/firefox/addon/https-everywher
 NoScript: https://addons.mozilla.org/en-US/firefox/addon/noscript/
 Privacy Badger: https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/
 ClearURLs: https://addons.mozilla.org/en-US/firefox/addon/clearurls/
-Mailvelope: https://addons.mozilla.org/en-US/firefox/addon/mailvelope/
 GNOME Shell Integration: https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/
 Dark Reader: https://addons.mozilla.org/en-US/firefox/addon/darkreader/
 
 
 Manual Setup
  - Set search engine to DuckDuckGo
- - Add a searx instance
  - Move new tab button to top of window instead of on tab bar
  - Lighten the strictness of NoScript
  - Make uBlock Origin more strict

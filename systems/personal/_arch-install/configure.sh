@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 # shellcheck source=../../../constants.sh
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "$AR_DIR"/constants.sh
-AR_MODULE="archinstall configure"
+[[ -z "${AR_DIR}" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "${AR_DIR}"/constants.sh
+AR_MODULE="archinstall"
 
 log info "Creating user"
-useradd -mG wheel $username
-echo -e "$password\n$password" | passwd "$username" &> /dev/null
+useradd -mG wheel "${username}"
+echo -e "${password}\n${password}" | passwd "${username}" &> /dev/null
 export password=
 
 log info "Setting hostname"
-echo "$host" >> /etc/hostname
-echo "127.0.0.1 localhost $host" >> /etc/hosts
+echo "${host}" >> /etc/hostname
+echo "127.0.0.1 localhost ${host}" >> /etc/hosts
 
 log info "Setting timezone"
-ln -sf "/usr/share/zoneinfo/$timezone" /etc/localtime
+ln -sf "/usr/share/zoneinfo/${timezone}" /etc/localtime
 hwclock --systohc
 
 log info "Setting language"
-echo "LANG=$language" >> /etc/locale.conf
-sed -i "s/#$language/$language/" /etc/locale.gen
+echo "LANG=${language}" >> /etc/locale.conf
+sed -i "s/#${language}/${language}/" /etc/locale.gen
 locale-gen > /dev/null
 
 log info "Enabling NetworkManager"
@@ -49,7 +49,7 @@ console-mode keep
 editor no
 EOF
 log info "Creating boot entry"
-if [ "$ucode" == "" ]; then
+if [ "${ucode}" == "" ]; then
     cat <<EOF > /boot/loader/entries/archlinux.conf
 title Arch Linux
 linux /vmlinuz-linux
@@ -59,11 +59,11 @@ else
     cat <<EOF > /boot/loader/entries/archlinux.conf
 title Arch Linux
 linux /vmlinuz-linux
-initrd /$ucode.img
+initrd /${ucode}.img
 initrd /initramfs-linux.img
 EOF
 fi
-echo "options rd.luks.name=$rootUUID=$host root=/dev/mapper/$host rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
+echo "options rd.luks.name=${rootUUID}=${host} root=/dev/mapper/${host} rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
 
 log info "Creating LTS backup boot entry (will not work until later installation stages)"
 cp /boot/loader/entries/archlinux.conf /boot/loader/entries/archlinux-lts.conf
@@ -77,7 +77,7 @@ sed -i "s:BINARIES=():BINARIES=(/usr/bin/btrfs):" /etc/mkinitcpio.conf
 sed -i "s/^HOOKS=([a-zA-Z0-9\-_ ]*)/HOOKS=(base systemd autodetect keyboard modconf block sd-encrypt filesystems fsck)/" /etc/mkinitcpio.conf
 # popsicle needs battery or it will show completely wrong battery levels
 # also i915 to make no blinky when xorg
-[ "$host" == "popsicle" ] && sed -i "s/MODULES=([a-zA-Z0-9\-_ ]*)/MODULES=(i915 nvidia battery)/" /etc/mkinitcpio.conf
+[ "${host}" == "popsicle" ] && sed -i "s/MODULES=([a-zA-Z0-9\-_ ]*)/MODULES=(i915 nvidia battery)/" /etc/mkinitcpio.conf
 #[ "$host" == "leaf" ] && sed -i "s/MODULES=([a-zA-Z0-9\-_ ]*)/MODULES=(amdgpu qxl)/" /etc/mkinitcpio.conf
 log info "Rebuilding initramfs"
 mkinitcpio -P &> /dev/null

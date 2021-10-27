@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+# shellcheck source=../../../constants.sh
+[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "$AR_DIR"/constants.sh
 AR_MODULE="ctsetup"
 
 adminUser=adryd

@@ -1,25 +1,26 @@
 #!/usr/bin/env bash
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+# shellcheck source=../../../constants.sh
+[[ -z "${AR_DIR}" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "${AR_DIR}"/constants.sh
 ar_os
 AR_MODULE="firefox"
 # I think the funniest thing about this, is you get the "welcome to firefox" message as if firefox usually looks like that
 
-if [ "$AR_OS" == "linux_arch" ]; then
-    oldPwd=$PWD
+if [[ "${AR_OS}" == "linux_arch" ]]; then
+    oldPwd=${PWD}
     log info "Starting Firefox to generate profiles"
     firefox-developer-edition -headless -silent &> /dev/null & ffPid=$!
-    sleep 2 && kill "$ffPid" &> /dev/null
+    sleep 2 && kill "${ffPid}" &> /dev/null
 
-    [ ! -e "$HOME/.local/share/firefox-gnome-theme" ] \
-        && mkdir -p "$HOME/.local/share" \
+    [[ ! -e "${HOME}/.local/share/firefox-gnome-theme" ]] \
+        && mkdir -p "${HOME}/.local/share" \
         && log info "Cloning firefox-gnome-theme" \
-        && git clone https://github.com/rafaelmardojai/firefox-gnome-theme.git $HOME/.local/share/firefox-gnome-theme --quiet
+        && git clone https://github.com/rafaelmardojai/firefox-gnome-theme.git "${HOME}"/.local/share/firefox-gnome-theme --quiet
 
-    if [ -e "$HOME/.local/share/firefox-gnome-theme" ]; then
-        cd "$HOME/.local/share/firefox-gnome-theme"
+    if [[ -e "${HOME}/.local/share/firefox-gnome-theme" ]]; then
+        cd "${HOME}/.local/share/firefox-gnome-theme" || exit
         log info "Updating"
         git pull --ff-only --quiet
-        cd "$oldPwd"
+        cd "${oldPwd}" || exit
     fi
     
     # BELOW CODE MODIFIED FROM https://github.com/rafaelmardojai/firefox-gnome-theme/blob/master/scripts/install.sh
@@ -35,21 +36,21 @@ if [ "$AR_OS" == "linux_arch" ]; then
     else
         log verb "${#profilePaths[@]} profiles found"
         for profilePath in "${profilePaths[@]}"; do
-            AR_LOG_PREFIX="$profilePath"
+            AR_LOG_PREFIX="${profilePath}"
             # Move to work dir
-            if [[ ! -d "$HOME/.mozilla/firefox/$profilePath" ]]; then
-                log warn "$profilePath does not exist"
+            if [[ ! -d "${HOME}/.mozilla/firefox/${profilePath}" ]]; then
+                log warn "${profilePath} does not exist"
                 continue;
             fi
-            cd "$HOME/.mozilla/firefox/$profilePath"
+            cd "${HOME}/.mozilla/firefox/${profilePath}" || exit
 
             [ ! -e "./chrome" ] \
                 && mkdir -p chrome \
                 && log info "Creating chrome dir"
-            cd chrome
+            cd chrome || exit
             
-            [ ! -e "$PWD/firefox-gnome-theme" ] \
-                && ln -sF "$HOME/.local/share/firefox-gnome-theme" $PWD \
+            [ ! -e "${PWD}/firefox-gnome-theme" ] \
+                && ln -sF "${HOME}/.local/share/firefox-gnome-theme" "${PWD}" \
                 && log info "Installing firefox-gnome-theme"
 
             if [ -e "userChrome.css" ]; then
@@ -71,13 +72,13 @@ if [ "$AR_OS" == "linux_arch" ]; then
             [ -e user.js ] \
                 && rm user.js \
                 && log verb "Removing old user.js"
-            cp "$AR_DIR/systems/personal/$AR_MODULE/user.js" user.js \
+            cp "${AR_DIR}/systems/personal/${AR_MODULE}/user.js" user.js \
                 && log info "Installed user.js"
             
             ICCProfile="$(colormgr get-devices | grep 'Metadata:\s*OutputEdidMd5=' | grep -oP '[0-9a-f]{32}')"
-            sed -i "s|__REPLACE_ME__ICC_PROFILE_PATH__|$HOME/.local/share/icc/edid-${ICCProfile}.icc|g" user.js && log info "Applied ICC profile"
+            sed -i "s|__REPLACE_ME__ICC_PROFILE_PATH__|${HOME}/.local/share/icc/edid-${ICCProfile}.icc|g" user.js && log info "Applied ICC profile"
         done
         AR_LOG_PREFIX=""
     fi  
-    cd "$oldPwd"
+    cd "${oldPwd}" || exit
 fi

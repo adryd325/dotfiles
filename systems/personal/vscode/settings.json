@@ -5,14 +5,13 @@
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "editor.suggest.showStatusBar": true,
     "eslint.alwaysShowStatus": true,
-    "editor.fontFamily": "'Cascadia Mono', 'Droid Sans Fallback'",
+    "editor.fontFamily": "Rec Mono Semicasual",
     "editor.fontSize": 15,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "breadcrumbs.enabled": false,
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -29,6 +28,11 @@
     "extensions.autoUpdate": false,
     "security.workspace.trust.enabled": false,
     "explorer.confirmDragAndDrop": false,
-    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
-    "editor.renderWhitespace": "none"
+    "editor.renderWhitespace": "none",
+    "prettier.tabWidth": 4,
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "shellcheck.customArgs": [
+        "-x"
+    ],
+    "C_Cpp.intelliSenseEngine": "Disabled"
 }

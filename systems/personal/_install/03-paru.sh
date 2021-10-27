@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # shellcheck source=../../../constants.sh
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "$AR_DIR"/constants.sh
+[[ -z "${AR_DIR}" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "${AR_DIR}"/constants.sh
 ar_os
 AR_MODULE="paru"
 
-if [[ "$AR_OS" == "linux_arch" ]]; then
+if [[ "${AR_OS}" == "linux_arch" ]]; then
     log info "Changing paru preferences"
     if [[ -f /etc/paru.conf ]]; then
         [[ ! -e /etc/paru.conf.arbak ]] && sudo cp /etc/paru.conf /etc/paru.conf.arbak

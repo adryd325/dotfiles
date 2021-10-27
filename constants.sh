@@ -1,6 +1,7 @@
+#!/usr/bin/env bash
 function ar_const() {
-    # Utility function to make defining constants prettier
-    [[ -z "${!1}" ]] && export $1=${*:2}
+    # Utility function to make defining env prettier without overwriting
+    [[ -z "${!1}" ]] && export "$1"="${*:2}"
 }
 
 # Remote URLs
@@ -10,22 +11,22 @@ ar_const AR_REMOTE_GIT_SSH "git@gitlab.com:adryd/dotfiles.git"
 
 
 function ar_dir() {
-    if [[ -z "$AR_DIR" ]]; then
+    if [[ -z "${AR_DIR}" ]]; then
         function check() {
-            if [[ -f "$1/.manifest" ]] && [[ "$(cat $1/.manifest)" = "adryd-dotfiles-v5.1" ]]; then
-                cd "$oldPwd"
+            if [[ -f "$1"/.manifest ]] && [[ "$(cat "$1"/.manifest)" = "adryd-dotfiles-v5.1" ]]; then
+                cd "${oldPwd}" || exit 1
                 export AR_DIR="$1"
                 return 0
             fi
             return 1
         }
-        local oldPwd=$PWD
-        cd "$(dirname -- $0)"
-        while [[ "$PWD" != '/' ]]; do check "$PWD" && return 0; cd ..; done
-        cd "$oldPwd"
-        while [[ "$PWD" != '/' ]]; do check "$PWD" && return 0; cd ..; done
-        cd "$oldPwd"
-        check "$HOME/.adryd" && return
+        local oldPwd=${PWD}
+        cd "$(dirname -- "$0")" || exit 1
+        while [[ "${PWD}" != '/' ]]; do check "${PWD}" && return 0; cd ..; done
+        cd "${oldPwd}" || exit 1
+        while [[ "${PWD}" != '/' ]]; do check "${PWD}" && return 0; cd ..; done
+        cd "${oldPwd}" || exit 1
+        check "${HOME}/.adryd" && return
         check "/root/.adryd" && return
         return 1
     fi
@@ -34,7 +35,7 @@ function ar_dir() {
 ar_dir
 
 function ar_splash() {
-    if [[ -z "$AR_SPLASH" ]] && [[ "$0" = "$AR_DIR"* ]] || [[ "$AR_MODULE" = "download" ]]; then
+    if [[ -z "${AR_SPLASH}" ]] && [[ "$0" = "${AR_DIR}"* ]] || [[ "${AR_MODULE}" = "download" ]]; then
         echo -en "\n \x1b[30;44m \x1b[0m .adryd\n \x1b[30;44m \x1b[0m version 5.1\n\n"
         export AR_SPLASH=1
     fi
@@ -42,36 +43,43 @@ function ar_splash() {
 ar_splash
 
 function ar_os() {
-    export AR_OS_KERNEL="$(uname -s | tr '[:upper:]' '[:lower:]')"
-    if [[ "$AR_OS_KERNEL" = "linux" ]]; then
+    AR_OS_KERNEL="$(uname -s | tr '[:upper:]' '[:lower:]')"
+    AR_OS_DISTRO="unk"
+    AR_OS="unk"
+    export AR_OS_KERNEL
+    if [[ "${AR_OS_KERNEL}" = "linux" ]]; then
         # This is what neofetch does, so I feel safe doing the same
         [[ -f /etc/os-release ]] && source /etc/os-release
-        export AR_OS_DISTRO="$(echo $ID | sed 's/ //g' | tr '[:upper:]' '[:lower:]')"
-        export AR_OS="${AR_OS_KERNEL}_$AR_OS_DISTRO"
+        AR_OS_DISTRO="$(echo "${ID}" | sed 's/ //g' | tr '[:upper:]' '[:lower:]')"
+        AR_OS="${AR_OS_KERNEL}_${AR_OS_DISTRO}"
     fi
-    if [[ "$AR_OS_KERNEL" = "darwin" ]]; then
-        export AR_OS_DISTRO="macos"
-        export AR_OS="${AR_OS_KERNEL}_$AR_OS_DISTRO"
+    if [[ "${AR_OS_KERNEL}" = "darwin" ]]; then
+        AR_OS_DISTRO="macos"
+        AR_OS="${AR_OS_KERNEL}_${AR_OS_DISTRO}"
     fi
+    export AR_OS_DISTRO
+    export AR_OS
 }
 
 function ar_tmp() {
-    if [[ -z "$AR_TMP" ]]; then
+    if [[ -z "${AR_TMP}" ]]; then
         local tmpPrefix=""
-        if [[ -n "$AR_MODULE" ]]; then
-            tmpPrefix=".$AR_MODULE"
+        if [[ -n "${AR_MODULE}" ]]; then
+            tmpPrefix=".${AR_MODULE}"
         fi
         if [[ -x "$(command -v mktemp)" ]]; then
-            export AR_TMP="$(mktemp -d -t "adryd-dotfiles$tmpPrefix.XXXXXXXXXX")"
+            AR_TMP="$(mktemp -d -t "adryd-dotfiles${tmpPrefix}.XXXXXXXXXX")" 
+            export AR_TMP
         else
-            for tempDir in "$TMPDIR" "$TMP" "$TEMP" /tmp; do
-                if [[ -d "$osTempDir" ]]; then
-                    export AR_TMP="$osTempDir/adryd-dotfiles$tmpPrefix.$RANDOM"
+            for tempDir in "${TMPDIR}" "${TMP}" "${TEMP}" /tmp; do
+                if [[ -d "${tempDir}" ]]; then
+                    AR_TMP="${tempDir}"/adryd-dotfiles"${tmpPrefix}"."${RANDOM}"
+                    export AR_TMP
                     break
                 fi
             done
         fi
-        if [[ -z "$AR_TMP" ]]; then
+        if [[ -z "${AR_TMP}" ]]; then
             log error "Could not find temp folder"
             exit 1
         fi
@@ -80,12 +88,12 @@ function ar_tmp() {
 
 function ar_local {
     ar_os
-    if [[ "$AR_KERNEL" = "darwin" ]]; then
-        ar_const AR_LOCAL "$HOME/Library/Application\ Support/adryd-dotfiles"
-        ar_const AR_CACHE "$HOME/Library/Caches/adryd-dotfiles"
+    if [[ "${AR_KERNEL}" = "darwin" ]]; then
+        ar_const AR_LOCAL "${HOME}/Library/Application\ Support/adryd-dotfiles"
+        ar_const AR_CACHE "${HOME}/Library/Caches/adryd-dotfiles"
     else 
-        ar_const AR_LOCAL "$HOME/.config/adryd-dotfiles"
-        ar_const AR_CACHE "$HOME/.cache/adryd-dotfiles"
+        ar_const AR_LOCAL "${HOME}/.config/adryd-dotfiles"
+        ar_const AR_CACHE "${HOME}/.cache/adryd-dotfiles"
     fi
 }
 
@@ -123,53 +131,58 @@ function log() {
             logString+="\x1b[32mask:\x1b[0m "
             echoArgs="-en"
             ;;
+        *)
+            logLevel=0
+            logString+="\x1b[30;47minvalid log level\x1b[0m "
+            ;;
+
     esac
-    [[ -n "$AR_MODULE" ]] && logString+="\x1b[35m$AR_MODULE\x1b[0m "
-    [[ -n "$AR_LOG_PREFIX" ]] && logString+="\x1b[32m($AR_LOG_PREFIX)\x1b[0m "
+    [[ -n "${AR_MODULE}" ]] && logString+="\x1b[35m${AR_MODULE}\x1b[0m "
+    [[ -n "${AR_LOG_PREFIX}" ]] && logString+="\x1b[32m(${AR_LOG_PREFIX})\x1b[0m "
     logString+="${*:2}"
-    [[ -n $AR_LOGLEVEL ]] && [[ $logLevel -lt $AR_LOGLEVEL ]] && [[ $logLevel -lt 5 ]] && return
-    echo $echoArgs "$logString"
+    [[ -n ${AR_LOGLEVEL} ]] && [[ ${logLevel} -lt ${AR_LOGLEVEL} ]] && [[ ${logLevel} -lt 5 ]] && return
+    echo "${echoArgs}" "${logString}"
 }
 
 function ar_keyring() {
     ar_os
     local keyringId="C63B-065C"
-    local keyringDev="/dev/disk/by-uuid/$keyringId"
-    if [[ "$AR_OS" = "linux_arch" ]] && [[ -e "$keyringDev" ]]; then
+    local keyringDev="/dev/disk/by-uuid/${keyringId}"
+    if [[ "${AR_OS}" = "linux_arch" ]] && [[ -e "${keyringDev}" ]]; then
         if [[ "$1" = "umount" ]]; then
             if [[ -e "/dev/mapper/keyring-encrypt" ]]; then
                 sudo umount "/dev/mapper/keyring-encrypt"
                 sudo cryptsetup close "keyring-encrypt"
             fi
-            if [[ -e "$keyringDev" ]]; then
-                sudo umount "$keyringDev"
+            if [[ -e "${keyringDev}" ]]; then
+                sudo umount "${keyringDev}"
             fi
         else 
             local keyringDir
             if mountpoint "/run/media/adryd/KEYRING" &> /dev/null; then
                 keyringDir=/run/media/adryd/KEYRING
                 keyringEncryptDir=/run/media/adryd/KEYRING/keyring-encrypt
-                if ! mountpoint "$keyringEncryptDir" &> /dev/null && [[ -d "$keyringEncryptDir" ]]; then
+                if ! mountpoint "${keyringEncryptDir}" &> /dev/null && [[ -d "${keyringEncryptDir}" ]]; then
                     if [[ -e "/dev/mapper/keyring-encrypt" ]]; then
                         sudo cryptsetup close "keyring-encrypt"
                     fi
-                    sudo cryptsetup open "$keyringDir/keyring-encrypt.ext4.luks2" "keyring-encrypt"
-                    sudo mount "/dev/mapper/keyring-encrypt" "$keyringEncryptDir"
+                    sudo cryptsetup open "${keyringDir}/keyring-encrypt.ext4.luks2" "keyring-encrypt"
+                    sudo mount "/dev/mapper/keyring-encrypt" "${keyringEncryptDir}"
                 fi
-                export AR_KEYRING=$keyringEncryptDir
+                export AR_KEYRING=${keyringEncryptDir}
             else
                 keyringDir=/tmp/adryd-dotfiles-mnt/keyring
                 keyringEncryptDir=/tmp/adryd-dotfiles-mnt/keyring-encrypt
-                if ! mountpoint "$keyringEncryptDir" &> /dev/null; then
-                    if ! mountpoint "$keyringEncryptDir" &> /dev/null && [[ -e "/dev/mapper/keyring-encrypt" ]]; then
+                if ! mountpoint "${keyringEncryptDir}" &> /dev/null; then
+                    if ! mountpoint "${keyringEncryptDir}" &> /dev/null && [[ -e "/dev/mapper/keyring-encrypt" ]]; then
                         sudo cryptsetup close "keyring-encrypt"
                     fi
-                    sudo mkdir -p "$keyringDir" "$keyringEncryptDir"
-                    sudo mount "$keyringDev" "$keyringDir"
-                    sudo cryptsetup open "$keyringDir/keyring-encrypt.ext4.luks2" "keyring-encrypt"
-                    sudo mount "/dev/mapper/keyring-encrypt" "$keyringEncryptDir"
+                    sudo mkdir -p "${keyringDir}" "${keyringEncryptDir}"
+                    sudo mount "${keyringDev}" "${keyringDir}"
+                    sudo cryptsetup open "${keyringDir}/keyring-encrypt.ext4.luks2" "keyring-encrypt"
+                    sudo mount "/dev/mapper/keyring-encrypt" "${keyringEncryptDir}"
                 fi
-                export AR_KEYRING=$keyringEncryptDir
+                export AR_KEYRING=${keyringEncryptDir}
             fi
         fi
     fi

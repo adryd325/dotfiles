@@ -1,7 +1,8 @@
+# shellcheck shell=bash disable=SC2034,2154
 pkgname=ttf-recursive-code-local
-pkgver=`curl -sS https://api.github.com/repos/arrowtype/recursive/releases/latest | jq -r .tag_name`
+pkgver=$(curl -sS https://api.github.com/repos/arrowtype/recursive/releases/latest | jq -r .tag_name)
 pkgrel=1
-pkgdesc=""
+pkgdesc="Recursive Code Local"
 arch=(any)
 makedepends=(git python python-virtualenv python-pip)
 conflicts=(ttf-recursive otf-recursive)
@@ -9,14 +10,15 @@ conflicts=(ttf-recursive otf-recursive)
 package() {
     rm -rf recursive-code-config
     git clone https://github.com/arrowtype/recursive-code-config.git
-    cd recursive-code-config
+    cd recursive-code-config || exit 1
     python3 -m venv venv
+    # shellcheck disable=SC1091
     source venv/bin/activate
     pip install -r requirements.txt
     python3 scripts/instantiate-code-fonts.py ../../casual.yaml
     python3 scripts/instantiate-code-fonts.py ../../duotone.yaml
     python3 scripts/instantiate-code-fonts.py ../../linear.yaml
     python3 scripts/instantiate-code-fonts.py ../../semicasual.yaml
-    mkdir -p $pkgdir/usr/share/fonts/TTF/
-    cp -r fonts/* $pkgdir/usr/share/fonts/TTF
+    mkdir -p "${pkgdir}"/usr/share/fonts/TTF/
+    cp -r fonts/* "${pkgdir}"/usr/share/fonts/TTF
 }

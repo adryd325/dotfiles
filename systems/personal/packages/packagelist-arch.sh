@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 function ucodepkg() {
     cpuType="$(grep vendor_id < /proc/cpuinfo | sed 's/vendor_id\t: //g' | head -1)"
-    [[ "$cpuType" = "GenuineIntel" ]] && printf "intel-ucode"
-    [[ "$cpuType" = "AuthenticAmd" ]] && printf "amd-ucode"
+    [[ "${cpuType}" = "GenuineIntel" ]] && printf "intel-ucode"
+    [[ "${cpuType}" = "AuthenticAmd" ]] && printf "amd-ucode"
 }
 
 packages=(
@@ -154,7 +154,7 @@ packages=(
     "linux-lts-headers"
 )
 
-if [[ "$HOSTNAME" = "popsicle" ]] || [[ "$HOSTNAME" = "leaf" ]]; then
+if [[ "${HOSTNAME}" = "popsicle" ]] || [[ "${HOSTNAME}" = "leaf" ]]; then
     packages+=(
         # Wine
         "wine-gecko"
@@ -167,7 +167,7 @@ if [[ "$HOSTNAME" = "popsicle" ]] || [[ "$HOSTNAME" = "leaf" ]]; then
     )
 fi
 
-if [[ "$HOSTNAME" = "popsicle" ]]; then
+if [[ "${HOSTNAME}" = "popsicle" ]]; then
     packages+=(
         # Games
         "multimc-git"
@@ -185,7 +185,7 @@ if [[ "$HOSTNAME" = "popsicle" ]]; then
     )
 fi
 
-if [[ "$HOSTNAME" = "leaf" ]]; then
+if [[ "${HOSTNAME}" = "leaf" ]]; then
     packages+=(
         # Drivers
         "qemu-guest-agent"
@@ -194,3 +194,5 @@ if [[ "$HOSTNAME" = "leaf" ]]; then
         "lib32-amdvlk"
     )
 fi
+
+export packages

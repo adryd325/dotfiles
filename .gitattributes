@@ -1,2 +1,3 @@
 systems/personal/heckheating/ext/** filter=git-crypt diff=git-crypt
 systems/personal/flstudio/** filter=git-crypt diff=git-crypt
+systems/personal/firefox/userscripts/** filter=git-crypt diff=git-crypt

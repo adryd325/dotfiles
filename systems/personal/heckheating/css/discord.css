@@ -1,18 +1,37 @@
 html {
-  --saturation-roles-factor: 1;
+  --font-primary: "Whitney", Whitney, "Helvetica Neue", Helvetica, Arial,
+    sans-serif !important;
+  --font-display: "Ginto", Whitney, "Helvetica Neue", Helvetica, Arial,
+    sans-serif !important;
+  /* Discord is silly and doesn't actually use the --font-code variable... FUN! */
+  --font-code: monospace, Consolas, Andale Mono WT, Andale Mono, Lucida Console,
+    Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono,
+    Liberation Mono, Nimbus Mono L, Monaco, Courier New, Courier, monospace !important;
 }
-.theme-dark {
+
+/* .theme-dark {
   --brightness: 1.35;
   --contrast: 0.5;
+  --saturation: 1;
 }
+
 .theme-light {
   --brightness: 1;
   --contrast: 0.8;
-  --saturation-roles-factor: 1;
+  --saturation: 1;
 }
+
 [class*="desaturateUserColors-"] {
-  -webkit-filter: saturate(var(--saturation-roles-factor, 1))
-    contrast(var(--contrast, 1)) brightness(var(--brightness, 1)) !important;
-  filter: saturate(var(--saturation-roles-factor, 1))
-    contrast(var(--contrast, 1)) brightness(var(--brightness, 1)) !important;
+  filter: saturate(var(--saturation)) contrast(var(--contrast)) brightness(var(--brightness)) !important;
+} */
+
+code,
+[class*="markup-"] pre,
+[class*="markup-"] code,
+[class*="markup-"] code.inline {
+  font-family: "Rec Mono Linear", Consolas, Andale Mono WT, Andale Mono,
+    Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Monaco,
+    Courier New, Courier, monospace !important;
+  font-variant: none;
 }

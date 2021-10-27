@@ -1,5 +1,6 @@
-brewTaps=("homebrew/cask-versions" "homebrew/cask-drivers" "homebrew/cask-fonts" "jeffreywildman/virt-manager")
-brewPackages=(
+#!/usr/bin/env bash
+export brewTaps=("homebrew/cask-versions" "homebrew/cask-drivers" "homebrew/cask-fonts" "jeffreywildman/virt-manager")
+export brewPackages=(
     # GNU stuff and other CLI tools / libs
     "bash"
     "binutils"
@@ -62,4 +63,4 @@ brewPackages=(
     "tor-browser"
     "font-cascadia-code"
 )
-masPackages=("407963104" "1037126344")
+export masPackages=("407963104" "1037126344")

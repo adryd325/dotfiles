@@ -1,5 +1,5 @@
-appDirs=("/usr/share/applications" "$HOME/.local/share/applications")
-apps=(
+export appDirs=("/usr/share/applications" "$HOME/.local/share/applications")
+export apps=(
     "nm-connection-editor.desktop"
     "qv4l2.desktop"
     "qvidcap.desktop"

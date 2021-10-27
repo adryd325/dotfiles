@@ -1,4 +1,5 @@
-[[ "$AR_OS" = "linux_arch" ]] && alias open="xdg-open"
+#!/usr/bin/env bash
+[[ -x $(command -v xdg-open) ]] && alias open="xdg-open"
 alias ls='ls --color=auto'
 alias ll='ls --color=auto -alF'
 alias la='ls --color=auto -A'

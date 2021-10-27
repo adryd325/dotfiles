@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+# shellcheck source=../../../constants.sh
+[[ -z "${AR_DIR}" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "${AR_DIR}"/constants.sh
 ar_os
 AR_MODULE="optimus"
 
-if [ "$AR_OS" == "linux_arch" ]; then
+if [ "${AR_OS}" == "linux_arch" ]; then
     # Make sure we have gdm, or something that provides gdm
     if pacman -Q gdm &> /dev/null; then
         log info "Disable Wayland"
@@ -12,7 +13,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
             && sudo cp /etc/gdm/custom.conf /etc/gdm/custom.conf.arbak
         sudo sed -i "s/#WaylandEnable=false/WaylandEnable=false/" /etc/gdm/custom.conf
         # The logs are rather self-explainatory so no need for more comment
-        if [ "$HOSTNAME" == "popsicle" ]; then 
+        if [ "${HOSTNAME}" == "popsicle" ]; then 
             log info "Setting power management kernel option"
             echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' | sudo tee /etc/modprobe.d/nvidia.conf > /dev/null
             log info "Setting udev rules"

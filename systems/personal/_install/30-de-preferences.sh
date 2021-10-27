@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-[[ -z "$AR_DIR" ]] && echo "Please set AR_DIR in your environment" && exit 0; source $AR_DIR/constants.sh
+# shellcheck source=../../../constants.sh
+[[ -z "${AR_DIR}" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "${AR_DIR}"/constants.sh
 ar_os
 AR_MODULE="de-preferences"
 
-if [ "$AR_OS" == "linux_arch" ]; then
+if [ "${AR_OS}" == "linux_arch" ]; then
     log info "Writing misc dconf preferences"
     
     # Terminal
@@ -20,7 +21,7 @@ if [ "$AR_OS" == "linux_arch" ]; then
     gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false
     gsettings set org.gnome.desktop.privacy remove-old-temp-files true
     gsettings set org.gnome.desktop.privacy remove-old-trash-files true
-    gsettings set org.gnome.desktop.interface monospace-font-name "Cascadia Code 11"
+    gsettings set org.gnome.desktop.interface monospace-font-name "monospace 11"
     gsettings set org.gnome.mutter center-new-windows true
     gsettings set org.gnome.shell.weather locations "[<(uint32 2, <('Toronto', 'CYTZ', true, [(0.76154532446909495, -1.3857914260834978)], [(0.76212711252195475, -1.3860823201099277)])>)>]"
     
@@ -36,10 +37,10 @@ if [ "$AR_OS" == "linux_arch" ]; then
     gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/ff58ebb6-357c-475a-bbc7-ef300f8ba4b4/ name 'Chats'
     gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ apps "['org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.Extensions.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Totem.desktop', 'org.gnome.Calculator.desktop', 'pavucontrol.desktop', 'org.gnome.baobab.desktop', 'com.uploadedlobster.peek.desktop', 'gnome-system-monitor.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.TextEditor.desktop', 'piavpn.desktop']"
     gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ name 'Utilities'
-elif [ "$AR_OS" == "darwin_macos" ]; then
+elif [ "${AR_OS}" == "darwin_macos" ]; then
     function defaults-write() {
-        log silly "defaults write $@"
-        defaults write $@
+        log silly "defaults write $*"
+        defaults write "$@"
     }
 
     log info "Writing preferences"
@@ -62,9 +63,9 @@ elif [ "$AR_OS" == "darwin_macos" ]; then
     
     # TODO: Figure out why vscode, affinity and photoshop dont get added to dock; something with spaces in their name
     for app in "${dockApps[@]}"; do
-        if [ -e "$app" ]; then
-            log silly "Adding $app to dock"
-            defaults-write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+        if [ -e "${app}" ]; then
+            log silly "Adding ${app} to dock"
+            defaults-write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${app}</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
         fi
     done
     killall Dock

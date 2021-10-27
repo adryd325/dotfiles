@@ -1,2 +1,11 @@
 **/.DS_Store
 **/node_modules/
+systems/personal/fonts/**/pkg
+systems/personal/fonts/**/src
+systems/personal/fonts/**/**.pkg.tar.zst
+systems/personal/fonts/**/pkg
+systems/personal/fonts/**/src
+systems/personal/fonts/**/**.pkg.tar.zst
+systems/personal/discord/discord-deps-local/pkg
+systems/personal/discord/discord-deps-local/src
+systems/personal/discord/discord-deps-local/**.pkg.tar.zst
