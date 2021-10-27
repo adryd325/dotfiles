@@ -132,7 +132,7 @@ packages=(
     "tlp"
     "touchegg"
     "xclip"
-    "youtube-dl"
+    "yt-dlp"
 
     # Build Tools used frequently by things I use on the AUR
     "cmake"
