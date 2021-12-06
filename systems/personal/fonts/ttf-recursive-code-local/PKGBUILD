@@ -14,11 +14,17 @@ package() {
     python3 -m venv venv
     # shellcheck disable=SC1091
     source venv/bin/activate
+    pip install --upgrade pip
     pip install -r requirements.txt
-    python3 scripts/instantiate-code-fonts.py ../../casual.yaml
-    python3 scripts/instantiate-code-fonts.py ../../duotone.yaml
-    python3 scripts/instantiate-code-fonts.py ../../linear.yaml
-    python3 scripts/instantiate-code-fonts.py ../../semicasual.yaml
+    font=$(find font-data -name Recursive_* | head -1)
+    python3 scripts/instantiate-code-fonts.py ../../casual.yaml "${font}"
+    python3 scripts/instantiate-code-fonts.py ../../duotone.yaml "${font}"
+    python3 scripts/instantiate-code-fonts.py ../../linear.yaml "${font}"
+    python3 scripts/instantiate-code-fonts.py ../../semicasual.yaml "${font}"
+    python3 scripts/instantiate-code-fonts.py ../../casual_liga.yaml "${font}"
+    python3 scripts/instantiate-code-fonts.py ../../duotone_liga.yaml "${font}"
+    python3 scripts/instantiate-code-fonts.py ../../linear_liga.yaml "${font}"
+    python3 scripts/instantiate-code-fonts.py ../../semicasual_liga.yaml "${font}"
     mkdir -p "${pkgdir}"/usr/share/fonts/TTF/
     cp -r fonts/* "${pkgdir}"/usr/share/fonts/TTF
 }
