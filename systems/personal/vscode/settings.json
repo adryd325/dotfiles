@@ -3,7 +3,7 @@
     "telemetry.enableCrashReporter": false,
     "editor.minimap.enabled": false,
     "window.titleBarStyle": "custom",
-    "window.menuBarVisibility": "toggle",
+    "window.menuBarVisibility": "compact",
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
@@ -34,5 +34,14 @@
     "shellcheck.customArgs": [
         "-x"
     ],
-    "C_Cpp.intelliSenseEngine": "Disabled"
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "editor.tabSize": 2
 }

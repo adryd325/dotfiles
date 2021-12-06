@@ -24,8 +24,8 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
     sed -i "s/meson test -C build --print-errorlogs//" "${workDir}"/PKGBUILD
     # add 1441-40.3 patch to fix mutter-performance failing to build
     # since the MR targets master
-    sed -i "s|pick_mr '1441'|pick_mr '1441' '../1441.patch' 'patch'|" "${workDir}/PKGBUILD"
-    cp "${AR_DIR}"/systems/personal/"${AR_MODULE}"/1441-40.3.patch "${workDir}"/1441.patch
+    # sed -i "s|pick_mr '1441'|pick_mr '1441' '../1441.patch' 'patch'|" "${workDir}/PKGBUILD"
+    # cp "${AR_DIR}"/systems/personal/"${AR_MODULE}"/1441-40.3.patch "${workDir}"/1441.patch
     oldPwd=$(pwd)
     cd "${workDir}" || exit 1
     log info "Compiling and installing"

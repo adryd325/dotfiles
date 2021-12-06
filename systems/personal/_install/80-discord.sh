@@ -54,11 +54,13 @@ installBranch() {
     ln -s "${HOME}/.local/share/${discordName}/discord.png" "${HOME}/.local/share/icons/hicolor/256x256/${discordLowercase}.png"
     
     log verb "Patching .desktop file"
-    sed -i "s:Exec=/usr/share/${discordLowercase}/${discordName}:Exec=\"${HOME}/.local/share/${discordName}/${discordName}\":" \
+    sed -i "s:Exec=/usr/share/${discordLowercase}/${discordName}:Exec=\"${HOME}/.local/share/${discordName}/${discordName}\" --no-sandbox:" \
         "${HOME}"/.local/share/"${discordName}"/"${discordLowercase}".desktop
     sed -i "s/StartupWMClass=discord/StartupWMClass=${discordName}/" \
         "${HOME}"/.local/share/"${discordName}"/"${discordLowercase}".desktop
     sed -i "s:Icon=${discordLowercase}:Icon=${HOME}/.local/share/icons/hicolor/256x256/${discordLowercase}.png:" \
+        "${HOME}"/.local/share/"${discordName}"/"${discordLowercase}".desktop
+    sed -i "s:Path=/usr/bin:path=${HOME}/.local/share/${discordName}:" \
         "${HOME}"/.local/share/"${discordName}"/"${discordLowercase}".desktop
 
     # Delete existing .desktop files
@@ -67,10 +69,10 @@ installBranch() {
         rm -rf "${HOME}/.local/share/applications/${discordLowercase}.desktop"
     fi
 
-    # Symlink new .desktop files
+    # Copy over new .desktop files
     log verb "Installing .desktop file"
     mkdir -p "${HOME}/.local/share/applications"
-    cp "${HOME}/.local/share/${discordName}/${discordLowercase}.desktop" "${HOME}/.local/share/applications/${discordLowercase}.desktop"
+    cp -f "${HOME}/.local/share/${discordName}/${discordLowercase}.desktop" "${HOME}/.local/share/applications/${discordLowercase}.desktop"
 
     # Run discord postinst script
     # it errors cause of bad code :)
@@ -80,6 +82,10 @@ installBranch() {
 
 # not really dependent on any distros
 if [ "${AR_OS_KERNEL}" == "linux" ] && [ -e "$(command -v curl)" ]; then
+    if [[ "${AR_OS}" = "linux_arch" ]]; then
+       cd "${AR_DIR}/systems/personal/${AR_MODULE}/discord-deps-local" &&
+       yes | makepkg -si
+    fi
     branches=("stable" "canary")
     if [ "${HOSTNAME}" == "popsicle" ]; then
         branches=("stable" "ptb" "canary" "development")

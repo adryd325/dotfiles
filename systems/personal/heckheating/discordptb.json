@@ -2,10 +2,7 @@
   "inspectAll": true,
   "debugPatches": true,
   "dangerMode": false,
-  "loggers": [
-    "silly",
-    "verbose"
-  ],
+  "loggers": ["silly", "verbose"],
   "defaultLoggerLevel": 400,
   "modules": {
     "pseudoscience": true,
@@ -21,9 +18,6 @@
     "autoPatch": true,
     "linuxUpdater": true,
     "react": true,
-    "postnet": true,
-    "pseudoNitro": true,
-    "activitiesEverywhere": true,
-    "callIdling": true
+    "postnet": true
   }
 }

@@ -98,7 +98,7 @@ log tell "WARNING: This script may behave unpredictabily. Please read the follow
 [[ -z "${rebootstrap}" ]] && log tell "\"${installTargetDev}\", \"/dev/disk/by-partlabel/EFI\" and \"/dev/disk/by-partlabel/${host}\" will be formatted."
 [[ -n "${rebootstrap}" ]] && log tell "\"/dev/disk/by-partlabel/${host}\" will mounted. btrfs partition \"root\" and \"/dev/disk/by-partlabel/EFI\" will be cleared."
 while [[ "${confirmation}" != "${confirmationStr}" ]]; do
-    log ask "Type \"${confirmationStr}\" to continue or \"exit\" to exit"
+    log ask "Type \"${confirmationStr}\" to continue or \"exit\" to exit: "
     read -r confirmation
     [[ "${confirmation}" = "exit" ]] && exit 0
 done

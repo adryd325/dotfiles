@@ -1,4 +1,5 @@
 export appDirs=("/usr/share/applications" "$HOME/.local/share/applications")
+export appGlobs=("in.lsp_plug.lsp_plugins_*.desktop")
 export apps=(
     "nm-connection-editor.desktop"
     "qv4l2.desktop"

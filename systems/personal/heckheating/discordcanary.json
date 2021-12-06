@@ -2,7 +2,10 @@
   "inspectAll": true,
   "debugPatches": true,
   "dangerMode": false,
-  "loggers": ["silly", "verbose"],
+  "loggers": [
+    "silly",
+    "verbose"
+  ],
   "defaultLoggerLevel": 400,
   "modules": {
     "pseudoscience": true,
@@ -31,6 +34,15 @@
     "hidpiFixes": true,
     "timeBarAllActivities": true,
     "noVoiceAutoreconnect": true,
+    "ttsLinux": true,
+    "whoJoined": true,
+    "platformIcons": true,
+    "disableF1Help": true,
+    "allPresences": true,
+    "noJoinMessageWave": true,
+    "callIdling": true,
+    "copyAvatarUrl": true,
+    "debugFlux": true,
     "imgxis": {
       "options": {
         "smoothImage": true
@@ -57,7 +69,7 @@
           "__191263668305002496": "elybeatmaker",
           "774489118557470750": "678462291670466570",
           "775794395936194591": "775886509071925290",
-          "816863053827276853": "845917193002549248",
+          "816863053827276853": "878755023893446737",
           "372869424916594688": "653748209394647050",
           "191263881459531777": "653748209394647050",
           "191263913067806721": "653748209394647050",
@@ -80,14 +92,22 @@
           "__887075786203488256": "Netsky",
           "898698025365540956": "887111334414667857",
           "887093691213307955": "887111334414667857",
-          "887093837602881546": "887111334414667857"
+          "887093837602881546": "887111334414667857",
+          "__900194850257907732": "Squidgame",
+          "901487042003890226": "900194851008696370"
         }
       }
     },
     "electricSheep": {
       "enabled": true,
       "options": {
-        "__users": ["Utsuho", "C2", "3595", "lun-4", "vin"],
+        "__users": [
+          "Utsuho",
+          "C2",
+          "3595",
+          "lun-4",
+          "vin"
+        ],
         "users": [
           "132297363233570816",
           "220599756743770112",
@@ -158,8 +178,8 @@
         "pinned": [
           "843580440853217292",
           "810698798652981259",
-          "654538335582421003",
-          "899324815750602783"
+          "899324815750602783",
+          "889997957968035931"
         ]
       },
       "enabled": true
@@ -178,7 +198,6 @@
       },
       "enabled": true
     },
-    "debugFlux": true,
     "activitiesEverywhere": {
       "options": {
         "appIds": [
@@ -202,6 +221,14 @@
           "878067427668275241",
           "879863686565621790",
           "879863976006127627"
+        ]
+      },
+      "enabled": true
+    },
+    "devToolsExtensions": {
+      "options": {
+        "extensions": [
+          "/home/adryd/downloads/reactdevtools"
         ]
       },
       "enabled": true
