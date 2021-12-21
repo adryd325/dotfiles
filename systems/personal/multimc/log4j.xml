@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="com.mojang.util,net.minecrell.terminalconsole.util">
+	<Appenders>
+
+		<!-- STDOUT	-->
+		<Console name="SysOut" target="SYSTEM_OUT">
+			<PatternLayout pattern="%style{[%d{HH:mm:ss}]}{blue} %highlight{[%t/%level]}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=green, TRACE=blue} %style{(%logger{1})}{cyan} %highlight{%msg%n}{FATAL=red, ERROR=red, WARN=normal, INFO=normal, DEBUG=normal, TRACE=normal}">
+				<LoggerNamePatternSelector defaultPattern="%style{[%d{HH:mm:ss}]}{blue} %highlight{[%t/%level]}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=green, TRACE=blue} %style{(%logger{1})}{cyan} %highlight{%msg%n}{FATAL=red, ERROR=red, WARN=normal, INFO=normal, DEBUG=normal, TRACE=normal}">
+					<!-- Dont show the logger name for minecraft classes-->
+					<PatternMatch key="net.minecraft.,com.mojang." pattern="%style{[%d{HH:mm:ss}]}{blue} %highlight{[%t/%level]}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=green, TRACE=blue} %style{(Minecraft)}{cyan} %highlight{%msg{nolookups}%n}{FATAL=red, ERROR=red, WARN=normal, INFO=normal, DEBUG=normal, TRACE=normal}"/>
+				</LoggerNamePatternSelector>
+			</PatternLayout>
+		</Console>
+
+		<!-- Server GUI	-->
+		<Queue name="ServerGuiConsole" ignoreExceptions="true">
+			<PatternLayout pattern="[%d{HH:mm:ss} %level] (%logger{1}) %msg{nolookups}%n">
+				<LoggerNamePatternSelector defaultPattern="[%d{HH:mm:ss} %level] (%logger{1}) %msg{nolookups}%n">
+					<!-- Dont show the logger name for minecraft classes-->
+					<PatternMatch key="net.minecraft.,com.mojang." pattern="[%d{HH:mm:ss} %level] %msg{nolookups}%n"/>
+				</LoggerNamePatternSelector>
+			</PatternLayout>
+		</Queue>
+
+		<!-- latest.log -->
+		<RollingRandomAccessFile name="File" fileName="logs/latest.log" filePattern="logs/%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level] (%logger{1}) %msg{nolookups}%n">
+				<LoggerNamePatternSelector defaultPattern="[%d{HH:mm:ss}] [%t/%level] (%logger{1}) %msg{nolookups}%n">
+					<!-- Dont show the logger name for minecraft classes-->
+					<PatternMatch key="net.minecraft.,com.mojang." pattern="[%d{HH:mm:ss}] [%t/%level] (Minecraft) %msg{nolookups}%n"/>
+				</LoggerNamePatternSelector>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<OnStartupTriggeringPolicy />
+			</Policies>
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger level="${sys:fabric.log.level:-info}" name="net.minecraft"/>
+		<Root level="all">
+      <filters>
+        <MarkerFilter marker="NETWORK_PACKETS" onMatch="DENY" onMismatch="NEUTRAL"/>
+      </filters>
+			<AppenderRef ref="SysOut" level="${sys:fabric.log.level:-info}"/>
+			<AppenderRef ref="LatestFile" level="${sys:fabric.log.level:-info}"/>
+			<AppenderRef ref="ServerGuiConsole" level="${sys:fabric.log.level:-info}"/>
+		</Root>
+	</Loggers>
+
+</Configuration>
