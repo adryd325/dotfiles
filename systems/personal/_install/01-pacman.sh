@@ -17,6 +17,8 @@ if [[ "${AR_OS}" == "linux_arch" ]]; then
 # .ADRYD LOCK (${AR_MODULE}) (this is to prevent the deploy script from infinitely appending this config to the end of the file)
 [multilib]
 Include = /etc/pacman.d/mirrorlist
+[aur]
+Server = https://aur.coolmathgames.tech
 EOF
             log info "Enable multilib"
         fi
@@ -35,6 +37,11 @@ EOF
             log info "Apply custom compiler args"
         fi
     fi
+
+    log info "Add Mary's pacman hooks"
+    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/restore-modules.hook" "/usr/share/libalpm/hooks"
+    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/69-backup-modules.hook" "/usr/share/libalpm/hooks"
+
     if [[ "${USER}" = "adryd" ]] && [[ -e /etc/pacman.d/mirrorlist ]]; then
         # this doesn't apply outside of my area
         [[ ! -e /etc/pacman.d/mirrorlist.arbak ]] && sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.arbak

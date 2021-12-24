@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = linux
+
+[Action]
+Depends = coreutils
+Depends = bash
+When = PreTransaction
+Exec = /usr/bin/bash -c 'find /usr/lib/modules -maxdepth 1 -type l -delete; cp -a /usr/lib/modules/$(uname -r) /tmp 2>/dev/null || :'
+

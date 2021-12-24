@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Remove
+Operation = Upgrade
+Type = Package
+Target = linux
+
+[Action]
+Depends = coreutils
+Depends = bash
+When = PostTransaction
+Exec = /usr/bin/bash -c 'if [[ -d /tmp/$(uname -r) ]]; then mv /usr/lib/modules/$(uname -r) /tmp/$(uname -r)/; ln -s /tmp/$(uname -r) /usr/lib/modules/$(uname -r); fi'
+

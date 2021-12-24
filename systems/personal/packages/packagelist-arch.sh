@@ -131,8 +131,10 @@ packages=(
     "systemd-resolvconf"
     "tlp"
     "touchegg"
+    "unzip"
     "xclip"
     "yt-dlp"
+    "zip"
 
     # Build Tools used frequently by things I use on the AUR
     "cmake"

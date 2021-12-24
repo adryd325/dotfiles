@@ -1,15 +1,14 @@
 {
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
+    "telemetry.telemetryLevel": "off",
     "editor.minimap.enabled": false,
-    "window.titleBarStyle": "custom",
-    "window.menuBarVisibility": "compact",
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "editor.suggest.showStatusBar": true,
     "eslint.alwaysShowStatus": true,
-    "editor.fontFamily": "Rec Mono Semicasual",
+    "editor.fontFamily": "Rec Mono Linear",
     "editor.fontSize": 15,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[json]": {
@@ -30,7 +29,7 @@
     "explorer.confirmDragAndDrop": false,
     "editor.renderWhitespace": "none",
     "prettier.tabWidth": 4,
-    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.colorTheme": "Monokai Pro",
     "shellcheck.customArgs": [
         "-x"
     ],

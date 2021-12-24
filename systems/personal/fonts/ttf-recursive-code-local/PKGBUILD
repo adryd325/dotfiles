@@ -16,15 +16,12 @@ package() {
     source venv/bin/activate
     pip install --upgrade pip
     pip install -r requirements.txt
-    font=$(find font-data -name Recursive_* | head -1)
-    python3 scripts/instantiate-code-fonts.py ../../casual.yaml "${font}"
-    python3 scripts/instantiate-code-fonts.py ../../duotone.yaml "${font}"
-    python3 scripts/instantiate-code-fonts.py ../../linear.yaml "${font}"
-    python3 scripts/instantiate-code-fonts.py ../../semicasual.yaml "${font}"
-    python3 scripts/instantiate-code-fonts.py ../../casual_liga.yaml "${font}"
-    python3 scripts/instantiate-code-fonts.py ../../duotone_liga.yaml "${font}"
-    python3 scripts/instantiate-code-fonts.py ../../linear_liga.yaml "${font}"
-    python3 scripts/instantiate-code-fonts.py ../../semicasual_liga.yaml "${font}"
+    fontTemplate=$(find font-data -name Recursive_* | head -1)
+    variants=(casual duotone linear semicasual casual_liga duotone_liga linear_liga semicasual_liga)
+    for variant in "${variants[@]}"; do
+        python3 scripts/instantiate-code-fonts.py ../../"${variant}".yaml "${fontTemplate}" &
+    done
+    wait
     mkdir -p "${pkgdir}"/usr/share/fonts/TTF/
     cp -r fonts/* "${pkgdir}"/usr/share/fonts/TTF
 }

@@ -5,6 +5,18 @@
 Family Name: Linear 
 
 Fonts:
+  Light:
+    MONO: 1
+    CASL: 0
+    wght: 300
+    slnt: 0
+    CRSV: 0
+  Light Italic:
+    MONO: 1
+    CASL: 0
+    wght: 300
+    slnt: -10
+    CRSV: 1
   Regular:
     MONO: 1
     CASL: 0
@@ -15,6 +27,30 @@ Fonts:
     MONO: 1
     CASL: 0
     wght: 400
+    slnt: -10
+    CRSV: 1
+  Medium:
+    MONO: 1
+    CASL: 0
+    wght: 500
+    slnt: 0
+    CRSV: 0
+  Medium Italic:
+    MONO: 1
+    CASL: 0
+    wght: 500
+    slnt: -10
+    CRSV: 1
+  SemiBold:
+    MONO: 1
+    CASL: 0
+    wght: 600
+    slnt: 0
+    CRSV: 0
+  SemiBold Italic:
+    MONO: 1
+    CASL: 0
+    wght: 600
     slnt: -10
     CRSV: 1
   Bold:
