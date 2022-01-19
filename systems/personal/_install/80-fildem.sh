@@ -6,7 +6,7 @@ AR_MODULE="fildem"
 ar_os
 ar_tmp
 
-if [[ "${AR_OS}" = "linux_arch" ]]; then
+if [[ "${AR_OS}" = "linux_arch" && "this is too finnicky" = "dont install it" ]]; then
   # Install daemon
   workDir="${AR_TMP}"/${AR_MODULE}
   if [[ -d "${workDir}" ]]; then 

@@ -1,5 +1,5 @@
 #!/bin/bash
 tee "/tmp/mc-$$-stdin" | cat &
-gnome-terminal -- bash -c "echo \$$ > /tmp/mc-$$-pid; tail -n +0 -f /tmp/mc-$$-stdin | __NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia $* | tee /tmp/mc-$$-stdout & while kill -0 $$ && kill -0 \$! 2> /dev/null; do sleep 1; done; pkill -9 \$$"
+gnome-terminal -- bash -c "echo \$$ > /tmp/mc-$$-pid; tail -n +0 -f /tmp/mc-$$-stdin | $* | tee /tmp/mc-$$-stdout & while kill -0 $$ && kill -0 \$! 2> /dev/null; do sleep 1; done; pkill -9 \$$"
 sleep 1
 tail --pid="$(cat /tmp/mc-$$-pid)" -n +0 -f /tmp/mc-$$-stdout | stdbuf -o L sed 's/\x1B\[[0-9;]\{0,3\}[A-Za-z]//g'

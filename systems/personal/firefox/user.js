@@ -14,7 +14,7 @@ user_pref("browser.devedition.theme.showCustomizeButton", true);
 user_pref("browser.tabs.drawInTitlebar", true);
 user_pref("browser.uidensity", 0);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-user_pref("gnomeTheme.systemIcons", true);
+user_pref("gnomeTheme.systemIcons", false);
 user_pref("gnomeTheme.hideSingleTab", true);
 
 // Disable Firefox's new "Proton" theme (until firefox-gnome-theme works)

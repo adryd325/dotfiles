@@ -17,6 +17,7 @@ packages=(
     "btrfs-progs"
     "networkmanager"
     "neovim"
+    "nano"
     "git"
     "pacman"
     "openssh"
@@ -38,6 +39,7 @@ packages=(
     "gnome-settings-daemon"
     "gnome-shell"
     "gnome-shell-extensions"
+    "gnome-software"
     "gnome-system-monitor"
     "gnome-terminal"
     "gnome-themes-extra"
@@ -59,56 +61,74 @@ packages=(
     "tracker3-miners"
 
     # Base apps
-    "chromium" # i've given up on firefox, there's a whole list of reasons
+    "firefox-developer-edition"
     "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
+    "1password"
     # usually a terminal and discord would go here, but those will get installed elsewhere
 
     # Programming languages and libs
-    "go"
     "jdk-openjdk"
+    "jdk11-openjdk"
     "jdk8-openjdk"
     "nodejs"
     "npm"
     "nvm"
     "pnpm"
     "python"
-    "rust"
+    "rustup"
 
     # Utilities
+    "aseprite"
     "audacity"
     "cef-minimal"
+    "celluloid"
+    "chromium"
     "dconf-editor"
     "deluge"
     "deluge-gtk"
+    "easyeffects"
     "freerdp" # for remmina
+    "geary"
     "gimp"
     "gnome-calculator"
     "gnome-calendar"
     "gnome-contacts"
     "gnome-system-monitor"
     "inkscape"
+    "intellij-idea-community-edition"
     "keepassxc"
     "libreoffice-still"
     "libvncserver" # for remmina
     "mesa-demos"
     "mumble"
-    "obs-studio-browser"
+    "obs-studio"
+    "parsec-bin"
     "pavucontrol"
     "peek"
+    "piavpn-bin"
+    "quodlibet"
     "remmina"
     "signal-desktop"
     "telegram-desktop"
+    "tlpui"
     "torbrowser-launcher"
     "v4l2loopback-dkms"
     "virt-viewer"
-    "vlc-luajit" # dep of obs-studio-browser, need a video player anyways
+    # "vlc-luajit" # dep of obs-studio-browser, need a video player anyways
     "xournalpp"
+    "yubioath-desktop"
+
+    # Make QT apps not look awful
+    "qt5ct"
+    "breeze-icons"
+    "breeze"
 
     # Extras
     "aria2"
     "bash-completion"
     "croc"
     "cups"
+    "espeak"
     "fd" # find clone
     "ffmpeg"
     "git-crypt"
@@ -128,6 +148,7 @@ packages=(
     "ripgrep"
     "sd" # sed clone
     "shellcheck"
+    "solo2-cli-git"
     "systemd-resolvconf"
     "tlp"
     "touchegg"
@@ -148,6 +169,7 @@ packages=(
     "noto-fonts-cjk"
     "noto-fonts-emoji-apple" # Noto Color Emoji
     "ttf-unifont" # Unifont
+    "ttf-ipa-mona"
     # "otf-inter-local" # Inter
     # "otf-recursive-code-local" # Recursive
 
@@ -172,7 +194,7 @@ fi
 if [[ "${HOSTNAME}" = "popsicle" ]]; then
     packages+=(
         # Games
-        "multimc-git"
+        "polymc-git"
 
          # Drivers
         "nvidia"

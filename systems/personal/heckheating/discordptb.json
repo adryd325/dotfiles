@@ -2,7 +2,10 @@
   "inspectAll": true,
   "debugPatches": true,
   "dangerMode": false,
-  "loggers": ["silly", "verbose"],
+  "loggers": [
+    "silly",
+    "verbose"
+  ],
   "defaultLoggerLevel": 400,
   "modules": {
     "pseudoscience": true,
@@ -18,6 +21,8 @@
     "autoPatch": true,
     "linuxUpdater": true,
     "react": true,
-    "postnet": true
+    "postnet": true,
+    "channelleak": true,
+    "3y3": true
   }
 }

@@ -42,5 +42,7 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "window.menuBarVisibility": "visible",
+    "window.titleBarStyle": "custom"
 }

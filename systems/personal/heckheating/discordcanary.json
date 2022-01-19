@@ -28,7 +28,6 @@
     "cynSpeaking": true,
     "3y3": true,
     "greentext": true,
-    "moyai": true,
     "tf2Engineer": true,
     "noF1Help": true,
     "hidpiFixes": true,
@@ -38,7 +37,6 @@
     "whoJoined": true,
     "platformIcons": true,
     "disableF1Help": true,
-    "allPresences": true,
     "noJoinMessageWave": true,
     "callIdling": true,
     "copyAvatarUrl": true,
@@ -182,7 +180,7 @@
           "889997957968035931"
         ]
       },
-      "enabled": true
+      "enabled": false
     },
     "hiddenTyping": {
       "enabled": true,
@@ -232,6 +230,8 @@
         ]
       },
       "enabled": true
-    }
+    },
+    "exec": true,
+    "moyai": true
   }
 }
