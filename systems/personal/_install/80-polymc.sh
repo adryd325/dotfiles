@@ -4,10 +4,6 @@
 ar_os
 AR_MODULE="polymc"
 
-# TODO: make platform agnostic
-# brew check if multimc is installed
-# set multimc dir to a variable
-
 if [ "${AR_OS}" == "linux_arch" ] && pacman -Q polymc-git &> /dev/null; then
     # Make multimc dir if it doesn't already exist
     [ -e "${HOME}/.local/share/polymc" ] \
