@@ -9,7 +9,7 @@ conflicts=(ttf-recursive otf-recursive)
 
 package() {
     rm -rf Inter\ Desktop
-    url=$(url -sS https://api.github.com/repos/rsms/inter/releases/latest | jq -r .assets[0].browser_download_url)
+    url=$(curl -sS https://api.github.com/repos/rsms/inter/releases/latest | jq -r .assets[0].browser_download_url)
     aria2c "${url}" --continue -o Inter.zip 
     unzip Inter.zip Inter\ Desktop/*.otf
     mkdir -p "${pkgdir}"/usr/share/fonts/OTF/Inter
