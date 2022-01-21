@@ -44,7 +44,7 @@
         <MarkerFilter marker="NETWORK_PACKETS" onMatch="DENY" onMismatch="NEUTRAL"/>
       </filters>
 			<AppenderRef ref="SysOut" level="${sys:fabric.log.level:-info}"/>
-			<AppenderRef ref="LatestFile" level="${sys:fabric.log.level:-info}"/>
+			<AppenderRef ref="File" level="${sys:fabric.log.level:-info}"/>
 			<AppenderRef ref="ServerGuiConsole" level="${sys:fabric.log.level:-info}"/>
 		</Root>
 	</Loggers>

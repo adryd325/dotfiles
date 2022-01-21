@@ -4,7 +4,6 @@ export apps=(
     "nm-connection-editor.desktop"
     "qv4l2.desktop"
     "qvidcap.desktop"
-    "ca.desrt.dconf-editor.desktop"
     "bssh.desktop"
     "bvnc.desktop"
     "remote-viewer.desktop"

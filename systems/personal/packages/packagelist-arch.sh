@@ -28,7 +28,7 @@ packages=(
     "chrome-gnome-shell"
     "eog"
     "file-roller"
-    "gdm-plymouth-prime"
+    "gdm-prime"
     "gnome-backgrounds"
     "gnome-color-manager"
     "gnome-control-center"
@@ -50,7 +50,7 @@ packages=(
     "gvfs-gphoto2"
     "gvfs-nfs"
     "gvfs-smb"
-    "libgdm-plymouth-prime"
+    "libgdm-prime"
     "nautilus"
     "plymouth"
     "sushi"
@@ -59,6 +59,7 @@ packages=(
     "tracker-miners"
     "tracker3"
     "tracker3-miners"
+    "xdg-desktop-portal-gnome"
 
     # Base apps
     "firefox-developer-edition"
@@ -80,7 +81,6 @@ packages=(
     # Utilities
     "aseprite"
     "audacity"
-    "cef-minimal"
     "celluloid"
     "chromium"
     "dconf-editor"
@@ -117,6 +117,7 @@ packages=(
     # "vlc-luajit" # dep of obs-studio-browser, need a video player anyways
     "xournalpp"
     "yubioath-desktop"
+    "flatpak"
 
     # Make QT apps not look awful
     "qt5ct"
