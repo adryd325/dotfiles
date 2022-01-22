@@ -198,9 +198,10 @@ export VISUAL="nvim"
 
 if [[ "${HOSTNAME}" = "lemon" ]]; then
     export PATH="${AR_DIR}/systems/server/lemon/bin:${HOME}/.local/bin:${PATH}"
-elif [[ "${HOSTNAME}" = "leaf-macos" ]]; then
-    export PATH="/usr/local/bin"
 else 
+    if [[ ${HOSTNAME} = "leaf-macos.in.adryd.com" ]]; then
+        export PATH="/usr/local/bin:${PATH}"
+    fi
     export PATH="${AR_DIR}/systems/personal/bin:${HOME}/.local/bin:${PATH}"
 fi
 
