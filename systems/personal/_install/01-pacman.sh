@@ -38,9 +38,9 @@ EOF
         fi
     fi
 
-    log info "Add Mary's pacman hooks"
-    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/restore-modules.hook" "/usr/share/libalpm/hooks"
-    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/69-backup-modules.hook" "/usr/share/libalpm/hooks"
+    # log info "Add Mary's pacman hooks"
+    # sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/restore-modules.hook" "/usr/share/libalpm/hooks"
+    # sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/69-backup-modules.hook" "/usr/share/libalpm/hooks"
 
     if [[ "${USER}" = "adryd" ]] && [[ -e /etc/pacman.d/mirrorlist ]]; then
         # this doesn't apply outside of my area

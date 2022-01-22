@@ -1,5 +1,8 @@
 #!/bin/bash
-tee "/tmp/mc-$$-stdin" | cat &
-gnome-terminal -- bash -c "echo \$$ > /tmp/mc-$$-pid; tail -n +0 -f /tmp/mc-$$-stdin | $* | tee /tmp/mc-$$-stdout & while kill -0 $$ && kill -0 \$! 2> /dev/null; do sleep 1; done; pkill -9 \$$"
+echo -e "!![Launcher]!Using ari's cursed-mc-run script:\n!![Launcher]!  /tmp/mc-$$-stdin\n!![Launcher]!  /tmp/mc-$$-stdout\n!![Launcher]!  /tmp/mc-$$-pid\n"
+stdbuf -o L sed "/param --version/{N;s/param --version\nparam MultiMC5/param --version\nparam $INST_NAME/}" | tee "/tmp/mc-$$-stdin" > /dev/null &
+gnome-terminal -- bash -c "echo \$$ > /tmp/mc-$$-pid; tail -n +0 -f /tmp/mc-$$-stdin | $* | tee /tmp/mc-$$-stdout & while kill -0 $$ && kill -0 \$! 2> /dev/null; do sleep 1; done; rm /tmp/mc-$$-*; pkill \$$;"
 sleep 1
+echo -e "!![Launcher]!Real Minecraft process ID: $(cat /tmp/mc-$$-pid)\n"
 tail --pid="$(cat /tmp/mc-$$-pid)" -n +0 -f /tmp/mc-$$-stdout | stdbuf -o L sed 's/\x1B\[[0-9;]\{0,3\}[A-Za-z]//g'
+rm /tmp/mc-$$-*
