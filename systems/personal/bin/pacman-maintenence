@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Sync DB and update stuf
+sudo pacman -Syyu
+
+# Remove orphaned
+orphaned="$(pacman -Qdttq)"
+if [[ -n "${orphaned}" ]]; then
+ sudo pacman -Rns "${orphaned[@]}"
+fi
+
+# Clear caches of not-installed packages
+paru -Sc
+
+# Update development packages from repo
+mkdir /tmp/blankdb
+pacman -Slq aur | pacman -Qq - 2>/dev/null | grep -Ee '-(bzr|cvs|darcs|git|hg|svn)$' | sudo pacman --cachedir /tmp/blankdb -S -
+# Update local cache
+if [[ -n "$(ls -A /tmp/blankdb)" ]]; then
+  sudo mv -f /tmp/blankdb/* /var/cache/pacman/pkg
+fi
+rm -rf /tmp/blankdb 

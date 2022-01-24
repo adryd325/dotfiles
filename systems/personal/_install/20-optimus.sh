@@ -9,8 +9,8 @@ if [ "${AR_OS}" == "linux_arch" ]; then
     if pacman -Q gdm &> /dev/null; then
         log info "Disable Wayland"
         # Backup existing config
-        [ ! -e /etc/gdm/custom.conf.arbak ] \
-            && sudo cp /etc/gdm/custom.conf /etc/gdm/custom.conf.arbak
+        [ ! -e /etc/gdm/custom.conf.orig ] \
+            && sudo cp /etc/gdm/custom.conf /etc/gdm/custom.conf.orig
         sudo sed -i "s/#WaylandEnable=false/WaylandEnable=false/" /etc/gdm/custom.conf
         # The logs are rather self-explainatory so no need for more comment
         if [ "${HOSTNAME}" == "popsicle" ]; then 

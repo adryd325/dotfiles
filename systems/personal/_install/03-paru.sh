@@ -7,7 +7,7 @@ AR_MODULE="paru"
 if [[ "${AR_OS}" == "linux_arch" ]]; then
     log info "Changing paru preferences"
     if [[ -f /etc/paru.conf ]]; then
-        [[ ! -e /etc/paru.conf.arbak ]] && sudo cp /etc/paru.conf /etc/paru.conf.arbak
+        [[ ! -e /etc/paru.conf.orig ]] && sudo cp /etc/paru.conf /etc/paru.conf.orig
         log silly "Enable BottomUp"
         sudo sed -i "s/^#BottomUp\$/BottomUp/" /etc/paru.conf
         log silly "Enable SudoLoop"

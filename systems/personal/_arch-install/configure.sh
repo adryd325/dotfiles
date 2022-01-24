@@ -29,7 +29,7 @@ sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
 # FORMER GRUB-BASED CONFIG
 # log info "Configuring grub for first boot"
-# cp /etc/default/grub /etc/default/grub.arbak
+# cp /etc/default/grub /etc/default/grub.orig
 # sed -i "s/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/" /etc/default/grub
 # sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3 quiet\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\"/" /etc/default/grub
 # sed -i "s/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"loglevel=3 vt.global_cursor_default=0 rd.luks.name=$installTargetUUID=$host\" splash/" /etc/default/grub
@@ -72,7 +72,7 @@ sed -i "s/vmlinuz-linux/vmlinuz-linux-lts/" /boot/loader/entries/archlinux-lts.c
 sed -i "s/initramfs-linux/initramfs-linux-lts/" /boot/loader/entries/archlinux-lts.conf
 
 log info "Configuring mkinitcpio"
-cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.arbak
+cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.orig
 sed -i "s:BINARIES=():BINARIES=(/usr/bin/btrfs):" /etc/mkinitcpio.conf
 sed -i "s/^HOOKS=([a-zA-Z0-9\-_ ]*)/HOOKS=(base systemd autodetect keyboard modconf block sd-encrypt filesystems fsck)/" /etc/mkinitcpio.conf
 # popsicle needs battery or it will show completely wrong battery levels

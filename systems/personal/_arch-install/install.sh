@@ -152,7 +152,7 @@ log info "Copying over .adryd"
 cp -r "${AR_DIR}" "/mnt${AR_DIR}"
 
 log info "Copying over mirrorlist"
-mv /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.arbak
+mv /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.orig
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 
 rootUUID="$(lsblk -o UUID,PARTLABEL | grep "${host}" | grep -oP "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")"
