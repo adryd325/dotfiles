@@ -13,23 +13,25 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
     oldPwd="${PWD}"
     paruDir="${AR_TMP}/${AR_MODULE}/paru"
     if [[ ! -x "$(command -v paru)" ]]; then
-        [[ -d "${paruDir}" ]] && rm -r "${paruDir}"
-        mkdir -p "${paruDir}"
-        # go for bin variant cause rustc slow
-        log verb "Cloning paru"
-        git clone https://aur.archlinux.org/paru-bin.git "${paruDir}" --quiet
-        cd "${paruDir}" || return
-        log verb "Building paru"
-        makepkg -si --noconfirm
-        cd "${oldPwd}" || return
+        if grep "aur.coolmathgames.tech" /etc/pacman.conf &> /dev/null; then
+            sudo pacman -S paru
+        else
+            mkdir -p "${paruDir}"
+            log verb "Cloning paru"
+            git clone https://aur.archlinux.org/paru.git "${paruDir}" --quiet
+            cd "${paruDir}" || return
+            log verb "Building paru"
+            makepkg -si --noconfirm
+            cd "${oldPwd}" || return
+        fi
     fi
 
-        # Add keyserver
-        if ! grep "keyserver hkps://keyserver.ubuntu.com" "${HOME}/.gnupg/gpg.conf" &> /dev/null; then
-            log info "Adding gpg keyserver"
-            mkdir -p "${HOME}/.gnupg"
-            echo "keyserver hkps://keyserver.ubuntu.com" >> "${HOME}/.gnupg/gpg.conf"
-        fi
+    # Add keyserver
+    if ! grep "keyserver hkps://keyserver.ubuntu.com" "${HOME}/.gnupg/gpg.conf" &> /dev/null; then
+        log info "Adding gpg keyserver"
+        mkdir -p "${HOME}/.gnupg"
+        echo "keyserver hkps://keyserver.ubuntu.com" >> "${HOME}/.gnupg/gpg.conf"
+    fi
 
     # Install everything with paru
     paru -Sy --noconfirm --useask --asexplicit --removemake "${packages[@]}"
