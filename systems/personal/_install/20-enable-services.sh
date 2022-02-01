@@ -23,9 +23,17 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
         log info "Enabling touchegg"
         sudo systemctl enable touchegg > /dev/null
     fi
-    if pacman -Q tlp &> /dev/null; then
-        log info "Enabling tlp"
-        sudo systemctl enable tlp > /dev/null
+    if pacman -Q thermald &> /dev/null; then
+        log info "Enabling thermald"
+        sudo systemctl enable thermald > /dev/null
+    fi
+    if pacman -Q auto-cpufreq &> /dev/null; then
+        log info "Enabling auto-cpufreq"
+        sudo systemctl enable auto-cpufreq > /dev/null
+    fi
+    if pacman -Q libvirtd &> /dev/null; then
+        log info "Enabling libvirtd"
+        sudo systemctl enable libvirtd > /dev/null
     fi
     if pacman -Q pipewire &> /dev/null; then
         log info "Enabling pipewire"

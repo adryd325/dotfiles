@@ -110,7 +110,6 @@ packages=(
     "remmina"
     "signal-desktop"
     "telegram-desktop"
-    "tlpui"
     "torbrowser-launcher"
     "v4l2loopback-dkms"
     "virt-viewer"
@@ -151,12 +150,16 @@ packages=(
     "shellcheck"
     "solo2-cli-git"
     "systemd-resolvconf"
-    "tlp"
     "touchegg"
     "unzip"
     "xclip"
     "yt-dlp"
     "zip"
+
+    "kernel-modules-hook-reflink"
+    "pacman-cleanup-hook"
+    "auto-cpufreq"
+    "thermald"
 
     # Build Tools used frequently by things I use on the AUR
     "cmake"
@@ -207,6 +210,13 @@ if [[ "${HOSTNAME}" = "popsicle" ]]; then
         "vulkan-intel"
         "lib32-vulkan-intel"
         "switcheroo-control"
+
+        # VM stuff
+        "virt-manager"
+        "qemu"
+        "dnsmasq"
+        "edk2-ovmf"
+        "swtpm"
     )
 fi
 
