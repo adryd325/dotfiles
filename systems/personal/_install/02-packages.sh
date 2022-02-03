@@ -12,18 +12,16 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
     # Install paru if it's not already installed
     oldPwd="${PWD}"
     paruDir="${AR_TMP}/${AR_MODULE}/paru"
-    if [[ ! -x "$(command -v paru)" ]]; then
-        if grep "aur.coolmathgames.tech" /etc/pacman.conf &> /dev/null; then
+    if grep "aur.coolmathgames.tech" /etc/pacman.conf &> /dev/null; then
             sudo pacman -S paru
-        else
-            mkdir -p "${paruDir}"
-            log verb "Cloning paru"
-            git clone https://aur.archlinux.org/paru.git "${paruDir}" --quiet
-            cd "${paruDir}" || return
-            log verb "Building paru"
-            makepkg -si --noconfirm
-            cd "${oldPwd}" || return
-        fi
+    elif [[ ! -x "$(command -v paru)" ]]; then
+        mkdir -p "${paruDir}"
+        log verb "Cloning paru"
+        git clone https://aur.archlinux.org/paru.git "${paruDir}" --quiet
+        cd "${paruDir}" || return
+        log verb "Building paru"
+        makepkg -si --noconfirm
+        cd "${oldPwd}" || return
     fi
 
     # Add keyserver

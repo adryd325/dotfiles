@@ -51,6 +51,7 @@ packages=(
     "gvfs-nfs"
     "gvfs-smb"
     "libgdm-prime"
+    "mutter-performance"
     "nautilus"
     "plymouth"
     "sushi"
@@ -78,9 +79,12 @@ packages=(
     "python"
     "rustup"
 
-    # Utilities
+    # General use desktop apps
     "aseprite"
     "audacity"
+    "blender"
+    "blockbench-bin"
+    "cider"
     "celluloid"
     "chromium"
     "dconf-editor"
@@ -96,15 +100,15 @@ packages=(
     "gnome-system-monitor"
     "inkscape"
     "intellij-idea-community-edition"
+    "junction"
     "keepassxc"
+    "kooha"
     "libreoffice-still"
     "libvncserver" # for remmina
     "mesa-demos"
     "mumble"
     "obs-studio"
     "parsec-bin"
-    "pavucontrol"
-    "peek"
     "piavpn-bin"
     "quodlibet"
     "remmina"
@@ -117,11 +121,6 @@ packages=(
     "xournalpp"
     "yubioath-desktop"
     "flatpak"
-
-    # Make QT apps not look awful
-    "qt5ct"
-    "breeze-icons"
-    "breeze"
 
     # Extras
     "aria2"
@@ -137,6 +136,8 @@ packages=(
     "imagemagick"
     "jack2"
     "jq"
+    "mesa-utils"
+    "mesa-demos"
     "mpv"
     "networkmanager-openvpn"
     "networkmanager-wireguard-git"
@@ -156,10 +157,20 @@ packages=(
     "yt-dlp"
     "zip"
 
+    # Pacman hooks
     "kernel-modules-hook-reflink"
     "pacman-cleanup-hook"
-    "auto-cpufreq"
-    "thermald"
+    "systemd-boot-pacman-hook"
+
+    # Theming
+    "adw-gtk3-git"
+    "adwaita-icon-theme-git"
+    "breeze-icons"
+    "breeze"
+    "qt5ct" # Make QT apps not look awful
+    "stylepak-git"
+    "yaru-icon-theme" # todo, auto mix adwaita icon theme and yaru icon theme
+    "yaru-sound-theme"
 
     # Build Tools used frequently by things I use on the AUR
     "cmake"
@@ -174,12 +185,16 @@ packages=(
     "noto-fonts-emoji-apple" # Noto Color Emoji
     "ttf-unifont" # Unifont
     "ttf-ipa-mona"
+    "ttf-ms-fonts"
+    "ttf-windows"
     # "otf-inter-local" # Inter
     # "otf-recursive-code-local" # Recursive
 
     # Extra kernel
     "linux-lts"
     "linux-lts-headers"
+
+    # Modern
 )
 
 if [[ "${HOSTNAME}" = "popsicle" ]] || [[ "${HOSTNAME}" = "leaf" ]]; then
@@ -210,6 +225,7 @@ if [[ "${HOSTNAME}" = "popsicle" ]]; then
         "vulkan-intel"
         "lib32-vulkan-intel"
         "switcheroo-control"
+        "cuda"
 
         # VM stuff
         "virt-manager"

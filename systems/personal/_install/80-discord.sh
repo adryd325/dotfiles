@@ -54,7 +54,7 @@ installBranch() {
     ln -s "${HOME}/.local/share/${discordName}/discord.png" "${HOME}/.local/share/icons/hicolor/256x256/${discordLowercase}.png"
     
     log verb "Patching .desktop file"
-    sed -i "s:Exec=/usr/share/${discordLowercase}/${discordName}:Exec=\"${HOME}/.local/share/${discordName}/${discordName}\" --no-sandbox:" \
+    sed -i "s:Exec=/usr/share/${discordLowercase}/${discordName}:Exec=\"${HOME}/.local/share/${discordName}/${discordName}\" -ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy:" \
         "${HOME}"/.local/share/"${discordName}"/"${discordLowercase}".desktop
     sed -i "s/StartupWMClass=discord/StartupWMClass=${discordName}/" \
         "${HOME}"/.local/share/"${discordName}"/"${discordLowercase}".desktop
