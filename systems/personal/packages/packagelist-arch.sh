@@ -16,7 +16,6 @@ packages=(
     "man-pages"
     "btrfs-progs"
     "networkmanager"
-    "neovim"
     "nano"
     "git"
     "pacman"
@@ -24,6 +23,7 @@ packages=(
     "$(ucodepkg)"
 
     # GNOME
+    "adwaita-icon-theme"
     "baobab"
     "chrome-gnome-shell"
     "eog"
@@ -40,6 +40,7 @@ packages=(
     "gnome-shell"
     "gnome-shell-extensions"
     "gnome-software"
+    "gnome-software-packagekit-plugin"
     "gnome-system-monitor"
     "gnome-terminal"
     "gnome-themes-extra"
@@ -81,15 +82,10 @@ packages=(
 
     # General use desktop apps
     "aseprite"
-    "audacity"
     "blender"
-    "blockbench-bin"
     "cider"
-    "celluloid"
     "chromium"
     "dconf-editor"
-    "deluge"
-    "deluge-gtk"
     "easyeffects"
     "freerdp" # for remmina
     "geary"
@@ -100,15 +96,12 @@ packages=(
     "gnome-system-monitor"
     "inkscape"
     "intellij-idea-community-edition"
-    "junction"
     "keepassxc"
-    "kooha"
     "libreoffice-still"
     "libvncserver" # for remmina
     "mesa-demos"
     "mumble"
     "obs-studio"
-    "parsec-bin"
     "piavpn-bin"
     "quodlibet"
     "remmina"
@@ -117,7 +110,6 @@ packages=(
     "torbrowser-launcher"
     "v4l2loopback-dkms"
     "virt-viewer"
-    # "vlc-luajit" # dep of obs-studio-browser, need a video player anyways
     "xournalpp"
     "yubioath-desktop"
     "flatpak"
@@ -125,11 +117,13 @@ packages=(
     # Extras
     "aria2"
     "bash-completion"
+    "cdrtools"
     "croc"
     "cups"
     "espeak"
     "fd" # find clone
     "ffmpeg"
+    "fwupd"
     "git-crypt"
     "hplip"
     "htop"
@@ -138,7 +132,6 @@ packages=(
     "jq"
     "mesa-utils"
     "mesa-demos"
-    "mpv"
     "networkmanager-openvpn"
     "networkmanager-wireguard-git"
     "openbsd-netcat"
@@ -151,8 +144,10 @@ packages=(
     "shellcheck"
     "solo2-cli-git"
     "systemd-resolvconf"
+    "thermald"
     "touchegg"
     "unzip"
+    "wireplumber"
     "xclip"
     "yt-dlp"
     "zip"
@@ -164,12 +159,10 @@ packages=(
 
     # Theming
     "adw-gtk3-git"
-    "adwaita-icon-theme-git"
     "breeze-icons"
     "breeze"
     "qt5ct" # Make QT apps not look awful
     "stylepak-git"
-    "yaru-icon-theme" # todo, auto mix adwaita icon theme and yaru icon theme
     "yaru-sound-theme"
 
     # Build Tools used frequently by things I use on the AUR
@@ -193,8 +186,6 @@ packages=(
     # Extra kernel
     "linux-lts"
     "linux-lts-headers"
-
-    # Modern
 )
 
 if [[ "${HOSTNAME}" = "popsicle" ]] || [[ "${HOSTNAME}" = "leaf" ]]; then
@@ -205,7 +196,6 @@ if [[ "${HOSTNAME}" = "popsicle" ]] || [[ "${HOSTNAME}" = "leaf" ]]; then
         "wine-staging" 
 
         # Games
-        "powder-toy"
         "steam" 
     )
 fi
@@ -226,6 +216,7 @@ if [[ "${HOSTNAME}" = "popsicle" ]]; then
         "lib32-vulkan-intel"
         "switcheroo-control"
         "cuda"
+        "fprintd"
 
         # VM stuff
         "virt-manager"
@@ -233,6 +224,9 @@ if [[ "${HOSTNAME}" = "popsicle" ]]; then
         "dnsmasq"
         "edk2-ovmf"
         "swtpm"
+
+        # Windows dual boot
+        "ntfs-3g"
     )
 fi
 
@@ -246,4 +240,23 @@ if [[ "${HOSTNAME}" = "leaf" ]]; then
     )
 fi
 
+flatpaks=(
+    "net.blockbench.Blockbench"
+    "io.github.celluloid_player.Celluloid"
+    "com.github.tchx84.Flatseal"
+    "de.haekerfelix.Fragments"
+    "re.sonny.Junction"
+    "io.gitub.seadve.Kooha"
+    "com.belmoussaoui.Obfuscate"
+    "com.parsecgaming.parsec"
+    "uk.co.powdertoy.tpt"
+    "org.gnome.SoundRecorder"
+)
+
+flatpaksGnomeNightly=(
+    "org.gnome.TextEditor.Devel"
+)
+
 export packages
+export flatpaks
+export flatpaksGnomeNightly

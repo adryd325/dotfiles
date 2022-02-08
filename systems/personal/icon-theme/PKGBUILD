@@ -1,6 +1,6 @@
 pkgbase="merged-icon-theme-local"
 pkgname="merged-icon-theme-local"
-pkgver=21.10.1.r320.g98cf25845+41.0.r149.g1b528b4c1
+pkgver=21.10.1.r327.gde142fa7f+41.0.r153.gf15e1b4ea
 pkgrel=1
 epoch=1
 pkgdesc="Layered Adwaita-git, Adwaita and Yaru icon themes"
@@ -8,7 +8,7 @@ arch=(any)
 url="https://gitlab.com/adryd/dotfiles"
 license=("GPL3" "LGPL3" "CCPL:by-sa")
 
-makedepends=('meson' 'sassc' 'git')
+makedepends=('meson' 'sassc' 'git' 'imagemagick')
 depends=("hicolor-icon-theme" "gtk-update-icon-cache" "librsvg")
 options=('!strip' '!buildflags' 'staticlibs')
 
@@ -57,29 +57,41 @@ package() {
   # Delete remaining empty directories:
   find "${pkgdir}" -type d -empty -delete
 
-  cd adwaita-icon-theme
-  make DESTDIR="$pkgdir" install
+  cd adwaita-icon-theme || return 1
+  make DESTDIR="${pkgdir}" install
 
   rm -r "${pkgdir}"/usr/share/pkgconfig
 
   mv "${pkgdir}"/usr/share/icons/Adwaita "${pkgdir}"/usr/share/icons/AdwaitaMerged
   sed -i 's/Name=Adwaita$/Name=AdwaitaMerged/' "${pkgdir}"/usr/share/icons/AdwaitaMerged/index.theme > /dev/null
-  sed -i 's/Inherits=hicolor$/Inherits=Adwaita,Breeze,Humanity,hicolor/' "${pkgdir}"/usr/share/icons/AdwaitaMerged/index.theme > /dev/null
-  
+  sed -i 's/Inherits=hicolor$/Inherits=Adwaita,Humanity,hicolor/' "${pkgdir}"/usr/share/icons/AdwaitaMerged/index.theme > /dev/null
+
   mv "${pkgdir}"/usr/share/icons/AdwaitaMerged/512x512/mimetypes/inode-directory.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/512x512/mimetypes/inode-directory2.png
+  mv "${pkgdir}"/usr/share/icons/AdwaitaMerged/48x48/mimetypes/inode-directory.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/48x48/mimetypes/inode-directory2.png
+  mv "${pkgdir}"/usr/share/icons/AdwaitaMerged/32x32/mimetypes/inode-directory.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/32x32/mimetypes/inode-directory2.png
+  mv "${pkgdir}"/usr/share/icons/AdwaitaMerged/24x24/mimetypes/inode-directory.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/24x24/mimetypes/inode-directory2.png
+  mv -f "${pkgdir}"/usr/share/icons/AdwaitaMerged/22x22/mimetypes/inode-directory.png "${pkgdir}"/usr/share/icons/Yaru/24x24/mimetypes/inode-directory.png
+  mv "${pkgdir}"/usr/share/icons/AdwaitaMerged/16x16/mimetypes/inode-directory.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/16x16/mimetypes/inode-directory2.png
+
   mv -f "${pkgdir}"/usr/share/icons/Yaru/256x256@2x/mimetypes/* "${pkgdir}"/usr/share/icons/AdwaitaMerged/512x512/mimetypes
-  mv -f "${pkgdir}"/usr/share/icons/Yaru/48x48@2x/mimetypes/* "${pkgdir}"/usr/share/icons/AdwaitaMerged/96x96/mimetypes
-  mv -f "${pkgdir}"/usr/share/icons/Yaru/32x32@2x/mimetypes/* "${pkgdir}"/usr/share/icons/AdwaitaMerged/64x64/mimetypes
   mv -f "${pkgdir}"/usr/share/icons/Yaru/48x48/mimetypes/* "${pkgdir}"/usr/share/icons/AdwaitaMerged/48x48/mimetypes
   mv -f "${pkgdir}"/usr/share/icons/Yaru/32x32/mimetypes/* "${pkgdir}"/usr/share/icons/AdwaitaMerged/32x32/mimetypes
-  mv -f "${pkgdir}"/usr/share/icons/Yaru/24x24/mimetypes/* "${pkgdir}"/usr/share/icons/AdwaitaMerged/24x24/mimetypes
+  cp "${pkgdir}"/usr/share/icons/Yaru/24x24/mimetypes/* "${pkgdir}"/usr/share/icons/AdwaitaMerged/24x24/mimetypes
 
+  cd "${pkgdir}"/usr/share/icons/Yaru/24x24/mimetypes/ || return 1
+  magick mogrify -resize 22x22 -quality 100 -path "${pkgdir}"/usr/share/icons/AdwaitaMerged/22x22/mimetypes ./*.png
+
+  cd "${pkgdir}" || return 1
   mv -f "${pkgdir}"/usr/share/icons/AdwaitaMerged/512x512/mimetypes/inode-directory2.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/512x512/mimetypes/inode-directory.png
+  mv -f "${pkgdir}"/usr/share/icons/AdwaitaMerged/48x48/mimetypes/inode-directory2.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/48x48/mimetypes/inode-directory.png
+  mv -f "${pkgdir}"/usr/share/icons/AdwaitaMerged/32x32/mimetypes/inode-directory2.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/32x32/mimetypes/inode-directory.png
+  mv -f "${pkgdir}"/usr/share/icons/AdwaitaMerged/24x24/mimetypes/inode-directory2.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/24x24/mimetypes/inode-directory.png
+  mv -f "${pkgdir}"/usr/share/icons/AdwaitaMerged/16x16/mimetypes/inode-directory2.png "${pkgdir}"/usr/share/icons/AdwaitaMerged/16x16/mimetypes/inode-directory.png
 
   rm -r "${pkgdir}"/usr/share/icons/Yaru
 }
 
 check() {
-  cd adwaita-icon-theme
+  cd adwaita-icon-theme || return 1
   make check
 }

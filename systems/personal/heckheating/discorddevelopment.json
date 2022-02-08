@@ -11,7 +11,6 @@
     "pseudoscience": true,
     "sentrynerf": true,
     "crashScreen": true,
-    "loadingScreen": true,
     "magicrequire": true,
     "webpackIntercept": true,
     "inspect": true,
@@ -55,6 +54,18 @@
         "ALGOLIA_KEY": "aca0d7082e4e63af5ba5917d5e96bed0",
         "useZlibStream": true
       }
+    },
+    "loadingScreen": {
+      "options": {
+        "debug": true,
+        "style": "dash",
+        "useDefaultLines": false,
+        "additionalLines": [
+          "test",
+          "test2"
+        ]
+      },
+      "enabled": true
     }
   }
 }

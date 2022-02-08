@@ -13,7 +13,7 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
     oldPwd="${PWD}"
     paruDir="${AR_TMP}/${AR_MODULE}/paru"
     if grep "aur.coolmathgames.tech" /etc/pacman.conf &> /dev/null; then
-            sudo pacman -S paru
+        sudo pacman -S paru --noconfirm
     elif [[ ! -x "$(command -v paru)" ]]; then
         mkdir -p "${paruDir}"
         log verb "Cloning paru"
@@ -33,6 +33,13 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
 
     # Install everything with paru
     paru -Sy --noconfirm --useask --asexplicit --removemake "${packages[@]}"
+
+    if pacman -Q flatpak &> /dev/null; then
+        log info "Installing flatpaks"
+        flatpak remote-add --if-not-exists gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
+        flatpak install "${flatpaks[@]}" -y
+        flatpak install "${flatpaksGnomeNightly[@]}" -y
+    fi
 fi
 
 

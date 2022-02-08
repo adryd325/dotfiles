@@ -232,6 +232,12 @@
       "enabled": true
     },
     "exec": true,
-    "moyai": true
+    "moyai": true,
+    "clearUrls": {
+      "enabled": true,
+      "options": {
+        "useDefaultRules": true
+      }
+    }
   }
 }
