@@ -42,12 +42,16 @@ EOF
     fi
 
     log info "Trusting Mary's AUR repo keys"
-    sudo pacman-key --add "${AR_DIR}/systems/personal/${AR_MODULE}/mary-aur.key" > /dev/null
-    sudo pacman-key --lsign-key 4338A0E98FE8718EA718126FD8A8A0C4D0CE4C1E > /dev/null
+    sudo pacman-key --add "${AR_DIR}/systems/personal/${AR_MODULE}/mary-aur.key" &> /dev/null
+    sudo pacman-key --lsign-key 4338A0E98FE8718EA718126FD8A8A0C4D0CE4C1E &> /dev/null
 
-    # log info "Add Mary's pacman hooks"
-    # sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/restore-modules.hook" "/usr/share/libalpm/hooks"
-    # sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/69-backup-modules.hook" "/usr/share/libalpm/hooks"
+    log info "Add pacman hooks"
+    sudo mkdir -p "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/10-backup-modules.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/10-restore-modules.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-systemd-boot.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-stylepak.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-pacman-cache-cleanup.hook" "/etc/pacman.d/hooks"
 
     if [[ "${USER}" = "adryd" ]] && [[ -e /etc/pacman.d/mirrorlist ]]; then
         # this doesn't apply outside of my area
