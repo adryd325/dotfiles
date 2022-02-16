@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+for dir in "${HOME}/.adryd" /opt/adryd-dotfiles; do
+    if [[ -f "${dir}/.manifest" ]] && [[ "$(cat "${dir}/.manifest")" = "adryd-dotfiles-v6" ]]; then
+        export AR_DIR="${dir}"
+        break
+    fi
+done
+
+if [[ -n "${AR_DIR}" ]]; then
+    # normalize paths (useful for brew on macos)
+    mapfile -td ':' splitPath <<< "${PATH}"
+    function hasPath {
+        includes=1
+        for path in "${splitPath[@]}"; do
+            if [[ "${path}" = "$1" ]]; then
+                includes=0
+                break
+            fi
+        done
+        return "${includes}"
+    }
+
+    for dir in /bin /usr/bin /usr/local/bin ${HOME}/.local/bin; do
+        if [[ -d "${dir}" ]] && ! hasPath "$(realpath "${dir}")"; then
+            PATH="${dir}:${PATH}"
+        fi
+    done
+
+    for editor in nvim vim vi nano; do
+        if [[ -x "$(command -v "${editor}")" ]]; then
+            export EDITOR="${editor}"
+            export VISUAL="${editor}"
+            break
+        fi
+    done
+
+    ! hasPath "${AR_DIR}/common/bin" && PATH="${AR_DIR}/common/bin:${PATH}"
+
+    if [[ -d "${AR_DIR}/hosts/${HOSTNAME}/bin" ]] && ! hasPath "${AR_DIR}/hosts/${HOSTNAME}/bin"; then
+        PATH="${AR_DIR}/hosts/${HOSTNAME}/bin:${PATH}"
+    fi
+
+    export PATH
+
+    if [[ $- = *i* ]]; then
+
+        # shellcheck source=./prompts/robyrussel.sh
+        source "${AR_DIR}/common/bash/prompts/robyrussel.sh"
+        # shellcheck source=./bash_aliases.sh
+        source "${AR_DIR}/common/bash/bash_aliases.sh"
+
+        # glob (*) selects files that begin with a dot too
+        shopt -s dotglob
+
+        # load nvm
+        [[ -e "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+
+        # cleanup imports
+        unset getKernel
+        unset getDistro
+    fi
+fi

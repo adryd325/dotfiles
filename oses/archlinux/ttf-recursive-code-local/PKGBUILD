@@ -1,0 +1,55 @@
+# shellcheck shell=bash disable=SC2034,2154
+pkgname=ttf-recursive-code-local
+pkgver=v1.084
+pkgrel=1
+pkgdesc="Recursive Code Local"
+arch=(any)
+makedepends=(git python python-virtualenv python-pip)
+conflicts=(ttf-recursive otf-recursive)
+source=(
+    'git+https://github.com/arrowtype/recursive-code-config.git'
+    'casual_liga.yaml'
+    'casual.yaml'
+    'duotone_liga.yaml'
+    'duotone.yaml'
+    'linear_liga.yaml'
+    'linear.yaml'
+    'semicasual_liga.yaml'
+    'semicasual.yaml'
+)
+sha256sums=(
+    'SKIP'
+    'e61e424af62fb699b94cbdf68729ff4d54b9d9a36edb0868b802361092b2c4c5'
+    '7dc7ce8466773966c6b389d1de4123d59999512ae527a8e73bfbe369bb5a80a2'
+    '4d63e2a8bec5c2a325ff6bf3782e4443604d5cc270ad5da6e7af568d1023c101'
+    '8a04f1184a9508a18f61b4c5703d4281e534f0f8fb7beeafb44b83ddd1108ef9'
+    'b644187dcbe918b86f8d9f8f16cc50aeb5ac11051f9a05bbba88c086d559802e'
+    '71f602b0a7a9715b4bb8e28165ac33dde1f522dd16cc6ef9c39727b92ec2239f'
+    '37a1d66477786175207706b0c5d3017386b4d9da13d0baa43e673dcd983c8ca0'
+    '01df07a67d1e67d1ccbd527ab4c8b0af65788f6c8a6e094e8fb59edd8bbbd793'
+)
+
+pkgver() {
+    curl -sS https://api.github.com/repos/arrowtype/recursive/releases/latest | jq -r .tag_name
+}
+
+prepare() {
+    python3 -m venv venv
+    # shellcheck disable=SC1091
+    source venv/bin/activate
+    pip install --upgrade pip
+    cd recursive-code-config || return $?
+    pip install -r requirements.txt
+}
+
+package() {
+    cd recursive-code-config || return $?
+    fontTemplate=$(find font-data -name "Recursive_*" | head -1)
+    variants=(casual duotone linear semicasual casual_liga duotone_liga linear_liga semicasual_liga)
+    for variant in "${variants[@]}"; do
+        python3 scripts/instantiate-code-fonts.py ../"${variant}".yaml "${fontTemplate}" &
+    done
+    wait
+    mkdir -p "${pkgdir}"/usr/share/fonts/TTF/
+    cp -r fonts/* "${pkgdir}"/usr/share/fonts/TTF
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=aur-builds
+
+[Service]
+Type=oneshot
+WorkingDirectory=/var/aur
+
+User=aur
+Group=aur
+
+ExecStart=/usr/bin/env bash /var/aur/build.sh

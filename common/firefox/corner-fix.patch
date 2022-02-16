@@ -1,0 +1,22 @@
+From fe25ce78de37ed8602eb97b31c06f3d7e4fa04dc Mon Sep 17 00:00:00 2001
+From: adryd <me@adryd.com>
+Date: Fri, 25 Feb 2022 18:01:51 -0500
+Subject: [PATCH] Fix corner radius to match that of gnome 42
+
+---
+ theme/parts/csd.css | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/theme/parts/csd.css b/theme/parts/csd.css
+index bf35f2d..23b7627 100644
+--- a/theme/parts/csd.css
++++ b/theme/parts/csd.css
+@@ -8,7 +8,7 @@
+
+ /* Headerbar top border corners rounded */
+ :root[tabsintitlebar][sizemode="normal"]:not([gtktiledwindow="true"]) #nav-bar {
+-	border-radius: 7px 7px 0 0 !important;
++	border-radius: 12px 12px 0 0 !important;
+ }
+
+ /* Window buttons: at least 1 button */

@@ -1,0 +1,26 @@
+From 7c7fd5df9a21369fbb83b2360a1f0a7d4d730c6d Mon Sep 17 00:00:00 2001
+From: adryd <me@adryd.com>
+Date: Sat, 26 Feb 2022 20:14:25 -0500
+Subject: [PATCH] 42
+
+---
+ metadata.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/metadata.json b/metadata.json
+index 1056294..615957d 100644
+--- a/metadata.json
++++ b/metadata.json
+@@ -9,7 +9,8 @@
+     "3.36",
+     "3.38",
+     "40",
+-    "41"
++    "41",
++    "42"
+   ],
+   "url": "https://github.com/hermes83/compiz-windows-effect",
+   "uuid": "compiz-windows-effect@hermes83.github.com",
+-- 
+2.35.1
+

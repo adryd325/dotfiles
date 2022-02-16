@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo lxc-attach "$1" -- /bin/sh -c 'if [ -x "/bin/bash" ]; then /bin/bash; else /bin/sh; fi'

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+gpuVM="1000"
+VM=$1
+
+if [[ "${USER}" != "root" ]]; then
+    echo "Please run as root"
+    exit 1
+fi
+
+if [[ ! -e "/etc/pve/qemu-server/${VM}.conf" ]]; then
+    echo "Unknown VM: ${VM}"
+    exit 1
+fi
+
+if [[ "$(qm status "${gpuVM}")" == "status: running" ]]; then
+    echo "Shutting down ${gpuVM}"
+    sudo qm shutdown "${gpuVM}" &> /dev/null || echo "Forcing shut down ${gpuVM}" && qm stop "${gpuVM}"
+fi
+sleep 1
+
+sudo qm set "${gpuVM}" --onboot 0 > /dev/null && echo "Disable automatic boot on ${gpuVM}"
+sudo qm set "${VM}" --onboot 1 --hostpci0 01:00,pcie=1,x-vga=1 --usb0 host=046d:c332 --usb1 host=046d:c336 --usb2 host=1-9 --usb3 host=2-9 --vga none > /dev/null && log info "Passthrough hardware to ${VM}"
+
+echo "Starting ${VM}"
+sudo qm start "${VM}"

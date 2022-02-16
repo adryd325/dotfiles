@@ -1,0 +1,13 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Path
+Target = usr/share/applications/*
+
+[Action]
+Description = Hiding internal apps...
+Depends = bash
+Depends = coreutils
+When = PostTransaction
+Exec = /bin/bash -c 'for i in /opt/adryd-dotfiles /home/*/.adryd; do [[ -x "${i}/common/hide-internal-apps/hide-internal-apps.sh" ]] && [[ -f "${i}/.manifest" ]] && [[ "$(cat "${i}/.manifest")" = "adryd-dotfiles-v6" ]] && "${i}/common/hide-internal-apps/hide-internal-apps.sh" && exit 0; done'
