@@ -1,4 +1,5 @@
 #!/bin/bash
+pacman -Q
 
 # Sync DB and update stuf
 sudo pacman -Syyu
@@ -6,11 +7,8 @@ sudo pacman -Syyu
 # Remove orphaned
 orphaned="$(pacman -Qdtq)"
 if [[ -n "${orphaned}" ]]; then
- sudo pacman -Rns "${orphaned[@]}"
+ pacman -Qdttq | sudo pacman -Rns
 fi
-
-# Clear caches of not-installed packages
-paru -Sc
 
 # Update development packages from repo
 # mkdir /tmp/blankdb

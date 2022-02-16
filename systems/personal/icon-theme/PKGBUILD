@@ -1,6 +1,6 @@
 pkgbase="merged-icon-theme-local"
 pkgname="merged-icon-theme-local"
-pkgver=21.10.1.r327.gde142fa7f+41.0.r153.gf15e1b4ea
+pkgver=21.10.1.r338.g4eadeb67b+41.0.r175.g6e9bbd0f3
 pkgrel=1
 epoch=1
 pkgdesc="Layered Adwaita-git, Adwaita and Yaru icon themes"

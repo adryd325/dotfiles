@@ -14,6 +14,7 @@ packages=(
     "base-devel"
     "man-db"
     "man-pages"
+    "paru"
     "btrfs-progs"
     "networkmanager"
     "nano"
@@ -101,6 +102,7 @@ packages=(
     "libvncserver" # for remmina
     "mesa-demos"
     "mumble"
+    "nicotine+"
     "obs-studio"
     "piavpn-bin"
     "quodlibet"
@@ -116,11 +118,14 @@ packages=(
 
     # Extras
     "aria2"
+    "asar"
     "bash-completion"
     "cdrtools"
     "croc"
     "cups"
-    "espeak"
+    "electron"
+    "espeak-ng"
+    "exfatprogs"
     "fd" # find clone
     "ffmpeg"
     "fwupd"
@@ -128,10 +133,12 @@ packages=(
     "hplip"
     "htop"
     "imagemagick"
+    "inetutils"
     "jack2"
     "jq"
     "mesa-utils"
     "mesa-demos"
+    "neovim"
     "networkmanager-openvpn"
     "networkmanager-wireguard-git"
     "openbsd-netcat"
@@ -145,24 +152,20 @@ packages=(
     "solo2-cli-git"
     "systemd-resolvconf"
     "thermald"
+    "traceroute"
     "touchegg"
     "unzip"
+    "veracrypt"
     "wireplumber"
     "xclip"
     "yt-dlp"
     "zip"
-
-    # Pacman hooks
-    "kernel-modules-hook-reflink"
-    "pacman-cleanup-hook"
-    "systemd-boot-pacman-hook"
 
     # Theming
     "adw-gtk3-git"
     "breeze-icons"
     "breeze"
     "qt5ct" # Make QT apps not look awful
-    "stylepak-git"
     "yaru-sound-theme"
 
     # Build Tools used frequently by things I use on the AUR
@@ -203,7 +206,7 @@ fi
 if [[ "${HOSTNAME}" = "popsicle" ]]; then
     packages+=(
         # Games
-        "polymc-git"
+        "polymc"
 
          # Drivers
         "nvidia"

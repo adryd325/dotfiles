@@ -50,7 +50,7 @@ EOF
     sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/10-backup-modules.hook" "/etc/pacman.d/hooks"
     sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/10-restore-modules.hook" "/etc/pacman.d/hooks"
     sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-systemd-boot.hook" "/etc/pacman.d/hooks"
-    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-stylepak.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-hidden-apps.hook" "/etc/pacman.d/hooks"
     sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-pacman-cache-cleanup.hook" "/etc/pacman.d/hooks"
 
     if [[ "${USER}" = "adryd" ]] && [[ -e /etc/pacman.d/mirrorlist ]]; then

@@ -4,4 +4,4 @@ pkgver=1.0.0
 pkgrel=1
 pkgdesc="Package to ensure all Discord's dependencies are installed"
 arch=(any)
-depends=(glibc alsa-lib gcc-libs libnotify nspr nss libxss libxtst libc++)
+depends=(glibc alsa-lib gcc-libs libnotify nspr nss libxss libxtst libc++ electron16)

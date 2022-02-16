@@ -10,4 +10,4 @@ Description = Cleaning pacman cache...
 Depends = pacman
 Depends = sh
 When = PostTransaction
-Exec = /bin/sh -c 'paccache -r &>/dev/null; paccache -rvuk0 --min-atime "20 days ago" &>/dev/null '
+Exec = /bin/sh -c 'paccache -r &>/dev/null; paccache -rvuk0 --min-atime "20 days ago" &>/dev/null'

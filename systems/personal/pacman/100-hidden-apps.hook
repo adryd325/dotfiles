@@ -1,0 +1,13 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Path
+Target = usr/share/applications/*
+
+[Action]
+Description = Hiding internal apps...
+Depends = sh
+Depends = coreutils
+When = PostTransaction
+Exec = /bin/bash -c "AR_SPLASH=1 AR_DIR=/home/adryd/.adryd /home/adryd/.adryd/systems/personal/_install/20-hide-internal-apps.sh"

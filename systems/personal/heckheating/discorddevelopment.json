@@ -57,15 +57,20 @@
     },
     "loadingScreen": {
       "options": {
-        "debug": true,
-        "style": "dash",
-        "useDefaultLines": false,
-        "additionalLines": [
-          "test",
-          "test2"
-        ]
+        "debug": false,
+        "style": "forge",
+        "useDefaultLines": true,
+        "additionalLines": []
       },
       "enabled": true
+    },
+    "legacyWindowButtons": true,
+    "oldTitleBarButtons": true,
+    "platformStyles": {
+      "enabled": true,
+      "options": {
+        "platformStyle": "osx"
+      }
     }
   }
 }

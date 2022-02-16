@@ -23,7 +23,12 @@
     "postnet": true,
     "noconmsg": true,
     "unravelMessage": true,
-    "declutterTextButtons": true,
+    "declutterTextButtons": {
+      "options": {
+        "keepSticker": false
+      },
+      "enabled": true
+    },
     "imageUrls": true,
     "cynSpeaking": true,
     "3y3": true,
@@ -238,6 +243,7 @@
       "options": {
         "useDefaultRules": true
       }
-    }
+    },
+    "espiFontSize": true
   }
 }
