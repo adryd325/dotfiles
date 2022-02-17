@@ -243,7 +243,6 @@
       "options": {
         "useDefaultRules": true
       }
-    },
-    "espiFontSize": true
+    }
   }
 }
