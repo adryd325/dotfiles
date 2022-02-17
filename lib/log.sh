@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-function log() {
+function log {
     local echoArgs="-e"
     local logString=""
     local logLevel=0
@@ -45,29 +43,4 @@ function log() {
     logString+="${*:2}"
     [[ -n ${AR_LOGLEVEL} ]] && [[ ${logLevel} -lt ${AR_LOGLEVEL} ]] && [[ ${logLevel} -lt 5 ]] && return
     echo "${echoArgs}" "${logString}"
-}
-
-function ar_tmp() {
-    if [[ -z "${AR_TMP}" ]]; then
-        local tmpPrefix=""
-        if [[ -n "${AR_MODULE}" ]]; then
-            tmpPrefix=".${AR_MODULE}"
-        fi
-        if [[ -x "$(command -v mktemp)" ]]; then
-            AR_TMP="$(mktemp -d -t "adryd-dotfiles${tmpPrefix}.XXXXXXXXXX")" 
-            export AR_TMP
-        else
-            for tempDir in "${TMPDIR}" /tmp; do
-                if [[ -d "${tempDir}" ]]; then
-                    AR_TMP="${tempDir}"/adryd-dotfiles"${tmpPrefix}"."${RANDOM}"
-                    export AR_TMP
-                    break
-                fi
-            done
-        fi
-        if [[ -z "${AR_TMP}" ]]; then
-            log error "Could not find temp folder"
-            exit 1
-        fi
-    fi
 }

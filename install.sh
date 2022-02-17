@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# .adryd v5.1
+# bash -c "`curl -L adryd.co/install.sh`"
+# bash -c "`wget -o- adryd.co/install.sh`"
+
 # --- BEGIN CONSTANTS --- 
 #!/usr/bin/env bash
 function ar_const() {
@@ -117,11 +121,5 @@ if [[ "$AR_OS" = "linux_arch" ]] || [[ "$AR_OS" = "darwin_macos" ]]; then
         if [[ "$USER" != "root" ]]; then
             askRun "$AR_DIR"/systems/personal/install.sh
         fi
-    fi
-fi
-
-if [[ "$AR_OS" = "linux_debian" ]]; then
-    if [[ "$USER" = "root" ]]; then
-        askRun "$AR_DIR"/systems/server/vms/install.sh
     fi
 fi

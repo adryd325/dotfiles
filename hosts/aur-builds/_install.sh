@@ -52,7 +52,7 @@ if ! [[ -f "${REPO_ROOT}/${REPO_NAME}.db.tar.zst" ]]; then
 fi
 
 # Add to pacman.conf
-lockStr="## adryd-dotfiles-lock (aur-builds)"
+lockStr="## adryd-dotfiles-lock (by-host/aur-builds)"
 if ! grep "^${lockStr}" /etc/pacman.conf &> /dev/null; then
   log info "Adding repo to pacman config"
   cat << EOF >> /etc/pacman.conf

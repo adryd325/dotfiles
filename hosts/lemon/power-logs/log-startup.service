@@ -4,6 +4,7 @@ Description=log startup/shutdown
 [Service]
 Type=oneshot
 RemainAfterExit=true
+Environment="WEBHOOK=https://discord.com/place-webhook-here"
 ExecStart=/bin/env bash /usr/local/bin/log-startup.sh
 ExecStop=/bin/env bash /usr/local/bin/log-shutdown.sh
 

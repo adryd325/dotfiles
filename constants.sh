@@ -97,4 +97,10 @@ function ar_local {
     fi
 }
 
-source "${AR_DIR}"/constants-v6.sh
+# v6 shims
+source "${AR_DIR}"/lib/log.sh
+source "${AR_DIR}"/lib/ar_gettemp.sh
+
+function ar_tmp {
+  export AR_TMP=$(ar_gettemp)
+}
