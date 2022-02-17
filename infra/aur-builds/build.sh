@@ -24,7 +24,7 @@ done
 
 failed=()
 for package in "${PACKAGE_LIST[@]}"; do
-  aur sync --pkgver --sign -A --noconfirm --noview --remove --no-ver-argv --database "${REPO_NAME}" --root "${REPO_ROOT}" "${package}" || failed+=("${package}")
+  aur sync --pkgver --sign -A --noconfirm --nocheck --noview --remove --no-ver-argv --database "${REPO_NAME}" --root "${REPO_ROOT}" "${package}" || failed+=("${package}")
 done
 
 paccache -rc "${REPO_ROOT}" -k2

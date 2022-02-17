@@ -3,7 +3,6 @@ Description=aur-builds
 
 [Service]
 Type=oneshot
-RemainAfterExit=yes
 WorkingDirectory=/var/aur
 
 User=aur
