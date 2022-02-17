@@ -97,3 +97,4 @@ function ar_local {
     fi
 }
 
+source "${AR_DIR}"/constants-v6.sh

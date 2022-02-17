@@ -20,8 +20,8 @@ if [[ "${AR_OS}" == "linux_arch" ]]; then
 # .ADRYD LOCK (${AR_MODULE}) (this is to prevent the deploy script from infinitely appending this config to the end of the file)
 [multilib]
 Include = /etc/pacman.d/mirrorlist
-[aur]
-Server = https://aur.coolmathgames.tech
+[aur-builds-adryd]
+Server = https://adryd.com/aur-builds/
 EOF
             log info "Enable multilib"
         fi
@@ -41,9 +41,9 @@ EOF
         fi
     fi
 
-    log info "Trusting Mary's AUR repo keys"
-    sudo pacman-key --add "${AR_DIR}/systems/personal/${AR_MODULE}/mary-aur.key" &> /dev/null
-    sudo pacman-key --lsign-key 4338A0E98FE8718EA718126FD8A8A0C4D0CE4C1E &> /dev/null
+    log info "Trusting AUR repo keys"
+    sudo pacman-key --add "${AR_DIR}/systems/personal/${AR_MODULE}/aur-builds.asc" &> /dev/null
+    sudo pacman-key --lsign-key aur-builds@adryd.com &> /dev/null
 
     log info "Add pacman hooks"
     sudo mkdir -p "/etc/pacman.d/hooks"
