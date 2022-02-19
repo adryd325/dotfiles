@@ -243,6 +243,7 @@
       "options": {
         "useDefaultRules": true
       }
-    }
+    },
+    "oldTitleBarButtons": true
   }
 }

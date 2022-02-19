@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
 source ./constants.sh
-source ../../constants-v6.sh
+source ../../lib/ar_gettemp.sh
 export AR_MODULE="aur-builds"
 [[ "${USER}" != root ]] && log error "Please run as root" && exit 1
 
@@ -14,48 +14,49 @@ log info "Installing nginx config"
 cp -f ./nginx.conf /etc/nginx/nginx.conf
 
 if ! id "aur" &> /dev/null; then
-  log info "Creating service user"
-  useradd --home-dir /var/aur/ --create-home aur
+    log info "Creating service user"
+    useradd --home-dir /var/aur/ --create-home aur
 fi
 
 # Add sudoer config for aur builder
 lockStr="## adryd-dotfiles-lock (aur-builds)"
 if ! grep "^${lockStr}" /etc/sudoers &> /dev/null; then
-  log info "Changing sudoers config"
-  echo "${lockStr}" >> /etc/sudoers
-  echo "aur ALL=(ALL) NOPASSWD: /usr/bin/pacman, /usr/bin/mkarchroot, /usr/bin/arch-nspawn, /usr/bin/makechrootpkg" >> /etc/sudoers
+    log info "Changing sudoers config"
+    echo "${lockStr}" >> /etc/sudoers
+    echo "aur ALL=(ALL) NOPASSWD: /usr/bin/pacman, /usr/bin/mkarchroot, /usr/bin/arch-nspawn, /usr/bin/makechrootpkg" >> /etc/sudoers
 fi
 
 ar_tmp
 oldPwd=$(pwd)
-cd "${AR_TMP}" || exit $?
+tempDir=$(ar_gettemp)
+cd "${tempDir}" || exit $?
 
 # Build and install aurutils
 if ! pacman -Q aurutils &> /dev/null; then
-  log info "Building aurutils"
-  git clone https://aur.archlinux.org/aurutils.git
-  chown -R aur:aur "${AR_TMP}"
-  cd ./aurutils || exit $?
-  sudo -u aur makepkg -s --noconfirm
-  pacman -U --noconfirm aurutils-*.pkg.tar.zst
-  cd ..
+    log info "Building aurutils"
+    git clone https://aur.archlinux.org/aurutils.git
+    chown -R aur:aur "${tempDir}"
+    cd ./aurutils || exit $?
+    sudo -u aur makepkg -s --noconfirm
+    pacman -U --noconfirm aurutils-*.pkg.tar.zst
+    cd ..
 fi
 
 cd "${oldPwd}" || exit $?
 
 # Do the createring
 if ! [[ -f "${REPO_ROOT}/${REPO_NAME}.db.tar.zst" ]]; then
-  mkdir -p "${REPO_ROOT}"
-  log info "Creating repo"
-  repo-add "${REPO_ROOT}/${REPO_NAME}.db.tar.zst"
-  sudo chown -R aur:aur "${REPO_ROOT}"
+    mkdir -p "${REPO_ROOT}"
+    log info "Creating repo"
+    repo-add "${REPO_ROOT}/${REPO_NAME}.db.tar.zst"
+    sudo chown -R aur:aur "${REPO_ROOT}"
 fi
 
 # Add to pacman.conf
-lockStr="## adryd-dotfiles-lock (by-host/aur-builds)"
+lockStr="## adryd-dotfiles-lock (hosts/aur-builds)"
 if ! grep "^${lockStr}" /etc/pacman.conf &> /dev/null; then
-  log info "Adding repo to pacman config"
-  cat << EOF >> /etc/pacman.conf
+    log info "Adding repo to pacman config"
+    cat << EOF >> /etc/pacman.conf
 ${lockStr}
 [${REPO_NAME}]
 SigLevel = Optional TrustAll
@@ -81,3 +82,5 @@ systemctl enable aur-builds.timer
 # Start nginx
 log info "Enabling nginx"
 systemctl enable --now nginx
+
+log tell "You must create a GPG key to sign packages, or remove --sign from /var/aur/build.sh"

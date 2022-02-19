@@ -5,11 +5,12 @@ function ar_gettemp {
       tmpPrefix=".${AR_MODULE}"
   fi
   if [[ -x "$(command -v mktemp)" ]]; then
-      printf="$(mktemp -d -t "adryd-dotfiles${tmpPrefix}.XXXXXXXXXX")" 
+      printf %s "$(mktemp -d -t "adryd-dotfiles${tmpPrefix}.XXXXXXXXXX")" 
   else
+      # if we dont have mktemp
       for tempDir in "${TMPDIR}" /tmp; do
           if [[ -d "${tempDir}" ]]; then
-              printf "${tempDir}"/adryd-dotfiles"${tmpPrefix}"."${RANDOM}"
+              printf "%s/adryd-dotfiles%s.%s" "${tempDir}" "${tmpPrefix}" "${RANDOM}"
               break
           fi
       done

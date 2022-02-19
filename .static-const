@@ -1,5 +1,5 @@
 download.sh
 install.sh
-infra/lemon/bin/leaf-start.sh
-infra/lemon/bin/leaf-stop.sh
-systems/common/bash/bashrc
+hosts/lemon/bin/leaf-start
+hosts/lemon/bin/leaf-stop
+common/bash/bashrc

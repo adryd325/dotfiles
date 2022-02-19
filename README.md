@@ -4,3 +4,10 @@
 
 `` bash -c "`curl -sL adryd.co/install.sh`" ``  
 `` bash -c "`wget -Qo- adryd.co/install.sh`" ``
+
+This project is in transition to v6. Legacy components are in the "systems" folder. Newer components are in the "common", "hosts", "lib" and "oses" folders.
+
+# Installation folder
+
+On personal systems this should be installed to \~/.adryd or \~/.local/share/dotadryd  
+On servers this should be installed to /opt/dotadryd
