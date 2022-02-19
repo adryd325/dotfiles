@@ -39,7 +39,7 @@ export brewPackages=(
     "ffmpeg"
     "htop"
     "mas"
-    "youtube-dl" 
+    "yt-dlp" 
 
     # Utilities
     "apptrap" # apptrap always first cask
@@ -63,4 +63,8 @@ export brewPackages=(
     "tor-browser"
     "font-cascadia-code"
 )
-export masPackages=("407963104" "1037126344")
+export masPackages=(
+    # I think one of these is pixelmator and the other is apple configurator 2
+    "407963104"
+    "1037126344"
+)

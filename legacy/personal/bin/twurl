@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-source "${AR_DIR}"/constants.sh
-echo -en "<$1>\n$(youtube-dl --get-url "$1")" | xclip -selection clipboard

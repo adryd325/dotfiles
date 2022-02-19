@@ -6,4 +6,3 @@ source ../../lib/log.sh
 ../../common/heckheating/_install.sh "stable" "canary"
 ../../oses/archlinux/discord/electron16/_install.sh "canary"
 ../../oses/linux/discord/wmclass-fix/_install.sh "stable" "ptb" "canary" "development"
-

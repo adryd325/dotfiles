@@ -21,10 +21,12 @@ function patchBranch() {
 
 if [[ ! -x $(command -v node) ]]; then
     log error "nodejs isn't installed. Cannot proceed"
+    exit 1
 fi
 
 if [[ ! -x $(command -v git) ]]; then
     log error "git isn't installed. Cannot proceed"
+    exit 1
 fi
 
 hhDir="${HOME}/.local/share/hh3"
@@ -38,27 +40,27 @@ if [[ ! -d "${hhDir}" ]] && [[ -e "${HOME}/.ssh" ]]; then
     log info "Cloning HH3"
     if ! git clone git@gitlab.com:mstrodl/hh3 "${hhDir}" --quiet; then
         log error "Failed to clone HH3, likely a permission issue"
-        return;
+        exit 1;
     fi
 fi
 
 oldPwd=${PWD}
-cd "${hhDir}" || return
+cd "${hhDir}" || exit $?
 log info "Pulling latest changes"
 git pull --ff-only --quiet
 log info "Installing dependencies"
 pnpm install --recursive --silent
-cd "${hhDir}/web" || return
+cd "${hhDir}/web" || exit $?
 log info "Building webextension"
 node buildExtension.js &> /dev/null
-cd "${oldPwd}" || return
+cd "${oldPwd}" || exit $?
 
 for branch in "${DISCORD_BRANCHES[@]}"; do
     patchBranch "${branch}" &
 done
 
 if [[ ! -e "${configDir}" ]]; then
-    log info "Linking config folder" \
+    log info "Linking config folder"
     ln -s "$(realpath ./config)" "${configDir}"
 fi
 wait
