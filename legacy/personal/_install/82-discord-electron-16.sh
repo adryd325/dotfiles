@@ -20,7 +20,7 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
         AR_LOG_PREFIX="${branch}"
         # fix variables for each branch
         # shellcheck source=../discord/discord-vars.sh
-        source "${AR_DIR}/systems/personal/discord/discord-vars.sh"
+        source "${AR_DIR}/legacy/personal/discord/discord-vars.sh"
         if [[ -d "${HOME}/.local/share/${discordName}" ]]; then
           log info "Replacing existing electron version"
           cp -rf "${workDir}/electron/"* "${HOME}/.local/share/${discordName}"

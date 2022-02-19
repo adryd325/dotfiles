@@ -7,7 +7,7 @@ AR_MODULE="packages"
 
 if [[ "${AR_OS}" = "linux_arch" ]]; then
     # shellcheck source=../packages/packagelist-arch.sh
-    source "${AR_DIR}/systems/personal/${AR_MODULE}/packagelist-arch.sh"
+    source "${AR_DIR}/legacy/personal/${AR_MODULE}/packagelist-arch.sh"
     sudo pacman -Syu
     # Install paru if it's not already installed
     oldPwd="${PWD}"
@@ -45,7 +45,7 @@ fi
 
 if [[ "${AR_OS}" = "darwin_macos" ]]; then
     # shellcheck source=../packages/packagelist-macos.sh
-    source "${AR_DIR}/systems/personal/${AR_MODULE}/packagelist-macos.sh"
+    source "${AR_DIR}/legacy/personal/${AR_MODULE}/packagelist-macos.sh"
     # Install brew if it's not already installed
     if [[ ! -x "$(command -v brew)" ]]; then
         log info "Running brew install script"

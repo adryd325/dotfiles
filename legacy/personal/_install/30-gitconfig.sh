@@ -6,5 +6,5 @@ AR_MODULE="gitconfig"
 
 if [[ "${AR_OS}" = "linux_arch" ]] && [[ "${USER}" = "adryd" ]] && [[ ! -h "${HOME}/.gitconfig" ]]; then
     log info "Installing gitconfig"
-    ln -sf "${AR_DIR}/systems/personal/${AR_MODULE}/gitconfig" "${HOME}/.gitconfig"
+    ln -sf "${AR_DIR}/legacy/personal/${AR_MODULE}/gitconfig" "${HOME}/.gitconfig"
 fi

@@ -20,12 +20,12 @@ if [[ "${AR_OS}" == "linux_arch" ]] && pacman -Q polymc-git &> /dev/null; then
     if [[ ! -e "${HOME}/.local/share/polymc/polymc.cfg" ]]; then
         # Copy the default config in place
         log info "Installing multimc config"
-        cp "${AR_DIR}/systems/personal/${AR_MODULE}/multimc.cfg" "${HOME}/.local/share/polymc/polymc.cfg"
+        cp "${AR_DIR}/legacy/personal/${AR_MODULE}/multimc.cfg" "${HOME}/.local/share/polymc/polymc.cfg"
 
         # If we're on popsicle, add additional options for nvidia optimus and more ram availibility
         if [[ "${HOSTNAME}" == "popsicle" ]]; then
             log info "Installing popsicle-specific config"
-            cat "${AR_DIR}/systems/personal/${AR_MODULE}/multimc-popsicle.cfg" >> "${HOME}/.local/share/polymc/polymc.cfg"
+            cat "${AR_DIR}/legacy/personal/${AR_MODULE}/multimc-popsicle.cfg" >> "${HOME}/.local/share/polymc/polymc.cfg"
         fi
     fi
 

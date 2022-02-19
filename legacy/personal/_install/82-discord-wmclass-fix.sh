@@ -12,7 +12,7 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
         AR_LOG_PREFIX="${branch}"
         # fix variables for each branch
         # shellcheck source=../discord/discord-vars.sh
-        source "${AR_DIR}/systems/personal/discord/discord-vars.sh"
+        source "${AR_DIR}/legacy/personal/discord/discord-vars.sh"
         log info "Fixing WM_CLASS"
         if [[ -f "${HOME}/.local/share/${discordName}/resources/app/package.json" ]]; then
             sed -i "s/discord/${discordLowercase}/" "${HOME}/.local/share/${discordName}/resources/app/package.json"

@@ -7,6 +7,6 @@ AR_MODULE="xdg-user-dirs"
 if [ "${AR_OS}" == "linux_arch" ]; then
     if [ ! -e "${HOME}/.config/user-dirs.dirs" ]; then
         log info "Installing xdg-user-dirs config"
-        cp "${AR_DIR}/systems/personal/${AR_MODULE}/user-dirs.dirs" "${HOME}/.config/user-dirs.dirs"
+        cp "${AR_DIR}/legacy/personal/${AR_MODULE}/user-dirs.dirs" "${HOME}/.config/user-dirs.dirs"
     fi
 fi

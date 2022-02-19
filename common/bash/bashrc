@@ -77,15 +77,15 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 
 if [[ "${HOSTNAME}" = "lemon" ]]; then
-    export PATH="${AR_DIR}/systems/server/lemon/bin:${HOME}/.local/bin:${PATH}"
+    export PATH="${AR_DIR}/legacy/server/lemon/bin:${HOME}/.local/bin:${PATH}"
 else 
     if [[ ${HOSTNAME} = "leaf-macos.in.adryd.com" ]]; then
         export PATH="/usr/local/bin:${PATH}"
     fi
-    export PATH="${AR_DIR}/systems/personal/bin:${HOME}/.local/bin:${PATH}"
+    export PATH="${AR_DIR}/legacy/personal/bin:${HOME}/.local/bin:${PATH}"
 fi
 
-export NODE_EXTRA_CA_CERTS="${AR_DIR}/systems/common/ca-certificates/adryd-root-ca.pem"
+export NODE_EXTRA_CA_CERTS="${AR_DIR}/legacy/common/ca-certificates/adryd-root-ca.pem"
 
 # shellcheck source=./prompts/robyrussel.sh
 source "${AR_DIR}/common/bash/prompts/robyrussel.sh"

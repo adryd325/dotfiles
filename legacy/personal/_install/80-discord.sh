@@ -12,7 +12,7 @@ installBranch() {
     branch=$1
     # fix variables for each branch
     # shellcheck source=../discord/discord-vars.sh
-    source "${AR_DIR}/systems/personal/${AR_MODULE}/discord-vars.sh"
+    source "${AR_DIR}/legacy/personal/${AR_MODULE}/discord-vars.sh"
 
     AR_LOG_PREFIX="${branch}"
     log info "Downloading"
@@ -83,7 +83,7 @@ installBranch() {
 # not really dependent on any distros
 if [ "${AR_OS_KERNEL}" == "linux" ] && [ -e "$(command -v curl)" ]; then
     if [[ "${AR_OS}" = "linux_arch" ]]; then
-       cd "${AR_DIR}/systems/personal/${AR_MODULE}/discord-deps-local" &&
+       cd "${AR_DIR}/legacy/personal/${AR_MODULE}/discord-deps-local" &&
        yes | makepkg -si
     fi
     branches=("stable" "canary")

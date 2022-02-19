@@ -8,7 +8,7 @@ AR_MODULE="vscode"
 # this is untested so be careful or your system might explode!!!
 if [ "${AR_OS}" = "darwin_macos" ] || [ "${AR_OS}" = "linux_arch" ]; then
 
-    source "${AR_DIR}/systems/personal/${AR_MODULE}/extension-list.sh"
+    source "${AR_DIR}/legacy/personal/${AR_MODULE}/extension-list.sh"
 
     # Set dataDir
     [ "${AR_OS}" = "linux_arch" ] && dataDir="${HOME}/.config/Code"
@@ -28,7 +28,7 @@ if [ "${AR_OS}" = "darwin_macos" ] || [ "${AR_OS}" = "linux_arch" ]; then
     if [ ! -e "${dataDir}/User/settings.json" ]; then
         # Symlink settings to this repo
         log info "Installing config"
-        ln -sf "${AR_DIR}/systems/personal/${AR_MODULE}/settings.json" "${dataDir}/User/settings.json"
+        ln -sf "${AR_DIR}/legacy/personal/${AR_MODULE}/settings.json" "${dataDir}/User/settings.json"
     fi
 
     # For each extension

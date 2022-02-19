@@ -72,7 +72,7 @@ if [[ "${AR_OS}" == "linux_arch" ]]; then
             [ -e user.js ] \
                 && rm user.js \
                 && log verb "Removing old user.js"
-            cp "${AR_DIR}/systems/personal/${AR_MODULE}/user.js" user.js \
+            cp "${AR_DIR}/legacy/personal/${AR_MODULE}/user.js" user.js \
                 && log info "Installed user.js"
             
             ICCProfile="$(colormgr get-devices | grep 'Metadata:\s*OutputEdidMd5=' | grep -oP '[0-9a-f]{32}')"

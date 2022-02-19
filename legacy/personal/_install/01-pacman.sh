@@ -42,20 +42,20 @@ EOF
     fi
 
     log info "Trusting AUR repo keys"
-    sudo pacman-key --add "${AR_DIR}/systems/personal/${AR_MODULE}/aur-builds.asc" &> /dev/null
+    sudo pacman-key --add "${AR_DIR}/legacy/personal/${AR_MODULE}/aur-builds.asc" &> /dev/null
     sudo pacman-key --lsign-key aur-builds@adryd.com &> /dev/null
 
     log info "Add pacman hooks"
     sudo mkdir -p "/etc/pacman.d/hooks"
-    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/10-backup-modules.hook" "/etc/pacman.d/hooks"
-    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/10-restore-modules.hook" "/etc/pacman.d/hooks"
-    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-systemd-boot.hook" "/etc/pacman.d/hooks"
-    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-hidden-apps.hook" "/etc/pacman.d/hooks"
-    sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/100-pacman-cache-cleanup.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/legacy/personal/${AR_MODULE}/10-backup-modules.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/legacy/personal/${AR_MODULE}/10-restore-modules.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/legacy/personal/${AR_MODULE}/100-systemd-boot.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/legacy/personal/${AR_MODULE}/100-hidden-apps.hook" "/etc/pacman.d/hooks"
+    sudo cp -f "${AR_DIR}/legacy/personal/${AR_MODULE}/100-pacman-cache-cleanup.hook" "/etc/pacman.d/hooks"
 
     if [[ "${USER}" = "adryd" ]] && [[ -e /etc/pacman.d/mirrorlist ]]; then
         # this doesn't apply outside of my area
         [[ ! -e /etc/pacman.d/mirrorlist.orig ]] && sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
-        sudo cp -f "${AR_DIR}/systems/personal/${AR_MODULE}/preferred-mirrorlist" /etc/pacman.d/mirrorlist
+        sudo cp -f "${AR_DIR}/legacy/personal/${AR_MODULE}/preferred-mirrorlist" /etc/pacman.d/mirrorlist
     fi
 fi
