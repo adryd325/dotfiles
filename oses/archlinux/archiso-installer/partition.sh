@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# shellcheck source=../../../constants.sh
-[[ -z "${AR_DIR}" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "${AR_DIR}"/constants.sh
+cd "$(dirname "$0")" || exit $?
+source ../../../lib/log.sh
+
 AR_MODULE="archinstall partitioning"
 log tell "\"${installTargetDev}\", \"/dev/disk/by-partlabel/EFI\" and \"/dev/disk/by-partlabel/${host}\" will be formatted"
 

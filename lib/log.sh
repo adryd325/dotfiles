@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 function log {
     local echoArgs="-e"
     local logString=""

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
 source ./constants.sh
-source ../../lib/ar_gettemp.sh
+source ../../lib/temp.sh
+source ../../lib/log.sh
 export AR_MODULE="aur-builds"
 [[ "${USER}" != root ]] && log error "Please run as root" && exit 1
 
@@ -28,7 +29,7 @@ fi
 
 ar_tmp
 oldPwd=$(pwd)
-tempDir=$(ar_gettemp)
+tempDir=$(mkTemp)
 cd "${tempDir}" || exit $?
 
 # Build and install aurutils

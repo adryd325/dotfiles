@@ -13,6 +13,8 @@ export PACKAGE_LIST=(
     espeak
     gdm-prime
     libgdm-prime
+    mangohud
+    mangohud-common
     mutter-performance
     networkmanager-wireguard-git
     noto-fonts-emoji-apple

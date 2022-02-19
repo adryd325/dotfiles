@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# shellcheck source=../../../constants.sh
-[[ -z "${AR_DIR}" ]] && echo "Please set AR_DIR in your environment" && exit 0; source "${AR_DIR}"/constants.sh
-AR_MODULE="archinstall"
+#!/usr/bin/env bash
+cd "$(dirname "$0")" || exit $?
+source ../../../lib/log.sh
 
 log tell "Re-bootstrap preserves user data but deletes root and boot partitions."
 log ask "Is this a re-bootstrap of a current install? [y/N] "
@@ -106,7 +106,7 @@ unset confirmation
 
 if [[ -z "${rebootstrap}" ]]; then
     log silly "Calling partitioning script"
-    "${AR_DIR}"/systems/personal/_arch-install/partition.sh
+    ./partition.sh
 else
     log info "Mounting current install"
     cryptsetup open /dev/disk/by-partlabel/"${host}" "${host}"
@@ -131,9 +131,6 @@ function ucodepkg() {
 log silly "Detecting CPU for microcode package"
 basePackages+=("$(ucodepkg)")
 
-log info "Run relfector to speed up installation"
-"${AR_DIR}"/systems/personal/_install/03-reflector.sh
-
 log info "Enable parallel downloads in pacman"
 sed -i "s/^#ParallelDownloads = 5\$/ParallelDownloads = 12/" /etc/pacman.conf
 
@@ -149,7 +146,7 @@ else
 fi
 
 log info "Copying over .adryd"
-cp -r "${AR_DIR}" "/mnt${AR_DIR}"
+cp -r "../../../" "/mnt/opt/adryd-dotfiles"
 
 log info "Copying over mirrorlist"
 mv /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.orig
@@ -161,16 +158,16 @@ export rootUUID
 ucode="$(ucodepkg)"
 export ucode
 
-arch-chroot /mnt bash "${AR_DIR}"/systems/personal/_arch-install/configure.sh
+arch-chroot /mnt bash /opt/adryd-dotfiles/oses/archlinux/archiso-installer/configure.sh
 
 unset password
 unset diskPassword
 
 # Remove coppied dotfiles
 log silly "Remove coppied dotfiles"
-rm -rf /mnt/"${AR_DIR:?}"
+rm -rf "/mnt/opt/adryd-dotfiles"
 log silly "Placing install script in home folder"
-cp "${AR_DIR}"/download.sh /mnt/home/"${username}"/install.sh
+cp ../../../download.sh /mnt/home/"${username}"/install.sh
 
 if [[ -n "${rebootstrap}" ]]; then
     log silly "Placing old package list in home folder"

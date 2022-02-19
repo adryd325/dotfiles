@@ -5,11 +5,11 @@
 
 # Installation dir
 if [[ -z "${AR_DIR}" ]]; then
-  if [[ "${USER}" == "root" ]]; then
-    export AR_DIR="/opt/adryd-dotfiles"
-else
-    export AR_DIR="${HOME}/.adryd"
-  fi
+    if [[ "${USER}" == "root" ]]; then
+        export AR_DIR="/opt/adryd-dotfiles"
+    else
+        export AR_DIR="${HOME}/.adryd"
+    fi
 fi
 
 # Remote URLs
