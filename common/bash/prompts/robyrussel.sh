@@ -46,18 +46,16 @@ __ar_prompt_git() {
 __ar_prompt_newline() {
     __ar_prompt_newline() {
         if [[ "${__ar_prompt_lastcmd_num}" = "$(history 1 | cut -d " " -f3)" ]]; then
-            __ar_prompt+="\n"
+            # __ar_prompt+="\n"
             return
         fi
         local lastcmd
         lastcmd=$(history 1 | cut -d " " -f5-)
         __ar_prompt_lastcmd_num="$(history 1 | cut -d " " -f3)"
         if [[ "${lastcmd}" = "reset" ]] || [[ "${lastcmd}" = "clear" ]]; then
-            # noop
-            true
-        else
-            __ar_prompt+="\n"
+            return
         fi
+        __ar_prompt+="\n"
     }
 }
 
