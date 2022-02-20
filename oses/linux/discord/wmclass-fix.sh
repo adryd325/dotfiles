@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
-source ../../../../common/discord/versions.sh
-source ../../../../lib/log.sh
+source ../../../common/discord/versions.sh
+source ../../../lib/log.sh
 export AR_MODULE="discord-wmclass-fix"
 
 function patchBranch {

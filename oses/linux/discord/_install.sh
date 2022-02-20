@@ -64,6 +64,23 @@ function installBranch {
     cp -f "${installationDir}/${pkgName}.desktop" "${HOME}/.local/share/applications/${pkgName}.desktop"
 }
 
+case "$(getDistro)" in
+    "archlinux")
+        ensureInstalled glibc alsa-lib gcc-libs libnotify nspr nss libxss libxtst libc++
+        ;;
+    "debian")
+        ensureInstalled libc6 libasound2 libatomic1 libgconf-2-4 libnotify4 libnspr4 libnss3 libstdc++6, libxss1 libxtst6 libappindicator1 libc++1
+        ;;
+    "fedora")
+        # TODO: get these right, this is a guess based on the libs in the rpm package
+        ensureInstalled glibc alsa-lib gconf2 glibc libx11 libxtst libappindicator libatomic libnotify nspr nss
+        ;;
+    *)
+        # Do nothing
+        true;
+        ;;
+esac
+
 if [[ $# -gt 0 ]]; then
     for branch in "$@"; do
         if ! isValidBranch "${branch}"; then

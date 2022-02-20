@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
 
-../../oses/archlinux-container/install.sh
+../../oses/archlinux/container-install.sh
 
 source ./constants.sh
 source ../../lib/temp.sh

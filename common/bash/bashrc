@@ -1,104 +1,66 @@
 #!/usr/bin/env bash
 if [[ $- == *i* ]]
 then
-
-# --- BEGIN CONSTANTS --- 
-#!/usr/bin/env bash
-
-# v6 shims
-source "${AR_DIR}"/lib/log.sh
-source "${AR_DIR}"/lib/temp.sh
-source "${AR_DIR}"/lib/os.sh
-
-function ar_tmp {
-  AR_TMP=$(mkTemp)
-  export AR_TMP
-}
-
-function ar_os {
-  AR_OS="$(getKernel)_$(getDistro)"
-  export AR_OS
-}
-
-function ar_const() {
-    # Utility function to make defining env prettier without overwriting
-    [[ -z "${!1}" ]] && export "$1"="${*:2}"
-}
-
-# Remote URLs
-ar_const AR_REMOTE_HTTPS_TAR "https://gitlab.com/adryd/dotfiles/-/archive/master/dotfiles-master.tar"
-ar_const AR_REMOTE_GIT_HTTPS "https://gitlab.com/adryd/dotfiles.git"
-ar_const AR_REMOTE_GIT_SSH "git@gitlab.com:adryd/dotfiles.git"
-
-function ar_dir() {
-    if [[ -z "${AR_DIR}" ]]; then
-        function check() {
-            if [[ -f "$1"/.manifest ]] && [[ "$(cat "$1"/.manifest)" = "adryd-dotfiles-v6" ]]; then
-                cd "${oldPwd}" || exit 1
-                export AR_DIR="$1"
-                return 0
-            fi
-            return 1
-        }
-        local oldPwd=${PWD}
-        cd "$(dirname -- "$0")" || exit 1
-        while [[ "${PWD}" != '/' ]]; do check "${PWD}" && return 0; cd ..; done
-        cd "${oldPwd}" || exit 1
-        while [[ "${PWD}" != '/' ]]; do check "${PWD}" && return 0; cd ..; done
-        cd "${oldPwd}" || exit 1
-        check "${HOME}/.adryd" && return
-        check "/root/.adryd" && return
+    for dir in "${HOME}/.adryd" /opt/adryd-dotfiles; do 
+        if [[ -f "${dir}/.manifest" ]] && [[ "$(cat "${dir}/.manifest")" = "adryd-dotfiles-v6" ]]; then
+            export AR_DIR="${dir}"
+            break
+        fi
         return 1
-    fi
-    return 0
-}
-ar_dir
+    done
 
-function ar_splash() {
-    if [[ -z "${AR_SPLASH}" ]] && [[ "$0" = "${AR_DIR}"* ]] || [[ "${AR_MODULE}" = "download" ]]; then
-        echo -en "\n \x1b[30;44m \x1b[0m .adryd\n \x1b[30;44m \x1b[0m version 6\n\n"
-        export AR_SPLASH=1
-    fi
-}
-ar_splash
+    # normalize paths (useful for brew on macos)
+    mapfile -d ':' splitPath <<< "${PATH}"
+    function hasPath {
+        includes=1
+        for dir in "${splitPath[@]}"; do
+            [[ "${dir}" = "$1" ]] && includes=0
+        done
+        return "${includes}"
+    }
+    
+    for dir in /bin /usr/bin /usr/local/bin ${HOME}/.local/bin; do 
+        if ! hasPath "$(realpath "${dir}")" && [[ -d "${dir}" ]]; then
+            PATH="${dir}:${PATH}"
+        fi
+    done
 
-function ar_local {
-    ar_os
-    if [[ "${AR_OS}" = "darwin_macos" ]]; then
-        ar_const AR_LOCAL "${HOME}/Library/Application\ Support/adryd-dotfiles"
-        ar_const AR_CACHE "${HOME}/Library/Caches/adryd-dotfiles"
-    else 
-        ar_const AR_LOCAL "${HOME}/.config/adryd-dotfiles"
-        ar_const AR_CACHE "${HOME}/.cache/adryd-dotfiles"
-    fi
-}
-# --- END CONSTANTS ---
-export EDITOR="nvim"
-export VISUAL="nvim"
+    # shellcheck source=../../lib/os.sh
+    source "${AR_DIR}/lib/os.sh"
 
-if [[ "${HOSTNAME}" = "lemon" ]]; then
-    export PATH="${AR_DIR}/legacy/server/lemon/bin:${HOME}/.local/bin:${PATH}"
-else 
-    if [[ ${HOSTNAME} = "leaf-macos.in.adryd.com" ]]; then
-        export PATH="/usr/local/bin:${PATH}"
-    fi
-    export PATH="${AR_DIR}/legacy/personal/bin:${HOME}/.local/bin:${PATH}"
-fi
+    for editor in nvim vim vi nano; do
+        if [[ -x "$(command -v "${editor}")" ]]; then
+            export EDITOR="${editor}"
+            export VISUAL="${editor}"
+            break
+        fi
+    done
 
-export NODE_EXTRA_CA_CERTS="${AR_DIR}/legacy/common/ca-certificates/adryd-root-ca.pem"
+    ! hasPath "${AR_DIR}/common/bin" && PATH="${AR_DIR}/common/bin:${PATH}"
 
-# shellcheck source=./prompts/robyrussel.sh
-source "${AR_DIR}/common/bash/prompts/robyrussel.sh"
-# shellcheck source=./bash_aliases.sh
-source "${AR_DIR}/common/bash/bash_aliases.sh"
+    for host in "${AR_DIR}/hosts/"*; do
+        if [[ "$(basename "${host}")" = "${HOSTNAME}" ]] && [[ -d "${host}/bin" ]] && ! hasPath "${host}/bin"; then
+            PATH="${host}/bin:${PATH}"
+        fi
+    done
 
-# glob (*) selects files that begin with a dot too
-shopt -s dotglob
+    [[ -d "${AR_DIR}/oses/$(getKernel)/bin" ]] && ! hasPath "${AR_DIR}/oses/$(getKernel)/bin:${PATH}" && PATH="${AR_DIR}/oses/$(getKernel)/bin:${PATH}"
+    [[ -d "${AR_DIR}/oses/$(getDistro)/bin" ]] && ! hasPath "${AR_DIR}/oses/$(getDistro)/bin:${PATH}" && PATH="${AR_DIR}/oses/$(getDistro)/bin:${PATH}"
 
-unset AR_OS
-unset AR_OS_DISTRO
-unset AR_OS_KERNEL
+    export PATH
 
-# load nvm
-[[ -e "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+    # shellcheck source=./prompts/robyrussel.sh
+    source "${AR_DIR}/common/bash/prompts/robyrussel.sh"
+    # shellcheck source=./bash_aliases.sh
+    source "${AR_DIR}/common/bash/bash_aliases.sh"
+
+    # glob (*) selects files that begin with a dot too
+    shopt -s dotglob
+
+    # load nvm
+    [[ -e "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+
+    # cleanup imports
+    unset getKernel
+    unset getDistro
 fi

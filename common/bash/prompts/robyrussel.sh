@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 __ar_prompt_exitCodeColor() {
-    [[ ${__ar_prompt_exitCode} -eq 0 ]] && __ar_prompt+="\[\e[1;32m\]" && return
+    if [[ ${__ar_prompt_exitCode} -eq 0 ]]; then
+        __ar_prompt+="\[\e[1;32m\]"
+        return
+    fi
     __ar_prompt+="\[\e[1;31m\]"
 }
 
 __ar_prompt_arrow() {
-    [[ "${TERM}" = "xterm-256color" ]] && __ar_prompt+="→" && __ar_ps2="→" && return
+    if [[ "${TERM}" = "xterm-256color" ]]; then
+        __ar_prompt+="→"
+        __ar_ps2="→" 
+        return
+    fi
     __ar_prompt+="->"
     __ar_ps2="->"
 }
@@ -22,12 +29,12 @@ __ar_prompt_git() {
         local status
         status="$(git status 2>&1 | tee)"
         local bits
-        echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null && bits+=">"
-        echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null && bits+="*"
-        echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null && bits+="+"
-        echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null && bits+="?"
-        echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null && bits+="x"
-        echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null && bits+="!"
+        grep "renamed:" &> /dev/null <<< "${status}" && bits+=">"
+        grep "Your branch is ahead of" &> /dev/null <<< "${status}" && bits+="*"
+        grep "new file:" &> /dev/null <<< "${status}" && bits+="+"
+        grep "Untracked files" &> /dev/null <<< "${status}" && bits+="?"
+        grep "deleted:" &> /dev/null <<< "${status}" && bits+="x"
+        grep "modified:" &> /dev/null <<< "${status}" && bits+="!"
         if [[ -n "${bits}" ]]; then
             __ar_prompt+=" \[\e[32m\]git:(\[\e[31m\]${branch}\[\e[32m\])\[\e[33m\]${bits}\[\e[0m\]"
         else
@@ -36,8 +43,27 @@ __ar_prompt_git() {
     fi
 }
 
+__ar_prompt_newline() {
+    __ar_prompt_newline() {
+        if [[ "${__ar_prompt_lastcmd_num}" = "$(history 1 | cut -d " " -f3)" ]]; then
+            __ar_prompt+="\n"
+            return
+        fi
+        local lastcmd
+        lastcmd=$(history 1 | cut -d " " -f5-)
+        __ar_prompt_lastcmd_num="$(history 1 | cut -d " " -f3)"
+        if [[ "${lastcmd}" = "reset" ]] || [[ "${lastcmd}" = "clear" ]]; then
+            # noop
+            true
+        else
+            __ar_prompt+="\n"
+        fi
+    }
+}
+
 __ar_build_prompt() {
     __ar_prompt_exitCode=$?
+    __ar_prompt_newline
     # title
     __ar_prompt+="\[\e]2;\u@\H:\w\a\]"
     __ar_prompt_exitCodeColor

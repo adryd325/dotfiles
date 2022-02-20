@@ -6,13 +6,17 @@ source "${AR_DIR}"/lib/temp.sh
 source "${AR_DIR}"/lib/os.sh
 
 function ar_tmp {
-  AR_TMP=$(mkTemp)
-  export AR_TMP
+    AR_TMP=$(mkTemp)
+    export AR_TMP
 }
 
 function ar_os {
-  AR_OS="$(getKernel)_$(getDistro)"
-  export AR_OS
+    if [[ "$(getDistro)" == "arch" ]]; then
+        AR_OS="$(getKernel)_arch"
+    else
+        AR_OS="$(getKernel)_$(getDistro)"
+    fi
+    export AR_OS
 }
 
 function ar_const() {

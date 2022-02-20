@@ -5,7 +5,7 @@ ar_os
 ar_tmp
 AR_MODULE="packages"
 
-if [[ "${AR_OS}" = "linux_arch" ]]; then
+#if [[ "${AR_OS}" = "linux_archlinux" ]]; then
     # shellcheck source=../packages/packagelist-arch.sh
     source "${AR_DIR}/legacy/personal/${AR_MODULE}/packagelist-arch.sh"
     sudo pacman -Syu
@@ -40,7 +40,7 @@ if [[ "${AR_OS}" = "linux_arch" ]]; then
         flatpak install "${flatpaks[@]}" -y
         flatpak install "${flatpaksGnomeNightly[@]}" -y
     fi
-fi
+#fi
 
 
 if [[ "${AR_OS}" = "darwin_macos" ]]; then
