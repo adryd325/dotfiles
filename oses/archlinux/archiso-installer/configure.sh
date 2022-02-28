@@ -56,11 +56,11 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 EOF
 else
-    cat <<EOF > /boot/loader/entries/archlinux-lts.conf
-title Arch Linux (LTS Kernel)
-linux /vmlinuz-linux-lts
+    cat <<EOF > /boot/loader/entries/archlinux.conf
+title Arch Linux
+linux /vmlinuz-linux
 initrd /${ucode}.img
-initrd /initramfs-linux-lts.img
+initrd /initramfs-linux.img
 EOF
 fi
 echo "options rd.luks.name=${rootUUID:?}=${host} root=/dev/mapper/${host} rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
