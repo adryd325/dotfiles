@@ -8,13 +8,16 @@ source ../../lib/os.sh
 ../../common/update-global-installation.sh
 ../../common/bash/_install.sh globalInstall
 
-sudo pacman -Syu
 ../../oses/archlinux/pacman/_install.sh
 ../../oses/archlinux/pacman/multilib.sh
 ../../oses/archlinux/pacman/hooks/_install.sh
 ../../oses/archlinux/pacman/aur-builds/_install.sh
 ../../oses/archlinux/pacman/toronto-mirrorlist/_install.sh
-./install-packages.sh
+
+# Sync after repos are added
+sudo pacman -Syyu
+
+./install-packages.sh || exit $?
 ./thinkpad_acpi.sh
 ./optimus.sh
 ./plymouth.sh

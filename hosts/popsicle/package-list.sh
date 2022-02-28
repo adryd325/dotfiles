@@ -30,7 +30,6 @@ packages=(
     "gnome-control-center"
     "gnome-font-viewer"
     "gnome-keyring"
-    "gnome-screenshot"
     "gnome-session"
     "gnome-settings-daemon"
     "gnome-shell"
@@ -39,7 +38,6 @@ packages=(
     "gnome-software-packagekit-plugin"
     "gnome-system-monitor"
     "gnome-terminal"
-    "gnome-themes-extra"
     "gnome-tweaks"
     "gnome-weather"
     "gvfs"
@@ -80,6 +78,7 @@ packages=(
     "aseprite"
     "blender"
     "cider"
+    "celluloid"
     "chromium"
     "dconf-editor"
     "easyeffects"
@@ -92,6 +91,7 @@ packages=(
     "gnome-system-monitor"
     "inkscape"
     "intellij-idea-community-edition"
+    "kcharselect"
     "keepassxc"
     "libreoffice-still"
     "libvncserver" # for remmina
@@ -180,7 +180,6 @@ packages=(
     "ttf-ipa-mona"
     "ttf-ms-fonts"
     "ttf-windows"
-    "ttf-recursive-code"
     "ttf-ibm-plex"
     # "otf-inter-local" # Inter
     # "otf-recursive-code-local" # Recursive
@@ -221,7 +220,6 @@ packages=(
 
 flatpaks=(
     "net.blockbench.Blockbench"
-    "io.github.celluloid_player.Celluloid"
     "com.github.tchx84.Flatseal"
     "de.haekerfelix.Fragments"
     "re.sonny.Junction"
@@ -230,10 +228,6 @@ flatpaks=(
     "com.parsecgaming.parsec"
     "uk.co.powdertoy.tpt"
     "org.gnome.SoundRecorder"
-)
-
-flatpaksGnomeNightly=(
-    "org.gnome.TextEditor.Devel"
 )
 
 export packages

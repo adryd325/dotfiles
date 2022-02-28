@@ -40,3 +40,5 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-right "[]"
 gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-down "[]"
 gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-left "[]"
 gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-up "[]"
+
+#gsettings set org.gnome.shell disable-extension-version-validation true
