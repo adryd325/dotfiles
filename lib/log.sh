@@ -42,6 +42,7 @@ function log {
     [[ -n "${AR_MODULE}" ]] && logString+="\x1b[35m${AR_MODULE}\x1b[0m "
     [[ -n "${AR_LOG_PREFIX}" ]] && logString+="\x1b[32m(${AR_LOG_PREFIX})\x1b[0m "
     logString+="${*:2}"
-    [[ -n ${AR_LOGLEVEL} ]] && [[ ${logLevel} -lt ${AR_LOGLEVEL} ]] && [[ ${logLevel} -lt 5 ]] && return
+    [[ -z ${AR_LOGLEVEL} ]] && AR_LOGLEVEL=2
+    [[ ${logLevel} -lt ${AR_LOGLEVEL} ]] && [[ ${logLevel} -lt 5 ]] && return
     echo "${echoArgs}" "${logString}"
 }
