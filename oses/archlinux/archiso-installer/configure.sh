@@ -25,7 +25,7 @@ log info "Enabling NetworkManager"
 systemctl enable NetworkManager &> /dev/null
 
 log info "Configuring sudo"
-sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 # FORMER GRUB-BASED CONFIG
 # log info "Configuring grub for first boot"
