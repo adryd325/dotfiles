@@ -53,14 +53,14 @@ function download() {
     if [[ ! -f "dotfiles-main.tar" ]]; then
 
         if [[ -x "$(command -v curl)" ]]; then
-            log info "Downloading dotfiles bundle (curl)"
+            echo "Downloading dotfiles bundle (curl)"
             curl -sSo "dotfiles-main.tar" "${AR_REMOTE_HTTPS_TAR}"
             [[ -f "dotfiles-main.tar" ]] && extract "dotfiles-main.tar" && return
             echo "Failed to download (curl)"
         fi
 
         if [[ -x "$(command -v wget)" ]]; then
-            log info "Downloading dotfiles bundle (wget)"
+            echo "Downloading dotfiles bundle (wget)"
             wget -qO "dotfiles-main.tar" "${AR_REMOTE_HTTPS_TAR}"
             [[ -f "dotfiles-main.tar" ]] && extract "dotfiles-main.tar" && return
             echo "Failed to download (wget)"
