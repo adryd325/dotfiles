@@ -3,7 +3,6 @@ cd "$(dirname "$0")" || exit $?
 
 source ../../lib/log.sh
 source ../../lib/os.sh
-source ./packagelist-arch.sh
 
 ../../common/bash/_install.sh
 ../../common/update-global-installation.sh
@@ -31,8 +30,9 @@ sudo pacman -Syu
 ../../common/heckheating/_install.sh "stable" "canary"
 ../../common/discord/wmclass-fix.sh "stable" "ptb" "canary" "development"
 ../../common/flstudio/install.sh
-../../oses/archlinux/fonts/fontconfig/_install.sh
-../../oses/archlinux/fonts/pkgs/_install.sh
+../../oses/archlinux/fontconfig/_install.sh
+../../oses/archlinux/otf-inter-local/_install.sh
+../../oses/archlinux/ttf-recursive-code-local/_install.sh
 ../../oses/archlinux/icon-theme/_install.sh
 
 sudo systemctl enable gdm > /dev/null
