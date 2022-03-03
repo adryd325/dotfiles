@@ -1,11 +1,15 @@
 {
     "name": "dotfiles",
-    "version": "5.1.0",
+    "version": "6.0.0",
     "repository": {
         "type": "git",
         "url": "git+https://gitlab.com/adryd/dotfiles.git"
     },
     "author": "adryd (me@adryd.com)",
     "license": "MIT",
-    "type": "module"
+    "type": "module",
+    "devDependencies": {
+        "eslint": "^8.10.0",
+        "prettier": "^2.5.1"
+    }
 }

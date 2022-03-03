@@ -27,7 +27,6 @@ case "${HOSTNAME}" in
     ;;
 
   "popsicle")
-
     [[ "${USER}" != "root" ]] && askRun ./hosts/popsicle/_install.sh
     ;;
 
