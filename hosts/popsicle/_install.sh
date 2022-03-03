@@ -17,7 +17,7 @@ source ../../lib/os.sh
 # Sync after repos are added
 sudo pacman -Syyu
 
-./install-packages.sh || exit $?
+# ./install-packages.sh || exit $?
 ./thinkpad_acpi.sh
 ./optimus.sh
 ./plymouth.sh
@@ -32,7 +32,7 @@ sudo pacman -Syyu
 ../../common/discord/_install.sh "stable" "ptb" "canary" "development"
 ../../common/heckheating/_install.sh "stable" "canary"
 ../../common/discord/wmclass-fix.sh "stable" "ptb" "canary" "development"
-../../common/flstudio/install.sh
+../../common/flstudio/_install.sh
 ../../oses/archlinux/fontconfig/_install.sh
 ../../oses/archlinux/otf-inter-local/_install.sh
 ../../oses/archlinux/ttf-recursive-code-local/_install.sh
