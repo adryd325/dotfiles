@@ -9,7 +9,7 @@ export AR_MODULE="discord-electron16"
 ensureInstalled electron16
 workDir=$(mkTemp)
 
-cp -r /usr/lib/electron "${workDir}/electron"
+cp -r /usr/lib/electron16 "${workDir}/electron"
 rm -r "${workDir}/electron/resources"
 
 function patchBranch {
