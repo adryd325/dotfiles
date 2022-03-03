@@ -7,6 +7,6 @@ source ../../lib/log.sh
 ../../common/update-global-installation.sh
 ../../common/bash/_install.sh globalInstall
 
-cp -f ./bin/* /usr/local/bin
+sudo cp -f ./bin/* /usr/local/bin
 
 ./power-logs/_install.sh
