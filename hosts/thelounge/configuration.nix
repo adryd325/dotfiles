@@ -9,8 +9,8 @@
       address = "10.0.0.120";
       prefixLength = 24;
     }];
+    firewall.allowedTCPPorts = [ 9000 ];
   };
 
   services.thelounge.enable = true;
-  networking.firewall.allowedTCPPorts = [ 9000 ];
 }
