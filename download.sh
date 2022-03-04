@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # .adryd v6
 # bash -c "`curl -L adryd.co/download-v6.sh`"
 # bash -c "`wget -o- adryd.co/download-v6.sh`"
@@ -25,7 +25,8 @@ function extract() {
             exit 1
         fi
         tar -xf "$1"
-        rm dotfiles-main.tar
+        rm dotfiles-main.
+        mkdir -p "$(dirname "${AR_DIR}")"
         mv dotfiles-main "${AR_DIR}"
         [[ -d "${AR_DIR}" ]] && return
         echo "Failed extract with tar"
