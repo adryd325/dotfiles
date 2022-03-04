@@ -9,7 +9,7 @@ cp -f ./configuration.nix /etc/nixos/configuration.nix
 log tell "You must create /etc/nixos/discordWebhook.nix and /etc/nixos/users.nix"
 
 if ! [[ -f /etc/nixos/discordWebhook.nix ]]; then
-    echo -e "{\n\n}" > /etc/nixos/discordWebhook.nix
+    touch /etc/nixos/discordWebhook
 fi
 
 if ! [[ -f /etc/nixos/users.nix ]]; then

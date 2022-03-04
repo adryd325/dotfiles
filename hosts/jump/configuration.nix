@@ -1,7 +1,7 @@
 { config, lib ,pkgs, ... }:
 
-webhookUrl = import ./discordWebhook.nix;
 let
+  webhookUrl = builtins.readFile ./discordWebhook;
   notify = with pkgs; writeScriptBin "login-email-notification" ''
     #! ${runtimeShell} -e
     WEBHOOK="${webhookUrl}"
