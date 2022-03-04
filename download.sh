@@ -25,7 +25,7 @@ function extract() {
             exit 1
         fi
         tar -xf "$1"
-        rm dotfiles-main.
+        rm dotfiles-main.tar
         mkdir -p "$(dirname "${AR_DIR}")"
         mv dotfiles-main "${AR_DIR}"
         [[ -d "${AR_DIR}" ]] && return
@@ -81,6 +81,7 @@ if [[ -e "${AR_DIR}" ]]; then
     echo "\"${AR_DIR}\" already exists. Run existing install script? [Y/n]"
     read -r ask
     if [[ ${ask^^} != "N" ]]; then "${AR_DIR}/install.sh"; fi
+    exit 0
 fi
 
 download || exit 1

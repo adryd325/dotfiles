@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ /opt/adryd-dotfiles/oses/nixos/lxc-container.nix ];
+  imports = [ /opt/adryd-dotfiles/oses/nixos/lxc-container.nix /opt/adryd-dotfiles/oses/nixos/common.nix ];
 
   networking = {
     hostName = "thelounge";

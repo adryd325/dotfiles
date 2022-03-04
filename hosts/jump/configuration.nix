@@ -1,6 +1,6 @@
 { config, lib ,pkgs, ... }:
 
-webhookUrl = import ./webhook.nix;
+webhookUrl = import ./discordWebhook.nix;
 let
   notify = with pkgs; writeScriptBin "login-email-notification" ''
     #! ${runtimeShell} -e
@@ -16,7 +16,7 @@ let
   '';
 in
 {
-  imports = [ /opt/adryd-dotfiles/oses/nixos/lxc-container.nix ./users.nix ];
+  imports = [ /opt/adryd-dotfiles/oses/nixos/lxc-container.nix /opt/adryd-dotfiles/oses/nixos/common.nix ./users.nix ];
 
   security.pam.services.sshd.externalCommand = {
     type = "session";
