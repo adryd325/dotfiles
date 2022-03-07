@@ -30,6 +30,10 @@ case "${HOSTNAME}" in
     [[ "${USER}" != "root" ]] && askRun ./hosts/popsicle/_install.sh
     ;;
 
+  "leaf")
+    [[ "${USER}" != "root" ]] && askRun ./hosts/leaf/_install.sh
+    ;;
+
   "aur-builds")
     [[ "${USER}" = "root" ]] && askRun ./hosts/aur-builds/_install.sh
     ;;
@@ -41,7 +45,6 @@ case "${HOSTNAME}" in
   "thelounge")
     [[ "${USER}" = "root" ]] && askRun ./hosts/thelounge/_install.sh
     ;;
-
 
   "archiso")
     [[ "${USER}" = "root" ]] && askRun ./oses/archlinux/archiso-installer/_install.sh

@@ -57,7 +57,8 @@ else
                 echo >> ./userChrome.css
             fi
 
-            # Import this theme at the beginning of the CSS files.
+            ln -sf "${HOME}/.local/share/firefox-gnome-theme" firefox-gnome-theme
+
             sed -i '1s/^/@import "firefox-gnome-theme\/userChrome.css";\n/' userChrome.css \
                 && log info "Adding firefox-gnome-theme import to userChrome.css"
 

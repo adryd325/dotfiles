@@ -18,6 +18,7 @@ source ../../lib/os.sh
 sudo pacman -Syyu
 
 # ./install-packages.sh || exit $?
+../../common/git-crypt.sh
 ./thinkpad_acpi.sh
 ./optimus.sh
 ./plymouth.sh
@@ -33,6 +34,7 @@ sudo pacman -Syyu
 ../../common/heckheating/_install.sh "stable" "canary"
 ../../common/discord/wmclass-fix.sh "stable" "ptb" "canary" "development"
 ../../common/flstudio/_install.sh
+../../common/firefox/_install.sh
 ../../oses/archlinux/fontconfig/_install.sh
 ../../oses/archlinux/otf-inter-local/_install.sh
 ../../oses/archlinux/ttf-recursive-code-local/_install.sh

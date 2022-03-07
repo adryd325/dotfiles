@@ -1,4 +1,4 @@
-From f88ad1015db8caffa648733271fad8c678b27131 Mon Sep 17 00:00:00 2001
+From df19176d2280bf8b5848175b00b9648399c1a5ff Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 10 Nov 2021 18:55:53 +0800
 Subject: [PATCH 01/43] onscreen/native: Tidy up secondary GPU buffer tracking
@@ -504,7 +504,7 @@ index 3eb5503193..c41735d90b 100644
 GitLab
 
 
-From 72b264398398a5f45c919d80e36003d83735217d Mon Sep 17 00:00:00 2001
+From 900fe98477e3fdd9c40e8b3cecf78a6883ea7741 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 19 Jan 2022 18:43:15 +0800
 Subject: [PATCH 02/43] onscreen/native: Hold primary GPU FBs for the secondary
@@ -642,7 +642,7 @@ index c41735d90b..55dbcfef7b 100644
 GitLab
 
 
-From 1e0d9ad87bf85fc9ae6a2966c41be15e8185a61f Mon Sep 17 00:00:00 2001
+From 4bc7080a46784ce94688bedfecf919765af96831 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Mon, 16 Aug 2021 17:06:43 +0800
 Subject: [PATCH 03/43] kms/update: Hold a reference to the buffer used in a
@@ -677,7 +677,7 @@ index 53fc92eb86..2889338ec5 100644
 GitLab
 
 
-From 56257e34bbe0b15c579db4389b6bca2aecba01fd Mon Sep 17 00:00:00 2001
+From 3bc9c5e11de9912ab4a56479eb69cbe3b6745bc0 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Mon, 16 Aug 2021 18:04:10 +0800
 Subject: [PATCH 04/43] kms/crtc: Add an API to hold references to buffers
@@ -842,7 +842,7 @@ index 218bec9a15..29fdfcb5dd 100644
 GitLab
 
 
-From 515313c450b47472c463eba3b2df2f18bfe28e48 Mon Sep 17 00:00:00 2001
+From 98b436ea3aec8ec0cfda8189f556a34fdae9ea5e Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 17 Aug 2021 16:35:18 +0800
 Subject: [PATCH 05/43] kms/page-flip: Pump the CRTC's buffer reference queue
@@ -880,7 +880,7 @@ index 817f4e7c8d..148d237400 100644
 GitLab
 
 
-From d32202307ab06fc4ecc2b18b8817abb5c2d55f84 Mon Sep 17 00:00:00 2001
+From cb117ee7ac380fc3f85fb64fc5f639404d162387 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 9 Feb 2022 16:44:09 +0800
 Subject: [PATCH 06/43] kms/impl-device: Release buffers from MetaKmsCrtc in
@@ -914,7 +914,7 @@ index b05bf5fdab..1177707fae 100644
 GitLab
 
 
-From c6450ad9e74c1e0065b40d887f481aa772f72471 Mon Sep 17 00:00:00 2001
+From 5018385feae02a193e9f85c279ae39e9e71eca55 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 7 Dec 2021 18:31:16 +0800
 Subject: [PATCH 07/43] kms/impl-device/simple: Pump the CRTC's buffer
@@ -953,7 +953,7 @@ index 882cd97cc9..6f9dfee7ea 100644
 GitLab
 
 
-From 2e7e3e37ed644d7790630d1052135a30b3c2b34d Mon Sep 17 00:00:00 2001
+From c3a14dc6842cb1d9af8fd360c8b526e161dec7e1 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 17 Aug 2021 17:40:57 +0800
 Subject: [PATCH 08/43] kms/impl-device/simple: Keep a reference to buffers
@@ -1005,7 +1005,7 @@ index 6f9dfee7ea..c1e2707537 100644
 GitLab
 
 
-From f2ce48f2d8101300ebc6692f0b8059e3b6f31cd6 Mon Sep 17 00:00:00 2001
+From 7e25409f8723e82877f6869dcbc9548ed969d222 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 7 Dec 2021 17:54:15 +0800
 Subject: [PATCH 09/43] kms/impl-device/simple: Keep a reference to buffers
@@ -1107,7 +1107,7 @@ index c1e2707537..8aa78343a7 100644
 GitLab
 
 
-From ece22bfc88a2f894de18fd4b3f3d7ec77033af12 Mon Sep 17 00:00:00 2001
+From cd75deca9975f8fa21543cf80e156c0edbc7720b Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 17 Aug 2021 16:36:25 +0800
 Subject: [PATCH 10/43] kms/impl-device/atomic: Keep a reference to buffers
@@ -1158,7 +1158,7 @@ index a3ae83e547..b904b5a589 100644
 GitLab
 
 
-From 1265956c260913b1b5ca99668ad4f51d6841caf6 Mon Sep 17 00:00:00 2001
+From fe94c40013ccbb062c5c6ee81ce085d017b47faf Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 18 Aug 2021 15:04:27 +0800
 Subject: [PATCH 11/43] onscreen/native: Stop holding the current onscreen
@@ -1278,7 +1278,7 @@ index 55dbcfef7b..ac073901c4 100644
 GitLab
 
 
-From 912fb146d3d995cf94ee5227594e214fa52559b4 Mon Sep 17 00:00:00 2001
+From e162fc7724f624232b3b7506cb250728a55eb086 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 24 Sep 2021 21:49:45 +0800
 Subject: [PATCH 12/43] onscreen/native: Keep the onscreen alive longer than
@@ -1319,7 +1319,7 @@ index ac073901c4..8d36eb10c8 100644
 GitLab
 
 
-From 2afa4d593b6f8c264b02147d4deb82db3f37682b Mon Sep 17 00:00:00 2001
+From c96343e8992dbc07eb21ae089057993ac51fa9b8 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 18 Aug 2021 15:59:16 +0800
 Subject: [PATCH 13/43] cursor-renderer/native: Stop holding onto historical
@@ -1506,7 +1506,7 @@ index df5862c4c0..b27afc8e6d 100644
 GitLab
 
 
-From cd52ff22f8383481f04b0b9c03b3108bb4d770f0 Mon Sep 17 00:00:00 2001
+From f1cd29198e40e339fdd9d361c9c1e0b6193555bf Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 18 Aug 2021 16:12:24 +0800
 Subject: [PATCH 14/43] cursor-renderer/native: Remove MetaCursorBufferState
@@ -1640,7 +1640,7 @@ index b27afc8e6d..998af173d3 100644
 GitLab
 
 
-From d51d2abbaba1568cebc67677bf182bc47dc88523 Mon Sep 17 00:00:00 2001
+From d2b894af805a5036369fafaf5705d1d4ea0f8294 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 17 Sep 2021 17:48:20 +0800
 Subject: [PATCH 15/43] cogl/onscreen: Add function
@@ -1686,7 +1686,7 @@ index ff9e1749a7..b25b4af4ab 100644
 GitLab
 
 
-From 588d4a299afd78dd7b5442f826a87d0a3852a7ed Mon Sep 17 00:00:00 2001
+From 75958bbebcdc915d24526a1a4cb78bced3a8d19b Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 26 Oct 2021 18:50:50 +0800
 Subject: [PATCH 16/43] renderer/native: Avoid requeuing the same onscreen for
@@ -1720,7 +1720,7 @@ index 28ea94e9df..00b4526b05 100644
 GitLab
 
 
-From 3f211ffeb197770da7ad1bec275f6a11bde4ddaa Mon Sep 17 00:00:00 2001
+From bfca8ba1c806a092f4b6c169f977a3dc9261e028 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Mon, 1 Nov 2021 19:35:34 +0800
 Subject: [PATCH 17/43] renderer/native: Steal the power save flip list before
@@ -1760,7 +1760,7 @@ index 00b4526b05..e736ef540e 100644
 GitLab
 
 
-From b74c3d9ab561d68dbbc0dddaebb602ebd4404bc2 Mon Sep 17 00:00:00 2001
+From b9759c1b4155a328a6fd4168931513c7362b9892 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 10 Dec 2021 16:40:58 +0800
 Subject: [PATCH 18/43] onscreen/native: Log swapbuffers and N-buffering when
@@ -1798,7 +1798,7 @@ index 8d36eb10c8..1a25156007 100644
 GitLab
 
 
-From 15847b7fca6c119ac5d05634460e5f7750fab6ee Mon Sep 17 00:00:00 2001
+From 6d4f35071bae37fefd931eff30f554ee0733bf67 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 28 Jul 2021 16:35:56 +0800
 Subject: [PATCH 19/43] onscreen/native: Replace an assertion that double
@@ -1828,7 +1828,7 @@ index 1a25156007..6ff80d29c8 100644
 GitLab
 
 
-From e6db7f5c93d0a3af9b60807f62c63a372677c758 Mon Sep 17 00:00:00 2001
+From e6e77ff090a99dfe4790072e55bc47541d86ef35 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Thu, 16 Sep 2021 16:26:25 +0800
 Subject: [PATCH 20/43] onscreen/native: Deduplicate calls to
@@ -1914,7 +1914,7 @@ index 6ff80d29c8..ea13e60c90 100644
 GitLab
 
 
-From 6bc4ac23a18110bfbf97d00265d2c75463fc3766 Mon Sep 17 00:00:00 2001
+From 726d99b5766d2f59339ec904a941a53209348e02 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 28 Jul 2021 16:29:27 +0800
 Subject: [PATCH 21/43] onscreen/native: Split swap_buffers_with_damage into
@@ -2045,7 +2045,7 @@ index ea13e60c90..1649a9383a 100644
 GitLab
 
 
-From 4f33c4a2aa9d6cbaaa3ac09980a74f0eed4e1b26 Mon Sep 17 00:00:00 2001
+From 11aaf048500d117babb84a36aa6ba718fc970471 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Thu, 12 Aug 2021 18:28:57 +0800
 Subject: [PATCH 22/43] onscreen/native: Warn instead of crashing if posting
@@ -2071,7 +2071,7 @@ index 1649a9383a..4fa354052c 100644
 GitLab
 
 
-From 198c23bc255a74231b23ccc7175d50e699af4536 Mon Sep 17 00:00:00 2001
+From 673c38a0c5025fc8f387a378d916f6a87ffc5873 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Thu, 28 Oct 2021 17:24:11 +0800
 Subject: [PATCH 23/43] onscreen/native: Add a missing frame notification
@@ -2107,7 +2107,7 @@ index 4fa354052c..46e1672b53 100644
 GitLab
 
 
-From f0f39129e6208011641c4517224900a02a7980c6 Mon Sep 17 00:00:00 2001
+From 3eb6398293199eb82071bda46926b803818d0a66 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 17 Sep 2021 17:59:28 +0800
 Subject: [PATCH 24/43] onscreen/native: Defer posting if there's already a
@@ -2313,7 +2313,7 @@ index 46e1672b53..dc996001d7 100644
 GitLab
 
 
-From 0e07bdb4e4d574cdfc39ae16936d07b53558f7ef Mon Sep 17 00:00:00 2001
+From a994032a77f783e0f9c4d58e03cabf471ffea942 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 2 Nov 2021 19:04:04 +0800
 Subject: [PATCH 25/43] onscreen/native: Keep a reference to the CRTC used
@@ -2350,7 +2350,7 @@ index dc996001d7..86d191ee14 100644
 GitLab
 
 
-From 6af3f973c311ab1588a0171e224490b985ab89ba Mon Sep 17 00:00:00 2001
+From 370221bc239dfa24dfb5bd1eda57360260c4dc74 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Thu, 4 Nov 2021 16:09:26 +0800
 Subject: [PATCH 26/43] onscreen/native: Add function
@@ -2400,7 +2400,7 @@ index 3a85ace267..676c4c4459 100644
 GitLab
 
 
-From 150dd1b8b7e0676cb10bc3b511a191e16781a86b Mon Sep 17 00:00:00 2001
+From 67f09445be6b0c41988fe23c90cfcd99aab505f5 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Thu, 4 Nov 2021 16:09:52 +0800
 Subject: [PATCH 27/43] renderer/native: Discard pending swaps when rebuilding
@@ -2459,7 +2459,7 @@ index e736ef540e..af02ce491a 100644
 GitLab
 
 
-From 1e8f64f9861ae05aff4278ff41300a5ae5870037 Mon Sep 17 00:00:00 2001
+From 97d3f37b80e341afbdcff7f1db5b508ebbc5e9d4 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 10 Aug 2021 17:46:49 +0800
 Subject: [PATCH 28/43] clutter/frame-clock: Lower the threshold for disabling
@@ -2492,10 +2492,10 @@ logical threshold is halfway again: refresh_interval_us/4.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/clutter/clutter/clutter-frame-clock.c b/clutter/clutter/clutter-frame-clock.c
-index a1687415a6..663e3fde5b 100644
+index 6fa2b25887..bf6cf3ef4c 100644
 --- a/clutter/clutter/clutter-frame-clock.c
 +++ b/clutter/clutter/clutter-frame-clock.c
-@@ -620,7 +620,7 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
+@@ -670,7 +670,7 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
                             frame_clock->refresh_interval_us;
  
    lateness_us = time_us - ideal_dispatch_time_us;
@@ -2508,7 +2508,7 @@ index a1687415a6..663e3fde5b 100644
 GitLab
 
 
-From 18c1dd5c800de5e05a3b9048fc0a0b57338cc4d3 Mon Sep 17 00:00:00 2001
+From 64d881f8a26e7a89e51ccb8d5f4a1a1637606cad Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 24 Jul 2020 14:13:11 +0800
 Subject: [PATCH 29/43] clutter/frame-clock: Merge states DISPATCHING and
@@ -2527,7 +2527,7 @@ later.
  1 file changed, 10 insertions(+), 16 deletions(-)
 
 diff --git a/clutter/clutter/clutter-frame-clock.c b/clutter/clutter/clutter-frame-clock.c
-index 663e3fde5b..306a1ea1fb 100644
+index bf6cf3ef4c..26f2f681e5 100644
 --- a/clutter/clutter/clutter-frame-clock.c
 +++ b/clutter/clutter/clutter-frame-clock.c
 @@ -65,8 +65,7 @@ typedef enum _ClutterFrameClockState
@@ -2540,7 +2540,7 @@ index 663e3fde5b..306a1ea1fb 100644
  } ClutterFrameClockState;
  
  struct _ClutterFrameClock
-@@ -275,8 +274,7 @@ clutter_frame_clock_notify_presented (ClutterFrameClock *frame_clock,
+@@ -317,8 +316,7 @@ clutter_frame_clock_notify_presented (ClutterFrameClock *frame_clock,
      case CLUTTER_FRAME_CLOCK_STATE_SCHEDULED:
        g_warn_if_reached ();
        break;
@@ -2550,7 +2550,7 @@ index 663e3fde5b..306a1ea1fb 100644
        frame_clock->state = CLUTTER_FRAME_CLOCK_STATE_IDLE;
        maybe_reschedule_update (frame_clock);
        break;
-@@ -293,8 +291,7 @@ clutter_frame_clock_notify_ready (ClutterFrameClock *frame_clock)
+@@ -337,8 +335,7 @@ clutter_frame_clock_notify_ready (ClutterFrameClock *frame_clock)
      case CLUTTER_FRAME_CLOCK_STATE_SCHEDULED:
        g_warn_if_reached ();
        break;
@@ -2560,7 +2560,7 @@ index 663e3fde5b..306a1ea1fb 100644
        frame_clock->state = CLUTTER_FRAME_CLOCK_STATE_IDLE;
        maybe_reschedule_update (frame_clock);
        break;
-@@ -514,8 +511,7 @@ clutter_frame_clock_inhibit (ClutterFrameClock *frame_clock)
+@@ -558,8 +555,7 @@ clutter_frame_clock_inhibit (ClutterFrameClock *frame_clock)
            frame_clock->pending_reschedule = TRUE;
            frame_clock->state = CLUTTER_FRAME_CLOCK_STATE_IDLE;
            break;
@@ -2570,7 +2570,7 @@ index 663e3fde5b..306a1ea1fb 100644
            break;
          }
  
-@@ -554,8 +550,7 @@ clutter_frame_clock_schedule_update_now (ClutterFrameClock *frame_clock)
+@@ -598,8 +594,7 @@ clutter_frame_clock_schedule_update_now (ClutterFrameClock *frame_clock)
        break;
      case CLUTTER_FRAME_CLOCK_STATE_SCHEDULED:
        return;
@@ -2580,7 +2580,7 @@ index 663e3fde5b..306a1ea1fb 100644
        frame_clock->pending_reschedule = TRUE;
        frame_clock->pending_reschedule_now = TRUE;
        return;
-@@ -593,8 +588,7 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
+@@ -637,8 +632,7 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
        break;
      case CLUTTER_FRAME_CLOCK_STATE_SCHEDULED:
        return;
@@ -2590,7 +2590,7 @@ index 663e3fde5b..306a1ea1fb 100644
        frame_clock->pending_reschedule = TRUE;
        return;
      }
-@@ -628,7 +622,7 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
+@@ -678,7 +672,7 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
    frame_clock->last_dispatch_time_us = time_us;
    g_source_set_ready_time (frame_clock->source, -1);
  
@@ -2599,7 +2599,7 @@ index 663e3fde5b..306a1ea1fb 100644
  
    frame_count = frame_clock->frame_count++;
  
-@@ -656,19 +650,19 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
+@@ -706,19 +700,19 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
    switch (frame_clock->state)
      {
      case CLUTTER_FRAME_CLOCK_STATE_INIT:
@@ -2626,7 +2626,7 @@ index 663e3fde5b..306a1ea1fb 100644
 GitLab
 
 
-From 8fd5c62fa8c6dc48582e81e91530564ec714c1ac Mon Sep 17 00:00:00 2001
+From af51757bad1c8a1ad9d53ae11b60af1d2658285f Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Thu, 10 Sep 2020 16:34:53 +0800
 Subject: [PATCH 30/43] clutter/frame-clock: Add triple buffering support
@@ -2636,7 +2636,7 @@ Subject: [PATCH 30/43] clutter/frame-clock: Add triple buffering support
  1 file changed, 80 insertions(+), 21 deletions(-)
 
 diff --git a/clutter/clutter/clutter-frame-clock.c b/clutter/clutter/clutter-frame-clock.c
-index 306a1ea1fb..a1540abdda 100644
+index 26f2f681e5..cacd4f6362 100644
 --- a/clutter/clutter/clutter-frame-clock.c
 +++ b/clutter/clutter/clutter-frame-clock.c
 @@ -65,7 +65,9 @@ typedef enum _ClutterFrameClockState
@@ -2650,7 +2650,7 @@ index 306a1ea1fb..a1540abdda 100644
  } ClutterFrameClockState;
  
  struct _ClutterFrameClock
-@@ -274,10 +276,18 @@ clutter_frame_clock_notify_presented (ClutterFrameClock *frame_clock,
+@@ -316,10 +318,18 @@ clutter_frame_clock_notify_presented (ClutterFrameClock *frame_clock,
      case CLUTTER_FRAME_CLOCK_STATE_SCHEDULED:
        g_warn_if_reached ();
        break;
@@ -2670,7 +2670,7 @@ index 306a1ea1fb..a1540abdda 100644
      }
  }
  
-@@ -291,10 +301,18 @@ clutter_frame_clock_notify_ready (ClutterFrameClock *frame_clock)
+@@ -335,10 +345,18 @@ clutter_frame_clock_notify_ready (ClutterFrameClock *frame_clock)
      case CLUTTER_FRAME_CLOCK_STATE_SCHEDULED:
        g_warn_if_reached ();
        break;
@@ -2690,7 +2690,7 @@ index 306a1ea1fb..a1540abdda 100644
      }
  }
  
-@@ -511,7 +529,12 @@ clutter_frame_clock_inhibit (ClutterFrameClock *frame_clock)
+@@ -555,7 +573,12 @@ clutter_frame_clock_inhibit (ClutterFrameClock *frame_clock)
            frame_clock->pending_reschedule = TRUE;
            frame_clock->state = CLUTTER_FRAME_CLOCK_STATE_IDLE;
            break;
@@ -2704,7 +2704,7 @@ index 306a1ea1fb..a1540abdda 100644
            break;
          }
  
-@@ -547,10 +570,17 @@ clutter_frame_clock_schedule_update_now (ClutterFrameClock *frame_clock)
+@@ -591,10 +614,17 @@ clutter_frame_clock_schedule_update_now (ClutterFrameClock *frame_clock)
      case CLUTTER_FRAME_CLOCK_STATE_INIT:
      case CLUTTER_FRAME_CLOCK_STATE_IDLE:
        next_update_time_us = g_get_monotonic_time ();
@@ -2723,7 +2723,7 @@ index 306a1ea1fb..a1540abdda 100644
        frame_clock->pending_reschedule = TRUE;
        frame_clock->pending_reschedule_now = TRUE;
        return;
-@@ -559,7 +589,6 @@ clutter_frame_clock_schedule_update_now (ClutterFrameClock *frame_clock)
+@@ -603,7 +633,6 @@ clutter_frame_clock_schedule_update_now (ClutterFrameClock *frame_clock)
    g_warn_if_fail (next_update_time_us != -1);
  
    g_source_set_ready_time (frame_clock->source, next_update_time_us);
@@ -2731,7 +2731,7 @@ index 306a1ea1fb..a1540abdda 100644
    frame_clock->is_next_presentation_time_valid = FALSE;
  }
  
-@@ -578,6 +607,7 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
+@@ -622,6 +651,7 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
      {
      case CLUTTER_FRAME_CLOCK_STATE_INIT:
        next_update_time_us = g_get_monotonic_time ();
@@ -2739,7 +2739,7 @@ index 306a1ea1fb..a1540abdda 100644
        break;
      case CLUTTER_FRAME_CLOCK_STATE_IDLE:
        calculate_next_update_time_us (frame_clock,
-@@ -585,10 +615,20 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
+@@ -629,10 +659,20 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
                                       &frame_clock->next_presentation_time_us);
        frame_clock->is_next_presentation_time_valid =
          (frame_clock->next_presentation_time_us != 0);
@@ -2761,7 +2761,7 @@ index 306a1ea1fb..a1540abdda 100644
        frame_clock->pending_reschedule = TRUE;
        return;
      }
-@@ -596,7 +636,6 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
+@@ -640,7 +680,6 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
    g_warn_if_fail (next_update_time_us != -1);
  
    g_source_set_ready_time (frame_clock->source, next_update_time_us);
@@ -2769,7 +2769,7 @@ index 306a1ea1fb..a1540abdda 100644
  }
  
  static void
-@@ -622,7 +661,21 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
+@@ -672,7 +711,21 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
    frame_clock->last_dispatch_time_us = time_us;
    g_source_set_ready_time (frame_clock->source, -1);
  
@@ -2792,7 +2792,7 @@ index 306a1ea1fb..a1540abdda 100644
  
    frame_count = frame_clock->frame_count++;
  
-@@ -647,25 +700,31 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
+@@ -697,25 +750,31 @@ clutter_frame_clock_dispatch (ClutterFrameClock *frame_clock,
                                                 frame_clock->listener.user_data);
    COGL_TRACE_END (ClutterFrameClockFrame);
  
@@ -2840,7 +2840,7 @@ index 306a1ea1fb..a1540abdda 100644
 GitLab
 
 
-From 4408f5a5adb418b087bbd960da8b58d1b3b14f26 Mon Sep 17 00:00:00 2001
+From 2f4aee5c14e7d129a844c516be7da1ea93cf018f Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 10 Dec 2021 16:28:04 +0800
 Subject: [PATCH 31/43] clutter/frame-clock: Log N-buffers in
@@ -2851,7 +2851,7 @@ Subject: [PATCH 31/43] clutter/frame-clock: Log N-buffers in
  1 file changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/clutter/clutter/clutter-frame-clock.c b/clutter/clutter/clutter-frame-clock.c
-index a1540abdda..46ace66b9a 100644
+index cacd4f6362..e97c6f2ad4 100644
 --- a/clutter/clutter/clutter-frame-clock.c
 +++ b/clutter/clutter/clutter-frame-clock.c
 @@ -229,6 +229,10 @@ void
@@ -2862,10 +2862,10 @@ index a1540abdda..46ace66b9a 100644
 +    frame_clock->state == CLUTTER_FRAME_CLOCK_STATE_DISPATCHED_TWO ?
 +    "Triple buffering" : "Double buffering";
 +
-   frame_clock->last_presentation_time_us = frame_info->presentation_time;
+   COGL_TRACE_BEGIN_SCOPED (ClutterFrameClockNotifyPresented,
+                            "Frame Clock (presented)");
  
-   frame_clock->got_measurements_last_frame = FALSE;
-@@ -248,7 +252,8 @@ clutter_frame_clock_notify_presented (ClutterFrameClock *frame_clock,
+@@ -290,7 +294,8 @@ clutter_frame_clock_notify_presented (ClutterFrameClock *frame_clock,
          frame_info->cpu_time_before_buffer_swap_us;
  
        CLUTTER_NOTE (FRAME_TIMINGS,
@@ -2875,7 +2875,7 @@ index a1540abdda..46ace66b9a 100644
                      dispatch_to_swap_us,
                      swap_to_rendering_done_us,
                      swap_to_flip_us);
-@@ -262,6 +267,10 @@ clutter_frame_clock_notify_presented (ClutterFrameClock *frame_clock,
+@@ -304,6 +309,10 @@ clutter_frame_clock_notify_presented (ClutterFrameClock *frame_clock,
  
        frame_clock->got_measurements_last_frame = TRUE;
      }
@@ -2890,7 +2890,7 @@ index a1540abdda..46ace66b9a 100644
 GitLab
 
 
-From e4fbcd6fb54f67b79d5148b711f2b5567681db79 Mon Sep 17 00:00:00 2001
+From 044e6bbc82e50a0f48c161c6d1911efd61c5af95 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Mon, 13 Dec 2021 17:03:44 +0800
 Subject: [PATCH 32/43] clutter/frame-clock: Don't clamp
@@ -2903,10 +2903,10 @@ tell us when we're not keeping up.
  1 file changed, 2 deletions(-)
 
 diff --git a/clutter/clutter/clutter-frame-clock.c b/clutter/clutter/clutter-frame-clock.c
-index 46ace66b9a..70f7746145 100644
+index e97c6f2ad4..ade6f2e4a5 100644
 --- a/clutter/clutter/clutter-frame-clock.c
 +++ b/clutter/clutter/clutter-frame-clock.c
-@@ -371,8 +371,6 @@ clutter_frame_clock_compute_max_render_time_us (ClutterFrameClock *frame_clock)
+@@ -415,8 +415,6 @@ clutter_frame_clock_compute_max_render_time_us (ClutterFrameClock *frame_clock)
      frame_clock->vblank_duration_us +
      clutter_max_render_time_constant_us;
  
@@ -2919,7 +2919,7 @@ index 46ace66b9a..70f7746145 100644
 GitLab
 
 
-From 4c7eb13c030c8373e16cd09db2e805c5dc37998b Mon Sep 17 00:00:00 2001
+From e0057deaa58b7390ecdcd5b6211edb7a7d046656 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Thu, 17 Feb 2022 15:54:57 +0800
 Subject: [PATCH 33/43] clutter/frame-clock: Subtract buffer queue latency from
@@ -2945,10 +2945,10 @@ buffering when appropriate.
  1 file changed, 22 insertions(+)
 
 diff --git a/clutter/clutter/clutter-frame-clock.c b/clutter/clutter/clutter-frame-clock.c
-index 70f7746145..f03bff4cd6 100644
+index ade6f2e4a5..cc4ac21c24 100644
 --- a/clutter/clutter/clutter-frame-clock.c
 +++ b/clutter/clutter/clutter-frame-clock.c
-@@ -333,6 +333,7 @@ clutter_frame_clock_compute_max_render_time_us (ClutterFrameClock *frame_clock)
+@@ -377,6 +377,7 @@ clutter_frame_clock_compute_max_render_time_us (ClutterFrameClock *frame_clock)
    int64_t max_swap_to_rendering_done_us = 0;
    int64_t max_swap_to_flip_us = 0;
    int64_t max_render_time_us;
@@ -2956,7 +2956,7 @@ index 70f7746145..f03bff4cd6 100644
    int i;
  
    refresh_interval_us = frame_clock->refresh_interval_us;
-@@ -355,6 +356,27 @@ clutter_frame_clock_compute_max_render_time_us (ClutterFrameClock *frame_clock)
+@@ -399,6 +400,27 @@ clutter_frame_clock_compute_max_render_time_us (ClutterFrameClock *frame_clock)
               frame_clock->swap_to_flip_us.values[i]);
      }
  
@@ -2988,7 +2988,7 @@ index 70f7746145..f03bff4cd6 100644
 GitLab
 
 
-From 843d54e2d66dd589a8812c617b42904ed90c7481 Mon Sep 17 00:00:00 2001
+From 4ac31df91a59e19b1a2a6565f5529c4b89145ae4 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 7 Sep 2021 19:08:15 +0800
 Subject: [PATCH 34/43] clutter/frame: Add ClutterFrameHint to ClutterFrame
@@ -3072,7 +3072,7 @@ index d3608e81ca..06c5f7f28a 100644
 GitLab
 
 
-From dad0338150d673c30740ea5fa74fafecf63871dc Mon Sep 17 00:00:00 2001
+From 01dccd84713547d05a3068085b3955e4403f8a50 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 7 Sep 2021 19:10:26 +0800
 Subject: [PATCH 35/43] backends: Flag that the frame attempted direct scanout
@@ -3102,7 +3102,7 @@ index c45aaf852e..683f4ff6c5 100644
 GitLab
 
 
-From 9f3d397c14a88399de6fbc0cca8007eebb40ac62 Mon Sep 17 00:00:00 2001
+From d9c99ddf8df4aebb735b57af37d698edc64131ef Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 7 Sep 2021 19:15:18 +0800
 Subject: [PATCH 36/43] clutter: Pass ClutterFrameHint(s) to the frame clock
@@ -3114,7 +3114,7 @@ Subject: [PATCH 36/43] clutter: Pass ClutterFrameHint(s) to the frame clock
  3 files changed, 12 insertions(+), 6 deletions(-)
 
 diff --git a/clutter/clutter/clutter-frame-clock.c b/clutter/clutter/clutter-frame-clock.c
-index f03bff4cd6..cb7a821005 100644
+index cc4ac21c24..577f10ee71 100644
 --- a/clutter/clutter/clutter-frame-clock.c
 +++ b/clutter/clutter/clutter-frame-clock.c
 @@ -97,6 +97,8 @@ struct _ClutterFrameClock
@@ -3126,7 +3126,7 @@ index f03bff4cd6..cb7a821005 100644
    /* Last few durations between dispatch start and buffer swap. */
    EstimateQueue dispatch_to_swap_us;
    /* Last few durations between buffer swap and GPU rendering finish. */
-@@ -775,10 +777,12 @@ frame_clock_source_dispatch (GSource     *source,
+@@ -836,10 +838,12 @@ frame_clock_source_dispatch (GSource     *source,
  }
  
  void
@@ -3177,7 +3177,7 @@ index 8a82de71ed..45d0093521 100644
 GitLab
 
 
-From 338e4250c194ae71dd50605c9d80552e7147b572 Mon Sep 17 00:00:00 2001
+From 4807ed4dd88cf17091ec66d6df16c460588c6400 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Tue, 7 Sep 2021 19:15:55 +0800
 Subject: [PATCH 37/43] clutter/frame-clock: Throttle back to double buffering
@@ -3191,10 +3191,10 @@ Stick to double buffering and enjoy the lower latency.
  1 file changed, 7 insertions(+)
 
 diff --git a/clutter/clutter/clutter-frame-clock.c b/clutter/clutter/clutter-frame-clock.c
-index cb7a821005..1187e381f1 100644
+index 577f10ee71..57176b3763 100644
 --- a/clutter/clutter/clutter-frame-clock.c
 +++ b/clutter/clutter/clutter-frame-clock.c
-@@ -652,6 +652,13 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
+@@ -696,6 +696,13 @@ clutter_frame_clock_schedule_update (ClutterFrameClock *frame_clock)
      case CLUTTER_FRAME_CLOCK_STATE_DISPATCHED_ONE_AND_SCHEDULED:
        return;
      case CLUTTER_FRAME_CLOCK_STATE_DISPATCHED_ONE:
@@ -3212,7 +3212,7 @@ index cb7a821005..1187e381f1 100644
 GitLab
 
 
-From 12a86e0b476201d40f3b59793d042f6a3ec8bc25 Mon Sep 17 00:00:00 2001
+From aa2199bab5077e3b1afd88740243e236b9a50ae4 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 22 Sep 2021 17:01:42 +0800
 Subject: [PATCH 38/43] kms: Keep a hash table of CRTCs relating to the
@@ -3292,7 +3292,7 @@ index 2889338ec5..5896d66dfe 100644
 GitLab
 
 
-From edbf8c769a31275cb2685931cd49f4405054ce30 Mon Sep 17 00:00:00 2001
+From e44a2e6e710291f80dcf598a68ce9851778d9379 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 22 Sep 2021 17:19:45 +0800
 Subject: [PATCH 39/43] kms: Add function meta_kms_update_includes_crtc()
@@ -3338,7 +3338,7 @@ index 5896d66dfe..c38edc1858 100644
 GitLab
 
 
-From a377a085b27f410666227aa528ce8ac8de536ee1 Mon Sep 17 00:00:00 2001
+From 6b946bec400897cd26e678a79bc335f698a370d1 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Wed, 22 Sep 2021 18:13:54 +0800
 Subject: [PATCH 40/43] kms: Add per-CRTC update functions
@@ -3349,7 +3349,7 @@ Subject: [PATCH 40/43] kms: Add per-CRTC update functions
  2 files changed, 108 insertions(+), 4 deletions(-)
 
 diff --git a/src/backends/native/meta-kms.c b/src/backends/native/meta-kms.c
-index 2688a23c68..9b04aab6b3 100644
+index 052ec8a65c..5b68fbc62f 100644
 --- a/src/backends/native/meta-kms.c
 +++ b/src/backends/native/meta-kms.c
 @@ -23,6 +23,7 @@
@@ -3523,7 +3523,7 @@ index bd9fe5cead..84f1bed498 100644
 GitLab
 
 
-From ce6ce3045bde3c2b80d7c65439e93785e5c4789f Mon Sep 17 00:00:00 2001
+From 18dac8a652eeec8667047a972cfa4f0d2f68874f Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 28 Jan 2022 15:46:09 +0800
 Subject: [PATCH 41/43] cursor-renderer/native: Use CRTC-specific update
@@ -3561,7 +3561,7 @@ index 998af173d3..606fcad97f 100644
 GitLab
 
 
-From 998aef9f4be2b118879ce4e70eeda380bde23e0f Mon Sep 17 00:00:00 2001
+From 17fce708339eb68f41c372d9d79d13775c216771 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 28 Jan 2022 15:50:24 +0800
 Subject: [PATCH 42/43] crtc/native: Use CRTC-specific update retrieval
@@ -3598,7 +3598,7 @@ index 584a780ba8..773b540b47 100644
 GitLab
 
 
-From 28a79c348aefc12c11aa552fa7ad21c5be8a4297 Mon Sep 17 00:00:00 2001
+From 37327b68d62578118e35ded2be19756bfaffe644 Mon Sep 17 00:00:00 2001
 From: Daniel van Vugt <daniel.van.vugt@canonical.com>
 Date: Fri, 28 Jan 2022 16:35:42 +0800
 Subject: [PATCH 43/43] onscreen/native: Use CRTC-specific update retrieval

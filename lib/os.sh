@@ -39,8 +39,18 @@ function ensureInstalled {
         "nixos")
             echo "what the fuck are you doing"
             ;;
+        "fedora")
+            sudo dnf install -y "$@"
+            ;;
         *)
             echo "ensureInstalled is not supported on this os"
             ;;
     esac
+}
+
+function ensureInstalledFlatpak {
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    for package in "$@"; do
+        flatpak install "${package}"
+    done
 }

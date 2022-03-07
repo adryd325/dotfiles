@@ -5,8 +5,8 @@
 # options=(debug)
 
 pkgname=mutter-performance
-pkgver=42.beta.0
-pkgrel=2
+pkgver=42.beta.0+r79+g756b9113a
+pkgrel=1
 pkgdesc="A window manager for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -15,13 +15,13 @@ depends=(dconf gobject-introspection-runtime gsettings-desktop-schemas
          libcanberra startup-notification zenity libsm gnome-desktop upower
          libxkbcommon-x11 gnome-settings-daemon libgudev libinput pipewire
          xorg-xwayland graphene libxkbfile libsysprof-capture)
-makedepends=(git glibc-tools gobject-introspection egl-wayland meson
+makedepends=(git gobject-introspection egl-wayland meson
              xorg-server wayland-protocols sysprof)
 checkdepends=(xorg-server-xvfb wireplumber python-dbusmock)
 provides=(libmutter-10.so mutter)
 conflicts=(mutter)
 groups=(gnome)
-_commit=11a2cb2705074832610039e90e0d2bbb8fcfbd90
+_commit=756b9113af03003ca29e503d818b92ac5e226abb
 source=("git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit" "1441.patch")
 sha256sums=('SKIP' 'SKIP')
 

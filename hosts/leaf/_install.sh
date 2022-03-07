@@ -2,8 +2,6 @@
 cd "$(dirname "$0")" || exit $?
 source ../../lib/log.sh
 [[ "${USER}" = "root" ]] && log error "Do not run as root" && exit 1
-#!/usr/bin/env bash
-cd "$(dirname "$0")" || exit $?
 
 source ../../lib/log.sh
 source ../../lib/os.sh
@@ -12,10 +10,14 @@ source ../../lib/os.sh
 ../../common/update-global-installation.sh
 ../../common/bash/_install.sh globalInstall
 
+../../oses/fedora/dnf/_install.sh
+
 # Update everything
 sudo dnf upgrade
 
-# ./install-packages.sh || exit $?
+./install-packages.sh || exit $?
+
+../../common/git-crypt.sh
 ../../common/sysctl/_install.sh
 ../../common/xdg-user-dirs/_install.sh
 ../../common/mimeapps/_install.sh
@@ -26,3 +28,4 @@ sudo dnf upgrade
 ../../common/discord/_install.sh "stable" "canary"
 ../../common/heckheating/_install.sh "stable" "canary"
 ../../common/discord/wmclass-fix.sh "stable" "canary"
+../../common/firefox/_install.sh

@@ -12,13 +12,13 @@ gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.shell.weather locations "[<(uint32 2, <('Toronto', 'CYTZ', true, [(0.76154532446909495, -1.3857914260834978)], [(0.76212711252195475, -1.3860823201099277)])>)>]"
 
 log info "Setting app-picker layout"
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-developer-edition.desktop', 'org.gnome.Terminal.desktop', 'discord-canary.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'firefox-developer-edition.desktop', 'org.gnome.Terminal.desktop', 'discord-canary.desktop']"
 gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'Games', 'Creativity', 'LibreOffice', 'Chats']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ apps "['steam.desktop', 'multimc.desktop', 'powder-toy.desktop', 'supertuxkart.desktop', 'uk.co.powdertoy.tpt.desktop', 'org.polymc.polymc.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ apps "['steam.desktop', 'com.valvesoftware.Steam.desktop', 'multimc.desktop', 'powder-toy.desktop', 'supertuxkart.desktop', 'uk.co.powdertoy.tpt.desktop', 'org.polymc.PolyMC.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name 'Games'
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/LibreOffice/ apps "['libreoffice-startcenter.desktop', 'libreoffice-calc.desktop', 'libreoffice-impress.desktop', 'libreoffice-writer.desktop', 'libreoffice-base.desktop', 'libreoffice-draw.desktop', 'libreoffice-math.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/LibreOffice/ name 'LibreOffice'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Chats/ apps "['discord.desktop', 'telegramdesktop.desktop', 'signal-desktop.desktop', 'org.mumble_voip.mumble.desktop', 'discord-development.desktop', 'discord-ptb.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Chats/ apps "['discord.desktop', 'telegramdesktop.desktop', 'org.telegram.desktop.desktop', 'signal-desktop.desktop', 'org.mumble_voip.mumble.desktop', 'discord-development.desktop', 'discord-ptb.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Chats/ name 'Chats'
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Creativity/ apps "['aseprite.desktop', 'blender.desktop', 'gimp.desktop', 'org.inkscape.Inkscape.desktop', 'net.blockbench.Blockbench.desktop', 'wine-Programs-Image-Line-FL Studio 20.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Creativity/ name 'Creativity'
