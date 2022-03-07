@@ -55,7 +55,7 @@ function installBranch {
     cp -f "${installationDir}/discord.png" "${HOME}/.local/share/icons/hicolor/256x256/${pkgName}.png" &> /dev/null
 
     log verb "Patching .desktop file"
-    sed -i "s:Exec=/usr/share/${pkgName}/${name}:Exec=\"${installationDir}/${name}\" -ignore-gpu-blocklist --disable-sandbox --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-transparent-visuals --disable-gpu --enable-zero-copy:" \
+    sed -i "s:Exec=/usr/share/${pkgName}/${name}:Exec=\"${installationDir}/${name}\" --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy --no-sandbox:" \
         "${desktopFile}"
     sed -i "s/StartupWMClass=discord/StartupWMClass=${name}/" \
         "${desktopFile}"
@@ -78,8 +78,7 @@ case "$(getDistro)" in
         ensureInstalled libc6 libasound2 libatomic1 libgconf-2-4 libnotify4 libnspr4 libnss3 libstdc++6, libxss1 libxtst6 libappindicator1 libc++1
         ;;
     "fedora")
-        # TODO: get these right, this is a guess based on the libs in the rpm package
-        ensureInstalled glibc alsa-lib gconf2 glibc libx11 libxtst libappindicator libatomic libnotify nspr nss
+        ensureInstalled glibc alsa-lib GConf2 libX11 libXtst libappindicator libatomic libnotify nspr nss
         ;;
     *)
         # Do nothing
