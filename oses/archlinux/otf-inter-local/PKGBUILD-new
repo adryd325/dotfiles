@@ -1,6 +1,6 @@
 # shellcheck shell=bash disable=SC2034,2154
 pkgname=otf-inter-local
-pkgver=3.19.r8.g7b4e19f9a
+pkgver=3.19.r9.g867cf1bd8
 pkgrel=1
 pkgdesc="Inter Font"
 arch=(any)
@@ -8,7 +8,7 @@ makedepends=(python3 python2 libgl mesa ninja git gn)
 conflicts=(ttf-recursive otf-recursive)
 source=(
     'git+https://github.com/rsms/inter.git'
-    '376.patch'
+    'pr-376.patch'
 )
 sha256sums=(
     'SKIP'
@@ -22,15 +22,14 @@ pkgver() {
 
 prepare() {
     cd inter || return $?
-    git apply ../376.patch
-    # Fix build failing cause of "AttributeError: DistutilsMetaFinder instance has no attribute 'find_module'"
-    sed -i "s/skia-pathops==0.6.0.post2/skia-pathops==0.7.2/" ./requirements.txt
-    ./init.sh
+    git am --no-gpg-sign ../pr-376.patch
+    # git am --no-gpg-sign ../skia-pathops-0-7-2.patch
 }
 
 build() {
     cd inter || return $?
-    make -j test
+    ./init.sh || return $?
+    make -j all_otf
 }
 
 package() {
