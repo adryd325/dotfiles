@@ -8,6 +8,8 @@ packages=(
     "easyeffects"
     "nodejs"
     "git-crypt"
+    "ImageMagick"
+    "file-roller"
 )
 
 flatpaks=(
@@ -19,6 +21,8 @@ flatpaks=(
     "com.valvesoftware.Steam.Utility.gamescope"
     "org.polymc.PolyMC"
     "org.telegram.desktop"
+    "com.jetbrains.IntelliJ-IDEA-Community"
+    "com.visualstudio.code"
 )
 
 export packages
