@@ -5,7 +5,7 @@
 $ bash -c "`curl -sL adryd.co/install.sh`"
 $ bash -c "`wget -Qo- adryd.co/install.sh`"
 
-**DISCLAIMER**: These scripts are mostly public for teaching purposes, for
+<b>DISCLAIMER</b>: These scripts are mostly public for teaching purposes, for
 reference on how my system is configured, or for others to extend them for their
 own use. These scripts are very opinionated and you may not like what they do.
 
@@ -28,4 +28,8 @@ On servers this should be installed to "/opt/adryd-dotfiles".
 
 If the user is root, the install script will automatically install to
 "/opt/adryd-dotfiles", otherwise it will install to "~/.adryd".
+
+<b>Additional info</b>
+the develop branch will have lots of force-pushes and should only be used on
+machines when writing their configuration.
 </pre>
