@@ -1,8 +1,8 @@
-{ config, lib ,pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   webhookUrl = builtins.readFile ./discordWebhook;
-  notify = with pkgs; writeScriptBin "login-email-notification" ''
+  notify = with pkgs; writeScriptBin "login-discord-notification" ''
     #! ${runtimeShell} -e
     WEBHOOK="${webhookUrl}"
     PUBKEY=''$(tail -10 /var/log/auth.log | grep "Accepted publickey for ''${PAM_USER} from ''${PAM_RHOST}" | tail -1 | sed "s/Accepted publickey for [^ ]* from [^ ]* //g" | tail -1)
@@ -18,11 +18,11 @@ in
 {
   imports = [ /opt/adryd-dotfiles/oses/nixos/lxc-container.nix /opt/adryd-dotfiles/oses/nixos/common.nix ./users.nix ];
 
-  security.pam.services.sshd.externalCommand = {
-    type = "session";
-    control = "required";
-    command = "${notify}/bin/login-email-notification";
-  };
+  # security.pam.services.sshd.externalCommand = {
+  #   type = "session";
+  #   control = "required";
+  #   command = "${notify}/bin/login-discord-notification";
+  # };
 
   networking = {
     hostName = "jump";
@@ -35,7 +35,6 @@ in
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
     ports = [ 22 2222 ];
     passwordAuthentication = false;
     permitRootLogin = "no";
@@ -47,7 +46,7 @@ PermitEmptyPasswords no
 AuthenticationMethods publickey
 PermitTTY no
 PermitTunnel no
-Match Port 22
+Match LocalPort 22
   Banner /opt/adryd-dotfiles/hosts/jump/ssh_banner
 Match User adryd
   PermitTunnel yes
