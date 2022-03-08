@@ -1,3 +1,4 @@
+# shellcheck shell=bash disable=SC2034,2154
 pkgname="merged-icon-theme-local"
 pkgver=22.04.1.r34.g958b66ff4+42.beta.r7.g1380da51f
 pkgrel=1
