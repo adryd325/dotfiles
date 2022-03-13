@@ -246,6 +246,7 @@
       "options": {
         "useDefaultRules": true
       }
-    }
+    },
+    "removeBrand": true
   }
 }
