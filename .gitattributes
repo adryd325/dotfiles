@@ -1,5 +1,2 @@
-systems/personal/heckheating/ext/** filter=git-crypt diff=git-crypt
-systems/personal/heckheating/discorddevelopment.json filter=git-crypt diff=git-crypt
-systems/personal/flstudio/** filter=git-crypt diff=git-crypt
 common/heckheating/config/ext/** filter=git-crypt diff=git-crypt
 common/heckheating/config/discorddevelopment.json filter=git-crypt diff=git-crypt
