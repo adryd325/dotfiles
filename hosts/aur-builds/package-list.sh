@@ -5,6 +5,7 @@ export PACKAGE_LIST=(
     adw-gtk3-git
     auto-cpufreq
     cider
+    cider-git
     switcheroo-control
     ttf-unifont
     yaru-sound-theme
