@@ -53,11 +53,19 @@ if [[ -n "${AR_DIR}" ]]; then
         # glob (*) selects files that begin with a dot too
         shopt -s dotglob
 
-        # load nvm
-        [[ -e "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
-
         # cleanup imports
         unset getKernel
         unset getDistro
     fi
 fi
+
+# load nvm
+# might deprecate usage of this in favor of nix
+[[ -e "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+
+# load nix
+# shellcheck source=/dev/null
+[[ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+
+# direnv
+[[ -x $(command -v direnv) ]] && eval "$(direnv hook bash)"

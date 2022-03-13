@@ -118,6 +118,7 @@ packages=(
     "cdrtools"
     "croc"
     "cups"
+    "direnv"
     "electron"
     "espeak-ng"
     "exfatprogs"
@@ -215,6 +216,9 @@ packages=(
     "dnsmasq"
     "edk2-ovmf"
     "swtpm"
+
+    # SDR stuff
+    "rtl-sdr"
 )
 
 flatpaks=(
