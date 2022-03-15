@@ -5,6 +5,7 @@ export extensions=(
     "ms-vscode.hexeditor"
     "ms-vsliveshare.vsliveshare"
     "usernamehw.errorlens"
+    "cab404.vscode-direnv"
 
     # Javascript
     "dbaeumer.vscode-eslint"
@@ -29,4 +30,7 @@ export extensions=(
     "vscjava.vscode-java-pack"
     "dgileadi.java-decompiler"
     "shengchen.vscode-checkstyle"
+
+    # Nix
+    "jnoortheen.nix-ide"
 )
