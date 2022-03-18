@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+cd "$(dirname "$0")" || exit $?
+source ./lib/log.sh
+source ./lib/os.sh
+export AR_MODULE="init-git"
+
+# Keep synced to download.sh
+[[ -z "${AR_REMOTE_GIT_HTTPS}" ]] && AR_REMOTE_GIT_HTTPS="https://gitlab.com/adryd/dotfiles.git"
+[[ -z "${AR_REMOTE_GIT_SSH}" ]] && AR_REMOTE_GIT_SSH="git@gitlab.com:adryd/dotfiles.git"
+
+function fixOrigin {
+    if [[ -f "${HOME}/.ssh/id_ed25519" ]] || [[ -f "${HOME}/.ssh/id_rsa" ]]; then
+        log info "Switching git origin to SSH"
+        git remote set-url origin "${AR_REMOTE_GIT_SSH}"
+    fi
+    return 0
+}
+
+if [[ -d .git ]]; then
+    fixOrigin
+fi
+
+if ! chkCommandLineTools && [[ -x "$(command -v git)" ]]; then
+    exit 0
+fi
+
+log info "Initializing git repository"
+git clone --bare "${AR_REMOTE_GIT_HTTPS}" .git
+git init
+git reset HEAD
+fixOrigin

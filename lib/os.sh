@@ -57,3 +57,9 @@ function ensureInstalledFlatpak {
         flatpak install "${package}"
     done
 }
+
+function chkCommandLineTools {
+    if [[ "$(getDistro)" = "macos" ]] && ! xcode-select -p &> /dev/null; then
+        return 1
+    fi
+}
