@@ -8,17 +8,17 @@ export AR_MODULE="install"
 
 echo -en "\n \x1b[30;46m \x1b[0m .adryd\n \x1b[30;46m \x1b[0m version 6\n\n"
 
-if [[ "${USER}" != "root" ]]; then
+if [[ "${USER}" != "root" ]] ; then
     log ask "Some scripts require root permissions. Do you want to keep a sudo session open to reduce password entries? [Y/n]: "
     read -r sudoKeepalive
     # sudo keepalive
-    if [[ ${sudoKeepalive^^} != "N" ]]; then sudo -v; while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null & fi
+    if [[ $(tr '[:upper:]' '[:lower:]' <<< "${sudoKeepalive}") != "N" ]]; then sudo -v; while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null & fi
 fi
 
 function askRun() {
     log ask "Detected installation script for this host. Run script \"$1\"? [Y/n]: "
     read -r ask
-    if [[ ${ask^^} != "N" ]]; then "$@"; fi
+    if [[ $(tr '[:upper:]' '[:lower:]' <<< "${ask}") != "N" ]]; then "$@"; fi
 }
 
 case "${HOSTNAME}" in
@@ -32,6 +32,10 @@ case "${HOSTNAME}" in
 
   "leaf")
     [[ "${USER}" != "root" ]] && askRun ./hosts/leaf/_install.sh
+    ;;
+
+  "leaf-macos")
+    [[ "${USER}" != "root" ]] && askRun ./hosts/leaf-macos/_install.sh
     ;;
 
   "aur-builds")

@@ -80,7 +80,7 @@ function download() {
 if [[ -e "${AR_DIR}" ]]; then
     echo "\"${AR_DIR}\" already exists. Run existing install script? [Y/n]"
     read -r ask
-    if [[ ${ask^^} != "N" ]]; then "${AR_DIR}/install.sh"; fi
+    if [[ $(tr '[:upper:]' '[:lower:]' <<< "${ask}") != "N" ]]; then "${AR_DIR}/install.sh"; fi
     exit 0
 fi
 
