@@ -10,18 +10,20 @@ export AR_MODULE="init-git"
 
 function fixOrigin {
     if [[ -f "${HOME}/.ssh/id_ed25519" ]] || [[ -f "${HOME}/.ssh/id_rsa" ]]; then
-        log info "Switching git origin to SSH"
-        git remote set-url origin "${AR_REMOTE_GIT_SSH}"
+        if [[ "$(git remote get-url origin)" = "${AR_REMOTE_GIT_HTTPS}" ]]; then
+            log info "Switching git origin to SSH"
+            git remote set-url origin "${AR_REMOTE_GIT_SSH}"
+        fi
     fi
-    return 0
 }
 
 if [[ -d .git ]]; then
     fixOrigin
+    exit
 fi
 
-if ! chkCommandLineTools && [[ -x "$(command -v git)" ]]; then
-    exit 0
+if chkCommandLineTools || ! [[ -x "$(command -v git)" ]]; then
+    exit
 fi
 
 log info "Initializing git repository"
