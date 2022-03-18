@@ -42,6 +42,9 @@ function ensureInstalled {
         "fedora")
             sudo dnf install -y "$@"
             ;;
+        "macos")
+            brew install "$@"
+            ;;
         *)
             echo "ensureInstalled is not supported on this os"
             ;;

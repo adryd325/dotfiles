@@ -1,45 +1,10 @@
 #!/usr/bin/env bash
-export brewTaps=("homebrew/cask-versions" "homebrew/cask-drivers" "homebrew/cask-fonts" "jeffreywildman/virt-manager")
+export brewTaps=("homebrew/cask-versions" "homebrew/cask-fonts" "jeffreywildman/virt-manager")
 export brewPackages=(
-    # GNU stuff and other CLI tools / libs
+    # other cli tools will be installed by nix
     "bash"
-    "binutils"
-    "coreutils"
-    "curl"
-    "diffutils"
-    "ed"
-    "findutils"
-    "gawk"
-    "git"
-    "gnu-indent"
-    "gnu-sed"
-    "gnu-tar"
-    "gnu-which"
-    "grep"
-    "gzip"
-    "less"
-    "make"
-    "nano"
-    "ncurses"
-    "openssh"
-    "rsync"
-    "tmux"
-    "unzip"
-    "vim"
-    "watch"
-    "wget"
-    "zsh"
-    "zstd"
-
-    # Programming languages
     "nodejs"
-    "python"
-
-    # CLI tools
-    "ffmpeg"
-    "htop"
     "mas"
-    "yt-dlp"
 
     # Utilities
     "apptrap" # apptrap always first cask
@@ -59,10 +24,11 @@ export brewPackages=(
     "visual-studio-code"
 
     # Extra
-    "affinity-designer-beta"
+    "affinity-designer"
     "tor-browser"
     "font-cascadia-code"
 )
+
 export masPackages=(
     # I think one of these is pixelmator and the other is apple configurator 2
     "407963104"
