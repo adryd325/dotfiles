@@ -8,6 +8,7 @@ source ../../lib/log.sh
 ../../oses/macos/brew.sh
 ../../common/nix.sh
 ./install-packages.sh
+../../oses/macos/pinentry.sh
 ../../oses/macos/pnpm.sh
 ../../common/heckheating/_install.sh "stable" "canary"
 ../../common/gitconfig/_install.sh

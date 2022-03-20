@@ -6,6 +6,9 @@ export brewPackages=(
     "bash"
     "nodejs"
     "mas"
+    "gnupg"
+    "pinentry-mac"
+    "neovim"
 
     # Utilities
     "apptrap" # apptrap always first cask

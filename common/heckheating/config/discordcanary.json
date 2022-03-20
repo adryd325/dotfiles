@@ -158,7 +158,7 @@
       "enabled": true
     },
     "platformStyles": {
-      "enabled": true,
+      "enabled": false,
       "options": {
         "platformStyle": "win"
       }
