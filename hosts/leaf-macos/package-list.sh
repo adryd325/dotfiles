@@ -2,6 +2,7 @@
 export brewTaps=("homebrew/cask-versions" "homebrew/cask-fonts" "jeffreywildman/virt-manager")
 export brewPackages=(
     # other cli tools will be installed by nix
+    "git"
     "bash"
     "nodejs"
     "mas"
@@ -24,7 +25,7 @@ export brewPackages=(
     "visual-studio-code"
 
     # Extra
-    "affinity-designer"
+    "affinity-designer-beta"
     "tor-browser"
     "font-cascadia-code"
 )

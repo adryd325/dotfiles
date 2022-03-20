@@ -13,6 +13,7 @@ packages=(
     "paru"
     "btrfs-progs"
     "networkmanager"
+    "sudo"
     "nano"
     "git"
     "pacman"

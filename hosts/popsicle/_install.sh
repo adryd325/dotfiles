@@ -19,7 +19,7 @@ sudo pacman -Syyu
 
 # ./install-packages.sh || exit $?
 ../../common/git-crypt.sh
-../../common/nix-single-user.sh
+../../common/nix.sh --daemon
 ./thinkpad_acpi.sh
 ./optimus.sh
 ./plymouth.sh

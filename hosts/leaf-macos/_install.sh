@@ -4,15 +4,10 @@ source ../../lib/log.sh
 
 ../../common/bash/_install.sh
 
-## TODO: Move to individual modules in /oses/macos
-if ! xcode-select -p &> /dev/null; then
-    log info "Installing command line tools"
-    xcode-select --install
-fi
-
-if ! [[ -x /usr/local/bin/brew ]]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
+../../oses/macos/command-line-tools.sh
+../../oses/macos/brew.sh
+../../common/nix.sh --no-daemon
 ./install-packages.sh
+../../oses/macos/pnpm.sh
 ../../common/heckheating/_install.sh "stable" "canary"
+../../oses/macos/virt-viewer/_install.sh
