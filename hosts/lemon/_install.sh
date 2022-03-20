@@ -4,7 +4,6 @@ source ../../lib/log.sh
 [[ "${USER}" = "root" ]] && log error "Do not run as root" && exit 1
 
 ../../common/bash/_install.sh
-../../common/update-global-installation.sh
 ../../common/bash/_install.sh globalInstall
 
 sudo cp -f ./bin/* /usr/local/bin
