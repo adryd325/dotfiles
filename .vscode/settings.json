@@ -1,4 +1,7 @@
 {
   "editor.tabSize": 4,
-  "files.trimTrailingWhitespace": true
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.eol": "\n",
 }

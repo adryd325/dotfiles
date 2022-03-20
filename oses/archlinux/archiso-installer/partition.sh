@@ -63,4 +63,3 @@ log silly "Mounting home"
 mount -t btrfs -o "subvol=home,${btrfsOptions}" LABEL="${host}" /mnt/home
 log silly "Mounting boot"
 mount -o "${mountOptions}" /dev/disk/by-partlabel/EFI /mnt/boot
-

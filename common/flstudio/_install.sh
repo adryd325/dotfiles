@@ -27,4 +27,3 @@ else
     # We can't install from tty
     log info "Postponing FL Studio install until in DE"
 fi
-
