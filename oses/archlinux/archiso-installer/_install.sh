@@ -124,8 +124,8 @@ fi
 
 function ucodepkg() {
     cpuType=$(grep vendor_id /proc/cpuinfo | sed "s/vendor_id\t: //g" | head -1)
-    [[ "${cpuType}" = "GenuineIntel" ]] && printf "intel-ucode"
-    [[ "${cpuType}" = "AuthenticAmd" ]] && printf "amd-ucode"
+    [[ "${cpuType}" = "GenuineIntel" ]] && echo "intel-ucode"
+    [[ "${cpuType}" = "AuthenticAmd" ]] && echo "amd-ucode"
 }
 
 log silly "Detecting CPU for microcode package"

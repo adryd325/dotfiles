@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
 source ../../lib/os.sh
+source ../../lib/realpath.sh
 
 if [[ -d "/opt/adryd-dotfiles" ]] && [[ "$1" == "globalInstall" ]]; then
     [[ -e "/root/.bashrc" ]] && [[ ! -e "/root/.bashrc.orig" ]] && cp "/root/bashrc" "/root/.bashrc.orig"
