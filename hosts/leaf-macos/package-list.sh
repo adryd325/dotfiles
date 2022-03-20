@@ -29,6 +29,7 @@ export brewPackages=(
     "affinity-designer-beta"
     "tor-browser"
     "font-cascadia-code"
+    "veracrypt"
 )
 
 export masPackages=(
