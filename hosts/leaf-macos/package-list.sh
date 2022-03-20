@@ -23,6 +23,7 @@ export brewPackages=(
     "firefox"
     "iterm2"
     "visual-studio-code"
+    "1password"
 
     # Extra
     "affinity-designer-beta"

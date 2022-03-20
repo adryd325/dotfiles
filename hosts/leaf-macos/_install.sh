@@ -6,7 +6,7 @@ source ../../lib/log.sh
 
 ../../oses/macos/command-line-tools.sh
 ../../oses/macos/brew.sh
-../../common/nix.sh --no-daemon
+../../common/nix.sh
 ./install-packages.sh
 ../../oses/macos/pnpm.sh
 ../../common/heckheating/_install.sh "stable" "canary"
