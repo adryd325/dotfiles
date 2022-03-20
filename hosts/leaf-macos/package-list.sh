@@ -7,6 +7,7 @@ export brewPackages=(
     "nodejs"
     "mas"
     "gnupg"
+    "git-crypt"
     "pinentry-mac"
     "neovim"
 
