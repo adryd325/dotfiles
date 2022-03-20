@@ -4,6 +4,7 @@
 # bash -c "`wget -o- adryd.co/install.sh`"
 cd "$(dirname "$0")" || exit $?
 source ./lib/log.sh
+source ./lib/os.sh
 export AR_MODULE="install"
 
 echo -en "\n \x1b[30;46m \x1b[0m .adryd\n \x1b[30;46m \x1b[0m version 6\n\n"
@@ -20,6 +21,10 @@ function askRun() {
     read -r ask
     if [[ $(tr '[:upper:]' '[:lower:]' <<< "${ask}") != "N" ]]; then "$@"; fi
 }
+
+if [[ -z "${HOSTNAME}" ]] && [[ "$(getDistro)" = "macos" ]]; then
+  HOSTNAME=$(hostname -s)
+fi
 
 case "${HOSTNAME}" in
   "lemon")
@@ -58,3 +63,5 @@ case "${HOSTNAME}" in
     log info "No run configuration found for this host"
     ;;
 esac
+
+./init-git.sh
