@@ -247,6 +247,7 @@
         "useDefaultRules": true
       }
     },
-    "removeBrand": true
+    "removeBrand": true,
+    "ohFuck": true
   }
 }
