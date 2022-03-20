@@ -1,23 +1,12 @@
 #!/bin/bash
-pacman -Q
-
 # Sync DB and update stuf
 sudo pacman -Syyu
 
 # Remove orphaned
-orphaned="$(pacman -Qdtq)"
+orphaned="$(pacman -Qdttq)"
 if [[ -n "${orphaned}" ]]; then
- pacman -Qdttq | sudo pacman -Rns
+  pacman -Qdttq | sudo pacman -Rns -
 fi
-
-# Update development packages from repo
-# mkdir /tmp/blankdb
-# pacman -Slq aur | pacman -Qq - 2>/dev/null | grep -Ee '-(bzr|cvs|darcs|git|hg|svn)$' | sudo pacman --cachedir /tmp/blankdb -S -
-# # Update local cache
-# if [[ -n "$(ls -A /tmp/blankdb)" ]]; then
-#   sudo mv -f /tmp/blankdb/* /var/cache/pacman/pkg
-# fi
-# rm -rf /tmp/blankdb 
 
 # Run paru for AUR packages
 paru -Sua

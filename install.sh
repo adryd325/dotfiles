@@ -22,8 +22,8 @@ function askRun() {
     if [[ $(tr '[:upper:]' '[:lower:]' <<< "${ask}") != "N" ]]; then "$@"; fi
 }
 
-if [[ -z "${HOSTNAME}" ]] && [[ "$(getDistro)" = "macos" ]]; then
-  HOSTNAME=$(hostname -s)
+if [[ -n "${HOSTNAME}" ]] && [[ "$(getDistro)" = "macos" ]]; then
+    HOSTNAME=$(hostname -s)
 fi
 
 case "${HOSTNAME}" in
