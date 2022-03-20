@@ -7,7 +7,6 @@ source ../../lib/log.sh
 source ../../lib/os.sh
 
 ../../common/bash/_install.sh
-../../common/update-global-installation.sh
 ../../common/bash/_install.sh globalInstall
 
 ../../oses/fedora/dnf/_install.sh
