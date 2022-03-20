@@ -8,6 +8,9 @@ for dir in "${HOME}/.adryd" /opt/adryd-dotfiles; do
 done
 
 if [[ -n "${AR_DIR}" ]]; then
+    # shellcheck source=../../lib/realpath.sh
+    source "${AR_DIR}/lib/realpath.sh"
+
     # normalize paths (useful for brew on macos)
     mapfile -td ':' splitPath <<< "${PATH}"
     function hasPath {

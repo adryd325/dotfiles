@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
 source ../../lib/os.sh
+source ../../lib/realpath.sh
 source ../../lib/log.sh
 AR_MODULE="vscode"
 

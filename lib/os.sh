@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 function getKernel {
-    printf %s "$(uname -s | tr '[:upper:]' '[:lower:]')"
+    uname -s | tr '[:upper:]' '[:lower:]'
 }
 
 function getDistro {
@@ -10,10 +10,10 @@ function getDistro {
         return
     fi
     if [[ "$(getKernel)" = "darwin" ]]; then
-        printf "macos"
+        echo "macos"
         return
     fi
-    printf "unknown"
+    echo "unknown"
 }
 
 function ensureInstalled {

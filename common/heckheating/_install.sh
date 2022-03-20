@@ -2,6 +2,7 @@
 cd "$(dirname "$0")" || exit $?
 source ../../common/discord/versions.sh
 source ../../lib/os.sh
+source ../../lib/realpath.sh
 source ../../lib/log.sh
 export AR_MODULE="heckheating"
 

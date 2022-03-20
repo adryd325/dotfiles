@@ -6,9 +6,9 @@ DOWNLOAD_ENDPOINT='https://discord.com/api/download'
 DOWNLOAD_OPTIONS='?platform=linux&format=tar.gz'
 function getDiscordDownloadURL {
     if [[ "$1" = "stable" ]] || [[ -z "$1" ]]; then
-        printf %s%s "${DOWNLOAD_ENDPOINT}" "${DOWNLOAD_OPTIONS}"
+        echo "${DOWNLOAD_ENDPOINT}${DOWNLOAD_OPTIONS}"
     else
-        printf %s/%s%s "${DOWNLOAD_ENDPOINT}" "$1" "${DOWNLOAD_OPTIONS}"
+        echo "${DOWNLOAD_ENDPOINT}/$1${DOWNLOAD_OPTIONS}"
     fi
 }
 
@@ -25,30 +25,30 @@ function isValidBranch {
 function getDiscordName {
     branch=$1
     if [[ "${branch}" = "stable" ]]; then
-        printf "Discord"
+        echo "Discord"
     elif [[ "${branch}" = "ptb" ]]; then
-        printf "DiscordPTB"
+        echo "DiscordPTB"
     else
-        printf "Discord%s" "${branch^}"
+        echo "Discord${branch^}"
     fi
 }
 
 function getDiscordPrettyName {
     branch=$1
     if [[ "${branch}" = "stable" ]]; then
-        printf "Discord"
+        echo "Discord"
     elif [[ "${branch}" = "ptb" ]]; then
-        printf "Discord PTB"
+        echo "Discord PTB"
     else
-        printf "Discord %s" "${branch^}"
+        echo "Discord ${branch^}"
     fi
 }
 
 function getDiscordPkgName {
     branch=$1
     if [[ "${branch}" = "stable" ]]; then
-        printf "discord"
+        echo "discord"
     else
-        printf "discord-%s" "${branch}"
+        echo "discord-${branch}"
     fi
 }
