@@ -10,4 +10,7 @@ source ../../lib/log.sh
 ./install-packages.sh
 ../../oses/macos/pnpm.sh
 ../../common/heckheating/_install.sh "stable" "canary"
+../../common/gitconfig/_install.sh
+../../common/vscode/_install.sh
 ../../oses/macos/virt-viewer/_install.sh
+./preferences.sh
