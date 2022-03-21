@@ -18,9 +18,5 @@ FallbackNTP=0.north-america.pool.ntp.org 1.north-america.pool.ntp.org 2.north-am
 #PollIntervalMaxSec=2048
 EOF
 fi
-if [[ "${HOSTNAME}" == "popsicle" ]]; then
-    log info "Setting system clock to local time"
-    timedatectl set-local-rtc 1 --adjust-system-clock
-fi
 log info "Enabling systemd-timesyncd"
 sudo systemctl enable systemd-timesyncd --now
