@@ -1,6 +1,6 @@
 # shellcheck shell=bash disable=SC2034,2154
 pkgname="merged-icon-theme-local"
-pkgver=22.04.2.r17.gc9e23eb62+42.beta.r12.g2cbcddf45
+pkgver=22.04.2.r47.gcee95d586+42.0.r1.g706d29cc5
 pkgrel=1
 epoch=1
 pkgdesc="Layered Adwaita-git, Adwaita and Yaru icon themes"
@@ -44,13 +44,13 @@ build() {
 package() {
   DESTDIR="${pkgdir}" ninja -C build install &>> install.log
   rm -r "${pkgdir}"/usr/share/sounds
-  rm -r "${pkgdir}"/usr/share/themes/Yaru{,-dark}/{gtk-*,index.theme}
+  rm -r "${pkgdir}"/usr/share/themes/Yaru{,-*}/{gtk-*,index.theme}
   rm -r "${pkgdir}"/usr/share/gtksourceview-*
-  rm "${pkgdir}"/usr/share/themes/Yaru{,-light}/gnome-shell
-  rm -r "${pkgdir}"/usr/share/gnome-shell/theme/Yaru{,-light}
-  rm -r "${pkgdir}"/usr/share/themes/Yaru{,-dark}/xfwm4
-  rm -r "${pkgdir}"/usr/share/themes/Yaru{,-dark}/unity
-  rm -r "${pkgdir}"/usr/share/themes/Yaru{,-dark}/metacity-1
+  rm "${pkgdir}"/usr/share/themes/Yaru{,-*}/gnome-shell
+  rm -r "${pkgdir}"/usr/share/gnome-shell/theme/Yaru{,-*}
+  rm -r "${pkgdir}"/usr/share/themes/Yaru{,-*}/xfwm4
+  rm -r "${pkgdir}"/usr/share/themes/Yaru{,-*}/unity
+  rm -r "${pkgdir}"/usr/share/themes/Yaru{,-*}/metacity-1
   rm -r "${pkgdir}"/usr/share/{glib-2.0,xsessions,wayland-sessions}
   rm -r "${pkgdir}"/usr/share/gnome-shell/{extensions,modes}
   # Delete remaining empty directories:
