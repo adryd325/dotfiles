@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
-source ../../../../lib/log.sh
+source ../../../lib/log.sh
 AR_MODULE="fontconfig"
 
 if [[ ! -e "${HOME}/.config/fontconfig/fonts.conf" ]]; then
