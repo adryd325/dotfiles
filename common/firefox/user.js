@@ -99,6 +99,7 @@ user_pref("privacy.donottrackheader.enabled", true);
 user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.socialtracking.enabled", true);
 user_pref("browser.contentblocking.category", "strict");
+user_pref("privacy.resistFingerprinting", true)
 
 // Telemetry and annoyances
 user_pref("datareporting.healthreport.uploadEnabled", false);
@@ -118,4 +119,7 @@ user_pref("browser.safebrowsing.provider.google4.lastupdatetime", "0");
 user_pref("browser.safebrowsing.provider.google4.nextupdatetime", "9999999999999");
 
 // Fix emoji font
-user_pref("font.name-list.emoji", "Noto Color Emoji")
+user_pref("font.name-list.emoji", "Noto Color Emoji");
+
+// Use VAAPI for video decode (Once ready)
+user_pref("media.ffmpeg.vaapi.enabled", true);

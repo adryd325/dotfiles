@@ -207,6 +207,7 @@ packages=(
     "lib32-nvidia-utils" # Needed for steam runing with dedicated gpu
     "vulkan-intel"
     "lib32-vulkan-intel"
+    "intel-media-driver"
     "switcheroo-control"
     "cuda"
     "fprintd"
