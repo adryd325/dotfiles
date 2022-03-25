@@ -45,6 +45,9 @@ function ensureInstalled {
         "macos")
             brew install "$@"
             ;;
+        "debian")
+            sudo DEBIAN_FRONTEND=noninteractive apt install -y "$@"
+            ;;
         *)
             echo "ensureInstalled is not supported on this os"
             ;;

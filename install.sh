@@ -43,6 +43,10 @@ case "${HOSTNAME}" in
     [[ "${USER}" != "root" ]] && askRun ./hosts/leaf-macos/_install.sh
     ;;
 
+  "tetra")
+    [[ "${USER}" != "root" ]] && askRun ./hosts/tetra/_install.sh
+    ;;
+
   "aur-builds")
     [[ "${USER}" = "root" ]] && askRun ./hosts/aur-builds/_install.sh
     ;;
