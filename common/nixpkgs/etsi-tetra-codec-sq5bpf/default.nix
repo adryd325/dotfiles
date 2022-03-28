@@ -6,9 +6,14 @@ stdenv.mkDerivation rec {
 
   src = fetchzip {
     url = "https://www.etsi.org/deliver/etsi_en/300300_300399/30039502/01.03.01_60/en_30039502v010301p0.zip";
-    hash = "sha256-CQ3zJsePC/AGyYwBcZmEfMyCA29r/sRbZ5/sjW6GhjA=";
+    hash = "sha256-fQV+C4ypZn3BMXTAWImPlrPSt+3O+H+i4XIyb9OB+cU=";
     stripRoot = false;
   };
+
+  prePatch = ''
+    rename 'y/A-Z/a-z/' *
+    rename 'y/A-Z/a-z/' **/*
+  '';
 
   patches = [
     (fetchpatch {
@@ -21,8 +26,6 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ rename ];
 
   buildPhase = ''
-    rename 'y/A-Z/a-z/' $out/*
-    rename 'y/A-Z/a-z/' $out/**/*
     cd c-code
     make
   '';
