@@ -4,6 +4,10 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     rtl-sdr
+    (python27Packages.pillow.overrideAttrs (old: rec{
+      doCheck = false;
+      doInstallCheck = false;
+    }))
     (gnuradio3_7.override {
       extraPackages = with gnuradio3_7Packages; [
         osmosdr

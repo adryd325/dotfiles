@@ -8,6 +8,10 @@ pkgs.mkShell {
     ncurses
     python27
     python27Packages.numpy
+    (python27Packages.pillow.overrideAttrs (old: rec{
+      doCheck = false;
+      doInstallCheck = false;
+    }))
     gnuradio3_7Packages.osmosdr
     xterm
     terminus_font
