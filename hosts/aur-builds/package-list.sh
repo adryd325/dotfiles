@@ -32,6 +32,8 @@ export PACKAGE_LIST=(
     ttf-ms-fonts
     ttf-windows
     visual-studio-code-bin
+    binfmt-qemu-static
+    qemu-user-static
 )
 
 export KEYS_TRUST=(

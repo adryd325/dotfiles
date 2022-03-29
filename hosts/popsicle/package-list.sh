@@ -214,9 +214,13 @@ packages=(
 
     # VM stuff
     "virt-manager"
+    "binfmt-qemu-static"
     "qemu"
+    "qemu-arch-extra"
+    "qemu-user-static"
     "dnsmasq"
     "edk2-ovmf"
+    "edk2-armvirt"
     "swtpm"
 
     # SDR stuff
