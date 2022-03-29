@@ -1,4 +1,8 @@
-{ pkgs ? import (fetchTarball "http://nixos.org/channels/nixos-21.05/nixexprs.tar.xz") { overlays = [ (import ~/.config/nixpkgs/overlays/adryd-dotfiles/default.nix) ]; }
+{ pkgs ? import (fetchTarball "http://nixos.org/channels/nixos-21.05/nixexprs.tar.xz") {
+  overlays = [
+     (import ~/.config/nixpkgs/overlays/adryd-dotfiles/default.nix)
+     (import ~/.config/nixpkgs/overlays/adryd-dotfiles/pillow-no-check.nix)
+  ]; }
 }:
 
 pkgs.mkShell {
@@ -8,15 +12,9 @@ pkgs.mkShell {
     ncurses
     python27
     python27Packages.numpy
-    (python27Packages.pillow.overrideAttrs (old: rec{
-      doCheck = false;
-      doInstallCheck = false;
-    }))
+    python27Packages.pillow
     gnuradio3_7Packages.osmosdr
-    xterm
-    terminus_font
     socat
-    gqrx
     etsi-tetra-codec-sq5bpf
     libosmocore-sq5bpf
     osmo-tetra-sq5bpf
