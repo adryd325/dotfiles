@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Set of Osmocom core libraries";
     homepage = "https://github.com/osmocom/libosmocore";
-    license = licenses.gpl2Plus;
+    license = licenses.agpl3;
     platforms = platforms.linux;
   };
 }
