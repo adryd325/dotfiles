@@ -13,13 +13,22 @@ if [[ "${USER}" != "root" ]] ; then
     log ask "Some scripts require root permissions. Do you want to keep a sudo session open to reduce password entries? [Y/n]: "
     read -r sudoKeepalive
     # sudo keepalive
-    if [[ $(tr '[:upper:]' '[:lower:]' <<< "${sudoKeepalive}") != "N" ]]; then sudo -v; while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null & fi
+    if [[ $(tr '[:upper:]' '[:lower:]' <<< "${sudoKeepalive}") != "n" ]]; then
+      sudo -v; while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+    fi
 fi
 
-function askRun() {
+function askRun {
     log ask "Detected installation script for this host. Run script \"$1\"? [Y/n]: "
     read -r ask
-    if [[ $(tr '[:upper:]' '[:lower:]' <<< "${ask}") != "N" ]]; then "$@"; fi
+    if [[ $(tr '[:upper:]' '[:lower:]' <<< "${ask}") != "n" ]]; then "$@"; fi
+}
+
+function ask {
+    log ask "$1 [Y/n]: "
+    read -r ask
+    if [[ $(tr '[:upper:]' '[:lower:]' <<< "${ask}") != "n" ]]; then return 0; fi
+    return 1
 }
 
 if [[ -n "${HOSTNAME}" ]] && [[ "$(getDistro)" = "macos" ]]; then
@@ -65,6 +74,8 @@ case "${HOSTNAME}" in
 
   *)
     log info "No run configuration found for this host"
+    ask "Install bashrc" && ./common/bash/_install.sh
+    ask "Install nix" && ./common/nix.sh
     ;;
 esac
 
