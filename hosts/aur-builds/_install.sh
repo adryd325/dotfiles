@@ -81,6 +81,7 @@ cp -f ./aur-builds.service /etc/systemd/system/aur-builds.service
 cp -f ./aur-builds.timer /etc/systemd/system/aur-builds.timer
 log info "Enabling systemd unit"
 systemctl enable aur-builds.timer
+systemctl start aur-builds.service &> /dev/null &
 
 # Start nginx
 log info "Enabling nginx"

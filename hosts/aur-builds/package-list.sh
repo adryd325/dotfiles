@@ -32,6 +32,9 @@ export PACKAGE_LIST=(
     visual-studio-code-bin
     binfmt-qemu-static
     qemu-user-static
+    kalibrate-rtl-git
+    pcre-static
+    glib2-static
 )
 
 export KEYS_TRUST=(
