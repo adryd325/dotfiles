@@ -12,13 +12,11 @@ export PACKAGE_LIST=(
     1password
     aseprite
     chrome-gnome-shell
-    espeak
     gdm-prime
     libgdm-prime
     mangohud
     mangohud-common
     mutter-performance
-    networkmanager-wireguard-git
     noto-fonts-emoji-apple
     nvm
     paru
@@ -39,4 +37,5 @@ export PACKAGE_LIST=(
 export KEYS_TRUST=(
     95D2E9AB8740D8046387FD151A09227B1F435A33 # ttf-unifont
     3FEF9748469ADBE15DA7CA80AC2D62742012EA22 # 1password
+    CEACC9E15534EBABB82D3FA03353C9CEF108B584 # qemu-user-static
 )

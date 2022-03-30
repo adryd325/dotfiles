@@ -3,7 +3,7 @@ cd "$(dirname "$0")" || exit $?
 
 ../../oses/archlinux/container-install.sh
 ../../common/bash/_install.sh globalInstall
-
+../../oses/archlinux/pacman/multilib.sh
 source ./constants.sh
 source ../../lib/temp.sh
 source ../../lib/log.sh
