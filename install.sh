@@ -75,7 +75,13 @@ case "${HOSTNAME}" in
   *)
     log info "No run configuration found for this host"
     ask "Install bashrc" && ./common/bash/_install.sh
-    ask "Install nix" && ./common/nix.sh
+    if ask "Install nix"; then
+      if ask "Install with daemon"; then
+        ./common/nix.sh --daemon
+      else
+        ./common/nix.sh --no-daemon
+      fi
+    fi
     ;;
 esac
 
