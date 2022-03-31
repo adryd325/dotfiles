@@ -1,7 +1,7 @@
 { lib, stdenv, fetchFromGitHub, libxml2, ncurses, callPackage }:
 
 stdenv.mkDerivation rec {
-  pname = "osmo-tetra-sq5bpf";
+  pname = "telive";
   version = "44304af1d516275690b41a77031e961412ece95e";
 
   src = fetchFromGitHub {
