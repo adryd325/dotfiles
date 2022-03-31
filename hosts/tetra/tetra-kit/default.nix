@@ -8,6 +8,7 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     rtl-sdr
+    tetra-kit
     (gnuradio3_7.override {
       extraPackages = with gnuradio3_7Packages; [
         osmosdr

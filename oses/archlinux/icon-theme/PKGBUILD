@@ -1,6 +1,6 @@
 # shellcheck shell=bash disable=SC2034,2154
 pkgname="merged-icon-theme-local"
-pkgver=22.04.2.r47.gcee95d586+42.0.r1.g706d29cc5
+pkgver=22.04.3.1.r6.g8afd77f61+42.0.r1.g706d29cc5
 pkgrel=1
 epoch=1
 pkgdesc="Layered Adwaita-git, Adwaita and Yaru icon themes"

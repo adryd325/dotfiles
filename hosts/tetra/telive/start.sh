@@ -13,6 +13,6 @@ socat -b 4096 UDP-RECV:42001 STDOUT \
     | TETRA_HACK_RXID=1 TETRA_HACK_PORT=7379 tetra-rx -a -r -s -i /dev/stdin &
 python2.7 ./phys.py &
 PHYS_PID=$!
-lxterminal --geometry=203x60 --command='bash -c "telive"' &
+lxterminal --geometry=203x60 --command='bash -c "nix-shell --command telive" ' &
 
 wait

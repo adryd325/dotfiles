@@ -11,7 +11,7 @@ sudo cp -f ./bin/* /usr/local/bin
 
 sudo apt-get update
 sudo apt-get upgrade -y
-ensureInstalled git direnv rtl-sdr gr-osmosdr gqrx-sdr nodejs npm vlc dnsmasq hostapd netfilter-persistent iptables-persistent
+ensureInstalled git direnv rtl-sdr gr-osmosdr gqrx-sdr nodejs npm vlc dnsmasq hostapd netfilter-persistent iptables-persistent lxqt
 
 ../../common/nix.sh --daemon
 ../../common/nixpkgs/_install.sh
