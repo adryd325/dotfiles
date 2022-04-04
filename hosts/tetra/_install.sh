@@ -126,3 +126,6 @@ sudo systemctl enable --now vncserver-x11-serviced
 
 log info "Enabling SSH"
 sudo systemctl enable --now ssh
+
+log info "Ensuring dvb_usb_rtl28xxu is disabled"
+sudo tee /etc/modprobe.d/blacklist-dvb_usb_rtl28xxu.conf > /dev/null <<< "blacklist dvb_usb_rtl28xxu"
