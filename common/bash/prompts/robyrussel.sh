@@ -8,7 +8,7 @@ __ar_prompt_exitCodeColor() {
 }
 
 __ar_prompt_arrow() {
-    if [[ "${TERM}" = "xterm-256color" ]] || [[ -n ${container} ]]; then
+    if [[ "${TERM}" = "xterm-256color" ]] || [[ "${TERM}" = "alacritty" ]] || [[ -n ${container} ]]; then
         __ar_prompt+="→"
         __ar_ps2="→"
         return

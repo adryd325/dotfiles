@@ -37,7 +37,6 @@ packages=(
     "gnome-shell-extensions"
     "gnome-software"
     "gnome-system-monitor"
-    "gnome-terminal"
     "gnome-text-editor"
     "gnome-tweaks"
     "gnome-weather"
@@ -59,10 +58,10 @@ packages=(
     "xdg-desktop-portal-gnome"
 
     # Base apps
+    "alacritty"
     "firefox-developer-edition"
     "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
     "1password"
-    # usually a terminal and discord would go here, but those will get installed elsewhere
 
     # Programming languages and libs
     "jdk-openjdk"

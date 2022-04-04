@@ -29,6 +29,7 @@ sudo pacman -Syyu
 ../../common/timesyncd.sh
 ../../common/gnome-shell/_install.sh
 ../../common/gnome-terminal/_install.sh
+../../common/alacritty/_install.sh
 ../../common/vscode/_install.sh
 ../../common/discord/_install.sh "stable" "ptb" "canary" "development"
 ../../common/heckheating/_install.sh "stable" "canary"

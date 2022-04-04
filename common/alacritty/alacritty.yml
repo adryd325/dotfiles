@@ -1,0 +1,32 @@
+draw_bold_text_with_bright_colors: true
+colors:
+  primary:
+    background: '0x1E1E1E'
+    foreground: '0xFCFCFA'
+  normal:
+    black:      '0x1E1E1E'
+    red:        '0xE06187'
+    green:      '0xBADC7C'
+    yellow:     '0xF5D86E'
+    blue:       '0xE5986A'
+    magenta:    '0xA79DEF'
+    cyan:       '0x9DDCE8'
+    white:      '0xFCFCFA'
+  bright:
+    black:      '0x717072'
+    red:        '0xE06187'
+    green:      '0xBADC7C'
+    yellow:     '0xF5D86E'
+    blue:       '0xE5986A'
+    magenta:    '0xA79DEF'
+    cyan:       '0x9DDCE8'
+    white:      '0xFCFCFA'
+window:
+  dimensions:
+    columns: 80
+    lines: 24
+font:
+  size: 8.0
+key_bindings:
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
