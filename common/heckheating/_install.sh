@@ -32,7 +32,7 @@ fi
 
 hhDir="${HOME}/.local/share/hh3"
 configDir="${HOME}/.config/hh3"
-if [[ "$(getKernel)" == "darwin" ]]; then
+if [[ "$(getDistro)" == "macos" ]]; then
     hhDir="${HOME}/.hh3"
     configDir="${HOME}/Library/Application Support/hh3"
 fi
@@ -48,6 +48,11 @@ else
     git pull --ff-only --quiet
 fi
 
+if [[ ! -e "${configDir}" ]]; then
+    log info "Linking config folder"
+    ln -s "$(realpath ./config)" "${configDir}"
+fi
+
 (
     cd "${hhDir}" || exit $?
     log info "Installing dependencies"
@@ -60,9 +65,4 @@ fi
 for branch in "${DISCORD_BRANCHES[@]}"; do
     patchBranch "${branch}" &
 done
-
-if [[ ! -e "${configDir}" ]]; then
-    log info "Linking config folder"
-    ln -s "$(realpath ./config)" "${configDir}"
-fi
 wait
