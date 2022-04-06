@@ -17,7 +17,7 @@ source ../../lib/os.sh
 # Sync after repos are added
 sudo pacman -Syyu
 
-# ./install-packages.sh || exit $?
+./install-packages.sh || exit $?
 ../../common/git-crypt.sh
 ../../common/nix.sh --daemon
 ./thinkpad_acpi.sh
