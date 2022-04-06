@@ -12,11 +12,11 @@ export AR_MODULE="aur-builds"
 
 # Install dependencies
 log info "Installing dependencies"
-pacman -S nginx base-devel git pacman-contrib --noconfirm
+pacman -S base-devel git pacman-contrib --noconfirm # nginx
 
 # nginx config
-log info "Installing nginx config"
-cp -f ./nginx.conf /etc/nginx/nginx.conf
+#log info "Installing nginx config"
+#cp -f ./nginx.conf /etc/nginx/nginx.conf
 
 if ! id "aur" &> /dev/null; then
     log info "Creating service user"
@@ -84,7 +84,7 @@ systemctl enable aur-builds.timer
 systemctl start aur-builds.service &> /dev/null &
 
 # Start nginx
-log info "Enabling nginx"
-systemctl enable --now nginx
+#log info "Enabling nginx"
+#systemctl enable --now nginx
 
 log tell "You must create a GPG key to sign packages, or remove --sign from /var/aur/build.sh"
