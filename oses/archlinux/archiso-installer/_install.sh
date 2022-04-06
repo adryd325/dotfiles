@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
-#!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
 source ../../../lib/log.sh
 
 log tell "Re-bootstrap preserves user data but deletes root and boot partitions."
 log ask "Is this a re-bootstrap of a current install? [y/N] "
-read -r rebootstrapAsk
-if [[ "${rebootstrapAsk^^}" = "y" ]]; then
-    rebootstrap=1
-fi
+read -r ask
+if [[ $(tr '[:upper:]' '[:lower:]' <<< "${ask}") != "y" ]]; then rebootstrap=1; fi
 
 # Username
 while [[ "${username}" = "" ]] || [[ "${username}" = "root" ]]; do
