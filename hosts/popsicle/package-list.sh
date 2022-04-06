@@ -58,7 +58,7 @@ packages=(
     "xdg-desktop-portal-gnome"
 
     # Base apps
-    "alacritty"
+    "gnome-terminal"
     "firefox-developer-edition"
     "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
     "1password"
@@ -100,6 +100,7 @@ packages=(
     "mumble"
     "nicotine+"
     "obs-studio"
+    "pavucontrol"
     "piavpn-bin"
     "quodlibet"
     "remmina"
@@ -135,8 +136,10 @@ packages=(
     "inetutils"
     "jq"
     "libfido2"
+    "mangohud"
     "mesa-utils"
     "mesa-demos"
+    "neofetch"
     "neovim"
     "networkmanager-openvpn"
     "ntfs-3g"

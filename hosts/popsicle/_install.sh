@@ -9,6 +9,7 @@ source ../../lib/os.sh
 
 ../../oses/archlinux/pacman/_install.sh
 ../../oses/archlinux/pacman/multilib.sh
+../../oses/archlinux/pacman/fcgu.sh
 ../../oses/archlinux/pacman/hooks/_install.sh
 ../../oses/archlinux/pacman/aur-builds/_install.sh
 ../../oses/archlinux/pacman/toronto-mirrorlist/_install.sh
