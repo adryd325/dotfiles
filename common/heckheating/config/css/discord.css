@@ -4,12 +4,12 @@ html {
   --font-display: "Ginto", Whitney, "Helvetica Neue", Helvetica, Arial,
     sans-serif !important;
   /* Discord is silly and doesn't actually use the --font-code variable... FUN! */
-  --font-code: monospace, Consolas, Andale Mono WT, Andale Mono, Lucida Console,
+  --font-code: "Rec Mono Linear", monospace, Consolas, Andale Mono WT, Andale Mono, Lucida Console,
     Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono,
     Liberation Mono, Nimbus Mono L, Monaco, Courier New, Courier, monospace !important;
 }
 
-/* .theme-dark {
+.theme-dark {
   --brightness: 1.35;
   --contrast: 0.5;
   --saturation: 1;
@@ -23,7 +23,7 @@ html {
 
 [class*="desaturateUserColors-"] {
   filter: saturate(var(--saturation)) contrast(var(--contrast)) brightness(var(--brightness)) !important;
-} */
+}
 
 code,
 [class*="markup-"] pre,

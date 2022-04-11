@@ -20,6 +20,7 @@
     "preserveToken": true,
     "autoPatch": true,
     "linuxUpdater": true,
+    "react": true,
     "postnet": true,
     "noconmsg": true,
     "unravelMessage": true,
@@ -173,7 +174,7 @@
       "enabled": true,
       "options": {
         "cssPath": [
-          "/home/adryd/.adryd/systems/personal/heckheating/css/discord.css"
+          "/home/adryd/.adryd/common/heckheating/config/css/discord.css"
         ]
       }
     },
