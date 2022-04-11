@@ -15,11 +15,12 @@ source ../../lib/os.sh
 ../../oses/archlinux/pacman/toronto-mirrorlist/_install.sh
 
 # Sync after repos are added
-sudo pacman -Syyu
+sudo pacman -Syyu --noconfirm
 
 ./install-packages.sh || exit $?
 ../../common/git-crypt.sh
 ../../common/nix.sh --daemon
+../../oses/archlinux/paru.sh
 ./thinkpad_acpi.sh
 ./optimus.sh
 ./plymouth.sh
@@ -38,9 +39,6 @@ sudo pacman -Syyu
 ../../common/flstudio/_install.sh
 ../../common/firefox/_install.sh
 ../../oses/archlinux/fontconfig/_install.sh
-../../oses/archlinux/otf-inter-local/_install.sh
-../../oses/archlinux/ttf-recursive-code-local/_install.sh
-../../oses/archlinux/icon-theme/_install.sh
 
 sudo systemctl enable gdm > /dev/null
 sudo systemctl enable cups > /dev/null

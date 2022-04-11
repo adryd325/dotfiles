@@ -41,12 +41,9 @@ packages=(
     "gnome-tweaks"
     "gnome-weather"
     "gvfs"
-    "gvfs-afc"
-    "gvfs-gphoto2"
-    "gvfs-nfs"
-    "gvfs-smb"
+    gvfs-{afc,gphoto2,nfs,smb}
     "libgdm-prime"
-    # "mutter-performance"
+    "mutter-performance"
     "nautilus"
     "plymouth"
     "sushi"
@@ -94,7 +91,7 @@ packages=(
     "intellij-idea-community-edition"
     "kcharselect"
     "keepassxc"
-    "libreoffice-still"
+    kicad{,-library{,-3d}}
     "libvncserver" # for remmina
     "mesa-demos"
     "mumble"
@@ -102,7 +99,6 @@ packages=(
     "obs-studio"
     "pavucontrol"
     "piavpn-bin"
-    "quodlibet"
     "remmina"
     "signal-desktop"
     "telegram-desktop"
@@ -110,7 +106,6 @@ packages=(
     "v4l2loopback-dkms"
     "virt-viewer"
     "xournalpp"
-    "yubioath-desktop"
     "flatpak"
 
     # Extras
@@ -145,6 +140,8 @@ packages=(
     "ntfs-3g"
     "openbsd-netcat"
     "pacman-contrib"
+    "perl-authen-sasl" # git-send-email
+    "perl-io-socket-ssl" # git-send-email
     "pipewire"
     "pipewire-pulse"
     "pipewire-jack"
@@ -182,17 +179,17 @@ packages=(
 
     # FONTS!!!
     "cantarell-fonts" # Cantarell
+    "inter-font" # Inter
     "gsfonts" # Nimbus Roman
     "noto-fonts" # Noto Serif, Noto Sans, Noto Sans UI, Noto Sans Mono
     "noto-fonts-cjk"
-    "noto-fonts-emoji-apple" # Noto Color Emoji
+    "noto-fonts-emoji" # Noto Color Emoji
     "ttf-unifont" # Unifont
     "ttf-ipa-mona"
     "ttf-ms-fonts"
     "ttf-windows"
     "ttf-ibm-plex"
-    # "otf-inter-local" # Inter
-    # "otf-recursive-code-local" # Recursive
+    "otf-recursive" # Recursive
 
     # Extra kernel
     "linux-lts"
