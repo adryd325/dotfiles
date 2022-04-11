@@ -1,5 +1,13 @@
 [user]
-	email = me@adryd.com
-	name = adryd
+    name = adryd
+    email = me@adryd.com
+    signingkey = 7631E0D1F3B65999
+
 [commit]
-	gpgsign = true
+    gpgsign = true
+
+[sendemail]
+    smtpserver = smtp.migadu.com
+    smtpuser = me@adryd.com
+    smtpencryption = ssl
+    smtpserverport = 465
