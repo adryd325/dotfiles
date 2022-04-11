@@ -13,12 +13,13 @@ export PACKAGE_LIST=(
     aseprite
     chrome-gnome-shell
     gdm-prime
+    gnome-text-editor
     libgdm-prime
     mangohud
     mangohud-common
     mutter-performance
-    noto-fonts-emoji-apple
     nvm
+    otf-recursive
     paru
     piavpn-bin
     plymouth
@@ -33,8 +34,6 @@ export PACKAGE_LIST=(
     binfmt-qemu-static
     qemu-user-static
     kalibrate-rtl-git
-    pcre-static
-    glib2-static
 )
 
 export KEYS_TRUST=(
