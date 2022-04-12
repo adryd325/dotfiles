@@ -13,7 +13,7 @@ gsettings set org.gnome.shell.weather locations "[<(uint32 2, <('Toronto', 'CYTZ
 
 log info "Setting app-picker layout"
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'firefox-developer-edition.desktop', 'org.gnome.Terminal.desktop', 'discord-canary.desktop']"
-gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'Games', 'Creativity', 'LibreOffice', 'Chats']"
+gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'Games', 'Creativity', 'LibreOffice', 'Chats', 'KiCad']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ apps "['steam.desktop', 'com.valvesoftware.Steam.desktop', 'multimc.desktop', 'powder-toy.desktop', 'supertuxkart.desktop', 'uk.co.powdertoy.tpt.desktop', 'org.polymc.PolyMC.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name 'Games'
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/LibreOffice/ apps "['libreoffice-startcenter.desktop', 'libreoffice-calc.desktop', 'libreoffice-impress.desktop', 'libreoffice-writer.desktop', 'libreoffice-base.desktop', 'libreoffice-draw.desktop', 'libreoffice-math.desktop']"
@@ -22,8 +22,10 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Chats/ name 'Chats'
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Creativity/ apps "['aseprite.desktop', 'blender.desktop', 'gimp.desktop', 'org.inkscape.Inkscape.desktop', 'net.blockbench.Blockbench.desktop', 'wine-Programs-Image-Line-FL Studio 20.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Creativity/ name 'Creativity'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ apps "['org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.Extensions.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Totem.desktop', 'org.gnome.Calculator.desktop', 'pavucontrol.desktop', 'org.gnome.baobab.desktop', 'gnome-system-monitor.desktop', 'org.gnome.font-viewer.desktop', 'io.github.seadve.Kooha.desktop', 're.sonny.Junction.desktop', 'com.github.tchx84.Flatseal.desktop', 'piavpn.desktop', 'ca.desrt.dconf-editor.desktop', 'qt5ct.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ apps "['org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.Extensions.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Totem.desktop', 'org.gnome.Calculator.desktop', 'pavucontrol.desktop', 'org.gnome.baobab.desktop', 'gnome-system-monitor.desktop', 'org.gnome.font-viewer.desktop', 'io.github.seadve.Kooha.desktop', 're.sonny.Junction.desktop', 'com.github.tchx84.Flatseal.desktop', 'piavpn.desktop', 'ca.desrt.dconf-editor.desktop', 'qt5ct.desktop', 'org.pipewire.Helvum.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ name 'Utilities'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/KiCad/ apps "['org.kicad.kicad.desktop', 'org.kicad.gerbview.desktop', 'org.kicad.bitmap2component.desktop', 'org.kicad.pcbcalculator.desktop', 'org.kicad.pcbnew.desktop', 'org.kicad.eeschema.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/KiCad/ name 'KiCad'
 
 # Setting keybinds
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/pkill/']"
