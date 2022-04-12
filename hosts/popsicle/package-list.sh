@@ -82,6 +82,7 @@ packages=(
     "freerdp" # for remmina
     "geary"
     "gimp"
+    "gqrx"
     "gnome-calculator"
     "gnome-calendar"
     "gnome-contacts"
@@ -89,6 +90,7 @@ packages=(
     "helvum"
     "inkscape"
     "intellij-idea-community-edition"
+    "libreoffice-still"
     "kcharselect"
     "keepassxc"
     kicad{,-library{,-3d}}
@@ -109,6 +111,7 @@ packages=(
     "flatpak"
 
     # Extras
+    "alsa-utils"
     "aria2"
     "asar"
     "auto-cpufreq"
@@ -137,6 +140,7 @@ packages=(
     "neofetch"
     "neovim"
     "networkmanager-openvpn"
+    "nm-connection-editor"
     "ntfs-3g"
     "openbsd-netcat"
     "pacman-contrib"
@@ -189,7 +193,6 @@ packages=(
     "ttf-ms-fonts"
     "ttf-windows"
     "ttf-ibm-plex"
-    "otf-recursive" # Recursive
 
     # Extra kernel
     "linux-lts"

@@ -39,6 +39,7 @@ sudo pacman -Syyu --noconfirm
 ../../common/flstudio/_install.sh
 ../../common/firefox/_install.sh
 ../../oses/archlinux/fontconfig/_install.sh
+../../oses/archlinux/otf-inter-local/_install.sh
 
 sudo systemctl enable gdm > /dev/null
 sudo systemctl enable cups > /dev/null
