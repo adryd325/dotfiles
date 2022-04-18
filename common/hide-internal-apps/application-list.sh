@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 export appDirs=("/usr/share/applications" "${HOME}/.local/share/applications")
-export appGlobs=("in.lsp_plug.lsp_plugins_*.desktop" "electron*.desktop")
+export appGlobs=(
+    "in.lsp_plug.lsp_plugins_*.desktop"
+    "electron*.desktop"
+    "java-java*-openjdk.desktop"
+    "jconsole-java*-openjdk.desktop"
+    "jshell-java*-openjdk.desktop"
+)
 export apps=(
     "nm-connection-editor.desktop"
     "qv4l2.desktop"
@@ -20,11 +26,8 @@ export apps=(
     "org.gtk.IconBrowser4.desktop"
     "org.gtk.PrintEditor4.desktop"
     "org.gtk.WidgetFactory4.desktop"
-    "java-java11-openjdk.desktop"
     "java-java-openjdk.desktop"
-    "jconsole-java11-openjdk.desktop"
     "jconsole-java-openjdk.desktop"
-    "jshell-java11-openjdk.desktop"
     "jshell-java-openjdk.desktop"
     "nvidia-settings.desktop"
     "cmake-gui.desktop"
