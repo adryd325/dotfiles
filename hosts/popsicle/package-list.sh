@@ -74,7 +74,7 @@ packages=(
     # General use desktop apps
     "aseprite"
     "blender"
-    "cider-git"
+    "cider"
     "celluloid"
     "chromium"
     "dconf-editor"
@@ -82,7 +82,6 @@ packages=(
     "freerdp" # for remmina
     "geary"
     "gimp"
-    "gqrx"
     "gnome-calculator"
     "gnome-calendar"
     "gnome-contacts"
@@ -185,9 +184,7 @@ packages=(
     "cantarell-fonts" # Cantarell
     "inter-font" # Inter
     "gsfonts" # Nimbus Roman
-    "noto-fonts" # Noto Serif, Noto Sans, Noto Sans UI, Noto Sans Mono
-    "noto-fonts-cjk"
-    "noto-fonts-emoji" # Noto Color Emoji
+    noto-fonts{,-cjk,-emoji}
     "ttf-unifont" # Unifont
     "ttf-ipa-mona"
     "ttf-ms-fonts"
@@ -234,6 +231,7 @@ packages=(
 
     # SDR stuff
     "rtl-sdr"
+    "gqrx"
 )
 
 flatpaks=(
