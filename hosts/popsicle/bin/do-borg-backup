@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+borg create "ssh://u292366@u292366.your-storagebox.de:23/~/backups/popsicle::-{utcnow}"\
+    --rsh 'ssh -o BatchMode=yes' \
+    --compression zstd,9 \
+    --progress \
+    --json \
+    --log-json \
+    --patterns-from /home/adryd/.adryd/hosts/popsicle/borg.patterns
