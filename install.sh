@@ -68,6 +68,10 @@ case "${HOSTNAME}" in
     [[ "${USER}" = "root" ]] && askRun ./hosts/thelounge/_install.sh
     ;;
 
+  "web")
+    [[ "${USER}" = "root" ]] && askRun ./hosts/web/_install.sh
+    ;;
+
   "archiso")
     [[ "${USER}" = "root" ]] && askRun ./oses/archlinux/archiso-installer/_install.sh
     ;;
