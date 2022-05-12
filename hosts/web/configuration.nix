@@ -1,9 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ /opt/adryd-dotfiles/oses/nixos/lxc-container.nix /opt/adryd-dotfiles/oses/nixos/common.nix ];
+  imports = [ <nixpkgs/nixos/modules/virtualisation/lxc-container.nix> /opt/adryd-dotfiles/oses/nixos/common.nix ];
+  systemd.suppressedSystemUnits = [ "sys-kernel-debug.mount" ];
 
   networking = {
+    domain = "in.adryd.com";
+    defaultGateway = "10.0.0.1";
+    nameservers = [ "10.0.0.1" ];
+    dhcpcd.enable = false;
+    enableIPv6 = true;
     hostName = "web";
     interfaces.eth0.ipv4.addresses = [{
       address = "10.0.0.102";
