@@ -247,6 +247,14 @@
       }
     },
     "removeBrand": true,
-    "ohFuck": true
+    "ohFuck": true,
+    "spotifyControls": {
+      "options": {
+        "playerType": [
+          "cider"
+        ]
+      },
+      "enabled": true
+    }
   }
 }
