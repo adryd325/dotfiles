@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-borg create "ssh://u292366@u292366.your-storagebox.de:23/~/backups/popsicle::-{utcnow}"\
-    --rsh 'ssh -o BatchMode=yes' \
+borg create "ssh://u292366@u292366.your-storagebox.de:23/~/backups/popsicle::{utcnow}"\
     --compression zstd,9 \
     --progress \
     --json \
