@@ -39,7 +39,7 @@ fi
 # Clone the repo if we don't have it, and if we might have keys
 if [[ ! -d "${hhDir}" ]] && [[ -e "${HOME}/.ssh" ]]; then
     log info "Cloning HH3"
-    if ! git clone git@gitlab.com:mstrodl/hh3 "${hhDir}" --quiet; then
+    if ! git clone gitolite3@git.coolmathgames.tech:/hh3.git "${hhDir}" --quiet; then
         log error "Failed to clone HH3, likely a permission issue"
         exit 1;
     fi
