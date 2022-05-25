@@ -3,17 +3,10 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.telemetryLevel": "off",
     "editor.minimap.enabled": false,
-    "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
     "editor.suggest.showStatusBar": true,
     "eslint.alwaysShowStatus": true,
     "editor.fontFamily": "'Rec Mono Linear', 'Cascadia Code', 'IBM Plex Mono', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace",
     "editor.fontSize": 15,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "workbench.iconTheme": null,
     "workbench.editor.decorations.badges": false,
     "workbench.settings.editor": "json",
@@ -28,21 +21,30 @@
     "security.workspace.trust.enabled": false,
     "explorer.confirmDragAndDrop": false,
     "editor.renderWhitespace": "none",
-    "prettier.tabWidth": 4,
     "workbench.colorTheme": "Monokai Pro",
     "shellcheck.customArgs": [
         "-x"
     ],
     "C_Cpp.intelliSenseEngine": "Disabled",
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
     },
+    "prettier.tabWidth": 2,
     "editor.tabSize": 2,
     "window.menuBarVisibility": "visible",
-    "window.titleBarStyle": "custom"
+    "window.titleBarStyle": "custom",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
