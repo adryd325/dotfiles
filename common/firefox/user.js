@@ -1,10 +1,10 @@
 /* SOME PREFS TAKEN FROM https://gitlab.com/librewolf-community/settings/-/blob/master/librewolf.cfg */
 
 // Color-Management
-// user_pref("gfx.color_management.mode", 1);
-// user_pref("gfx.color_management.enablev4", true);
-// user_pref("gfx.color_management.rendering_intent", -1);
-// user_pref("gfx.color_management.display_profile", "__REPLACE_ME__ICC_PROFILE_PATH__");
+user_pref("gfx.color_management.mode", 1);
+user_pref("gfx.color_management.enablev4", true);
+user_pref("gfx.color_management.rendering_intent", -1);
+user_pref("gfx.color_management.display_profile", "__REPLACE_ME__ICC_PROFILE_PATH__");
 
 // Theming
 user_pref("browser.devedition.theme.enabled", true);
