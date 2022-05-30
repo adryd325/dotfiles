@@ -1,0 +1,13 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Path
+Target = usr/lib/modules/*/vmlinuz
+
+[Action]
+Description = Restoring kernel modules...
+Depends = sh
+Depends = coreutils
+When = PostTransaction
+Exec = /bin/sh -c 'if [[ ! -e "/usr/lib/modules/$(uname -r)" ]] && [[ -e "/tmp/backup-modules-$(uname -r)" ]]; then mv "/tmp/backup-modules-$(uname -r)" "/usr/lib/modules/$(uname -r)";fi; for kernelVer in /usr/lib/modules/*; do if ! pacman -Qo "${kernelVer}" &> /dev/null && [[ "$(basename "${kernelVer}")" != "$(uname -r)" ]]; then rm -r "${kernelVer}";fi;done'
