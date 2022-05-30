@@ -7,7 +7,6 @@ Target = usr/lib/modules/*/vmlinuz
 
 [Action]
 Description = Backing up kernel modules...
-Depends = pacman
 Depends = sh
 Depends = coreutils
 When = PreTransaction
