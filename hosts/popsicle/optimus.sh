@@ -11,11 +11,10 @@ if pacman -Q gdm &> /dev/null; then
         && sudo cp /etc/gdm/custom.conf /etc/gdm/custom.conf.orig
     sudo sed -i "s/#WaylandEnable=false/WaylandEnable=false/" /etc/gdm/custom.conf
     # The logs are rather self-explainatory so no need for more comment
-    if [[ "${HOSTNAME}" == "popsicle" ]]; then
-        log info "Setting power management kernel option"
-        echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' | sudo tee /etc/modprobe.d/nvidia.conf > /dev/null
-        log info "Setting udev rules"
-        sudo tee /etc/udev/rules.d/80-nvidia-pm.rules > /dev/null <<EOF
+    log info "Setting power management kernel option"
+    echo 'options nvidia "NVreg_DynamicPowerManagement=0x02"' | sudo tee /etc/modprobe.d/nvidia.conf > /dev/null
+    log info "Setting udev rules"
+    sudo tee /etc/udev/rules.d/80-nvidia-pm.rules > /dev/null <<EOF
 # Remove NVIDIA USB xHCI Host Controller devices, if present
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{remove}="1"
 
@@ -33,7 +32,6 @@ ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="on"
 ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="on"
 EOF
-    fi
     if pacman -Q switcheroo-control &> /dev/null; then
         log info "Enable switcheroo-control"
         sudo systemctl enable switcheroo-control

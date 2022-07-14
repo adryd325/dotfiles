@@ -24,6 +24,7 @@ sudo pacman -Syyu --noconfirm
 ./thinkpad_acpi.sh
 ./optimus.sh
 ./plymouth.sh
+./disable-yubikey-keyboard.sh
 ../../common/sysctl/_install.sh
 ../../common/xdg-user-dirs/_install.sh
 ../../common/mimeapps/_install.sh
@@ -38,7 +39,7 @@ sudo pacman -Syyu --noconfirm
 ../../common/discord/wmclass-fix.sh "stable" "ptb" "canary" "development"
 ../../common/flstudio/_install.sh
 ../../common/firefox/_install.sh
-../../oses/archlinux/fontconfig/_install.sh
+../../common/fontconfig/_install.sh
 ../../oses/archlinux/otf-inter-local/_install.sh
 
 sudo systemctl enable gdm > /dev/null

@@ -70,6 +70,7 @@ packages=(
     "nvm"
     "pnpm"
     "python"
+    "python-pip"
     "rustup"
 
     # General use desktop apps
@@ -80,6 +81,7 @@ packages=(
     "chromium"
     "dconf-editor"
     "easyeffects"
+    "elementary-planner"
     "freerdp" # for remmina
     "geary"
     "gimp"
@@ -103,11 +105,13 @@ packages=(
     "piavpn-bin"
     "remmina"
     "signal-desktop"
+    "simple-scan"
     "telegram-desktop"
     "torbrowser-launcher"
     "v4l2loopback-dkms"
     "virt-viewer"
     "xournalpp"
+    "yubioath-desktop"
     "flatpak"
 
     # Extras
@@ -164,6 +168,7 @@ packages=(
     "veracrypt"
     "wireguard-tools"
     "wireplumber"
+    "whois"
     "xclip"
     "xorg-xkill"
     "yt-dlp"
@@ -222,8 +227,8 @@ packages=(
     # VM stuff
     "virt-manager"
     "binfmt-qemu-static"
-    "qemu"
-    "qemu-arch-extra"
+    "qemu-desktop"
+    "qemu-emulators-full"
     "qemu-user-static"
     "dnsmasq"
     "edk2-ovmf"
