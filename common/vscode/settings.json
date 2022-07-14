@@ -5,7 +5,7 @@
     "editor.minimap.enabled": false,
     "editor.suggest.showStatusBar": true,
     "eslint.alwaysShowStatus": true,
-    "editor.fontFamily": "'Rec Mono Linear', 'Cascadia Code', 'IBM Plex Mono', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace",
+    "editor.fontFamily": "'Comic Code', 'Rec Mono Linear', 'Cascadia Code', 'IBM Plex Mono', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace",
     "editor.fontSize": 15,
     "workbench.iconTheme": null,
     "workbench.editor.decorations.badges": false,
@@ -21,7 +21,7 @@
     "security.workspace.trust.enabled": false,
     "explorer.confirmDragAndDrop": false,
     "editor.renderWhitespace": "none",
-    "workbench.colorTheme": "Monokai Pro",
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "shellcheck.customArgs": [
         "-x"
     ],
@@ -35,7 +35,6 @@
     },
     "prettier.tabWidth": 2,
     "editor.tabSize": 2,
-    "window.menuBarVisibility": "visible",
     "window.titleBarStyle": "custom",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[svelte]": {
@@ -47,4 +46,7 @@
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
+    // "editor.rulers": [
+    //     80
+    // ]
 }

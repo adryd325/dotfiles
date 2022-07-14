@@ -1,14 +1,33 @@
 html {
   --font-primary: "Whitney", Whitney, "Helvetica Neue", Helvetica, Arial,
     sans-serif !important;
-  --font-display: "Ginto", Whitney, "Helvetica Neue", Helvetica, Arial,
+  --font-display: "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial,
     sans-serif !important;
-  /* Discord is silly and doesn't actually use the --font-code variable... FUN! */
-  --font-code: "Rec Mono Linear", monospace, Consolas, Andale Mono WT, Andale Mono, Lucida Console,
-    Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono,
-    Liberation Mono, Nimbus Mono L, Monaco, Courier New, Courier, monospace !important;
+  --font-headline: "ABC Ginto Nord", "Helvetica Neue", Helvetica, Arial,
+    sans-serif !important;
+  /* Discord is silly and doesn't actually use the --font-code variable... FUN!
+   * they should really ship their own monospace font */
+  --font-code: "Comic Code", "Rec Mono Linear", 'Cascadia Code', 'IBM Plex Mono', monospace,
+    Consolas, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Monaco, Courier New, Courier,
+    monospace !important;
 }
 
+/* Fix fonts where they should use --font-code */
+code,
+[class*="markup-"] pre,
+[class*="markup-"] code,
+[class*="markup-"] code.inline,
+[class*="slateTextArea"] [class*="inlineCode"],
+[class*="slateTextArea"] [class*="codeBlockSyntax"],
+[class*="slateTextArea"] [class*="codeBlockText"],
+[class*="slateTextArea"] [class*="codeLine"] {
+  font-family: var(--font-code);
+  font-variant: none;
+}
+
+/* Role color adjustmets for visibility
+ * In theory this should make all role colors visible on both light and dark mode */
 .theme-dark {
   --brightness: 1.35;
   --contrast: 0.5;
@@ -25,18 +44,7 @@ html {
   filter: saturate(var(--saturation)) contrast(var(--contrast)) brightness(var(--brightness)) !important;
 }
 
-code,
-[class*="markup-"] pre,
-[class*="markup-"] code,
-[class*="markup-"] code.inline {
-  font-family: "Rec Mono Linear", Consolas, Andale Mono WT, Andale Mono,
-    Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Monaco,
-    Courier New, Courier, monospace !important;
-  font-variant: none;
-}
-
-
+/* More "cozy" spotify controls */
 .hh2-spotify-controls-playback-bar {
   position: relative;
   height: 4px !important;
