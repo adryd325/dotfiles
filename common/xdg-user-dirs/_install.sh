@@ -6,4 +6,5 @@ AR_MODULE="xdg-user-dirs"
 if [[ ! -e "${HOME}/.config/user-dirs.dirs" ]]; then
     log info "Installing xdg-user-dirs config"
     cp ./user-dirs.dirs "${HOME}/.config/user-dirs.dirs"
+    xdg-user-dirs-update
 fi
