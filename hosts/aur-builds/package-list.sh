@@ -8,10 +8,12 @@ export PACKAGE_LIST=(
     cider-git
     switcheroo-control
     ttf-unifont
+    ocr-fonts
     yaru-sound-theme
     1password
     aseprite
     chrome-gnome-shell
+    elementary-planner
     gdm-prime
     gnome-text-editor
     libgdm-prime
