@@ -36,6 +36,7 @@ export PACKAGE_LIST=(
     binfmt-qemu-static
     qemu-user-static
     kalibrate-rtl-git
+    proton
 )
 
 export KEYS_TRUST=(
