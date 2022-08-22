@@ -7,8 +7,6 @@ export PACKAGE_LIST=(
     cider
     cider-git
     switcheroo-control
-    ttf-unifont
-    ocr-fonts
     yaru-sound-theme
     1password
     aseprite
@@ -21,7 +19,6 @@ export PACKAGE_LIST=(
     mangohud-common
     mutter-performance
     nvm
-    otf-recursive
     paru
     piavpn-bin
     plymouth
@@ -29,14 +26,26 @@ export PACKAGE_LIST=(
     polymc
     solo2-cli-git
     touchegg
-    ttf-ipa-mona
-    ttf-ms-fonts
-    ttf-windows
     visual-studio-code-bin
     binfmt-qemu-static
     qemu-user-static
+    thunderbird-nightly-bin
+
+    # fonts
+    ttf-ipa-mona
+    ttf-ms-fonts
+    otf-san-francisco-mono
+    ttf-unifont
+    ocr-fonts
+    otf-recursive
+
+    # sdr
     kalibrate-rtl-git
-    proton
+
+    # nfc
+    libfreefare-git
+    cardpeek
+    mrtdreader
 )
 
 export KEYS_TRUST=(
