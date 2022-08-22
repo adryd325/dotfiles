@@ -9,7 +9,6 @@ source ../../lib/os.sh
 
 ../../oses/archlinux/pacman/_install.sh
 ../../oses/archlinux/pacman/multilib.sh
-../../oses/archlinux/pacman/fcgu.sh
 ../../oses/archlinux/pacman/hooks/_install.sh
 ../../oses/archlinux/pacman/aur-builds/_install.sh
 ../../oses/archlinux/pacman/toronto-mirrorlist/_install.sh
@@ -25,6 +24,7 @@ sudo pacman -Syyu --noconfirm
 ./optimus.sh
 ./plymouth.sh
 ./disable-yubikey-keyboard.sh
+../../oses/archlinux/pacman/fcgu.sh
 ../../common/sysctl/_install.sh
 ../../common/xdg-user-dirs/_install.sh
 ../../common/mimeapps/_install.sh
