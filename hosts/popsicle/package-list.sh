@@ -21,44 +21,26 @@ packages=(
 
     # GNOME
     "adwaita-icon-theme"
-    "baobab"
     "chrome-gnome-shell"
-    "eog"
-    "file-roller"
     "gdm-prime"
     "gnome-backgrounds"
     "gnome-color-manager"
     "gnome-control-center"
-    "gnome-font-viewer"
     "gnome-keyring"
     "gnome-session"
     "gnome-settings-daemon"
     "gnome-shell"
-    "gnome-shell-extensions"
-    "gnome-software"
-    "gnome-system-monitor"
-    "gnome-text-editor"
-    "gnome-tweaks"
-    "gnome-weather"
     "gvfs"
     gvfs-{afc,gphoto2,nfs,smb}
     "libgdm-prime"
     "mutter-performance"
-    "nautilus"
     "plymouth"
     "sushi"
-    "totem"
     "tracker"
     "tracker-miners"
     "tracker3"
     "tracker3-miners"
     "xdg-desktop-portal-gnome"
-
-    # Base apps
-    "gnome-terminal"
-    "firefox-developer-edition"
-    "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
-    "1password"
 
     # Programming languages and libs
     "jdk-openjdk"
@@ -73,113 +55,113 @@ packages=(
     "python-pip"
     "rustup"
 
-    # General use desktop apps
-    "aseprite"
-    "blender"
-    "cider"
-    "celluloid"
-    "chromium"
-    "dconf-editor"
-    "easyeffects"
-    "elementary-planner"
-    "freerdp" # for remmina
-    "geary"
-    "gimp"
-    "gnome-calculator"
-    "gnome-calendar"
-    "gnome-contacts"
-    "gnome-system-monitor"
-    "helvum"
-    "inkscape"
-    "intellij-idea-community-edition"
-    "libreoffice-still"
-    "kcharselect"
-    "keepassxc"
-    kicad{,-library{,-3d}}
-    "libvncserver" # for remmina
+    # Unsorted
     "mesa-demos"
-    "mumble"
-    "nicotine+"
-    "obs-studio"
-    "pavucontrol"
-    "piavpn-bin"
-    "remmina"
-    "signal-desktop"
-    "simple-scan"
-    "telegram-desktop"
-    "torbrowser-launcher"
     "v4l2loopback-dkms"
-    "virt-viewer"
-    "xournalpp"
-    "yubioath-desktop"
     "flatpak"
-
-    # Extras
-    "alsa-utils"
     "aria2"
     "asar"
-    "auto-cpufreq"
     "bash-completion"
     "borg"
-    "cdrtools"
     "croc"
     "cups"
+    "hplip"
     "direnv"
     "electron"
     "espeak-ng"
-    "exfatprogs"
-    "fd" # find clone
-    "ffmpeg"
     "fwupd"
     "git-crypt"
-    "hplip"
     "htop"
-    "imagemagick"
-    "inetutils"
     "jq"
-    "libfido2"
     "mangohud"
     "mesa-utils"
     "mesa-demos"
+    "acpi_call-dkms"
     "neofetch"
     "neovim"
-    "networkmanager-openvpn"
-    "nm-connection-editor"
-    "ntfs-3g"
-    "openbsd-netcat"
-    "pacman-contrib"
+    "shellcheck"
+    "strace"
+    "thermald"
+    "auto-cpufreq"
     "perl-authen-sasl" # git-send-email
     "perl-io-socket-ssl" # git-send-email
+    "touchegg"
+
+    # Uncategorized gui tools
+    "nicotine+" # soulseek client
+    "obs-studio"
+    "dconf-editor"
+    "easyeffects"
+    "gnome-calculator"
+    "kcharselect" # better unicode char map
+    "veracrypt" # multiplatform drive encryption tool
+    #"celluloid" # Video player based on mpv
+    "mpv"
+    "gnome-font-viewer"
+    "gnome-shell-extensions"
+    "gnome-software"
+    "gnome-system-monitor"
+    "gnome-tweaks"
+    "gnome-weather"
+    "totem" # Video player
+    "nautilus"
+    "baobab" # Disk usage analyzer
+    "eog" # Image viewer
+    "file-roller"
+
+    "xclip"
+    "xorg-xkill"
+
+    "pacman-contrib"
+    "reflector"
+
+    # coreutils clones
+    "fd" # find clone
+    "the_silver_searcher" # command: ag. used to find text contents of files with minimal syntax
+    "sd" # sed clone
+    "ripgrep"
+    "bat" # cat clone
+
+    # Text editors
+    "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
+    "intellij-idea-community-edition"
+    "imhex"
+    "gnome-text-editor"
+
+    # Archival tools and filesystems
+    "unzip"
+    "zip"
+    "p7zip"
+    "cdrtools" # Make isos, does a lot more but felt it fit here
+    "ntfs-3g"
+    "exfatprogs"
+
+    # Browsers
+    "firefox-developer-edition"
+    "chromium"
+    "torbrowser-launcher"
+
+    # Multimedia
+    "ffmpeg"
+    "yt-dlp"
+    "imagemagick"
+    # "gifski"
+
+    # Audio
+    "wireplumber"
     "pipewire"
     "pipewire-pulse"
     "pipewire-jack"
-    "reflector"
-    "ripgrep"
-    "sd" # sed clone
-    "shellcheck"
-    "solo2-cli-git"
-    "strace"
-    "systemd-resolvconf"
-    "thermald"
-    "the_silver_searcher"
-    "traceroute"
-    "touchegg"
-    "unzip"
-    "veracrypt"
-    "wireguard-tools"
-    "wireplumber"
-    "whois"
-    "xclip"
-    "xorg-xkill"
-    "yt-dlp"
-    "zip"
+    "alsa-utils"
+    "helvum"
+    "pavucontrol"
 
-    # Theming
-    "adw-gtk3-git"
-    "breeze-icons"
-    "breeze"
-    "qt5ct" # Make QT apps not look awful
-    "yaru-sound-theme"
+    # Passwords and OTPs
+    "1password"
+    "keepassxc"
+    "yubioath-desktop"
+    "libfido2"
+    "solo2-cli-git"
 
     # Build Tools used frequently by things I use on the AUR
     "cmake"
@@ -196,19 +178,13 @@ packages=(
     "ttf-ms-fonts"
     "ttf-windows"
     "ttf-ibm-plex"
+    "otf-san-francisco-mono"
+    "ocr-fonts"
+    "ttf-roboto"
 
     # Extra kernel
     "linux-lts"
     "linux-lts-headers"
-
-    # Wine
-    "wine-gecko"
-    "wine-mono"
-    "wine-staging"
-
-    # Games
-    "steam"
-    "polymc"
 
     # Drivers
     "nvidia"
@@ -224,20 +200,87 @@ packages=(
     "cuda"
     "fprintd"
 
+    # Games
+    "steam"
+    "polymc"
+
+    # Network tools
+    "inetutils" # includes drill
+    "nmap"
+    "bind" # includes dig
+    "openbsd-netcat" # open tcp sockets to anything
+    "whois"
+    "traceroute"
+
+    # Network uhh
+    "piavpn-bin"
+    "networkmanager-openvpn"
+    "nm-connection-editor"
+    "wireguard-tools"
+    "systemd-resolvconf"
+
+    # Theming
+    "adw-gtk3-git" # Make all gtk3 apps look like libadwaita
+    "breeze-icons"
+    "breeze"
+    "qt5ct" # Make QT apps not look awful
+    "yaru-sound-theme"
+
+    # Productivity
+    "elementary-planner"
+    "libreoffice-still"
+    "simple-scan"
+    "thunderbird-nightly-bin"
+    "gnome-calendar" # useful to show tasks in the system calendar even if you dont use it itself
+    "xournalpp" # pdf markup tool
+
+    # Creating things
+    "aseprite" # pixel art editor
+    "blender"
+    kicad{,-library{,-3d}} # PCB design
+    "gimp"
+    "inkscape"
+
     # VM stuff
+    "virt-viewer"
     "virt-manager"
     "binfmt-qemu-static"
     "qemu-desktop"
     "qemu-emulators-full"
     "qemu-user-static"
-    "dnsmasq"
+    "dnsmasq" # dns server, needed for vm stuff so in this category
     "edk2-ovmf"
     "edk2-armvirt"
-    "swtpm"
+    "swtpm" # virtual TPM
+
+    # Wine
+    wine-{gecko,mono,staging}
+
+    # Remote desktop
+    "freerdp" # for remmina
+    "libvncserver" # for remmina
+    "remmina"
+
+    # Smartcard stuff
+    "libnfc"
+    "libfreefare-git"
+    "cardpeek" # read contents of many smartcards
+    "mrtdreader" # read contents of passports
+    "globalplatformpro" # javacard toolkit
 
     # SDR stuff
-    "rtl-sdr"
-    "gqrx"
+    # "rtl-sdr"
+    # "gqrx"
+    # "kalibrate-rtl-git"
+
+    # Social networking kinda
+    "mumble"
+    "signal-desktop"
+    "telegram-desktop"
+
+    # Disassembling java stuff
+    # "jadx" # convert the weird apk java thing to something human readable
+    # "recaf" # java bytecode editor
 )
 
 flatpaks=(
