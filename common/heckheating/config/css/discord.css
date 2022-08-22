@@ -1,9 +1,9 @@
 html {
-  --font-primary: "Whitney", Whitney, "Helvetica Neue", Helvetica, Arial,
+  --font-primary: "", Whitney, "Helvetica Neue", Helvetica, Arial,
     sans-serif !important;
-  --font-display: "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial,
+  --font-display: "", "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial,
     sans-serif !important;
-  --font-headline: "ABC Ginto Nord", "Helvetica Neue", Helvetica, Arial,
+  --font-headline: "", "ABC Ginto Nord", "Helvetica Neue", Helvetica, Arial,
     sans-serif !important;
   /* Discord is silly and doesn't actually use the --font-code variable... FUN!
    * they should really ship their own monospace font */
