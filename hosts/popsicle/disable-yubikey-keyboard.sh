@@ -4,7 +4,7 @@ source ../../lib/log.sh
 AR_MODULE="bad-yubikey"
 
 log info "Setting udev rules"
-sudo tee /etc/udev/rules.d/80-nvidia-pm.rules > /dev/null <<EOF
+sudo tee /etc/udev/rules.d/99-disable-yubikey.rules > /dev/null <<EOF
 ACTION=="add|change", KERNEL=="event[0-9]*", \
    ENV{ID_VENDOR_ID}=="1050", \
    ENV{ID_MODEL_ID}=="0407", \
