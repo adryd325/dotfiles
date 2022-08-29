@@ -9,5 +9,9 @@ log info "Installing nixpkgs overlay"
 mkdir -p "${HOME}/.config/nixpkgs/overlays"
 
 if ! [[ -e "${HOME}/.config/nixpkgs/overlays/adryd-dotfiles" ]]; then
-    ln -sf "$(realpath .)" "${HOME}/.config/nixpkgs/overlays/adryd-dotfiles"
+    ln -sf "$(realpath .)/overlay" "${HOME}/.config/nixpkgs/overlays/adryd-dotfiles"
+fi
+
+if [[ -d "${HOME}/.config/nixpkgs" ]]; then
+    cp -f ./config.nix "${HOME}/.config/nixpkgs/config.nix"
 fi
