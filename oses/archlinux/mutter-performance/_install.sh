@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd "$(dirname "$1")" || exit $?
+cd "$(dirname "$0")" || exit $?
 
 commit=$(curl https://gitlab.com/fabiscafe/gnome-unstable/-/raw/main/mutter/PKGBUILD | grep -E "^_commit" | cut -d " " -f1)
 sed -i "s/^_commit=.*/${commit}/g" ./PKGBUILD
