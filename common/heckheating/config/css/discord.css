@@ -44,6 +44,25 @@ code,
   filter: saturate(var(--saturation)) contrast(var(--contrast)) brightness(var(--brightness)) !important;
 }
 
+/* Make the new profile popout less horrible */
+[class*="overlayBackground-"] {
+  border-radius: 0px 0px 4px 4px !important;
+  margin: 26px 0 0 !important;
+}
+
+[class*="userPopoutInner-"] > [class*="avatarWrapper-"] {
+  left: 12px;
+}
+
+[class*="userPopoutInnerWithoutTheme-"] > [class*="overlayBackground-"] {
+  margin: 14px 0 0 !important;
+  background-color: inherit !important;
+}
+
+[class*="profileBadges-"] {
+  background-color: inherit !important;
+}
+
 /* More "cozy" spotify controls */
 .hh2-spotify-controls-playback-bar {
   position: relative;
