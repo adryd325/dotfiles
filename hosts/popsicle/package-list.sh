@@ -33,7 +33,7 @@ packages=(
     "gvfs"
     gvfs-{afc,gphoto2,nfs,smb}
     "libgdm-prime"
-    "mutter-performance"
+    "mutter"
     "plymouth"
     "sushi"
     "tracker"
@@ -88,6 +88,7 @@ packages=(
     "touchegg"
 
     # Uncategorized gui tools
+    "gnome-console"
     "nicotine+" # soulseek client
     "obs-studio"
     "dconf-editor"
@@ -267,11 +268,13 @@ packages=(
     "cardpeek" # read contents of many smartcards
     "mrtdreader" # read contents of passports
     "globalplatformpro" # javacard toolkit
+    # proxmark3 deps
+    ccache git readline bzip2 arm-none-eabi-gcc arm-none-eabi-newlib qt5-base bluez python
 
     # SDR stuff
-    # "rtl-sdr"
-    # "gqrx"
-    # "kalibrate-rtl-git"
+    "rtl-sdr"
+    "gqrx"
+    "kalibrate-rtl-git"
 
     # Social networking kinda
     "mumble"
@@ -279,7 +282,7 @@ packages=(
     "telegram-desktop"
 
     # Disassembling java stuff
-    # "jadx" # convert the weird apk java thing to something human readable
+    "jadx" # convert the weird apk java thing to something human readable
     # "recaf" # java bytecode editor
 )
 
