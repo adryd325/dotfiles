@@ -4,8 +4,6 @@
 export PACKAGE_LIST=(
     adw-gtk3-git
     auto-cpufreq
-    cider
-    cider-git
     switcheroo-control
     yaru-sound-theme
     1password
@@ -27,9 +25,10 @@ export PACKAGE_LIST=(
     solo2-cli-git
     touchegg
     visual-studio-code-bin
+    thunderbird-nightly-bin
+
     binfmt-qemu-static
     qemu-user-static
-    thunderbird-nightly-bin
 
     # fonts
     ttf-ipa-mona
