@@ -26,6 +26,9 @@ export PACKAGE_LIST=(
     touchegg
     visual-studio-code-bin
     thunderbird-nightly-bin
+    imhex
+    jetbrains-toolbox
+    chromium-snapshot-bin
 
     binfmt-qemu-static
     qemu-user-static

@@ -237,7 +237,7 @@
       "enabled": true
     },
     "screenshareDnd": true,
-    "spotifyspoof": true,
-    "premiumVideo": true
+    "premiumVideo": true,
+    "createEmoji": true
   }
 }
