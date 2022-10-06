@@ -21,9 +21,9 @@
     "autoPatch": true,
     "linuxUpdater": true,
     "react": true,
-    "postnet": true,
     "noconmsg": true,
     "unravelMessage": true,
+    "cmder": true,
     "declutterTextButtons": {
       "options": {
         "keepSticker": false
@@ -46,6 +46,11 @@
     "noJoinMessageWave": true,
     "copyAvatarUrl": true,
     "debugFlux": true,
+    "exec": true,
+    "removeBrand": true,
+    "ohFuck": true,
+    "screenshareDnd": true,
+    "createEmoji": true,
     "imgxis": {
       "options": {
         "smoothImage": true
@@ -122,7 +127,8 @@
     },
     "pseudoNitro": {
       "options": {
-        "parseOnly": true
+        "parseOnly": false,
+        "sendAsLink": true
       },
       "enabled": true
     },
@@ -138,12 +144,6 @@
         "useSystemTheme": true
       },
       "enabled": true
-    },
-    "platformStyles": {
-      "enabled": false,
-      "options": {
-        "platformStyle": "win"
-      }
     },
     "commands": {
       "options": {
@@ -162,6 +162,7 @@
     "pinnedDMs": {
       "options": {
         "pinned": [
+          "1015268494889197650",
           "843580440853217292",
           "810698798652981259"
         ]
@@ -174,60 +175,12 @@
         "whenInvisible": true
       }
     },
-    "rpcTypeChanger": {
-      "options": {
-        "mappings": {
-          "891538162285940786": "2",
-          "886578863147192350": "2"
-        }
-      },
-      "enabled": true
-    },
-    "activitiesEverywhere": {
-      "options": {
-        "appIds": [
-          "755827207812677713",
-          "763116274876022855",
-          "763133495793942528",
-          "801133024841957428",
-          "755600276941176913",
-          "814288819477020702",
-          "832012586023256104",
-          "832012682520428625",
-          "832012730599735326",
-          "832012774040141894",
-          "832012815819604009",
-          "832012854282158180",
-          "832012894068801636",
-          "880218394199220334",
-          "880218832743055411",
-          "880559245471408169",
-          "878067389634314250",
-          "878067427668275241",
-          "879863686565621790",
-          "879863976006127627"
-        ]
-      },
-      "enabled": true
-    },
-    "devToolsExtensions": {
-      "options": {
-        "extensions": [
-          "/home/adryd/downloads/reactdevtools"
-        ]
-      },
-      "enabled": true
-    },
-    "exec": true,
-    "moyai": true,
     "clearUrls": {
       "enabled": true,
       "options": {
         "useDefaultRules": true
       }
     },
-    "removeBrand": true,
-    "ohFuck": true,
     "spotifyControls": {
       "options": {
         "playerType": [
@@ -236,8 +189,16 @@
       },
       "enabled": true
     },
-    "screenshareDnd": true,
     "premiumVideo": true,
-    "createEmoji": true
+    "linuxMouseButtonFix": true,
+    "reactDevelopment": true,
+    "unindent": true,
+    "customIdleTimeout": {
+      "options": {
+        "timeout": "300000"
+      },
+      "enabled": true
+    },
+    "disableVoiceAutoreconnect": true
   }
 }
