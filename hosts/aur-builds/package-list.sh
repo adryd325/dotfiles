@@ -8,7 +8,8 @@ export PACKAGE_LIST=(
     yaru-sound-theme
     1password
     aseprite
-    chrome-gnome-shell
+    cider
+    gnome-browser-connector
     elementary-planner
     gdm-prime
     gnome-text-editor
@@ -21,11 +22,11 @@ export PACKAGE_LIST=(
     piavpn-bin
     plymouth
     pnpm
-    polymc
+    prismlauncher
+    prismlauncher-git
     solo2-cli-git
     touchegg
     visual-studio-code-bin
-    thunderbird-nightly-bin
     imhex
     jetbrains-toolbox
     chromium-snapshot-bin

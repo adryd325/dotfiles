@@ -21,7 +21,7 @@
     "security.workspace.trust.enabled": false,
     "explorer.confirmDragAndDrop": false,
     "editor.renderWhitespace": "none",
-    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.colorTheme": "Monokai Pro",
     "shellcheck.customArgs": [
         "-x"
     ],
@@ -45,7 +45,8 @@
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "editor.unicodeHighlight.ambiguousCharacters": false
     // "editor.rulers": [
     //     80
     // ]

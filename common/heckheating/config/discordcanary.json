@@ -16,7 +16,6 @@
     "webpackIntercept": true,
     "inspect": true,
     "experiments": true,
-    "tardid": true,
     "preserveToken": true,
     "autoPatch": true,
     "linuxUpdater": true,
@@ -164,7 +163,8 @@
         "pinned": [
           "1015268494889197650",
           "843580440853217292",
-          "810698798652981259"
+          "810698798652981259",
+          "985696504289304596"
         ]
       },
       "enabled": true
@@ -184,7 +184,8 @@
     "spotifyControls": {
       "options": {
         "playerType": [
-          "spotify"
+          "spotify",
+          "cider"
         ]
       },
       "enabled": true
@@ -199,6 +200,25 @@
       },
       "enabled": true
     },
-    "disableVoiceAutoreconnect": true
+    "disableVoiceAutoreconnect": true,
+    "guildProfile": true,
+    "hateno": true,
+    "rpcTypeChanger": {
+      "enabled": true,
+      "options": {
+        "mappings": {
+          "886578863147192350": "2"
+        }
+      }
+    },
+    "customSwitcherSorting": {
+      "enabled": true,
+      "options": {
+        "mentions": 4,
+        "unread": 3,
+        "last_channel": 2,
+        "drafts": 1
+      }
+    }
   }
 }
