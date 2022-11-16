@@ -75,13 +75,17 @@ if ! grep "^${lockStr}" /etc/dhcpcd.cong &> /dev/null; then
     log info "Installing dhcpcd config"
     sudo tee -a /etc/dhcpcd.conf &> /dev/null << EOF
 ${lockStr}
+interface eth0
+    static ip_address=10.0.0.21/24
+    static routers=10.0.0.1
+    static domain_name_servers=10.0.0.1 8.8.8.8
+
 interface wlan1
     static ip_address=10.142.21.1/24
     nohook wpa_supplicant
 EOF
 fi
 
-lockStr="## adryd-dotfiles-lock (tetra)"
 if ! grep "^${lockStr}" /etc/dnsmasq.conf &> /dev/null; then
     log info "Installing dnsmasq config"
     sudo tee -a /etc/dnsmasq.conf &> /dev/null << EOF
@@ -112,9 +116,15 @@ wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 EOF
 
-log info "Enabling hostapd"
+log info "Configuring iftab"
+sudo tee /etc/iftab &> /dev/null << EOF
+wlan0 mac b8:27:eb:81:04:b8
+wlan1 mac 00:e0:4c:03:54:d0
+EOF
+
+log info "Enabling hostapd (reboot)"
 sudo systemctl unmask hostapd
-sudo systemctl enable hostapd --now
+sudo systemctl enable hostapd
 
 log info "Enabling routing"
 sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
