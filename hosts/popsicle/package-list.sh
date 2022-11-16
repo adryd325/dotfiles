@@ -88,7 +88,6 @@ packages=(
     "touchegg"
 
     # Uncategorized gui tools
-    "gnome-console"
     "nicotine+" # soulseek client
     "obs-studio"
     "dconf-editor"
@@ -203,7 +202,7 @@ packages=(
 
     # Games
     "steam"
-    "polymc"
+    "prismlauncher-git"
 
     # Network tools
     "inetutils" # includes drill
@@ -231,7 +230,7 @@ packages=(
     "elementary-planner"
     "libreoffice-still"
     "simple-scan"
-    "thunderbird-nightly-bin"
+    "thunderbird"
     "gnome-calendar" # useful to show tasks in the system calendar even if you dont use it itself
     "xournalpp" # pdf markup tool
 

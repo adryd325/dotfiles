@@ -30,6 +30,7 @@ export PACKAGE_LIST=(
     imhex
     jetbrains-toolbox
     chromium-snapshot-bin
+    insect
 
     binfmt-qemu-static
     qemu-user-static

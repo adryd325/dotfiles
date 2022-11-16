@@ -11,7 +11,12 @@
     "pseudoscience": true,
     "sentrynerf": true,
     "crashScreen": true,
-    "loadingScreen": true,
+    "loadingScreen": {
+      "enabled": true,
+      "options": {
+        "debug": false
+      }
+    },
     "magicrequire": true,
     "webpackIntercept": true,
     "inspect": true,
@@ -164,7 +169,8 @@
           "1015268494889197650",
           "843580440853217292",
           "810698798652981259",
-          "985696504289304596"
+          "985696504289304596",
+          "1035300821358882936"
         ]
       },
       "enabled": true
@@ -200,7 +206,6 @@
       },
       "enabled": true
     },
-    "disableVoiceAutoreconnect": true,
     "guildProfile": true,
     "hateno": true,
     "rpcTypeChanger": {
@@ -218,6 +223,30 @@
         "unread": 3,
         "last_channel": 2,
         "drafts": 1
+      }
+    },
+    "antiDelete": {
+      "enabled": true,
+      "options": {
+        "logEdits": true
+      }
+    },
+    "channelleak": true,
+    "backoffNerf": true,
+    "disableRPC": true,
+    "customsearch": {
+      "enabled": true,
+      "options": {
+        "searchName": "Test",
+        "searchURL": "https://www.adryd.com/search?q="
+      }
+    },
+    "layoutToggler": true,
+    "nameColor": {
+      "enabled": false,
+      "options": {
+        "pastelizeUncolored": false,
+        "pastelizeAll": false
       }
     }
   }

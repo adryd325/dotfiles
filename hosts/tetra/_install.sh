@@ -75,8 +75,8 @@ if ! grep "^${lockStr}" /etc/dhcpcd.cong &> /dev/null; then
     log info "Installing dhcpcd config"
     sudo tee -a /etc/dhcpcd.conf &> /dev/null << EOF
 ${lockStr}
-interface wlan0
-    static ip_address=192.168.142.1/24
+interface wlan1
+    static ip_address=10.142.21.1/24
     nohook wpa_supplicant
 EOF
 fi
@@ -86,17 +86,17 @@ if ! grep "^${lockStr}" /etc/dnsmasq.conf &> /dev/null; then
     log info "Installing dnsmasq config"
     sudo tee -a /etc/dnsmasq.conf &> /dev/null << EOF
 ${lockStr}
-dhcp-range=192.168.142.10,192.168.142.150,255.255.255.0,12h
-interface=wlan0 # Listening interface
+dhcp-range=10.142.21.10,10.142.21.50,255.255.255.0,12h
+interface=wlan1 # Listening interface
 domain=wlan
-address=/gw.wlan/192.168.4.1
+address=/gw.wlan/10.142.21.1
 EOF
 fi
 
 log info "Installing hostapd config"
 sudo tee /etc/hostapd/hostapd.conf &> /dev/null << EOF
 country_code=CA
-interface=wlan0
+interface=wlan1
 driver=nl80211
 ssid=TETRA
 channel=7
