@@ -117,7 +117,7 @@ sudo systemctl unmask hostapd
 sudo systemctl enable hostapd --now
 
 log info "Enabling routing"
-sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
 sudo netfilter-persistent save
 sudo tee /etc/sysctl.d/routed-ap.conf > /dev/null <<<  "net.ipv4.ip_forward=1"
 
