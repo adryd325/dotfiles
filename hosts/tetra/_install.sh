@@ -48,7 +48,7 @@ if ! [[ -d "${HOME}/_/telive" ]]; then
     cd "${HOME}/_/telive" || exit
     if ! [[ -e ./phys.py ]]; then
         curl https://raw.githubusercontent.com/sq5bpf/telive/master/gnuradio-companion/receiver_xmlrpc/telive_1ch_gr37_udp_xmlrpc_headless.py -o phys.py
-        sed -i "s/self.ppm_corr = ppm_corr = 56/self.ppm_corr = ppm_corr = 34/" phys.py
+        sed -i "s/self.ppm_corr = ppm_corr = 56/self.ppm_corr = ppm_corr = 0/" phys.py
         sed -i "s/self.freq = freq = 435e6/self.freq = freq = 412962500/" phys.py
     fi
     chmod +x start.sh
