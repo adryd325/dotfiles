@@ -42,7 +42,7 @@ pkgs.mkShell {
     #export TETRA_FREQLOGFILE=telive_frequency.log # default
     export TETRA_FREQUENCY_REPORT_FILE=telive_frequency_report.txt # default
     #export TETRA_RX_GAIN=30
-    export TETRA_RX_PPM=34
+    export TETRA_RX_PPM=0
     export TETRA_RX_PPM_AUTOCORRECT=1 # default
     export TETRA_RX_BASEBAND_AUTOCORRECT=1 # default
     export TETRA_RX_BASEBAND=412.9625
