@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 function stop {
     pkill -9 "${PHYS_PID}"
+    # ^^ THIS DOESNT WORK FOR SOME REASON
+    killall python2.7
+    killall telive
+
 }
 
 trap stop 1
@@ -15,4 +19,9 @@ python2.7 ./phys.py &
 PHYS_PID=$!
 lxterminal --geometry=203x60 --command='bash -c "nix-shell --command telive" ' &
 
+while lsusb | grep "0bda:2838 Realtek Semiconductor Corp. RTL2838 DVB-T" &>/dev/null; do
+    sleep 0.1;
+done
+
+stop
 wait

@@ -11,7 +11,7 @@ sudo cp -f ./bin/* /usr/local/bin
 
 sudo apt-get update
 sudo apt-get upgrade -y
-ensureInstalled git direnv rtl-sdr gr-osmosdr gqrx-sdr nodejs npm vlc dnsmasq hostapd netfilter-persistent iptables-persistent lxqt
+ensureInstalled git direnv rtl-sdr gr-osmosdr gqrx-sdr nodejs npm vlc dnsmasq hostapd netfilter-persistent iptables-persistent lxqt wireguard-tools
 
 ../../common/nix.sh --daemon
 ../../common/nixpkgs/_install.sh
@@ -80,7 +80,7 @@ interface eth0
     static routers=10.0.0.1
     static domain_name_servers=10.0.0.1 8.8.8.8
 
-interface wlan1
+interface wlan0
     static ip_address=10.142.21.1/24
     nohook wpa_supplicant
 EOF
@@ -91,7 +91,7 @@ if ! grep "^${lockStr}" /etc/dnsmasq.conf &> /dev/null; then
     sudo tee -a /etc/dnsmasq.conf &> /dev/null << EOF
 ${lockStr}
 dhcp-range=10.142.21.10,10.142.21.50,255.255.255.0,12h
-interface=wlan1 # Listening interface
+interface=wlan0 # Listening interface
 domain=wlan
 address=/gw.wlan/10.142.21.1
 EOF
@@ -100,7 +100,7 @@ fi
 log info "Installing hostapd config"
 sudo tee /etc/hostapd/hostapd.conf &> /dev/null << EOF
 country_code=CA
-interface=wlan1
+interface=wlan0
 driver=nl80211
 ssid=TETRA
 channel=7
@@ -116,13 +116,20 @@ wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 EOF
 
-log info "Configuring iftab"
-sudo tee /etc/iftab &> /dev/null << EOF
-wlan0 mac b8:27:eb:81:04:b8
-wlan1 mac 00:e0:4c:03:54:d0
-EOF
+# log info "Configuring wireguard"
+# sudo tee /etc/wireguard/wg0.conf &> /dev/null << EOF
+# [Interface]
+# PrivateKey =
+# Address = 10.0.1.21/32
+# DNS = 10.0.0.1
 
-log info "Enabling hostapd (reboot)"
+# [Peer]
+# PublicKey =
+# AllowedIPs = 0.0.0.0/0, ::/0
+# Endpoint = changeme:51820
+# EOF
+
+log info "Enabling (but not starting) hostapd"
 sudo systemctl unmask hostapd
 sudo systemctl enable hostapd
 
@@ -139,3 +146,14 @@ sudo systemctl enable --now ssh
 
 log info "Ensuring dvb_usb_rtl28xxu is disabled"
 sudo tee /etc/modprobe.d/blacklist-dvb_usb_rtl28xxu.conf > /dev/null <<< "blacklist dvb_usb_rtl28xxu"
+
+log tell "Next steps:"
+# log tell " - Setup credentials in /etc/wireguard/wg0.conf to connect to home, and enable wg-quick service"
+log tell " - Change password in /etc/hostapd/hostapd.conf"
+log tell " - nix-copy-closure from oracle-arm-toronto-1.vm.origin.adryd.com"
+log tell " - Start hostapd and see if shit catches fire"
+log tell "Using:"
+log tell " - Enable VNC for connectivity on a cell phone"
+log tell " - Use SSH with X forwarding when connecting from Linux"
+log tell " - cd into ~/_/telive or ~/_/tetra-kit and run start.sh"
+log tell " - start httpstream by running streamoutput and connecting to http://<ip>:8080/pc.mp3"
