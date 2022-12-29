@@ -31,9 +31,10 @@ export PACKAGE_LIST=(
     jetbrains-toolbox
     chromium-snapshot-bin
     insect
-
-    binfmt-qemu-static
-    qemu-user-static
+    qflipper-git
+    spi-ch341-usb-dkms
+    chirp-daily
+    rpi-imager
 
     # fonts
     ttf-ipa-mona
@@ -45,6 +46,8 @@ export PACKAGE_LIST=(
 
     # sdr
     kalibrate-rtl-git
+    sdrpp-git
+    sdrpp-tetra-demodulator-git
 
     # nfc
     libfreefare-git
