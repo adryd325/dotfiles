@@ -109,7 +109,7 @@ wme_enabled=1
 macaddr_acl=0
 auth_algs=1
 ignore_broadcast_ssid=0
-wpa=3
+wpa=2
 wpa_passphrase=YesIKnowThisPasswordIsPublic
 wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
@@ -156,4 +156,4 @@ log tell "Using:"
 log tell " - Enable VNC for connectivity on a cell phone"
 log tell " - Use SSH with X forwarding when connecting from Linux"
 log tell " - cd into ~/_/telive or ~/_/tetra-kit and run start.sh"
-log tell " - start httpstream by running streamoutput and connecting to http://<ip>:8080/pc.mp3"
+log tell " - start httpstream by running streamoutput and connecting to http://<ip>:8888/pc.mp3"

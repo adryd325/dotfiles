@@ -24,6 +24,7 @@ packages=(
     "chrome-gnome-shell"
     "gdm-prime"
     "gnome-backgrounds"
+    "gnome-browser-connector"
     "gnome-color-manager"
     "gnome-control-center"
     "gnome-keyring"
@@ -36,8 +37,6 @@ packages=(
     "mutter"
     "plymouth"
     "sushi"
-    "tracker"
-    "tracker-miners"
     "tracker3"
     "tracker3-miners"
     "xdg-desktop-portal-gnome"
@@ -74,6 +73,7 @@ packages=(
     "htop"
     "jq"
     "mangohud"
+    "gamemode"
     "mesa-utils"
     "mesa-demos"
     "acpi_call-dkms"
@@ -86,6 +86,9 @@ packages=(
     "perl-authen-sasl" # git-send-email
     "perl-io-socket-ssl" # git-send-email
     "touchegg"
+    "insect"
+    "intel-gpu-tools"
+    "screen"
 
     # Uncategorized gui tools
     "nicotine+" # soulseek client
@@ -108,6 +111,9 @@ packages=(
     "baobab" # Disk usage analyzer
     "eog" # Image viewer
     "file-roller"
+    "jetbrains-toolbox"
+    "cider"
+    "android-tools"
 
     "xclip"
     "xorg-xkill"
@@ -124,7 +130,7 @@ packages=(
 
     # Text editors
     "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
-    "intellij-idea-community-edition"
+    #"intellij-idea-community-edition"
     "imhex"
     "gnome-text-editor"
 
@@ -145,7 +151,7 @@ packages=(
     "ffmpeg"
     "yt-dlp"
     "imagemagick"
-    # "gifski"
+    "gifski"
 
     # Audio
     "wireplumber"
@@ -176,7 +182,6 @@ packages=(
     "ttf-unifont" # Unifont
     "ttf-ipa-mona"
     "ttf-ms-fonts"
-    "ttf-windows"
     "ttf-ibm-plex"
     "otf-san-francisco-mono"
     "ocr-fonts"
@@ -199,6 +204,7 @@ packages=(
     "switcheroo-control"
     "cuda"
     "fprintd"
+    "rtl8812au-dkms-git" # USB wifi dongle for hotspot
 
     # Games
     "steam"
@@ -227,7 +233,6 @@ packages=(
     "yaru-sound-theme"
 
     # Productivity
-    "elementary-planner"
     "libreoffice-still"
     "simple-scan"
     "thunderbird"
@@ -244,13 +249,13 @@ packages=(
     # VM stuff
     "virt-viewer"
     "virt-manager"
-    "binfmt-qemu-static"
     "qemu-desktop"
     "qemu-emulators-full"
     "qemu-user-static"
+    "qemu-user-static-binfmt"
     "dnsmasq" # dns server, needed for vm stuff so in this category
     "edk2-ovmf"
-    "edk2-armvirt"
+    "edk2-aarch64"
     "swtpm" # virtual TPM
 
     # Wine
@@ -266,7 +271,7 @@ packages=(
     "libfreefare-git"
     "cardpeek" # read contents of many smartcards
     "mrtdreader" # read contents of passports
-    "globalplatformpro" # javacard toolkit
+    # "globalplatformpro" # javacard toolkit
     # proxmark3 deps
     ccache git readline bzip2 arm-none-eabi-gcc arm-none-eabi-newlib qt5-base bluez python
 
@@ -274,6 +279,8 @@ packages=(
     "rtl-sdr"
     "gqrx"
     "kalibrate-rtl-git"
+    "x11vnc" # For controlling laptop from phone
+    "vlc" # provides an easy way of broadcasting audio via http
 
     # Social networking kinda
     "mumble"
@@ -283,6 +290,9 @@ packages=(
     # Disassembling java stuff
     "jadx" # convert the weird apk java thing to something human readable
     # "recaf" # java bytecode editor
+
+    # Watch stuff
+    "itd-bin"
 )
 
 flatpaks=(

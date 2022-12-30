@@ -46,7 +46,7 @@ sudo systemctl enable gdm > /dev/null
 sudo systemctl enable cups > /dev/null
 sudo systemctl enable touchegg > /dev/null
 sudo systemctl enable thermald > /dev/null
-sudo systemctl enable auto-cpufreq > /dev/null
+sudo systemctl enable power-profiles-daemon > /dev/null
 sudo systemctl enable libvirtd > /dev/null
 sudo systemctl enable systemd-resolved > /dev/null
 systemctl --user enable pipewire > /dev/null

@@ -13,7 +13,7 @@ user_pref("extensions.activeThemeID", "default-theme@mozilla.org");
 user_pref("browser.devedition.theme.showCustomizeButton", true);
 user_pref("browser.tabs.drawInTitlebar", true);
 user_pref("browser.uidensity", 0);
-//user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+// user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("gnomeTheme.systemIcons", false);
 user_pref("gnomeTheme.hideSingleTab", true);
 

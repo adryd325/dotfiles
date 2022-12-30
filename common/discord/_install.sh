@@ -55,7 +55,7 @@ function installBranch {
     cp -f "${installationDir}/discord.png" "${HOME}/.local/share/icons/hicolor/256x256/${pkgName}.png" &> /dev/null
 
     log verb "Patching .desktop file"
-    sed -i "s:Exec=/usr/share/${pkgName}/${name}:Exec=/usr/bin/env ELECTRON_ENABLE_STACK_DUMPING=true \"${installationDir}/${name}\" --ignore-gpu-blocklist --ignore-gpu-blacklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy --enable-accelerated-mjpeg-decode --enable-accelerated-video --disable-gpu-driver-bug-workarounds --enable-native-gpu-memory-buffer --no-sandboxs:" \
+    sed -i "s:Exec=/usr/share/${pkgName}/${name}:Exec=/usr/bin/env ELECTRON_ENABLE_STACK_DUMPING=true \"${installationDir}/${name}\":" \
         "${desktopFile}"
     sed -i "s/StartupWMClass=discord/StartupWMClass=${name}/" \
         "${desktopFile}"

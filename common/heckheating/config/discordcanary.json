@@ -125,6 +125,9 @@
           },
           "132297363233570816": {
             "flags": 1
+          },
+          "150745989836308480": {
+            "flags": 1
           }
         }
       }
@@ -170,7 +173,8 @@
           "843580440853217292",
           "810698798652981259",
           "985696504289304596",
-          "1035300821358882936"
+          "1035300821358882936",
+          "1053185397892591626"
         ]
       },
       "enabled": true
@@ -197,8 +201,6 @@
       "enabled": true
     },
     "premiumVideo": true,
-    "linuxMouseButtonFix": true,
-    "reactDevelopment": true,
     "unindent": true,
     "customIdleTimeout": {
       "options": {
@@ -217,7 +219,7 @@
       }
     },
     "customSwitcherSorting": {
-      "enabled": true,
+      "enabled": false,
       "options": {
         "mentions": 4,
         "unread": 3,
@@ -248,6 +250,9 @@
         "pastelizeUncolored": false,
         "pastelizeAll": false
       }
-    }
+    },
+    "spotifyspoof": true,
+    "reactDevelopment": true,
+    "callIdling": true
   }
 }

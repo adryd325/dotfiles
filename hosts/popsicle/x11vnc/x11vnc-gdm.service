@@ -1,0 +1,12 @@
+[Unit]
+Description=x11vnc server for GDM
+After=display-manager.service
+
+[Service]
+ExecStart=
+ExecStart=/usr/bin/x11vnc -many -shared -display :0 -auth /run/user/120/gdm/Xauthority -noxdamage -rfbauth user_home/.vnc/passwd
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target

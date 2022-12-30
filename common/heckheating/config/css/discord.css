@@ -1,29 +1,39 @@
 html {
-  --font-primary: "", Whitney, "Helvetica Neue", Helvetica, Arial,
-    sans-serif !important;
-  --font-display: "", "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial,
-    sans-serif !important;
-  --font-headline: "", "ABC Ginto Nord", "Helvetica Neue", Helvetica, Arial,
-    sans-serif !important;
+  --font-primary: "gg sans", "Noto Sans", sans-serif !important;
+  --font-display: "gg sans", "Noto Sans", sans-serif !important;
+  --font-headline: "gg sans", "Noto Sans", sans-serif !important;
   /* Discord is silly and doesn't actually use the --font-code variable... FUN!
    * they should really ship their own monospace font */
-  --font-code: "Comic Code", "Rec Mono Linear", 'Cascadia Code', 'IBM Plex Mono', monospace,
-    Consolas, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Monaco, Courier New, Courier,
-    monospace !important;
+  --font-code: "Comic Code", "Rec Mono Linear", 'Cascadia Code', 'IBM Plex Mono', monospace !important;
 }
 
 /* Fix fonts where they should use --font-code */
+
+[class^="markdown-"] [class^="codeInline-"],
+[class^="codeLine-"],
+[class^="codeBlockText-"],
+[class^="durationTimeDisplay-"],
+[class^="durationTimeSeparator-"],
+[class*="after_inlineCode-"],
+[class*="before_inlineCode-"],
+[class^="inlineCode-"],
+code.inline,
 code,
-[class*="markup-"] pre,
-[class*="markup-"] code,
-[class*="markup-"] code.inline,
-[class*="slateTextArea"] [class*="inlineCode"],
-[class*="slateTextArea"] [class*="codeBlockSyntax"],
-[class*="slateTextArea"] [class*="codeBlockText"],
-[class*="slateTextArea"] [class*="codeLine"] {
-  font-family: var(--font-code);
-  font-variant: none;
+.hljs {
+  font-family: var(--font-code) !important;
+}
+
+.hljs,
+code.inline,
+[class^="markdown-"] code,
+[class^="markdown-"] [class^="codeInline-"],
+[class^="codeBlockText-"],
+[class^="codeLine-"],
+[class*="after_inlineCode-"],
+[class*="before_inlineCode-"],
+[class^="inlineCode-"],
+.hljs-ansi-control-sequence {
+  font-size: 12px !important;
 }
 
 /* Role color adjustmets for visibility
@@ -42,25 +52,6 @@ code,
 
 [class*="desaturateUserColors-"] {
   filter: saturate(var(--saturation)) contrast(var(--contrast)) brightness(var(--brightness)) !important;
-}
-
-/* Make the new profile popout less horrible */
-[class*="overlayBackground-"] {
-  border-radius: 0px 0px 4px 4px !important;
-  margin: 26px 0 0 !important;
-}
-
-[class*="userPopoutInner-"] > [class*="avatarWrapper-"] {
-  left: 12px;
-}
-
-[class*="userPopoutInnerWithoutTheme-"] > [class*="overlayBackground-"] {
-  margin: 14px 0 0 !important;
-  background-color: inherit !important;
-}
-
-[class*="profileBadges-"] {
-  background-color: inherit !important;
 }
 
 /* More "cozy" spotify controls */

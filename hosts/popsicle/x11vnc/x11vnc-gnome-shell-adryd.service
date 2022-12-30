@@ -1,0 +1,13 @@
+[Unit]
+Description=x11vnc server for Gnome shell session of adryd
+
+[Service]
+User=adryd
+Type=simple
+ExecStartPre=/bin/sh -c "ln -sf \\\\\"\\\\$(dirname \\\\$(xauth info | awk '/Authority file/{print $3}'))\\\\\" ~/.Xauthority; while ! pgrep -U adryd Xorg; do sleep 2; done"
+ExecStart=/bin/sh -c 'sudo systemctl stop x11vnc-gdm.service && /usr/bin/x11vnc -many -shared -display :1 -auth /home/adryd/.Xauthority -rfbauth /home/adryd/.vnc/passwd'
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target
