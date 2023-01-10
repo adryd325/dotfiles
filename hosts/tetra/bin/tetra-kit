@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd ./_/tetra-kit || exit 1
-./_/tetra-kit/start.sh
+cd ~/_/tetra-kit || exit 1
+~/_/tetra-kit/start.sh
