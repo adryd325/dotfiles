@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 cd ~/_/telive || exit 1
+if ! lsusb | grep "0bda:2838 Realtek Semiconductor Corp. RTL2838 DVB-T"; then
+    exit 1
+fi
 direnv exec ~/_/telive 'bash -c "while true; do ~/_/telive/start.sh; done"'

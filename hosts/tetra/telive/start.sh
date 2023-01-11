@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit $?
+
+if ! lsusb | grep "0bda:2838 Realtek Semiconductor Corp. RTL2838 DVB-T"; then
+    exit 1
+fi
+
 STOPPED=0
 function stop {
-    killall python2.7 -s 9 2> /dev/null
-    killall telive 2> /dev/null
+    killall python2.7 -s 9 2>/dev/null
+    killall telive 2>/dev/null
     STOPPED=1
 }
 
