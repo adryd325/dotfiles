@@ -1,0 +1,3 @@
+[Desktop Entry]
+Name=Terminal
+Exec=lxterminal --command 'bash /home/adryd/.adryd/hosts/tetra/bin/autostart'

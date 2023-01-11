@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+cd ~/_/telive || exit 1
+direnv exec ~/_/telive 'bash -c "while true; do ~/_/telive/start.sh; done"'

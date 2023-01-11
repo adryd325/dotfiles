@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+nohup lxterminal --command='htop' > /dev/null
+nohup lxterminal --command='bash /home/adryd/.adryd/hosts/tetra/bin/stream' > /dev/null
+
+#!/usr/bin/env bash
+echo 18 > /sys/class/gpio/export
+
+echo 17 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio17/direction
+echo 1 > /sys/class/gpio/gpio17/value
+
+if [[ "$(cat /sys/class/gpio/gpio18/value)" = "1" ]]; then
+    nohup lxterminal --command='bash /home/adryd/.adryd/hosts/tetra/bin/telive-loop' > /dev/null
+fi

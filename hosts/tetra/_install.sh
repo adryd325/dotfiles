@@ -7,11 +7,9 @@ source ../../lib/os.sh
 ../../common/bash/_install.sh
 ../../common/bash/_install.sh globalInstall
 
-sudo cp -f ./bin/* /usr/local/bin
-
 sudo apt-get update
 sudo apt-get upgrade -y
-ensureInstalled git direnv rtl-sdr gr-osmosdr gqrx-sdr nodejs npm vlc dnsmasq hostapd netfilter-persistent iptables-persistent lxqt wireguard-tools
+ensureInstalled git direnv rtl-sdr gr-osmosdr gqrx-sdr nodejs npm vlc dnsmasq hostapd netfilter-persistent iptables-persistent zip unzip
 
 ../../common/nix.sh --daemon
 ../../common/nixpkgs/_install.sh
@@ -53,8 +51,38 @@ if ! [[ -d "${HOME}/_/telive" ]]; then
     fi
     chmod +x start.sh
     cat > .envrc <<< "use nix"
-    mkdir "in"
-    mkdir "out"
+    )
+fi
+
+# sdr-trunk workspace
+if ! [[ -d "${HOME}/_/sdr-trunk" ]]; then
+    log info "Installing sdr-trunk"
+    mkdir "${HOME}/_/sdr-trunk"
+    (
+    cd "${HOME}/_/sdr-trunk" || exit
+    # Latest release at time of writing
+    curl https://github.com/DSheirer/sdrtrunk/releases/download/v0.5.0/sdr-trunk-linux-aarch64-v0.5.0.zip -Lo sdrtrunk.zip
+    unzip sdrtrunk.zip
+    mv -f sdr-trunk-linux-aarch64-v0.5.0/* .
+    rm -r sdr-trunk-linux-aarch64-v0.5.0 sdrtrunk.zip
+    )
+fi
+
+
+# pm3 build
+if ! [[ -d "${HOME}/_/proxmark3" ]]; then
+    log info "Installing proxmark3"
+    sudo apt-get install --no-install-recommends git ca-certificates build-essential pkg-config libreadline-dev gcc-arm-none-eabi libnewlib-dev qtbase5-dev libbz2-dev libbluetooth-dev libpython3-dev libssl-dev
+    mkdir "${HOME}/_/proxmark3"
+    (
+    cd "${HOME}/_/proxmark3" || exit
+    git clone https://github.com/RfidResearchGroup/proxmark3 .
+    # Sync version between popsicle and tetra
+    git checkout 73a80fb07db22f3cba56f8e3ef7c205f1a378441
+    sed -i "s/PLATFORM=PM3RDV4/PLATFORM=PM3GENERIC/" Makefile.platform
+    make accessrights
+    make clean && make -j
+    sudo make install
     )
 fi
 
@@ -110,24 +138,12 @@ macaddr_acl=0
 auth_algs=1
 ignore_broadcast_ssid=0
 wpa=2
-wpa_passphrase=YesIKnowThisPasswordIsPublic
+wpa_passphrase=412962500
 wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 EOF
-
-# log info "Configuring wireguard"
-# sudo tee /etc/wireguard/wg0.conf &> /dev/null << EOF
-# [Interface]
-# PrivateKey =
-# Address = 10.0.1.21/32
-# DNS = 10.0.0.1
-
-# [Peer]
-# PublicKey =
-# AllowedIPs = 0.0.0.0/0, ::/0
-# Endpoint = changeme:51820
-# EOF
+# Yes the password is public, if you somehow happen to run into me in public you deserve to get to listen to the audio stream...
 
 log info "Enabling (but not starting) hostapd"
 sudo systemctl unmask hostapd
@@ -136,7 +152,7 @@ sudo systemctl enable hostapd
 log info "Enabling routing"
 sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
 sudo netfilter-persistent save
-sudo tee /etc/sysctl.d/routed-ap.conf > /dev/null <<<  "net.ipv4.ip_forward=1"
+sudo tee /etc/sysctl.d/routed-ap.conf > /dev/null <<< "net.ipv4.ip_forward=1"
 
 log info "Enabling VNC server"
 sudo systemctl enable --now vncserver-x11-serviced
@@ -147,13 +163,13 @@ sudo systemctl enable --now ssh
 log info "Ensuring dvb_usb_rtl28xxu is disabled"
 sudo tee /etc/modprobe.d/blacklist-dvb_usb_rtl28xxu.conf > /dev/null <<< "blacklist dvb_usb_rtl28xxu"
 
+log info "Installing tetra-autostart script"
+sudo cp -f ./tetra-autostart.desktop /etc/xdg-autostart/tetra-autostart.desktop
+
 log tell "Next steps:"
-# log tell " - Setup credentials in /etc/wireguard/wg0.conf to connect to home, and enable wg-quick service"
-log tell " - Change password in /etc/hostapd/hostapd.conf"
 log tell " - nix-copy-closure from oracle-arm-toronto-1.vm.origin.adryd.com"
-log tell " - Start hostapd and see if shit catches fire"
+log tell " - Start hostapd"
 log tell "Using:"
 log tell " - Enable VNC for connectivity on a cell phone"
 log tell " - Use SSH with X forwarding when connecting from Linux"
-log tell " - cd into ~/_/telive or ~/_/tetra-kit and run start.sh"
-log tell " - start httpstream by running streamoutput and connecting to http://<ip>:8888/pc.mp3"
+log tell " - Run telive or sdrtrunk from a terminal to get started"

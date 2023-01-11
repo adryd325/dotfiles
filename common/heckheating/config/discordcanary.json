@@ -172,8 +172,6 @@
           "1015268494889197650",
           "843580440853217292",
           "810698798652981259",
-          "985696504289304596",
-          "1035300821358882936",
           "1053185397892591626"
         ]
       },
@@ -253,6 +251,8 @@
     },
     "spotifyspoof": true,
     "reactDevelopment": true,
-    "callIdling": true
+    "callIdling": true,
+    "alwaysShowUserLimit": true,
+    "colorConsistency": true
   }
 }
