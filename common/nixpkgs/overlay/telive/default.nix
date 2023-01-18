@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   pname = "telive";
-  version = "44304af1d516275690b41a77031e961412ece95e";
+  version = "04aae1219abdbeb689536ddd293f18562c6e1709";
 
   src = fetchFromGitHub {
-    owner = "sq5bpf";
+    owner = "adryd325";
     repo = "telive";
     rev = version;
-    sha256 = "sha256-9X6dZFS9QMVr0t0PVjgCTwuxe1KvwsK3LyLC5oLWT8I=";
+    sha256 = "sha256-ErNqxKxL/4caCHPO1o3eaUMbk9tbnJcrE40EBqwil3g=";
   };
 
   nativeBuildInputs = [
