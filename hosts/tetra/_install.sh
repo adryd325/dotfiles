@@ -49,6 +49,9 @@ if ! [[ -d "${HOME}/_/telive" ]]; then
         sed -i "s/self.ppm_corr = ppm_corr = 56/self.ppm_corr = ppm_corr = 0/" phys.py
         sed -i "s/self.freq = freq = 435e6/self.freq = freq = 412962500/" phys.py
     fi
+    if ! [[ -e ./tetra.xml ]]; then
+        curl https://raw.githubusercontent.com/adryd325/telive/master/tetra.xml -o tetra.xml
+    fi
     chmod +x start.sh
     cat > .envrc <<< "use nix"
     )
@@ -72,7 +75,7 @@ fi
 # pm3 build
 if ! [[ -d "${HOME}/_/proxmark3" ]]; then
     log info "Installing proxmark3"
-    sudo apt-get install --no-install-recommends git ca-certificates build-essential pkg-config libreadline-dev gcc-arm-none-eabi libnewlib-dev qtbase5-dev libbz2-dev libbluetooth-dev libpython3-dev libssl-dev
+    ensureInstalled git ca-certificates build-essential pkg-config libreadline-dev gcc-arm-none-eabi libnewlib-dev qtbase5-dev libbz2-dev libbluetooth-dev libpython3-dev libssl-dev
     mkdir "${HOME}/_/proxmark3"
     (
     cd "${HOME}/_/proxmark3" || exit
@@ -164,7 +167,7 @@ log info "Ensuring dvb_usb_rtl28xxu is disabled"
 sudo tee /etc/modprobe.d/blacklist-dvb_usb_rtl28xxu.conf > /dev/null <<< "blacklist dvb_usb_rtl28xxu"
 
 log info "Installing tetra-autostart script"
-sudo cp -f ./tetra-autostart.desktop /etc/xdg-autostart/tetra-autostart.desktop
+sudo cp -f ./tetra-autostart.desktop /etc/xdg/autostart/tetra-autostart.desktop
 
 log tell "Next steps:"
 log tell " - nix-copy-closure from oracle-arm-toronto-1.vm.origin.adryd.com"
@@ -173,3 +176,8 @@ log tell "Using:"
 log tell " - Enable VNC for connectivity on a cell phone"
 log tell " - Use SSH with X forwarding when connecting from Linux"
 log tell " - Run telive or sdrtrunk from a terminal to get started"
+
+
+## TODO
+## connman unblock after apt update
+## use vncauth instead of whatever realvnc uses
