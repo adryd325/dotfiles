@@ -44,11 +44,6 @@ if ! [[ -d "${HOME}/_/telive" ]]; then
     cp -r ./telive "${HOME}/_/telive"
     (
     cd "${HOME}/_/telive" || exit
-    if ! [[ -e ./phys.py ]]; then
-        curl https://raw.githubusercontent.com/sq5bpf/telive/master/gnuradio-companion/receiver_xmlrpc/telive_1ch_gr37_udp_xmlrpc_headless.py -o phys.py
-        sed -i "s/self.ppm_corr = ppm_corr = 56/self.ppm_corr = ppm_corr = 0/" phys.py
-        sed -i "s/self.freq = freq = 435e6/self.freq = freq = 412962500/" phys.py
-    fi
     if ! [[ -e ./tetra.xml ]]; then
         curl https://raw.githubusercontent.com/adryd325/telive/master/tetra.xml -o tetra.xml
     fi
@@ -102,7 +97,7 @@ EOF
 fi
 
 lockStr="## adryd-dotfiles-lock (tetra)"
-if ! grep "^${lockStr}" /etc/dhcpcd.cong &> /dev/null; then
+if ! grep "^${lockStr}" /etc/dhcpcd.conf &> /dev/null; then
     log info "Installing dhcpcd config"
     sudo tee -a /etc/dhcpcd.conf &> /dev/null << EOF
 ${lockStr}
