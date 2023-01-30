@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 [[ -x $(command -v xdg-open) ]] && alias open="xdg-open"
 [[ -x $(command -v yt-dlp) ]] && alias youtube-dl='yt-dlp'
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -v'
 alias ll='ls --color=auto -alF'
 alias la='ls --color=auto -A'
 alias l='ls --color=auto -CF'

@@ -48,7 +48,6 @@ packages=(
     "jdk8-openjdk"
     "nodejs"
     "npm"
-    "nvm"
     "pnpm"
     "python"
     "python-pip"
@@ -89,9 +88,10 @@ packages=(
     "insect"
     "intel-gpu-tools"
     "screen"
+    "power-profiles-daemon"
+
 
     # Uncategorized gui tools
-    "nicotine+" # soulseek client
     "obs-studio"
     "dconf-editor"
     "easyeffects"
@@ -103,7 +103,6 @@ packages=(
     "gnome-font-viewer"
     "gnome-shell-extensions"
     "gnome-software"
-    "gnome-system-monitor"
     "gnome-tweaks"
     "gnome-weather"
     "totem" # Video player
@@ -112,8 +111,9 @@ packages=(
     "eog" # Image viewer
     "file-roller"
     "jetbrains-toolbox"
-    "cider"
-    "android-tools"
+    "obsidian"
+    "rpi-imager-bin"
+    "cheese"
 
     "xclip"
     "xorg-xkill"
@@ -122,16 +122,11 @@ packages=(
     "reflector"
 
     # coreutils clones
-    "fd" # find clone
     "the_silver_searcher" # command: ag. used to find text contents of files with minimal syntax
-    "sd" # sed clone
-    "ripgrep"
     "bat" # cat clone
 
     # Text editors
     "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
-    #"intellij-idea-community-edition"
-    "imhex"
     "gnome-text-editor"
 
     # Archival tools and filesystems
@@ -220,20 +215,15 @@ packages=(
 
     # Network uhh
     "piavpn-bin"
-    "networkmanager-openvpn"
     "nm-connection-editor"
     "wireguard-tools"
     "systemd-resolvconf"
 
     # Theming
     "adw-gtk3-git" # Make all gtk3 apps look like libadwaita
-    "breeze-icons"
-    "breeze"
     "qt5ct" # Make QT apps not look awful
-    "yaru-sound-theme"
 
     # Productivity
-    "libreoffice-still"
     "simple-scan"
     "thunderbird"
     "gnome-calendar" # useful to show tasks in the system calendar even if you dont use it itself
@@ -241,8 +231,8 @@ packages=(
 
     # Creating things
     "aseprite" # pixel art editor
-    "blender"
-    kicad{,-library{,-3d}} # PCB design
+    #"blender"
+    #kicad{,-library{,-3d}} # PCB design
     "gimp"
     "inkscape"
 
@@ -267,42 +257,47 @@ packages=(
     "remmina"
 
     # Smartcard stuff
-    "libnfc"
-    "libfreefare-git"
-    "cardpeek" # read contents of many smartcards
-    "mrtdreader" # read contents of passports
+    #"libnfc"
+    #"libfreefare-git"
+    #"cardpeek" # read contents of many smartcards
+    #"mrtdreader" # read contents of passports
     # "globalplatformpro" # javacard toolkit
     # proxmark3 deps
     ccache git readline bzip2 arm-none-eabi-gcc arm-none-eabi-newlib qt5-base bluez python
 
     # SDR stuff
     "rtl-sdr"
+    #"gqrx"
+    #"kalibrate-rtl-git"
+    #"x11vnc" # For controlling laptop from phone
+    #"vlc" # provides an easy way of broadcasting audio via http
     "gqrx"
-    "kalibrate-rtl-git"
-    "x11vnc" # For controlling laptop from phone
-    "vlc" # provides an easy way of broadcasting audio via http
+
+    # Radio stuff
+    "qdmr"
+    "spi-ch341-usb-dkms"
+    "chirp-hg"
 
     # Social networking kinda
-    "mumble"
+    #"mumble"
     "signal-desktop"
     "telegram-desktop"
 
     # Disassembling java stuff
-    "jadx" # convert the weird apk java thing to something human readable
-    # "recaf" # java bytecode editor
+    #"jadx" # convert the weird apk java thing to something human readable
+    #"recaf" # java bytecode editor
 
     # Watch stuff
     "itd-bin"
 )
 
 flatpaks=(
-    "net.blockbench.Blockbench"
+    #"net.blockbench.Blockbench"
     "com.github.tchx84.Flatseal"
-    "de.haekerfelix.Fragments"
     "re.sonny.Junction"
     "com.belmoussaoui.Obfuscate"
-    "com.parsecgaming.parsec"
-    "uk.co.powdertoy.tpt"
+    #"com.parsecgaming.parsec"
+    #"uk.co.powdertoy.tpt"
     "org.gnome.SoundRecorder"
 )
 

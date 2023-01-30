@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 ##################################################
-# Gnuradio Python Flow Graph
+# GNU Radio Python Flow Graph
 # Title: SQ5BPF Tetra live receiver 1ch UDP HEADLESS for slow CPU
 # Author: Jacek Lipkowski SQ5BPF
-# Generated: Sun Jun 12 23:20:13 2016
+# GNU Radio version: 3.7.14.0
 ##################################################
 
 from gnuradio import analog
@@ -17,6 +18,8 @@ from optparse import OptionParser
 import SimpleXMLRPCServer
 import osmosdr
 import threading
+import time
+
 
 class top_block(gr.top_block):
 
@@ -36,30 +39,32 @@ class top_block(gr.top_block):
         self.telive_receiver_channels = telive_receiver_channels = 1
         self.sdr_ifgain = sdr_ifgain = 20
         self.sdr_gain = sdr_gain = 38
-        self.ppm_corr = ppm_corr = 56
+        self.ppm_corr = ppm_corr = 0
         self.out_sample_rate = out_sample_rate = 36000
         self.options_low_pass = options_low_pass = 12500
         self.if_samp_rate = if_samp_rate = samp_rate/first_decim
-        self.freq = freq = 435e6
+        self.freq = freq = 412e6
         self.first_port = first_port = 42000
 
         ##################################################
         # Blocks
         ##################################################
-        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(("0.0.0.0", first_port), allow_none=True)
+        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('0.0.0.0', first_port), allow_none=True)
         self.xmlrpc_server_0.register_instance(self)
-        threading.Thread(target=self.xmlrpc_server_0.serve_forever).start()
-        self.osmosdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + "rtl=0,buflen=4096" )
+        self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
+        self.xmlrpc_server_0_thread.daemon = True
+        self.xmlrpc_server_0_thread.start()
+        self.osmosdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + 'rtl=0,buflen=4096' )
         self.osmosdr_source_0.set_sample_rate(samp_rate)
         self.osmosdr_source_0.set_center_freq(freq, 0)
         self.osmosdr_source_0.set_freq_corr(ppm_corr, 0)
         self.osmosdr_source_0.set_dc_offset_mode(0, 0)
         self.osmosdr_source_0.set_iq_balance_mode(0, 0)
-        self.osmosdr_source_0.set_gain_mode(False, 0)
+        self.osmosdr_source_0.set_gain_mode(True, 0)
         self.osmosdr_source_0.set_gain(sdr_gain, 0)
         self.osmosdr_source_0.set_if_gain(sdr_ifgain, 0)
         self.osmosdr_source_0.set_bb_gain(20, 0)
-        self.osmosdr_source_0.set_antenna("", 0)
+        self.osmosdr_source_0.set_antenna('', 0)
         self.osmosdr_source_0.set_bandwidth(0, 0)
 
         self.freq_xlating_fir_filter_xxx_0 = filter.freq_xlating_fir_filter_ccc(first_decim, (firdes.low_pass(1, samp_rate, options_low_pass, options_low_pass*0.2)), xlate_offset1+xlate_offset_fine1, samp_rate)
@@ -68,15 +73,15 @@ class top_block(gr.top_block):
         self.analog_agc3_xx_0 = analog.agc3_cc(1e-3, 1e-4, 1.0, 1.0, 1)
         self.analog_agc3_xx_0.set_max_gain(65536)
 
+
+
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.osmosdr_source_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))
-        self.connect((self.fractional_resampler_xx_0, 0), (self.blocks_udp_sink_0, 0))
         self.connect((self.analog_agc3_xx_0, 0), (self.fractional_resampler_xx_0, 0))
+        self.connect((self.fractional_resampler_xx_0, 0), (self.blocks_udp_sink_0, 0))
         self.connect((self.freq_xlating_fir_filter_xxx_0, 0), (self.analog_agc3_xx_0, 0))
-
-
+        self.connect((self.osmosdr_source_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -84,8 +89,8 @@ class top_block(gr.top_block):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.set_if_samp_rate(self.samp_rate/self.first_decim)
-        self.freq_xlating_fir_filter_xxx_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
         self.osmosdr_source_0.set_sample_rate(self.samp_rate)
+        self.freq_xlating_fir_filter_xxx_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
 
     def get_first_decim(self):
         return self.first_decim
@@ -187,9 +192,13 @@ class top_block(gr.top_block):
     def set_first_port(self, first_port):
         self.first_port = first_port
 
-if __name__ == '__main__':
-    parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
-    (options, args) = parser.parse_args()
-    tb = top_block()
+
+def main(top_block_cls=top_block, options=None):
+
+    tb = top_block_cls()
     tb.start()
     tb.wait()
+
+
+if __name__ == '__main__':
+    main()

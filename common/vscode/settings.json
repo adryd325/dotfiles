@@ -21,7 +21,7 @@
     "security.workspace.trust.enabled": false,
     "explorer.confirmDragAndDrop": false,
     "editor.renderWhitespace": "none",
-    "workbench.colorTheme": "Monokai Pro",
+    "workbench.colorTheme": "GitHub Dark",
     "shellcheck.customArgs": [
         "-x"
     ],
@@ -50,7 +50,10 @@
     "hexeditor.columnWidth": 8,
     "hexeditor.showDecodedText": true,
     "hexeditor.defaultEndianness": "little",
-    "hexeditor.inspectorType": "aside"
+    "hexeditor.inspectorType": "aside",
+    "cSpell.enabledLanguageIds": [
+        "html"
+    ]
     // "editor.rulers": [
     //     80
     // ]

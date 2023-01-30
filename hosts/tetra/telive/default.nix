@@ -19,6 +19,7 @@ pkgs.mkShell {
     libosmocore-sq5bpf
     osmo-tetra-sq5bpf
     telive
+    lxterminal
     (gnuradio3_7.override {
       extraPackages = with gnuradio3_7Packages; [
         osmosdr

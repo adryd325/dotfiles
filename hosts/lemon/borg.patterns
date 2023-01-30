@@ -1,8 +1,7 @@
 R /etc/pve
 R /local-zfs/data
-R /local-zfs/subvol-100-disk-0/etc/nginx
+R /local-zfs/subvol-100-disk-0/etc/caddy
 R /local-zfs/subvol-100-disk-1
-R /local-zfs/subvol-100-disk-2
 R /local-zfs/subvol-101-disk-0/etc/nixos
 R /local-zfs/subvol-111-disk-0/opt
 R /local-zfs/subvol-112-disk-0/opt

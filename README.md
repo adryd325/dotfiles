@@ -2,7 +2,7 @@
 █ .adryd (adryd-dotfiles)
 █ version 6
 
-$ bash -c "`curl -sL adryd.co/install.sh`"
+$ bash -c "`curl -s adryd.co/install.sh`"
 $ bash -c "`wget -Qo- adryd.co/install.sh`"
 
 <b>DISCLAIMER</b>: These scripts are mostly public for teaching purposes, for

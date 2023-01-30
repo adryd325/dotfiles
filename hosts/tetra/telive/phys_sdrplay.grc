@@ -1,0 +1,364 @@
+options:
+  parameters:
+    author: Jacek Lipkowski SQ5BPF, Ariana "adryd"
+    catch_exceptions: 'True'
+    category: Custom
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: no_gui
+    hier_block_src_path: '.:'
+    id: top_block
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: run
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: SDRPLAY RSP1A Receiver Headless
+    window_size: 2048, 2048
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [10, 10]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: first_decim
+  id: variable
+  parameters:
+    comment: ''
+    value: '32'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [560, 16.0]
+    rotation: 0
+    state: enabled
+- name: first_port
+  id: variable
+  parameters:
+    comment: ''
+    value: '42000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [784, 16.0]
+    rotation: 0
+    state: enabled
+- name: freq
+  id: variable
+  parameters:
+    comment: ''
+    value: '412962500'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 117]
+    rotation: 0
+    state: enabled
+- name: if_samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: samp_rate/first_decim
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [328, 16.0]
+    rotation: 0
+    state: enabled
+- name: options_low_pass
+  id: variable
+  parameters:
+    comment: ''
+    value: '12500'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 16.0]
+    rotation: 0
+    state: enabled
+- name: out_sample_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '36000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [432, 16.0]
+    rotation: 0
+    state: enabled
+- name: ppm_corr
+  id: variable
+  parameters:
+    comment: ''
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 181]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '2000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 245]
+    rotation: 0
+    state: enabled
+- name: sdr_gain
+  id: variable
+  parameters:
+    comment: ''
+    value: '38'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 317]
+    rotation: 0
+    state: enabled
+- name: sdr_ifgain
+  id: variable
+  parameters:
+    comment: ''
+    value: '20'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 389]
+    rotation: 0
+    state: enabled
+- name: telive_receiver_channels
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 525]
+    rotation: 0
+    state: enabled
+- name: telive_receiver_name
+  id: variable
+  parameters:
+    comment: ''
+    value: '''SQ5BPF 1-channel headless rx for telive'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 461]
+    rotation: 0
+    state: enabled
+- name: udp_dest_addr
+  id: variable
+  parameters:
+    comment: ''
+    value: '"127.0.0.1"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [896, 16.0]
+    rotation: 0
+    state: enabled
+- name: udp_packet_size
+  id: variable
+  parameters:
+    comment: ''
+    value: '1472'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 16.0]
+    rotation: 0
+    state: enabled
+- name: xlate_offset1
+  id: variable
+  parameters:
+    comment: ''
+    value: 500e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1128, 16.0]
+    rotation: 0
+    state: enabled
+- name: xlate_offset_fine1
+  id: variable
+  parameters:
+    comment: ''
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1232, 16.0]
+    rotation: 0
+    state: enabled
+- name: analog_agc3_xx_0
+  id: analog_agc3_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    attack_rate: 1e-3
+    comment: ''
+    decay_rate: 1e-4
+    gain: '1.0'
+    iir_update_decim: '1'
+    max_gain: '65536'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    reference: '1.0'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [632, 128.0]
+    rotation: 0
+    state: bypassed
+- name: freq_xlating_fir_filter_xxx_0
+  id: freq_xlating_fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    center_freq: xlate_offset1+xlate_offset_fine1
+    comment: ''
+    decim: first_decim
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    taps: firdes.low_pass(1, samp_rate, options_low_pass, options_low_pass*0.2)
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [424, 128.0]
+    rotation: 0
+    state: enabled
+- name: mmse_resampler_xx_0
+  id: mmse_resampler_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    phase_shift: '0'
+    resamp_ratio: float(float(if_samp_rate)/float(out_sample_rate))
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [824, 128.0]
+    rotation: 0
+    state: true
+- name: network_udp_sink_0
+  id: network_udp_sink
+  parameters:
+    addr: udp_dest_addr
+    affinity: ''
+    alias: ''
+    comment: ''
+    header: '0'
+    payloadsize: udp_packet_size
+    port: first_port+1
+    send_eof: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1040, 128.0]
+    rotation: 0
+    state: true
+- name: sdrplay3_rsp1a_0
+  id: sdrplay3_rsp1a
+  parameters:
+    AGC: 'True'
+    affinity: ''
+    agc_set_point: '-30'
+    alias: ''
+    bandwidth: 1536e3
+    biasT: 'False'
+    center_freq: freq
+    comment: ''
+    dab_notch_filter: 'True'
+    dc_offset_mode: 'False'
+    debug_mode: 'True'
+    freq_corr: '0'
+    if_gRdB: '40'
+    iq_balance_mode: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    output_type: fc32
+    rf_gR: '0'
+    rf_notch_filter: 'True'
+    rsp_selector: ''
+    sample_rate: samp_rate
+    sample_sequence_gaps_check: 'True'
+    show_gain_changes: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [224, 128.0]
+    rotation: 0
+    state: true
+- name: xmlrpc_server_0
+  id: xmlrpc_server
+  parameters:
+    addr: 0.0.0.0
+    alias: ''
+    comment: ''
+    port: first_port
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [208, 16.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [analog_agc3_xx_0, '0', mmse_resampler_xx_0, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', analog_agc3_xx_0, '0']
+- [mmse_resampler_xx_0, '0', network_udp_sink_0, '0']
+- [sdrplay3_rsp1a_0, '0', freq_xlating_fir_filter_xxx_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.9.8.0

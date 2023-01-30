@@ -27,7 +27,7 @@ in
   networking = {
     hostName = "jump";
     interfaces.eth0.ipv4.addresses = [{
-      address = "10.0.0.101";
+      address = "10.142.0.101";
       prefixLength = 24;
     }];
     firewall.allowedTCPPorts = [ 22 2222 ];

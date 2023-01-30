@@ -9,7 +9,7 @@ if ! grep "^${lockStr}" /etc/pacman.conf > /dev/null; then
     sudo tee -a /etc/pacman.conf > /dev/null <<EOF
 ${lockStr}
 [aur-builds-adryd]
-Server = https://adryd.com/aur-builds
+Server = https://aur-builds.svc.adryd.com
 EOF
     log info "Enable aur-builds repo"
 fi

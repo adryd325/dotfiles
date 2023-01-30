@@ -172,7 +172,8 @@
           "1015268494889197650",
           "843580440853217292",
           "810698798652981259",
-          "1053185397892591626"
+          "1053185397892591626",
+          "1030911120308961410"
         ]
       },
       "enabled": true
@@ -234,13 +235,6 @@
     "channelleak": true,
     "backoffNerf": true,
     "disableRPC": true,
-    "customsearch": {
-      "enabled": true,
-      "options": {
-        "searchName": "Test",
-        "searchURL": "https://www.adryd.com/search?q="
-      }
-    },
     "layoutToggler": true,
     "nameColor": {
       "enabled": false,
@@ -253,6 +247,6 @@
     "reactDevelopment": true,
     "callIdling": true,
     "alwaysShowUserLimit": true,
-    "colorConsistency": true
+    "tardid":true
   }
 }

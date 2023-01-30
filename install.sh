@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # .adryd v6
-# bash -c "`curl -L adryd.co/install.sh`"
+# bash -c "`curl -s adryd.co/install.sh`"
 # bash -c "`wget -o- adryd.co/install.sh`"
 cd "$(dirname "$0")" || exit $?
 source ./lib/log.sh

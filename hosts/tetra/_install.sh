@@ -102,9 +102,9 @@ if ! grep "^${lockStr}" /etc/dhcpcd.conf &> /dev/null; then
     sudo tee -a /etc/dhcpcd.conf &> /dev/null << EOF
 ${lockStr}
 interface eth0
-    static ip_address=10.0.0.21/24
-    static routers=10.0.0.1
-    static domain_name_servers=10.0.0.1 8.8.8.8
+    static ip_address=10.142.0.21/24
+    static routers=10.142.0.1
+    static domain_name_servers=10.142.0.1 8.8.8.8
 
 interface wlan0
     static ip_address=10.142.21.1/24
@@ -176,3 +176,4 @@ log tell " - Run telive or sdrtrunk from a terminal to get started"
 ## TODO
 ## connman unblock after apt update
 ## use vncauth instead of whatever realvnc uses
+## set default screen resolution

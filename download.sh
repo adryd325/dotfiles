@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # .adryd v6
-# bash -c "`curl -L adryd.co/download-v6.sh`"
-# bash -c "`wget -o- adryd.co/download-v6.sh`"
+# bash -c "`curl -s adryd.co/install.sh`"
+# bash -c "`wget -o- adryd.co/install.sh`"
 
 # Installation dir
 if [[ -z "${AR_DIR}" ]]; then
