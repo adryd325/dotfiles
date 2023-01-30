@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 ##################################################
-# Gnuradio Python Flow Graph
-# Title: SQ5BPF Tetra live receiver 1ch UDP HEADLESS for slow CPU
+# GNU Radio Python Flow Graph
+# Title: SQ5BPF Tetra live receiver 6ch UDP HEADLESS
 # Author: Jacek Lipkowski SQ5BPF
-# Generated: Sun Jun 12 23:20:13 2016
+# GNU Radio version: 3.7.14.0
 ##################################################
 
 from gnuradio import analog
@@ -17,66 +18,92 @@ from optparse import OptionParser
 import SimpleXMLRPCServer
 import osmosdr
 import threading
+import time
+
 
 class top_block(gr.top_block):
 
     def __init__(self):
-        gr.top_block.__init__(self, "SQ5BPF Tetra live receiver 1ch UDP HEADLESS for slow CPU")
+        gr.top_block.__init__(self, "telive 3ch")
 
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 256000
-        self.first_decim = first_decim = 4
+        self.samp_rate = samp_rate = 2000000
+        self.first_decim = first_decim = 32
+        self.xlate_offset_fine3 = xlate_offset_fine3 = 0
+        self.xlate_offset_fine2 = xlate_offset_fine2 = 0
         self.xlate_offset_fine1 = xlate_offset_fine1 = 0
+        self.xlate_offset3 = xlate_offset3 = 500e3
+        self.xlate_offset2 = xlate_offset2 = 500e3
         self.xlate_offset1 = xlate_offset1 = 500e3
         self.udp_packet_size = udp_packet_size = 1472
         self.udp_dest_addr = udp_dest_addr = "127.0.0.1"
-        self.telive_receiver_name = telive_receiver_name = 'SQ5BPF 1-channel headless rx for telive; 256ks/s version'
-        self.telive_receiver_channels = telive_receiver_channels = 1
+        self.telive_receiver_name = telive_receiver_name = '3-channel headless rx'
+        self.telive_receiver_channels = telive_receiver_channels = 3
         self.sdr_ifgain = sdr_ifgain = 20
         self.sdr_gain = sdr_gain = 38
-        self.ppm_corr = ppm_corr = 56
+        self.ppm_corr = ppm_corr = 0
         self.out_sample_rate = out_sample_rate = 36000
         self.options_low_pass = options_low_pass = 12500
         self.if_samp_rate = if_samp_rate = samp_rate/first_decim
-        self.freq = freq = 435e6
+        self.freq = freq = 4225e5
         self.first_port = first_port = 42000
 
         ##################################################
         # Blocks
         ##################################################
-        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(("0.0.0.0", first_port), allow_none=True)
+        self.xmlrpc_server_0 = SimpleXMLRPCServer.SimpleXMLRPCServer(('0.0.0.0', first_port), allow_none=True)
         self.xmlrpc_server_0.register_instance(self)
-        threading.Thread(target=self.xmlrpc_server_0.serve_forever).start()
-        self.osmosdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + "rtl=0,buflen=4096" )
+        self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
+        self.xmlrpc_server_0_thread.daemon = True
+        self.xmlrpc_server_0_thread.start()
+        self.osmosdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + '' )
         self.osmosdr_source_0.set_sample_rate(samp_rate)
         self.osmosdr_source_0.set_center_freq(freq, 0)
         self.osmosdr_source_0.set_freq_corr(ppm_corr, 0)
         self.osmosdr_source_0.set_dc_offset_mode(0, 0)
         self.osmosdr_source_0.set_iq_balance_mode(0, 0)
-        self.osmosdr_source_0.set_gain_mode(False, 0)
+        self.osmosdr_source_0.set_gain_mode(True, 0)
         self.osmosdr_source_0.set_gain(sdr_gain, 0)
         self.osmosdr_source_0.set_if_gain(sdr_ifgain, 0)
         self.osmosdr_source_0.set_bb_gain(20, 0)
-        self.osmosdr_source_0.set_antenna("", 0)
+        self.osmosdr_source_0.set_antenna('', 0)
         self.osmosdr_source_0.set_bandwidth(0, 0)
 
+        self.freq_xlating_fir_filter_xxx_0_0_0 = filter.freq_xlating_fir_filter_ccc(first_decim, (firdes.low_pass(1, samp_rate, options_low_pass, options_low_pass*0.2)), xlate_offset3+xlate_offset_fine3, samp_rate)
+        self.freq_xlating_fir_filter_xxx_0_0 = filter.freq_xlating_fir_filter_ccc(first_decim, (firdes.low_pass(1, samp_rate, options_low_pass, options_low_pass*0.2)), xlate_offset2+xlate_offset_fine2, samp_rate)
         self.freq_xlating_fir_filter_xxx_0 = filter.freq_xlating_fir_filter_ccc(first_decim, (firdes.low_pass(1, samp_rate, options_low_pass, options_low_pass*0.2)), xlate_offset1+xlate_offset_fine1, samp_rate)
+        self.fractional_resampler_xx_0_1 = filter.fractional_resampler_cc(0, float(float(if_samp_rate)/float(out_sample_rate)))
+        self.fractional_resampler_xx_0_0 = filter.fractional_resampler_cc(0, float(float(if_samp_rate)/float(out_sample_rate)))
         self.fractional_resampler_xx_0 = filter.fractional_resampler_cc(0, float(float(if_samp_rate)/float(out_sample_rate)))
+        self.blocks_udp_sink_0_1 = blocks.udp_sink(gr.sizeof_gr_complex*1, udp_dest_addr, first_port+3, udp_packet_size, False)
+        self.blocks_udp_sink_0_0 = blocks.udp_sink(gr.sizeof_gr_complex*1, udp_dest_addr, first_port+2, udp_packet_size, False)
         self.blocks_udp_sink_0 = blocks.udp_sink(gr.sizeof_gr_complex*1, udp_dest_addr, first_port+1, udp_packet_size, False)
+        self.analog_agc3_xx_0_0_0 = analog.agc3_cc(1e-3, 1e-4, 1.0, 1.0, 1)
+        self.analog_agc3_xx_0_0_0.set_max_gain(65536)
+        self.analog_agc3_xx_0_0 = analog.agc3_cc(1e-3, 1e-4, 1.0, 1.0, 1)
+        self.analog_agc3_xx_0_0.set_max_gain(65536)
         self.analog_agc3_xx_0 = analog.agc3_cc(1e-3, 1e-4, 1.0, 1.0, 1)
         self.analog_agc3_xx_0.set_max_gain(65536)
+
+
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.osmosdr_source_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))
-        self.connect((self.fractional_resampler_xx_0, 0), (self.blocks_udp_sink_0, 0))
         self.connect((self.analog_agc3_xx_0, 0), (self.fractional_resampler_xx_0, 0))
+        self.connect((self.analog_agc3_xx_0_0, 0), (self.fractional_resampler_xx_0_0, 0))
+        self.connect((self.analog_agc3_xx_0_0_0, 0), (self.fractional_resampler_xx_0_1, 0))
+        self.connect((self.fractional_resampler_xx_0, 0), (self.blocks_udp_sink_0, 0))
+        self.connect((self.fractional_resampler_xx_0_0, 0), (self.blocks_udp_sink_0_0, 0))
+        self.connect((self.fractional_resampler_xx_0_1, 0), (self.blocks_udp_sink_0_1, 0))
         self.connect((self.freq_xlating_fir_filter_xxx_0, 0), (self.analog_agc3_xx_0, 0))
-
-
+        self.connect((self.freq_xlating_fir_filter_xxx_0_0, 0), (self.analog_agc3_xx_0_0, 0))
+        self.connect((self.freq_xlating_fir_filter_xxx_0_0_0, 0), (self.analog_agc3_xx_0_0_0, 0))
+        self.connect((self.osmosdr_source_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))
+        self.connect((self.osmosdr_source_0, 0), (self.freq_xlating_fir_filter_xxx_0_0, 0))
+        self.connect((self.osmosdr_source_0, 0), (self.freq_xlating_fir_filter_xxx_0_0_0, 0))
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -84,8 +111,10 @@ class top_block(gr.top_block):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.set_if_samp_rate(self.samp_rate/self.first_decim)
-        self.freq_xlating_fir_filter_xxx_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
         self.osmosdr_source_0.set_sample_rate(self.samp_rate)
+        self.freq_xlating_fir_filter_xxx_0_0_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
+        self.freq_xlating_fir_filter_xxx_0_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
+        self.freq_xlating_fir_filter_xxx_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
 
     def get_first_decim(self):
         return self.first_decim
@@ -94,12 +123,40 @@ class top_block(gr.top_block):
         self.first_decim = first_decim
         self.set_if_samp_rate(self.samp_rate/self.first_decim)
 
+    def get_xlate_offset_fine3(self):
+        return self.xlate_offset_fine3
+
+    def set_xlate_offset_fine3(self, xlate_offset_fine3):
+        self.xlate_offset_fine3 = xlate_offset_fine3
+        self.freq_xlating_fir_filter_xxx_0_0_0.set_center_freq(self.xlate_offset3+self.xlate_offset_fine3)
+
+    def get_xlate_offset_fine2(self):
+        return self.xlate_offset_fine2
+
+    def set_xlate_offset_fine2(self, xlate_offset_fine2):
+        self.xlate_offset_fine2 = xlate_offset_fine2
+        self.freq_xlating_fir_filter_xxx_0_0.set_center_freq(self.xlate_offset2+self.xlate_offset_fine2)
+
     def get_xlate_offset_fine1(self):
         return self.xlate_offset_fine1
 
     def set_xlate_offset_fine1(self, xlate_offset_fine1):
         self.xlate_offset_fine1 = xlate_offset_fine1
         self.freq_xlating_fir_filter_xxx_0.set_center_freq(self.xlate_offset1+self.xlate_offset_fine1)
+
+    def get_xlate_offset3(self):
+        return self.xlate_offset3
+
+    def set_xlate_offset3(self, xlate_offset3):
+        self.xlate_offset3 = xlate_offset3
+        self.freq_xlating_fir_filter_xxx_0_0_0.set_center_freq(self.xlate_offset3+self.xlate_offset_fine3)
+
+    def get_xlate_offset2(self):
+        return self.xlate_offset2
+
+    def set_xlate_offset2(self, xlate_offset2):
+        self.xlate_offset2 = xlate_offset2
+        self.freq_xlating_fir_filter_xxx_0_0.set_center_freq(self.xlate_offset2+self.xlate_offset_fine2)
 
     def get_xlate_offset1(self):
         return self.xlate_offset1
@@ -158,6 +215,8 @@ class top_block(gr.top_block):
 
     def set_out_sample_rate(self, out_sample_rate):
         self.out_sample_rate = out_sample_rate
+        self.fractional_resampler_xx_0_1.set_resamp_ratio(float(float(self.if_samp_rate)/float(self.out_sample_rate)))
+        self.fractional_resampler_xx_0_0.set_resamp_ratio(float(float(self.if_samp_rate)/float(self.out_sample_rate)))
         self.fractional_resampler_xx_0.set_resamp_ratio(float(float(self.if_samp_rate)/float(self.out_sample_rate)))
 
     def get_options_low_pass(self):
@@ -165,6 +224,8 @@ class top_block(gr.top_block):
 
     def set_options_low_pass(self, options_low_pass):
         self.options_low_pass = options_low_pass
+        self.freq_xlating_fir_filter_xxx_0_0_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
+        self.freq_xlating_fir_filter_xxx_0_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
         self.freq_xlating_fir_filter_xxx_0.set_taps((firdes.low_pass(1, self.samp_rate, self.options_low_pass, self.options_low_pass*0.2)))
 
     def get_if_samp_rate(self):
@@ -172,6 +233,8 @@ class top_block(gr.top_block):
 
     def set_if_samp_rate(self, if_samp_rate):
         self.if_samp_rate = if_samp_rate
+        self.fractional_resampler_xx_0_1.set_resamp_ratio(float(float(self.if_samp_rate)/float(self.out_sample_rate)))
+        self.fractional_resampler_xx_0_0.set_resamp_ratio(float(float(self.if_samp_rate)/float(self.out_sample_rate)))
         self.fractional_resampler_xx_0.set_resamp_ratio(float(float(self.if_samp_rate)/float(self.out_sample_rate)))
 
     def get_freq(self):
@@ -187,9 +250,13 @@ class top_block(gr.top_block):
     def set_first_port(self, first_port):
         self.first_port = first_port
 
-if __name__ == '__main__':
-    parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
-    (options, args) = parser.parse_args()
-    tb = top_block()
+
+def main(top_block_cls=top_block, options=None):
+
+    tb = top_block_cls()
     tb.start()
     tb.wait()
+
+
+if __name__ == '__main__':
+    main()
