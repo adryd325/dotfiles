@@ -19,7 +19,7 @@ fi
 sleep 1
 
 sudo qm set "${gpuVM}" --onboot 0 > /dev/null && echo "Disable automatic boot on ${gpuVM}"
-sudo qm set "${VM}" --onboot 1 --hostpci0 01:00,pcie=1,x-vga=1 --usb0 host=046d:c332 --usb1 host=046d:c336 --usb2 host=1-9 --usb3 host=2-9 --vga none > /dev/null && echo "Passthrough hardware to ${VM}"
+sudo qm set "${VM}" --onboot 1 --hostpci0 01:00,pcie=1,x-vga=1 --usb0 host=046d:c332 --usb1 host=046d:c336 --usb2 host=0d8c:0005 --usb3 host=0d8c:01c2 --usb4 0483:a2ca --vga none > /dev/null && echo "Passthrough hardware to ${VM}"
 
 echo "Starting ${VM}"
 sudo qm start "${VM}"
