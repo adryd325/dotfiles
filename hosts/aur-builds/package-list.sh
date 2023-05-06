@@ -2,35 +2,41 @@
 # pacman -Qmq | tr ' ' "\n" | xclip -selection clipboard
 # pacman -Slq aur | pacman -Qq - 2>/dev/null | tr ' ' "\n" | xclip -selection clipboard
 export PACKAGE_LIST=(
-    adw-gtk3-git
-    switcheroo-control
+
     1password
     aseprite
-    gnome-browser-connector
-    gdm-prime
-    gnome-text-editor
-    libgdm-prime
-    mangohud
-    mangohud-common
-    mutter-performance
-    nvm
-    paru
-    piavpn-bin
-    plymouth
-    pnpm
     prismlauncher
     prismlauncher-git
+    piavpn-bin
+    visual-studio-code-bin
+    jetbrains-toolbox
+    gnome-text-editor
+
+    qflipper-git
+    rpi-imager
+
+    adw-gtk3-git
+    switcheroo-control
+    gnome-browser-connector
+    gdm-prime
+    libgdm-prime
+    nvm
+    paru
+    pnpm
+    plymouth
     solo2-cli-git
     touchegg
-    visual-studio-code-bin
-    imhex
-    jetbrains-toolbox
-    chromium-snapshot-bin
     insect
-    qflipper-git
+
+    mangohud
+    mangohud-common
+
+    # radio
     spi-ch341-usb-dkms
-    chirp-hg
-    rpi-imager
+    qdmr-git
+
+    # wifi dongle
+    rtl8812au-dkms-git
 
     # fonts
     ttf-ipa-mona
@@ -38,7 +44,6 @@ export PACKAGE_LIST=(
     otf-san-francisco-mono
     ttf-unifont
     ocr-fonts
-    otf-recursive
 
     # sdr
     kalibrate-rtl-git
