@@ -10,7 +10,6 @@ export PACKAGE_LIST=(
     piavpn-bin
     visual-studio-code-bin
     jetbrains-toolbox
-    gnome-text-editor
 
     qflipper-git
     rpi-imager
@@ -48,6 +47,7 @@ export PACKAGE_LIST=(
     # sdr
     kalibrate-rtl-git
     sdrpp-git
+    sdrpp-headers-git
     sdrpp-tetra-demodulator-git
 
     # nfc
