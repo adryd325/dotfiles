@@ -113,3 +113,23 @@ code.inline,
 .hh2-spotify-controls-album-image img {
   border-radius: 4px !important;
 }
+
+/* make creatures petable. by Honbra*/
+img[alt*="cat"i],
+img[alt*="cta"i],
+img[alt*="fox"i],
+img[alt*="kitty"i],
+img[alt*="kity"i],
+img[alt*="kbity"i],
+img[alt*="kibty"i],
+img[alt*="dog"i],
+img[alt*="dgo"i],
+img[alt*="doggy"i],
+img[alt*="puppy"i],
+img[alt*="bupis"i],
+img[alt*="buppy"i],
+img[alt*="pupper"i],
+img[alt*="creature"i]
+ {
+    cursor: grab;
+}
