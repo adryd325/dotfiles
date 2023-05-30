@@ -6,7 +6,7 @@
     "silly",
     "verbose"
   ],
-  "defaultLoggerLevel": 400,
+  "defaultLoggerLevel": 200,
   "modules": {
     "pseudoscience": true,
     "sentrynerf": true,
@@ -20,7 +20,12 @@
     "magicrequire": true,
     "webpackIntercept": true,
     "inspect": true,
-    "experiments": true,
+    "experiments": {
+      "options": {
+        "staffSettings": true
+      },
+      "enabled": true
+    },
     "preserveToken": true,
     "autoPatch": true,
     "linuxUpdater": true,
@@ -45,7 +50,6 @@
     "noVoiceAutoreconnect": true,
     "ttsLinux": true,
     "whoJoined": true,
-    "platformIcons": true,
     "disableF1Help": true,
     "noJoinMessageWave": true,
     "copyAvatarUrl": true,
@@ -117,8 +121,9 @@
       "options": {
         "userOverwrites": {
           "298475055141355520": {
-            "flags": 1,
-            "public_flags": 0,
+            "flags": 16384,
+            "personalConnectionId": "298475055141355520",
+            "publicFlags": 16384,
             "premiumSince": null,
             "premiumGuildSince": null,
             "phone": null
@@ -169,11 +174,12 @@
     "pinnedDMs": {
       "options": {
         "pinned": [
-          "1015268494889197650",
           "843580440853217292",
           "810698798652981259",
           "1053185397892591626",
-          "1030911120308961410"
+          "1015268494889197650",
+          "1104456552645148692",
+          "1025613447355973643"
         ]
       },
       "enabled": true
@@ -247,6 +253,12 @@
     "reactDevelopment": true,
     "callIdling": true,
     "alwaysShowUserLimit": true,
-    "tardid":true
+    "tardid": true,
+    "arbitraryVoiceMessages": true,
+    "postnet": {
+      "options": {
+        "favorites": []
+      }
+    }
   }
 }
