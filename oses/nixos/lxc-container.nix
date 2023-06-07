@@ -1,7 +1,7 @@
-{
-  imports = [ <nixpkgs/nixos/modules/virtualisation/lxc-container.nix> ];
+{ modulesPath, ... }:
 
-  systemd.suppressedSystemUnits = [ "sys-kernel-debug.mount" ];
+{
+  imports = [ (modulesPath + "/virtualisation/proxmox-lxc.nix") ];
 
   networking = {
     domain = "in.adryd.com";
