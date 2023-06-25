@@ -6,29 +6,23 @@ export PACKAGE_LIST=(
     1password
     aseprite
     prismlauncher
-    prismlauncher-git
     piavpn-bin
     visual-studio-code-bin
     jetbrains-toolbox
 
     qflipper-git
     rpi-imager
+    simplescreenrecorder
 
     adw-gtk3-git
-    switcheroo-control
-    gnome-browser-connector
     gdm-prime
     libgdm-prime
     nvm
     paru
-    pnpm
-    plymouth
     solo2-cli-git
     touchegg
     insect
-
-    mangohud
-    mangohud-common
+    python-pyfuse3
 
     # radio
     spi-ch341-usb-dkms
@@ -40,7 +34,7 @@ export PACKAGE_LIST=(
     # fonts
     ttf-ipa-mona
     ttf-ms-fonts
-    otf-san-francisco-mono
+    #otf-san-francisco-mono
     ttf-unifont
     ocr-fonts
 

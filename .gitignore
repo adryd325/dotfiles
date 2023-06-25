@@ -6,6 +6,7 @@
 /common/gnome-extensions/just-perfection
 /common/gnome-extensions/unite-shell
 /common/gnome-extensions/x11-gestures
+/common/heckheating/config/babelCache/
 /oses/archlinux/**/pkg
 /oses/archlinux/**/src
 /oses/archlinux/**/**.pkg.tar.zst

@@ -1,230 +1,46 @@
 {
-  "inspectAll": true,
-  "debugPatches": true,
-  "dangerMode": false,
-  "loggers": [
-    "silly",
-    "verbose"
-  ],
-  "defaultLoggerLevel": 400,
   "modules": {
-    "pseudoscience": true,
+    "postnet": true,
     "sentrynerf": true,
-    "crashScreen": true,
+    "pseudoscience": true,
     "loadingScreen": true,
-    "magicrequire": true,
-    "webpackIntercept": true,
-    "inspect": true,
-    "experiments": true,
-    "preserveToken": true,
     "autoPatch": true,
     "linuxUpdater": true,
-    "react": true,
-    "noconmsg": true,
-    "unravelMessage": true,
-    "cmder": true,
-    "declutterTextButtons": {
-      "options": {
-        "keepSticker": false
-      },
-      "enabled": true
-    },
-    "imageUrls": true,
-    "cynSpeaking": true,
-    "3y3": true,
-    "greentext": true,
-    "tf2Engineer": true,
-    "noF1Help": true,
-    "hidpiFixes": true,
-    "timeBarAllActivities": true,
-    "noVoiceAutoreconnect": true,
-    "ttsLinux": true,
-    "whoJoined": true,
-    "platformIcons": true,
-    "disableF1Help": true,
-    "noJoinMessageWave": true,
-    "copyAvatarUrl": true,
-    "debugFlux": true,
-    "exec": true,
-    "removeBrand": true,
-    "ohFuck": true,
-    "screenshareDnd": true,
-    "createEmoji": true,
-    "imgxis": {
-      "options": {
-        "smoothImage": true
-      },
-      "enabled": true
-    },
-    "consistentLayout": {
+    "litecord": {
       "enabled": true,
       "options": {
-        "mappings": {
-          "__508865576890925088": "iwi",
-          "508865576890925092": "508869170952405003",
-          "__805978396974514206": "Petoria",
-          "805978396974514210": "805978396974514209",
-          "__757033096154578974": "BLOCKLETTER",
-          "785870091837243432": "757033098897653853",
-          "856443658319822878": "757033098897653853",
-          "804534721341161492": "757033098897653853",
-          "__720020173310132348": "Catgirl Cabal",
-          "720021430456156191": "720021452526714911",
-          "720021441831239730": "720021452526714911",
-          "__804304127231655938": "MurmCord",
-          "804304128280887330": "804306382014644244",
-          "804306474067165185": "804306444232163338",
-          "__720183393597259797": "Lad's Layers",
-          "720183394209759239": "807384759969906709",
-          "807389978224885811": "807390012319596606",
-          "__887075786203488256": "Netsky",
-          "898698025365540956": "887111334414667857",
-          "887093691213307955": "887111334414667857",
-          "887093837602881546": "887111334414667857",
-          "__420331251623395358": "Mary's House",
-          "420331251623395362": "729760233408168027",
-          "__751221681384718338": "Shark Corner",
-          "751221681892360277": "856173805473759296"
-        }
+        "API_ENDPOINT": "//discord2.gaycatgirl.sex/api",
+        "API_VERSION": 9,
+        "GATEWAY_ENDPOINT": "wss://gateway.discord2.gaycatgirl.sex",
+        "WEBAPP_ENDPOINT": "//discord.com",
+        "CDN_HOST": "cdn.discordapp.com",
+        "ASSET_ENDPOINT": "https://discord.com",
+        "MEDIA_PROXY_ENDPOINT": "https://dev-mediaproxy.litecord.top",
+        "WIDGET_ENDPOINT": "//discord.com/widget",
+        "INVITE_HOST": "dev.litecord.top/i",
+        "GUILD_TEMPLATE_HOST": "discord.new",
+        "GIFT_CODE_HOST": "discord.gift",
+        "RELEASE_CHANNEL": "canary",
+        "MARKETING_ENDPOINT": "//discord.com",
+        "BRAINTREE_KEY": "production_5st77rrc_49pp2rp4phym7387",
+        "STRIPE_KEY": "pk_test_qSm4KsPR68rb98QX0cOokA2H",
+        "NETWORKING_ENDPOINT": "//router.discordapp.net",
+        "RTC_LATENCY_ENDPOINT": "//latency.discord.media/rtc",
+        "ACTIVITY_APPLICATION_HOST": "discordsays.com",
+        "PROJECT_ENV": "production",
+        "REMOTE_AUTH_ENDPOINT": "//remote-auth-gateway.discord.gg",
+        "SENTRY_TAGS": {
+          "buildId": "ffe3d49",
+          "buildType": "normal"
+        },
+        "MIGRATION_SOURCE_ORIGIN": "https://discordapp.com",
+        "MIGRATION_DESTINATION_ORIGIN": "https://discord.com",
+        "HTML_TIMESTAMP": 1630117223762,
+        "ALGOLIA_KEY": "aca0d7082e4e63af5ba5917d5e96bed0",
+        "useZlibStream": false
       }
     },
-    "electricSheep": {
-      "enabled": true,
-      "options": {
-        "__users": [
-          "Utsuho",
-          "C2",
-          "3595",
-          "lun-4",
-          "vin"
-        ],
-        "users": [
-          "132297363233570816",
-          "220599756743770112",
-          "143464728180555776",
-          "162819866682851329",
-          "144621606197526528"
-        ]
-      }
-    },
-    "mutateProfile": {
-      "enabled": true,
-      "options": {
-        "userOverwrites": {
-          "298475055141355520": {
-            "flags": 1,
-            "public_flags": 0,
-            "premiumSince": null,
-            "premiumGuildSince": null,
-            "phone": null
-          },
-          "132297363233570816": {
-            "flags": 1
-          }
-        }
-      }
-    },
-    "pseudoNitro": {
-      "options": {
-        "parseOnly": false,
-        "sendAsLink": true
-      },
-      "enabled": true
-    },
-    "chatsounds": {
-      "enabled": true,
-      "options": {
-        "default": false,
-        "volume": 0.1
-      }
-    },
-    "themeSwitcher": {
-      "options": {
-        "useSystemTheme": true
-      },
-      "enabled": true
-    },
-    "commands": {
-      "options": {
-        "dangerMode": true
-      },
-      "enabled": true
-    },
-    "css": {
-      "enabled": true,
-      "options": {
-        "cssPath": [
-          "/home/adryd/.adryd/common/heckheating/config/css/discord.css"
-        ]
-      }
-    },
-    "pinnedDMs": {
-      "options": {
-        "pinned": [
-          "1015268494889197650",
-          "843580440853217292",
-          "810698798652981259",
-          "985696504289304596"
-        ]
-      },
-      "enabled": true
-    },
-    "hiddenTyping": {
-      "enabled": true,
-      "options": {
-        "whenInvisible": true
-      }
-    },
-    "clearUrls": {
-      "enabled": true,
-      "options": {
-        "useDefaultRules": true
-      }
-    },
-    "spotifyControls": {
-      "options": {
-        "playerType": [
-          "spotify",
-          "cider"
-        ]
-      },
-      "enabled": true
-    },
-    "premiumVideo": true,
-    "linuxMouseButtonFix": true,
-    "reactDevelopment": true,
-    "unindent": true,
-    "customIdleTimeout": {
-      "options": {
-        "timeout": "300000"
-      },
-      "enabled": true
-    },
-    "disableVoiceAutoreconnect": true,
-    "guildProfile": true,
-    "hateno": true,
-    "rpcTypeChanger": {
-      "enabled": true,
-      "options": {
-        "mappings": {
-          "886578863147192350": "2"
-        }
-      }
-    },
-    "customSwitcherSorting": {
-      "enabled": true,
-      "options": {
-        "mentions": 4,
-        "unread": 3,
-        "last_channel": 2,
-        "drafts": 1
-      }
-    },
-    "antiDelete": {
-      "enabled": true,
-      "options": {
-        "logEdits": true
-      }
-    }
-  }
+    "experiments": true
+  },
+  "debugPatches": true
 }

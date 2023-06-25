@@ -1,5 +1,5 @@
 {
-  "inspectAll": true,
+  "inspectAll": false,
   "debugPatches": true,
   "dangerMode": false,
   "loggers": [
@@ -11,54 +11,13 @@
     "pseudoscience": true,
     "sentrynerf": true,
     "crashScreen": true,
+    "postnet": true,
     "loadingScreen": {
       "enabled": true,
       "options": {
         "debug": false
       }
     },
-    "magicrequire": true,
-    "webpackIntercept": true,
-    "inspect": true,
-    "experiments": {
-      "options": {
-        "staffSettings": true
-      },
-      "enabled": true
-    },
-    "preserveToken": true,
-    "autoPatch": true,
-    "linuxUpdater": true,
-    "react": true,
-    "noconmsg": true,
-    "unravelMessage": true,
-    "cmder": true,
-    "declutterTextButtons": {
-      "options": {
-        "keepSticker": false
-      },
-      "enabled": true
-    },
-    "imageUrls": true,
-    "cynSpeaking": true,
-    "3y3": true,
-    "greentext": true,
-    "tf2Engineer": true,
-    "noF1Help": true,
-    "hidpiFixes": true,
-    "timeBarAllActivities": true,
-    "noVoiceAutoreconnect": true,
-    "ttsLinux": true,
-    "whoJoined": true,
-    "disableF1Help": true,
-    "noJoinMessageWave": true,
-    "copyAvatarUrl": true,
-    "debugFlux": true,
-    "exec": true,
-    "removeBrand": true,
-    "ohFuck": true,
-    "screenshareDnd": true,
-    "createEmoji": true,
     "imgxis": {
       "options": {
         "smoothImage": true
@@ -116,53 +75,6 @@
         ]
       }
     },
-    "mutateProfile": {
-      "enabled": true,
-      "options": {
-        "userOverwrites": {
-          "298475055141355520": {
-            "flags": 16384,
-            "personalConnectionId": "298475055141355520",
-            "publicFlags": 16384,
-            "premiumSince": null,
-            "premiumGuildSince": null,
-            "phone": null
-          },
-          "132297363233570816": {
-            "flags": 1
-          },
-          "150745989836308480": {
-            "flags": 1
-          }
-        }
-      }
-    },
-    "pseudoNitro": {
-      "options": {
-        "parseOnly": false,
-        "sendAsLink": true
-      },
-      "enabled": true
-    },
-    "chatsounds": {
-      "enabled": true,
-      "options": {
-        "default": false,
-        "volume": 0.1
-      }
-    },
-    "themeSwitcher": {
-      "options": {
-        "useSystemTheme": true
-      },
-      "enabled": true
-    },
-    "commands": {
-      "options": {
-        "dangerMode": true
-      },
-      "enabled": true
-    },
     "css": {
       "enabled": true,
       "options": {
@@ -199,8 +111,7 @@
     "spotifyControls": {
       "options": {
         "playerType": [
-          "spotify",
-          "cider"
+          "spotify"
         ]
       },
       "enabled": true
@@ -213,52 +124,62 @@
       },
       "enabled": true
     },
-    "guildProfile": true,
-    "hateno": true,
-    "rpcTypeChanger": {
+    "spotifyspoof": true,
+    "highlight": {
       "enabled": true,
       "options": {
-        "mappings": {
-          "886578863147192350": "2"
-        }
+        "words": [
+          "adryd",
+          "ari"
+        ],
+        "whitelist": []
       }
     },
-    "customSwitcherSorting": {
-      "enabled": false,
+    "3y3": true,
+    "autoPatch": true,
+    "commands": true,
+    "copyAvatarUrl": true,
+    "cynSpeaking": true,
+    "devBanner": true,
+    "disableF1Help": true,
+    "greentext": true,
+    "guildProfile": true,
+    "hateno": true,
+    "inviteToNowhere": true,
+    "linuxUpdater": true,
+    "inspect": true,
+    "panic": true,
+    "pseudoNitro": {
+      "enabled": true,
       "options": {
-        "mentions": 4,
-        "unread": 3,
-        "last_channel": 2,
-        "drafts": 1
+        "sendAsLink": true
       }
     },
+    "localStorage": true,
+    "themeSwitcher": {
+      "enabled": true,
+      "options": {
+        "useSystemTheme": true
+      }
+    },
+    "unminifyErrors": true,
+    "tardid": true,
+    "alwaysTrust": true,
     "antiDelete": {
       "enabled": true,
       "options": {
+        "ignorePluralKit": false,
         "logEdits": true
       }
     },
+    "declutterTextButtons": true,
     "channelleak": true,
-    "backoffNerf": true,
-    "disableRPC": true,
-    "layoutToggler": true,
-    "nameColor": {
-      "enabled": false,
+    "experiments": {
+      "enabled": true,
       "options": {
-        "pastelizeUncolored": false,
-        "pastelizeAll": false
+        "staffSettings": true
       }
     },
-    "spotifyspoof": true,
-    "reactDevelopment": true,
-    "callIdling": true,
-    "alwaysShowUserLimit": true,
-    "tardid": true,
-    "arbitraryVoiceMessages": true,
-    "postnet": {
-      "options": {
-        "favorites": []
-      }
-    }
+    "unravelMessage": true
   }
 }
