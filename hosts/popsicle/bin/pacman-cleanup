@@ -1,0 +1,11 @@
+#!/bin/bash
+cd "$(dirname "$0")" || exit $?
+source ../package-list.sh
+
+pacman -Qeq | sudo pacman -Dq - --asdeps
+sudo pacman -Dq "${packages[@]}" --asexplicit
+
+# orphaned="$(pacman -Qdttq)"
+# if [[ -n "${orphaned}" ]]; then
+#   pacman -Qdttq | sudo pacman -Rns -
+# fi

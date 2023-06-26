@@ -21,7 +21,7 @@ packages=(
 
     # GNOME
     "adwaita-icon-theme"
-    "chrome-gnome-shell"
+    # "gnome-browser-conncetor"
     "gdm-prime"
     "gnome-backgrounds"
     "gnome-browser-connector"
@@ -31,6 +31,7 @@ packages=(
     "gnome-session"
     "gnome-settings-daemon"
     "gnome-shell"
+    "gnome-terminal"
     "gvfs"
     gvfs-{afc,gphoto2,nfs,smb}
     "libgdm-prime"
@@ -81,7 +82,7 @@ packages=(
     "shellcheck"
     "strace"
     "thermald"
-    "auto-cpufreq"
+    #"auto-cpufreq"
     "perl-authen-sasl" # git-send-email
     "perl-io-socket-ssl" # git-send-email
     "touchegg"
@@ -89,7 +90,10 @@ packages=(
     "intel-gpu-tools"
     "screen"
     "power-profiles-daemon"
-
+    "bash-completion"
+    "polkit"
+    "python"
+    "google-cloud-cli"
 
     # Uncategorized gui tools
     "obs-studio"
@@ -112,8 +116,10 @@ packages=(
     "file-roller"
     "jetbrains-toolbox"
     "obsidian"
-    "rpi-imager-bin"
+    # "rpi-imager-bin"
     "cheese"
+    "libreoffice-fresh"
+    "simplescreenrecorder"
 
     "xclip"
     "xorg-xkill"
@@ -123,7 +129,7 @@ packages=(
 
     # coreutils clones
     "the_silver_searcher" # command: ag. used to find text contents of files with minimal syntax
-    "bat" # cat clone
+    # "bat" # cat clone
 
     # Text editors
     "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
@@ -138,7 +144,7 @@ packages=(
     "exfatprogs"
 
     # Browsers
-    "firefox-developer-edition"
+    "firefox"
     "chromium"
     "torbrowser-launcher"
 
@@ -159,7 +165,7 @@ packages=(
 
     # Passwords and OTPs
     "1password"
-    "keepassxc"
+    # "keepassxc"
     "yubioath-desktop"
     "libfido2"
     "solo2-cli-git"
@@ -175,7 +181,7 @@ packages=(
     "gsfonts" # Nimbus Roman
     noto-fonts{,-cjk,-emoji}
     "ttf-unifont" # Unifont
-    "ttf-ipa-mona"
+    # "ttf-ipa-mona"
     "ttf-ms-fonts"
     "ttf-ibm-plex"
     "otf-san-francisco-mono"
@@ -199,11 +205,11 @@ packages=(
     "switcheroo-control"
     "cuda"
     "fprintd"
-    "rtl8812au-dkms-git" # USB wifi dongle for hotspot
+    # "rtl8812au-dkms-git" # USB wifi dongle for hotspot
 
     # Games
-    "steam"
-    "prismlauncher-git"
+    # "steam"
+    "prismlauncher"
 
     # Network tools
     "inetutils" # includes drill
@@ -221,7 +227,7 @@ packages=(
 
     # Theming
     "adw-gtk3-git" # Make all gtk3 apps look like libadwaita
-    "qt5ct" # Make QT apps not look awful
+    # "qt5ct" # Make QT apps not look awful
 
     # Productivity
     "simple-scan"
@@ -252,9 +258,9 @@ packages=(
     wine-{gecko,mono,staging}
 
     # Remote desktop
-    "freerdp" # for remmina
-    "libvncserver" # for remmina
-    "remmina"
+    # "freerdp" # for remmina
+    # "libvncserver" # for remmina
+    # "remmina"
 
     # Smartcard stuff
     #"libnfc"
@@ -266,17 +272,17 @@ packages=(
     ccache git readline bzip2 arm-none-eabi-gcc arm-none-eabi-newlib qt5-base bluez python
 
     # SDR stuff
-    "rtl-sdr"
+    # "rtl-sdr"
     #"gqrx"
     #"kalibrate-rtl-git"
     #"x11vnc" # For controlling laptop from phone
     #"vlc" # provides an easy way of broadcasting audio via http
-    "gqrx"
+    # "gqrx"
 
     # Radio stuff
-    "qdmr"
-    "spi-ch341-usb-dkms"
-    "chirp-hg"
+    # "qdmr"
+    # "spi-ch341-usb-dkms"
+    # "chirp-hg"
 
     # Social networking kinda
     #"mumble"
@@ -288,17 +294,23 @@ packages=(
     #"recaf" # java bytecode editor
 
     # Watch stuff
-    "itd-bin"
+    # "itd-bin"
 )
 
 flatpaks=(
     #"net.blockbench.Blockbench"
     "com.github.tchx84.Flatseal"
-    "re.sonny.Junction"
+    # "re.sonny.Junction"
     "com.belmoussaoui.Obfuscate"
-    #"com.parsecgaming.parsec"
+    "com.parsecgaming.parsec"
     #"uk.co.powdertoy.tpt"
     "org.gnome.SoundRecorder"
+    "io.github.celluloid_player.Celluloid"
+    "com.yubico.yubioath"
+    "com.spotify.Client"
+    "com.slack.Slack"
+    "com.raggesilver.BlackBox"
+    "im.riot.Riot"
 )
 
 export packages

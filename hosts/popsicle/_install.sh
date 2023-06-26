@@ -24,7 +24,7 @@ sudo pacman -Syyu --noconfirm
 ./optimus.sh
 ./plymouth.sh
 ./disable-yubikey-keyboard.sh
-../../oses/archlinux/pacman/fcgu.sh
+#../../oses/archlinux/pacman/fcgu.sh
 ../../common/sysctl/_install.sh
 ../../common/xdg-user-dirs/_install.sh
 ../../common/mimeapps/_install.sh
@@ -40,7 +40,7 @@ sudo pacman -Syyu --noconfirm
 ../../common/flstudio/_install.sh
 ../../common/firefox/_install.sh
 ../../common/fontconfig/_install.sh
-../../oses/archlinux/mutter-performance/_install.sh
+#../../oses/archlinux/mutter-performance/_install.sh
 
 sudo systemctl enable gdm > /dev/null
 sudo systemctl enable cups > /dev/null
