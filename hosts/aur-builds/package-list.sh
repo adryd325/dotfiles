@@ -19,6 +19,7 @@ export PACKAGE_LIST=(
     libgbinder # dep of waydroid
     python-gbinder # dep of waydroid
     libglibutil # dep of waydroid
+    binder_linux-dkms # dep of waydroid
     waydroid
 
     adw-gtk3-git
