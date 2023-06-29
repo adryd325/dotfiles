@@ -50,6 +50,7 @@ export PACKAGE_LIST=(
     sdrpp-git
     sdrpp-headers-git
     sdrpp-tetra-demodulator-git
+    libsdrplay
 
     # nfc
     libfreefare-git
