@@ -61,4 +61,5 @@ export KEYS_TRUST=(
     3FEF9748469ADBE15DA7CA80AC2D62742012EA22 # 1password
     93BDB53CD4EBC740                         # mingw-w64
     2F391DE6B00D619C                         # mullvad-vpn
+    78CEAA8CB72E4467                         # mullvad-vpn
 )
