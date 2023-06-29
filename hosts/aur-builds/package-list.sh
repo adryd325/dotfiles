@@ -6,13 +6,14 @@ export PACKAGE_LIST=(
     1password
     aseprite
     prismlauncher
-    piavpn-bin
+    mullvad-vpn
     visual-studio-code-bin
     jetbrains-toolbox
 
     qflipper-git
     rpi-imager
     simplescreenrecorder
+    mullvad-browser-bin
 
     adw-gtk3-git
     gdm-prime
