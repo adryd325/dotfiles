@@ -14,6 +14,11 @@ export PACKAGE_LIST=(
     rpi-imager
     simplescreenrecorder
     mullvad-browser-bin
+    google-cloud-cli
+    libgbinder
+    python-gbinder
+    libglibutil
+    waydroid
 
     adw-gtk3-git
     gdm-prime
@@ -35,7 +40,7 @@ export PACKAGE_LIST=(
     # fonts
     ttf-ipa-mona
     ttf-ms-fonts
-    #otf-san-francisco-mono
+    otf-san-francisco-mono
     ttf-unifont
     ocr-fonts
 
