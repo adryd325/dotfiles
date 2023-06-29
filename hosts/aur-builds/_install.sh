@@ -69,12 +69,13 @@ fi
 
 # Place files in their new home
 log info "Installing files"
-mkdir /var/aur/logs
+mkdir /var/aur/logs 2> /dev/null
 cp -f ./constants.sh /var/aur
 cp -f ./build.sh /var/aur
 ln -sf "$(realpath ./package-list.sh)" /var/aur
 
 chown aur:aur ./constants.sh ./build.sh ./package-list.sh
+chown aur:aur /var/aur/logs
 
 # Install systemd units
 log info "Installing systemd unit"
