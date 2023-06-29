@@ -13,11 +13,12 @@ export PACKAGE_LIST=(
     qflipper-git
     rpi-imager
     simplescreenrecorder
+    celt # dep of simplescreenrecorder
     mullvad-browser-bin
     google-cloud-cli
-    libgbinder
-    python-gbinder
-    libglibutil
+    libgbinder # dep of waydroid
+    python-gbinder # dep of waydroid
+    libglibutil # dep of waydroid
     waydroid
 
     adw-gtk3-git
@@ -26,7 +27,6 @@ export PACKAGE_LIST=(
     nvm
     paru
     solo2-cli-git
-    touchegg
     insect
     python-pyfuse3
 
@@ -46,6 +46,7 @@ export PACKAGE_LIST=(
 
     # sdr
     kalibrate-rtl-git
+    airspyhf-git
     sdrpp-git
     sdrpp-headers-git
     sdrpp-tetra-demodulator-git
@@ -62,4 +63,7 @@ export KEYS_TRUST=(
     93BDB53CD4EBC740                         # mingw-w64
     2F391DE6B00D619C                         # mullvad-vpn
     78CEAA8CB72E4467                         # mullvad-vpn
+    E53D989A9E2D47BF                         # mullvad-browser-bin
+    243ACFA951F78E01                         # python-pyfuse3
+    CDBAA37ABC74FBA0                         # simplescreenrecorder
 )
