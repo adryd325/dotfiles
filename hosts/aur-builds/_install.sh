@@ -69,6 +69,7 @@ fi
 
 # Place files in their new home
 log info "Installing files"
+mkdir /var/aur/logs
 cp -f ./constants.sh /var/aur
 cp -f ./build.sh /var/aur
 ln -sf "$(realpath ./package-list.sh)" /var/aur
