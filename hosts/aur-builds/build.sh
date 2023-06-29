@@ -24,6 +24,14 @@ done
 
 failed=()
 for package in "${PACKAGE_LIST[@]}"; do
+    echo =======================
+    echo =======================
+    echo =======================
+    echo "NOW BUILDING: ${package}"
+    echo "BUILDS FAILED (if any): ${failed[*]}"
+    echo =======================
+    echo =======================
+    echo =======================
     aur sync --pkgver --sign -A --noconfirm --nocheck --noview --remove --no-ver-argv --database "${REPO_NAME}" --root "${REPO_ROOT}" "${package}" || failed+=("${package}")
 done
 
