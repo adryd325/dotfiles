@@ -45,7 +45,7 @@ code.inline,
 }
 
 .theme-light {
-  --brightness: 1;
+  --brightness: 0.8;
   --contrast: 0.8;
   --saturation: 1;
 }

@@ -21,7 +21,6 @@
     "security.workspace.trust.enabled": false,
     "explorer.confirmDragAndDrop": false,
     "editor.renderWhitespace": "none",
-    "workbench.colorTheme": "GitHub Dark",
     "shellcheck.customArgs": [
         "-x"
     ],
@@ -53,7 +52,8 @@
     "hexeditor.inspectorType": "aside",
     "cSpell.enabledLanguageIds": [
         "html"
-    ]
+    ],
+    "workbench.colorTheme": "GitHub Dark"
     // "editor.rulers": [
     //     80
     // ]

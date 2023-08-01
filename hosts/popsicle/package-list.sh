@@ -81,19 +81,24 @@ packages=(
     "neovim"
     "shellcheck"
     "strace"
-    "thermald"
-    #"auto-cpufreq"
     "perl-authen-sasl" # git-send-email
     "perl-io-socket-ssl" # git-send-email
     "touchegg"
     "insect"
     "intel-gpu-tools"
     "screen"
-    "power-profiles-daemon"
     "bash-completion"
     "polkit"
     "python"
     "google-cloud-cli"
+    "caddy"
+    "usbutils"
+
+    # performance and battery
+    "thermald"
+    "power-profiles-daemon"
+    "powertop"
+    "intel-undervolt"
 
     # Uncategorized gui tools
     "obs-studio"

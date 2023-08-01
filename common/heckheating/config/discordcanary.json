@@ -1,5 +1,5 @@
 {
-  "inspectAll": false,
+  "inspectAll": true,
   "debugPatches": true,
   "dangerMode": false,
   "loggers": [
@@ -91,7 +91,8 @@
           "1053185397892591626",
           "1015268494889197650",
           "1104456552645148692",
-          "1025613447355973643"
+          "1025613447355973643",
+          "840041918003281932"
         ]
       },
       "enabled": true
@@ -180,6 +181,21 @@
         "staffSettings": true
       }
     },
-    "unravelMessage": true
+    "unravelMessage": true,
+    "mutateProfile": {
+      "enabled": true,
+      "options": {
+        "userOverrides": {
+          "353573198509375488": {
+            "avatar": "../../1035264325390172262/1125917203036909679/monke1024x"
+          },
+          "298475055141355520": {
+            "flags": 1
+          }
+        }
+      }
+    },
+    "messageLinkPreview": true,
+    "removeBrand": true
   }
 }
