@@ -63,8 +63,8 @@ initrd /${ucode}.img
 initrd /initramfs-linux.img
 EOF
 fi
-echo "options rd.luks.name=${rootUUID:?}=${host} root=/dev/mapper/${host} rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux.conf
-echo "options rd.luks.name=${rootUUID}=${host} root=/dev/mapper/${host} rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3" >> /boot/loader/entries/archlinux-lts.conf
+echo "options rd.luks.name=${rootUUID:?}=${host} root=/dev/mapper/${host} rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3 intel_iommu=on iommu=pt" >> /boot/loader/entries/archlinux.conf
+echo "options rd.luks.name=${rootUUID}=${host} root=/dev/mapper/${host} rootflags=subvol=root rw loglevel=3 rd.udev.log_priority=3 intel_iommu=on iommu=pt" >> /boot/loader/entries/archlinux-lts.conf
 
 log info "Creating LTS backup boot entry (will not work until later installation stages)"
 cp /boot/loader/entries/archlinux.conf /boot/loader/entries/archlinux-lts.conf

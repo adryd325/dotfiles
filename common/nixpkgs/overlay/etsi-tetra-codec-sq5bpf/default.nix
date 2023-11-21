@@ -19,7 +19,6 @@ stdenv.mkDerivation rec {
     (fetchpatch {
       url = "https://raw.githubusercontent.com/sq5bpf/install-tetra-codec/master/codec.diff";
       hash = "sha256-HM5KGt34GC70djDzxMrXQsybICY+IBKLKxOd3HJvmnA=";
-      sha256 = "02c8a585086f6739c4ce1ff35ce5cd99d2f28b800234a9ed9f684507e7417274";
     })
   ];
 

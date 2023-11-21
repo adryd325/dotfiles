@@ -6,6 +6,85 @@ user_pref("gfx.color_management.enablev4", true);
 user_pref("gfx.color_management.rendering_intent", -1);
 user_pref("gfx.color_management.display_profile", "__REPLACE_ME__ICC_PROFILE_PATH__");
 
+// idk
+user_pref("browser.topsites.useRemoteSetting", false); // hide sponsored shortcuts button
+lockPref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
+lockPref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+user_pref("browser.privatebrowsing.vpnpromourl", "");
+user_pref("extensions.getAddons.showPane", false); // HIDDEN
+user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
+user_pref("browser.preferences.moreFromMozilla", false);
+user_pref("extensions.pocket.enabled", false);
+
+
+user_pref("nglayout.initialpaint.delay", 0);
+user_pref("nglayout.initialpaint.delay_in_oopif", 0);
+user_pref("content.notify.interval", 100000);
+
+/** EXPERIMENTAL ***/
+user_pref("layout.css.grid-template-masonry-value.enabled", true);
+user_pref("dom.enable_web_task_scheduling", true);
+user_pref("layout.css.has-selector.enabled", true);
+user_pref("dom.security.sanitizer.enabled", true);
+
+/** GFX ***/
+//user_pref("gfx.canvas.accelerated", true); // enable if using a dedicated GPU on WINDOWS
+user_pref("gfx.canvas.accelerated.cache-items", 4096);
+user_pref("gfx.canvas.accelerated.cache-size", 512);
+user_pref("gfx.content.skia-font-cache-size", 20);
+
+/** BROWSER CACHE ***/
+user_pref("browser.cache.disk.enable", false);
+
+/** MEDIA CACHE ***/
+user_pref("media.memory_cache_max_size", 65536);
+user_pref("media.cache_readahead_limit", 7200);
+user_pref("media.cache_resume_threshold", 3600);
+
+/** IMAGE CACHE ***/
+user_pref("image.mem.decode_bytes_at_a_time", 32768);
+
+/** NETWORK ***/
+user_pref("network.buffer.cache.size", 262144);
+user_pref("network.buffer.cache.count", 128);
+user_pref("network.http.max-connections", 1800);
+user_pref("network.http.max-persistent-connections-per-server", 10);
+user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
+user_pref("network.http.pacing.requests.enabled", false);
+user_pref("network.dnsCacheEntries", 1000);
+user_pref("network.dnsCacheExpiration", 86400);
+user_pref("network.dns.max_high_priority_threads", 8);
+user_pref("network.ssl_tokens_cache_capacity", 10240);
+
+/** SPECULATIVE CONNECTIONS ***/
+user_pref("network.http.speculative-parallel-limit", 0);
+user_pref("network.dns.disablePrefetch", true);
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
+user_pref("browser.places.speculativeConnect.enabled", false);
+user_pref("network.prefetch-next", false);
+user_pref("network.predictor.enabled", false);
+user_pref("network.predictor.enable-prefetch", false);
+
+
+/** [SECTION] NEW TAB PAGE
+ * we want NTP to display nothing but the search bar without anything distracting.
+ * the three prefs below are just for minimalism and they should be easy to revert for users.
+ */
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
+user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
+// hide stories and sponsored content from Firefox Home
+lockPref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+lockPref("browser.newtabpage.activity-stream.showSponsored", false);
+lockPref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+// disable telemetry in Firefox Home
+lockPref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+lockPref("browser.newtabpage.activity-stream.telemetry", false);
+// hide stories UI in about:preferences#home, empty highlights list
+lockPref("browser.newtabpage.activity-stream.feeds.section.topstories.options", "{\"hidden\":true}");
+lockPref("browser.newtabpage.activity-stream.default.sites", "");
+
+
 // Theming
 user_pref("browser.devedition.theme.enabled", true);
 user_pref("devtools.theme", "dark");
@@ -17,81 +96,27 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("gnomeTheme.systemIcons", false);
 user_pref("gnomeTheme.hideSingleTab", true);
 
-// Disable Firefox's new "Proton" theme (until firefox-gnome-theme works)
-user_pref("browser.proton.contextmenus.enabled", true);
-user_pref("browser.proton.doorhangers.enabled", true);
-user_pref("browser.proton.enabled", true);
-user_pref("browser.proton.modals.enabled", true);
-
 // Enable SVG context-propertes (GNOME Theme)
 user_pref("svg.context-properties.content.enabled", true);
-
-// Disable Pocket
-user_pref("extensions.pocket.enabled", false);
-user_pref("extensions.pocket.site", "");
-user_pref("extensions.pocket.oAuthConsumerKey", "");
-user_pref("extensions.pocket.api", "");
-
-// Disable Firefox Account
-user_pref("identity.fxaccounts.remote.root", "");
-user_pref("identity.fxaccounts.enabled", false);
-user_pref("identity.fxaccounts.auth.uri", "");
-user_pref("identity.fxaccounts.remote.oauth.uri", "");
-user_pref("identity.fxaccounts.remote.profile.uri", "");
-user_pref("identity.fxaccounts.service.monitorLoginUrl", "");
-
-// No Location Services pls
-user_pref("geo.enabled", false);
-user_pref("geo.wifi.uri", "");
-user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
-user_pref("geo.provider.use_corelocation", false); // [MAC]
-user_pref("geo.provider.use_gpsd", false); // [LINUX]
-user_pref("geo.provider.network.url", "");
-user_pref("geo.provider.network.logging.enabled", false);
-user_pref("geo.provider-country.network.scan", false);
-user_pref("geo.provider-country.network.url", "");
-user_pref("browser.search.region", "US");
-user_pref("browser.search.geoip.url", "");
-user_pref("browser.search.geoSpecificDefaults.url", "");
 
 // Don't try fix typo'd URLs
 user_pref("browser.fixup.alternate.enabled", false);
 
-// Nicer new tab page
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
-user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
-user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
-user_pref("browser.newtabpage.activity-stream.showSponsored", false);
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
-user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned", "duckduckgo");
-user_pref("browser.newtabpage.pinned", "[{\"url\":\"https://duckduckgo.com\",\"label\":\"@duckduckgo\",\"searchTopSite\":true}]");
-
-// No spell check
-user_pref("layout.spellcheckDefault", 0);
-
 // Disable search suggestions
-user_pref("browser.search.suggest.enabled", false);
-user_pref("browser.urlbar.showSearchSuggestionsFirst", false);
 user_pref("browser.urlbar.suggest.engines", false);
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.openpage", false);
 user_pref("browser.urlbar.suggest.searches", false);
-user_pref("browser.urlbar.suggest.topsites", false);
 
 // No autofill or password manager
-user_pref("signon.autofillForms", false);
-user_pref("signon.generation.enabled", false);
-user_pref("signon.management.page.breach-alerts.enabled", false);
 user_pref("signon.rememberSignons", false);
+user_pref("signon.autofillForms", false);
 user_pref("extensions.formautofill.addresses.enabled", false);
 user_pref("extensions.formautofill.creditCards.enabled", false);
+user_pref("signon.formlessCapture.enabled", false);
+
+// no ff acc
+user_pref("identity.fxaccounts.enabled", false);
 
 // Tracking Protection
 user_pref("network.cookie.cookieBehavior", 5);
@@ -101,22 +126,8 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
 user_pref("browser.contentblocking.category", "strict");
 user_pref("privacy.resistFingerprinting", true)
 
-// Telemetry and annoyances
-user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("app.shield.optoutstudies.enabled", false);
-user_pref("browser.discovery.enabled", false);
-
 // Disable SSL Stapling
 user_pref("security.OCSP.enabled", 0);
-
-// Disable Safe Browsing
-user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
-user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
-user_pref("browser.safebrowsing.malware.enabled", false);
-user_pref("browser.safebrowsing.phishing.enabled", false);
-user_pref("browser.safebrowsing.provider.google4.lastupdatetime", "0");
-user_pref("browser.safebrowsing.provider.google4.nextupdatetime", "9999999999999");
 
 // Fix emoji font
 user_pref("font.name-list.emoji", "Noto Color Emoji");

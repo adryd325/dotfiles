@@ -1,5 +1,5 @@
 {
-  "inspectAll": true,
+  "inspectAll": false,
   "debugPatches": true,
   "dangerMode": false,
   "loggers": [
@@ -52,7 +52,9 @@
           "__420331251623395358": "Mary's House",
           "420331251623395362": "729760233408168027",
           "__751221681384718338": "Shark Corner",
-          "751221681892360277": "856173805473759296"
+          "751221681892360277": "856173805473759296",
+          "__asdf": "Server Scanning inc",
+          "1086727775144124556": "1085173760895754250"
         }
       }
     },
@@ -86,13 +88,12 @@
     "pinnedDMs": {
       "options": {
         "pinned": [
-          "843580440853217292",
           "810698798652981259",
           "1053185397892591626",
           "1015268494889197650",
           "1104456552645148692",
           "1025613447355973643",
-          "840041918003281932"
+          "1034241953702883488"
         ]
       },
       "enabled": true
@@ -125,7 +126,6 @@
       },
       "enabled": true
     },
-    "spotifyspoof": true,
     "highlight": {
       "enabled": true,
       "options": {
@@ -141,7 +141,12 @@
     "commands": true,
     "copyAvatarUrl": true,
     "cynSpeaking": true,
-    "devBanner": true,
+    "devBanner": {
+      "options": {
+        "tardidIntegration": false
+      },
+      "enabled": true
+    },
     "disableF1Help": true,
     "greentext": true,
     "guildProfile": true,
@@ -164,7 +169,6 @@
       }
     },
     "unminifyErrors": true,
-    "tardid": true,
     "alwaysTrust": true,
     "antiDelete": {
       "enabled": true,
@@ -196,6 +200,29 @@
       }
     },
     "messageLinkPreview": true,
-    "removeBrand": true
+    "removeBrand": true,
+    "arbitraryVoiceMessages": true,
+    "whoJoined": true,
+    "ttsLinux": true,
+    "nonix": true,
+    "platformIcons": true,
+    "chatsounds": {
+      "options": {
+        "default": false
+      },
+      "enabled": true
+    },
+    "typingChannel": true,
+    "badAppleSpotify": true,
+    "shiftjis": true,
+    "profileModalLib": true,
+    "roleTags": {
+      "enabled": false,
+      "options": {
+        "icons": true
+      }
+    },
+    "blocked": true,
+    "decor": true
   }
 }

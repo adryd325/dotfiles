@@ -23,9 +23,11 @@ mkdir -p /tmp/telive/in
 ln -sf /tmp/telive/out .
 ln -sf /tmp/telive/in .
 
+sudo systemctl restart sdrplay
+
 socat -b 4096 UDP-RECV:42001 STDOUT \
-    | python2.7 "$(nix-store -q "$(command -v tetra-rx)")"/lib/osmo-tetra-sq5bpf/demod/python-3.7/simdemod2.py -o /dev/stdout -i /dev/stdin \
-    | TETRA_HACK_RXID=1 TETRA_HACK_PORT=7379 tetra-rx -r -s -i /dev/stdin &
+    | python3 "$(nix-store -q "$(command -v tetra-rx)")"/lib/osmo-tetra-sq5bpf/demod/gnuradio-3.10/simdemod3_py3.py -o /dev/stdout -i /dev/stdin \
+    | TETRA_HACK_RXID=1 TETRA_HACK_PORT=7379 tetra-rx -r -s  /dev/stdin &
 
 nix-shell --pure --command 'python3 phys_sdrplay.py' sdrplay.nix &
 

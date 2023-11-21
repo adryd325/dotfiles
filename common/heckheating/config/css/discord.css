@@ -50,7 +50,7 @@ code.inline,
   --saturation: 1;
 }
 
-[class*="desaturateUserColors-"] {
+[class*="desaturateUserColors_"] {
   filter: saturate(var(--saturation)) contrast(var(--contrast)) brightness(var(--brightness)) !important;
 }
 

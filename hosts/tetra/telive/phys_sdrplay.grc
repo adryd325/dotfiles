@@ -244,7 +244,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [632, 128.0]
+    coordinate: [624, 200.0]
     rotation: 0
     state: bypassed
 - name: freq_xlating_fir_filter_xxx_0
@@ -361,4 +361,4 @@ connections:
 
 metadata:
   file_format: 1
-  grc_version: 3.9.8.0
+  grc_version: 3.10.7.0

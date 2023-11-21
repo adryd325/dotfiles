@@ -5,7 +5,7 @@ source ../lib/download.sh
 source ../lib/temp.sh
 AR_MODULE="nix"
 
-if ! [[ -e "/nix" ]]; then
+if ! [ "$(ls -A /nix)" ]; then
     tempDir=$(mkTemp)
     (
     cd "${tempDir}" || exit $?

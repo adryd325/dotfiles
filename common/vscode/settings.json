@@ -2,59 +2,26 @@
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.telemetryLevel": "off",
-    "editor.minimap.enabled": false,
-    "editor.suggest.showStatusBar": true,
-    "eslint.alwaysShowStatus": true,
     "editor.fontFamily": "'Comic Code', 'Rec Mono Linear', 'Cascadia Code', 'IBM Plex Mono', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace",
     "editor.fontSize": 15,
-    "workbench.iconTheme": null,
-    "workbench.editor.decorations.badges": false,
-    "workbench.settings.editor": "json",
-    "workbench.settings.enableNaturalLanguageSearch": false,
-    "workbench.settings.openDefaultSettings": true,
-    "zenMode.fullScreen": false,
-    "zenMode.centerLayout": false,
-    "zenMode.restore": false,
-    "update.mode": "none",
-    "update.showReleaseNotes": false,
-    "extensions.autoUpdate": false,
     "security.workspace.trust.enabled": false,
-    "explorer.confirmDragAndDrop": false,
-    "editor.renderWhitespace": "none",
-    "shellcheck.customArgs": [
-        "-x"
-    ],
-    "C_Cpp.intelliSenseEngine": "Disabled",
-    "editor.suggestSelection": "first",
-    "files.exclude": {
-        "**/.classpath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
-    },
-    "prettier.tabWidth": 2,
-    "editor.tabSize": 2,
     "window.titleBarStyle": "custom",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[svelte]": {
-        "editor.defaultFormatter": "svelte.svelte-vscode"
+    "editor.suggest.showWords": false,
+    "workbench.colorTheme": "GitHub Dark",
+    "rust-analyzer.trace.extension": true,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.unicodeHighlight.ambiguousCharacters": false,
-    "hexeditor.columnWidth": 8,
-    "hexeditor.showDecodedText": true,
-    "hexeditor.defaultEndianness": "little",
-    "hexeditor.inspectorType": "aside",
-    "cSpell.enabledLanguageIds": [
-        "html"
-    ],
-    "workbench.colorTheme": "GitHub Dark"
-    // "editor.rulers": [
-    //     80
-    // ]
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

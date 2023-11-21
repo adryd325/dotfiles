@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+cd "$(dirname "$0")" || exit $?
+
+../discord/_install.sh stable ptb canary development
+../heckheating/_install.sh stable ptb canary development
+../discord/wmclass-fix.sh stable ptb canary development

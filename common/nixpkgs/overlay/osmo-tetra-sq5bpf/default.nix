@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   pname = "osmo-tetra-sq5bpf";
-  version = "f730be3e7e426bf4d2b499574f66b26733642c3d";
+  version = "4e9f1b23b460a6b24270ece685ac68d4d7fd4cc8";
 
   src = fetchFromGitHub {
     owner = "sq5bpf";
     repo = "osmo-tetra-sq5bpf";
     rev = version;
-    sha256 = "sha256-a5lMrotuRd8rm07TdpEYklCdIICc64HJwB3Kl5PQ4Iw=";
+    sha256 = "sha256-tjaf5ex+RhwAIr9U7i8ZEyyErk2oYKs5ykU6SCsCbOQ=";
   };
 
   propagatedBuildInputs = [
@@ -20,6 +20,7 @@ stdenv.mkDerivation rec {
   ];
 
   preBuild = ''
+    ls
     cd src
   '';
 

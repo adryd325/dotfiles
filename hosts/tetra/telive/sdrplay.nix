@@ -1,4 +1,4 @@
-{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-22.11.tar.gz") {
+{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz") {
   overlays = [
      (import ~/.config/nixpkgs/overlays/adryd-dotfiles/default.nix)
      (import ~/.config/nixpkgs/overlays/adryd-dotfiles/pillow-no-check.nix)

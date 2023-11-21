@@ -1,46 +1,12 @@
 {
   "modules": {
-    "postnet": true,
-    "sentrynerf": true,
     "pseudoscience": true,
+    "sentrynerf": true,
+    "crashScreen": true,
     "loadingScreen": true,
     "autoPatch": true,
     "linuxUpdater": true,
-    "litecord": {
-      "enabled": true,
-      "options": {
-        "API_ENDPOINT": "//discord2.gaycatgirl.sex/api",
-        "API_VERSION": 9,
-        "GATEWAY_ENDPOINT": "wss://gateway.discord2.gaycatgirl.sex",
-        "WEBAPP_ENDPOINT": "//discord.com",
-        "CDN_HOST": "cdn.discordapp.com",
-        "ASSET_ENDPOINT": "https://discord.com",
-        "MEDIA_PROXY_ENDPOINT": "https://dev-mediaproxy.litecord.top",
-        "WIDGET_ENDPOINT": "//discord.com/widget",
-        "INVITE_HOST": "dev.litecord.top/i",
-        "GUILD_TEMPLATE_HOST": "discord.new",
-        "GIFT_CODE_HOST": "discord.gift",
-        "RELEASE_CHANNEL": "canary",
-        "MARKETING_ENDPOINT": "//discord.com",
-        "BRAINTREE_KEY": "production_5st77rrc_49pp2rp4phym7387",
-        "STRIPE_KEY": "pk_test_qSm4KsPR68rb98QX0cOokA2H",
-        "NETWORKING_ENDPOINT": "//router.discordapp.net",
-        "RTC_LATENCY_ENDPOINT": "//latency.discord.media/rtc",
-        "ACTIVITY_APPLICATION_HOST": "discordsays.com",
-        "PROJECT_ENV": "production",
-        "REMOTE_AUTH_ENDPOINT": "//remote-auth-gateway.discord.gg",
-        "SENTRY_TAGS": {
-          "buildId": "ffe3d49",
-          "buildType": "normal"
-        },
-        "MIGRATION_SOURCE_ORIGIN": "https://discordapp.com",
-        "MIGRATION_DESTINATION_ORIGIN": "https://discord.com",
-        "HTML_TIMESTAMP": 1630117223762,
-        "ALGOLIA_KEY": "aca0d7082e4e63af5ba5917d5e96bed0",
-        "useZlibStream": false
-      }
-    },
-    "experiments": true
-  },
-  "debugPatches": true
+    "postnet": true,
+    "preserveToken": true
+  }
 }

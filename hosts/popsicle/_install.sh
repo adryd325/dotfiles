@@ -31,7 +31,7 @@ sudo pacman -Syyu --noconfirm
 ../../common/hide-internal-apps/hide-internal-apps.sh
 ../../common/timesyncd.sh
 ../../common/gnome-shell/_install.sh
-../../common/gnome-terminal/_install.sh
+# ../../common/gnome-terminal/_install.sh
 ../../common/alacritty/_install.sh
 ../../common/vscode/_install.sh
 ../../common/discord/_install.sh "stable" "ptb" "canary" "development"
@@ -46,8 +46,9 @@ sudo systemctl enable gdm > /dev/null
 sudo systemctl enable cups > /dev/null
 sudo systemctl enable touchegg > /dev/null
 sudo systemctl enable thermald > /dev/null
-sudo systemctl enable power-profiles-daemon > /dev/null
 sudo systemctl enable libvirtd > /dev/null
 sudo systemctl enable systemd-resolved > /dev/null
 systemctl --user enable pipewire > /dev/null
 systemctl --user enable pipewire-pulse > /dev/null
+sudo virsh net-autostart default
+sudo virsh net-start default

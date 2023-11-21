@@ -11,7 +11,7 @@ log info "Adding mkinitcpio hook"
 if ! grep "# .ADRYD LOCK (${AR_MODULE})" /etc/mkinitcpio.conf > /dev/null; then
     sudo tee -a /etc/mkinitcpio.conf > /dev/null <<EOF
 # .ADRYD LOCK (${AR_MODULE}) (this is to prevent the deploy script from infinitely appending this config to the end of the file)
-HOOKS+=(sd-plymouth)
+HOOKS+=(plymouth)
 EOF
     shouldRebuild=true
 fi

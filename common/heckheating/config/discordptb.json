@@ -1,13 +1,12 @@
 {
   "modules": {
-    "sentrynerf": {
-      "enabled": false
-    },
-    "pseudoscience": {
-      "enabled": false
-    },
+    "pseudoscience": true,
+    "sentrynerf": true,
+    "crashScreen": true,
+    "loadingScreen": true,
+    "autoPatch": true,
     "linuxUpdater": true,
-    "magicrequire": true
-  },
-  "debugPatches": true
+    "postnet": true,
+    "preserveToken": true
+  }
 }

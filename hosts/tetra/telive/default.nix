@@ -1,4 +1,4 @@
-{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-21.05.tar.gz") {
+{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz") {
   overlays = [
      (import ~/.config/nixpkgs/overlays/adryd-dotfiles/default.nix)
      (import ~/.config/nixpkgs/overlays/adryd-dotfiles/pillow-no-check.nix)
@@ -10,18 +10,17 @@ pkgs.mkShell {
     rtl-sdr
     libxml2
     ncurses
-    python27
-    python27Packages.numpy
-    python27Packages.pillow
-    gnuradio3_7Packages.osmosdr
+    python310
+    python310Packages.numpy
+    gnuradioPackages.osmosdr
     socat
     etsi-tetra-codec-sq5bpf
     libosmocore-sq5bpf
     osmo-tetra-sq5bpf
     telive
     lxterminal
-    (gnuradio3_7.override {
-      extraPackages = with gnuradio3_7Packages; [
+    (gnuradio.override {
+      extraPackages = with gnuradioPackages; [
         osmosdr
       ];
     })
@@ -30,7 +29,7 @@ pkgs.mkShell {
     export TETRA_OUTDIR="$(pwd)/in"
     export TETRA_LOGFILE="$(pwd)/telive.log"
     #export TETRA_PORT=7379 # default
-    export TETRA_KEYS=mwq! # mutessi, autoscan, start scanning, buffered audio
+    #export TETRA_KEYS=mwq! # mutessi, autoscan, start scanning, buffered audio
     #export TETRA_SSI_FILTER=
     #export TETRA_KML_FILE=$(pwd)/tetra1.kml
     #export TETRA_KML_INTERVAL=30
@@ -38,8 +37,8 @@ pkgs.mkShell {
     export TETRA_XMLFILE=tetra.xml
     export TETRA_LOCK_FILE=telive_lock # default
     export TETRA_GR_XMLRPC_URL=http://127.0.0.1:42000/ # default
-    export TETRA_SCAN_LIST="412.0375-413.1875/12.5;422.0375-424.0/12.5" # TTC Slow
-    #export TETRA_SCAN_LIST="412.0375-412.0376/1;412.0625-412.0626/1;412.1125-412.1126/1;412.2125-412.2126/1;412.6125-412.6126/1;412.9625-412.9626/1;413.1875-413.1876/1;422.6625-422.6626/1;422.6875-422.6876/1;422.8-422.8001/1;423.2625-423.2626/1;423.2875-423.2876/1;423.3125-423.3126/1;423.3375-423.3376/1;423.3625-423.3626/1;423.4375-423.4376/1;423.4625-423.4626/1;423.5375-423.5376/1;423.6125-423.6126/1;423.7375-423.7376/1" # TTC Fast
+    #export TETRA_SCAN_LIST="412.0375-413.1875/12.5;422.0375-424.0/12.5" # TTC Slow
+    export TETRA_SCAN_LIST="412.0375-412.0376/1;412.0625-412.0626/1;412.1125-412.1126/1;412.2125-412.2126/1;412.6125-412.6126/1;412.9625-412.9626/1;413.1875-413.1876/1;422.6625-422.6626/1;422.6875-422.6876/1;422.8-422.8001/1;423.2625-423.2626/1;423.2875-423.2876/1;423.3125-423.3126/1;423.3375-423.3376/1;423.3625-423.3626/1;423.4375-423.4376/1;423.4625-423.4626/1;423.5375-423.5376/1;423.6125-423.6126/1;423.7375-423.7376/1" # TTC Fast
     #export TETRA_FREQLOGFILE=telive_frequency.log # default
     export TETRA_FREQUENCY_REPORT_FILE=telive_frequency_report.txt # default
     #export TETRA_RX_GAIN=30

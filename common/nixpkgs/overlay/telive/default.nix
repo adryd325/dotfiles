@@ -1,19 +1,20 @@
-{ lib, stdenv, fetchFromGitHub, libxml2, ncurses, callPackage }:
+{ lib, stdenv, fetchFromGitHub, libxml2, ncurses, pkg-config, callPackage }:
 
 stdenv.mkDerivation rec {
   pname = "telive";
-  version = "04aae1219abdbeb689536ddd293f18562c6e1709";
+  version = "6b24f7a489b79912ec6e6c54f24c4987bb6805d9";
 
   src = fetchFromGitHub {
-    owner = "adryd325";
+    owner = "sq5bpf";
     repo = "telive";
     rev = version;
-    sha256 = "sha256-ErNqxKxL/4caCHPO1o3eaUMbk9tbnJcrE40EBqwil3g=";
+    sha256 = "sha256-OLghxwOg8CUvvPsV/oSZc6jbinmkICMevoBifQLaVGc";
   };
 
   nativeBuildInputs = [
     libxml2
     ncurses
+    pkg-config
     (callPackage ../libosmocore-sq5bpf { })
     (callPackage ../osmo-tetra-sq5bpf { })
   ];

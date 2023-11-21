@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 packages=(
-    # BASE
+    # Base
     "linux"
     "linux-firmware"
     "linux-headers"
@@ -19,28 +19,74 @@ packages=(
     "pacman"
     "openssh"
 
-    # GNOME
-    "adwaita-icon-theme"
-    # "gnome-browser-conncetor"
-    "gdm-prime"
-    "gnome-backgrounds"
-    "gnome-browser-connector"
-    "gnome-color-manager"
-    "gnome-control-center"
-    "gnome-keyring"
+    # Drivers
+    "nvidia"
+    "nvidia-lts"
+    "nvidia-prime"
+    "nvidia-settings"
+    "nvidia-utils"
+    #"lib32-nvidia-utils" # Needed for steam runing with dedicated gpu
+    "vulkan-intel"
+    #"lib32-vulkan-intel"
+    "intel-media-driver"
+    "cuda"
+    "fprintd"
+
+    # Extra kernel
+    "linux-lts"
+    "linux-lts-headers"
+
+    # Gnome DE
+    "gdm"
     "gnome-session"
-    "gnome-settings-daemon"
     "gnome-shell"
-    "gnome-terminal"
+
+    # Gnome essentials
+    "gnome-console"
+    "gnome-control-center"
+    "gnome-software"
+    "gnome-text-editor"
+    "nautilus"
+    "firefox"
+
+    # Gnome services
+    "gnome-backgrounds"
+    "gnome-color-manager"
+    "gnome-menus"
+    "gnome-shell-extensions"
+    "gnome-settings-daemon"
+    "gnome-browser-connector"
+    "malcontent"
+    "system-config-printer"
     "gvfs"
     gvfs-{afc,gphoto2,nfs,smb}
-    "libgdm-prime"
-    "mutter"
-    "plymouth"
-    "sushi"
-    "tracker3"
-    "tracker3-miners"
+    "orca"
+    "sushi" # file preview
     "xdg-desktop-portal-gnome"
+    "xdg-user-dirs-gtk"
+    gnome-bluetooth-3.0
+     gst-plugins-good
+     gst-plugin-pipewire
+     "switcheroo-control"
+     usbguard
+
+    # Gnome apps
+    "baobab"
+    "evince"
+    "file-roller"
+    "gnome-calculator"
+    "gnome-calendar"
+    "gnome-connections"
+    "gnome-contacts"
+    "gnome-disk-utility"
+    "gnome-keyring"
+    "gnome-logs"
+    "gnome-system-monitor"
+    "gnome-weather"
+    "simple-scan"
+    "snapshot"
+    "loupe"
+    "totem"
 
     # Programming languages and libs
     "jdk-openjdk"
@@ -54,12 +100,38 @@ packages=(
     "python-pip"
     "rustup"
 
-    # Unsorted
-    "mesa-demos"
+    # Desktop apps
+    "thunderbird"
+    "visual-studio-code-bin"
+    "1password"
+    "obs-studio"
+    "dconf-editor"
+    "easyeffects"
+    "kcharselect" # better unicode char map
+    "veracrypt" # multiplatform drive encryption tool
+    "mpv"
+    "jetbrains-toolbox"
+    "obsidian"
+    "libreoffice-fresh"
+    "prismlauncher"
+    "xournalpp"
+    "helvum"
+    "gimp"
+    "aseprite"
+    "inkscape"
+    "signal-desktop"
+    "telegram-desktop"
+    # alt browsers
+    "chromium"
+    "torbrowser-launcher"
+
+    # Misc
+    "plymouth-git"
+    "polkit"
     "v4l2loopback-dkms"
+    "acpi_call-dkms"
     "flatpak"
     "aria2"
-    "asar"
     "bash-completion"
     "borg"
     "croc"
@@ -72,115 +144,71 @@ packages=(
     "git-crypt"
     "htop"
     "jq"
-    "mangohud"
     "gamemode"
     "mesa-utils"
     "mesa-demos"
-    "acpi_call-dkms"
     "neofetch"
-    "neovim"
     "shellcheck"
     "strace"
     "perl-authen-sasl" # git-send-email
     "perl-io-socket-ssl" # git-send-email
     "touchegg"
-    "insect"
     "intel-gpu-tools"
     "screen"
-    "bash-completion"
-    "polkit"
-    "python"
     "google-cloud-cli"
     "caddy"
     "usbutils"
-
-    # performance and battery
-    "thermald"
-    "power-profiles-daemon"
-    "powertop"
-    "intel-undervolt"
-
-    # Uncategorized gui tools
-    "obs-studio"
-    "dconf-editor"
-    "easyeffects"
-    "gnome-calculator"
-    "kcharselect" # better unicode char map
-    "veracrypt" # multiplatform drive encryption tool
-    #"celluloid" # Video player based on mpv
-    "mpv"
-    "gnome-font-viewer"
-    "gnome-shell-extensions"
-    "gnome-software"
-    "gnome-tweaks"
-    "gnome-weather"
-    "totem" # Video player
-    "nautilus"
-    "baobab" # Disk usage analyzer
-    "eog" # Image viewer
-    "file-roller"
-    "jetbrains-toolbox"
-    "obsidian"
-    # "rpi-imager-bin"
-    "cheese"
-    "libreoffice-fresh"
-    "simplescreenrecorder"
-
     "xclip"
     "xorg-xkill"
-
+    hunspell-en_US
+    # performance and battery
+    "powertop"
+    "tlp"
+    "throttled"
+    # pacman stuff
     "pacman-contrib"
     "reflector"
-
     # coreutils clones
     "the_silver_searcher" # command: ag. used to find text contents of files with minimal syntax
-    # "bat" # cat clone
-
-    # Text editors
-    "visual-studio-code-bin" # microsoft build of vscode. Needed for live-share
-    "gnome-text-editor"
-
-    # Archival tools and filesystems
+    # archival and fs stuff
     "unzip"
     "zip"
     "p7zip"
     "cdrtools" # Make isos, does a lot more but felt it fit here
     "ntfs-3g"
     "exfatprogs"
-
-    # Browsers
-    "firefox"
-    "chromium"
-    "torbrowser-launcher"
-
-    # Multimedia
+    # multimedia
     "ffmpeg"
     "yt-dlp"
     "imagemagick"
     "gifski"
-
-    # Audio
-    "wireplumber"
-    "pipewire"
-    "pipewire-pulse"
-    "pipewire-jack"
-    "alsa-utils"
-    "helvum"
-    "pavucontrol"
-
-    # Passwords and OTPs
-    "1password"
-    # "keepassxc"
-    "yubioath-desktop"
-    "libfido2"
-    "solo2-cli-git"
-
-    # Build Tools used frequently by things I use on the AUR
+    # build tools frequently pulled when compiling on the aur
     "cmake"
     "meson"
     "ninja"
+    # virtualization
+    "virt-viewer"
+    "virt-manager"
+    "qemu-desktop"
+    "qemu-emulators-full"
+    "qemu-user-static"
+    "qemu-user-static-binfmt"
+    "dnsmasq" # dns server, needed for vm stuff so in this category
+    "edk2-ovmf"
+    "edk2-aarch64"
+    "swtpm" # virtual TPM
+    # network
+    "inetutils" # includes drill
+    "nmap"
+    "bind" # includes dig
+    "openbsd-netcat" # open tcp sockets to anything
+    "whois"
+    "traceroute"
+    "edk2-shell"
+    # wine
+    wine-{gecko,mono,staging}
 
-    # FONTS!!!
+    # Fonts
     "cantarell-fonts" # Cantarell
     "inter-font" # Inter
     "gsfonts" # Nimbus Roman
@@ -193,37 +221,6 @@ packages=(
     "ocr-fonts"
     "ttf-roboto"
 
-    # Extra kernel
-    "linux-lts"
-    "linux-lts-headers"
-
-    # Drivers
-    "nvidia"
-    "nvidia-lts"
-    "nvidia-prime"
-    "nvidia-settings"
-    "nvidia-utils"
-    "lib32-nvidia-utils" # Needed for steam runing with dedicated gpu
-    "vulkan-intel"
-    "lib32-vulkan-intel"
-    "intel-media-driver"
-    "switcheroo-control"
-    "cuda"
-    "fprintd"
-    # "rtl8812au-dkms-git" # USB wifi dongle for hotspot
-
-    # Games
-    # "steam"
-    "prismlauncher"
-
-    # Network tools
-    "inetutils" # includes drill
-    "nmap"
-    "bind" # includes dig
-    "openbsd-netcat" # open tcp sockets to anything
-    "whois"
-    "traceroute"
-
     # Network uhh
     "piavpn-bin"
     "nm-connection-editor"
@@ -234,47 +231,14 @@ packages=(
     "adw-gtk3-git" # Make all gtk3 apps look like libadwaita
     # "qt5ct" # Make QT apps not look awful
 
-    # Productivity
-    "simple-scan"
-    "thunderbird"
-    "gnome-calendar" # useful to show tasks in the system calendar even if you dont use it itself
-    "xournalpp" # pdf markup tool
-
-    # Creating things
-    "aseprite" # pixel art editor
-    #"blender"
-    #kicad{,-library{,-3d}} # PCB design
-    "gimp"
-    "inkscape"
-
-    # VM stuff
-    "virt-viewer"
-    "virt-manager"
-    "qemu-desktop"
-    "qemu-emulators-full"
-    "qemu-user-static"
-    "qemu-user-static-binfmt"
-    "dnsmasq" # dns server, needed for vm stuff so in this category
-    "edk2-ovmf"
-    "edk2-aarch64"
-    "swtpm" # virtual TPM
-
-    # Wine
-    wine-{gecko,mono,staging}
-
-    # Remote desktop
-    # "freerdp" # for remmina
-    # "libvncserver" # for remmina
-    # "remmina"
-
-    # Smartcard stuff
-    #"libnfc"
-    #"libfreefare-git"
-    #"cardpeek" # read contents of many smartcards
-    #"mrtdreader" # read contents of passports
-    # "globalplatformpro" # javacard toolkit
     # proxmark3 deps
-    ccache git readline bzip2 arm-none-eabi-gcc arm-none-eabi-newlib qt5-base bluez python
+    "ccache"
+    "readline"
+    "bzip2"
+    "arm-none-eabi-gcc"
+    "arm-none-eabi-newlib"
+    "qt5-base"
+    "bluez"
 
     # SDR stuff
     # "rtl-sdr"
@@ -289,33 +253,26 @@ packages=(
     # "spi-ch341-usb-dkms"
     # "chirp-hg"
 
-    # Social networking kinda
-    #"mumble"
-    "signal-desktop"
-    "telegram-desktop"
-
     # Disassembling java stuff
     #"jadx" # convert the weird apk java thing to something human readable
     #"recaf" # java bytecode editor
-
-    # Watch stuff
-    # "itd-bin"
 )
 
 flatpaks=(
     #"net.blockbench.Blockbench"
-    "com.github.tchx84.Flatseal"
-    # "re.sonny.Junction"
-    "com.belmoussaoui.Obfuscate"
-    "com.parsecgaming.parsec"
     #"uk.co.powdertoy.tpt"
+    "com.github.tchx84.Flatseal"
+    "re.sonny.Junction"
+    "com.belmoussaoui.Obfuscate"
     "org.gnome.SoundRecorder"
-    "io.github.celluloid_player.Celluloid"
     "com.yubico.yubioath"
     "com.spotify.Client"
     "com.slack.Slack"
     "com.raggesilver.BlackBox"
     "im.riot.Riot"
+    "org.localsend.localsend_app"
+    "org.gnome.Solanum"
+    "com.usebottles.bottles"
 )
 
 export packages

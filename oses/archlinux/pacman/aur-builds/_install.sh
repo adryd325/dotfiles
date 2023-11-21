@@ -16,4 +16,4 @@ fi
 
 log info "Trusting AUR repo keys"
 sudo pacman-key --add ./aur-builds.asc &> /dev/null
-sudo pacman-key --lsign-key aur-builds@adryd.com &> /dev/null
+sudo pacman-key --lsign-key me@adryd.com &> /dev/null
