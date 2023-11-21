@@ -7,6 +7,7 @@ export extensions=(
     "ms-vsliveshare.vsliveshare"
     "usernamehw.errorlens"
     "cab404.vscode-direnv"
+    "eamodio.gitlens"
 
     # Javascript
     "dbaeumer.vscode-eslint"
@@ -23,6 +24,7 @@ export extensions=(
 
     # Java
     "redhat.java"
+    "vscjava.vscode-java-pack"
 
     # Nix
     "jnoortheen.nix-ide"

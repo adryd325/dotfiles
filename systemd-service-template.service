@@ -2,22 +2,12 @@
 Description=
 
 [Service]
-Environment="NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/adryd-root-ca.crt"
 WorkingDirectory=
 
 User=
 Group=
 
 ExecStart=
-
-# A lot of this is excessive, but every bit of security counts
-PrivateUsers=true
-ProtectSystem=full
-# disable this if the service uses git+ssh or access the home folder
-ProtectHome=true
-ProtectKernelTunables=true
-ProtectKernelModules=true
-ProtectControlGroups=true
 
 [Install]
 WantedBy=multi-user.target
