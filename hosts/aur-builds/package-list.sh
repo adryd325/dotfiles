@@ -29,6 +29,7 @@ export PACKAGE_LIST=(
     python3-memoizedb # pkg_scripts dep
     python3-xcgf # pkg_scripts dep
     python3-xcpf # pkg_scripts dep
+    gst-plugin-openh264
 
     # radio
     spi-ch341-usb-dkms
