@@ -33,6 +33,7 @@ for package in "${PACKAGE_LIST[@]}"; do
     echo =======================
     echo =======================
     aur sync --pkgver --sign -A --noconfirm --nocheck --noview --remove --no-ver-argv --database "${REPO_NAME}" --root "${REPO_ROOT}" "${package}" > >(tee "/var/aur/logs/${package}.stdout.log") 2> >(tee "/var/aur/logs/${package}.stderr.log" >&2) || failed+=("${package}")
+    sleep 5
 done
 
 paccache -rc "${REPO_ROOT}" -k2
