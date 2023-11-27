@@ -26,6 +26,9 @@ export PACKAGE_LIST=(
     insect
     python-pyfuse3
     pkg_scripts
+    python3-memoizedb # pkg_scripts dep
+    python3-xcgf # pkg_scripts dep
+    python3-xcpf # pkg_scripts dep
 
     # radio
     spi-ch341-usb-dkms
@@ -61,5 +64,6 @@ export KEYS_TRUST=(
     78CEAA8CB72E4467                         # mullvad-vpn
     E53D989A9E2D47BF                         # mullvad-browser-bin
     243ACFA951F78E01                         # python-pyfuse3
-    CDBAA37ABC74FBA0                         # simplescreenrecorder
+    CDBAA37ABC74FBA0
+    12C6F735F7A9A519                 # simplescreenrecorder
 )
