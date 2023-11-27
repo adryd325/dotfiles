@@ -14,3 +14,10 @@ if ! [ "$(ls -A /nix)" ]; then
     yes | sh install "$@"
     )
 fi
+
+if [[ ! -e /etc/nix/nix.conf ]]; then
+    sudo tee /etc/nix/nix.conf  > /dev/null <<EOF
+build-users-group = nixbld
+extra-experimental-features = nix-command flakes
+EOF
+fi

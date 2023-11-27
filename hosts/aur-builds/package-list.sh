@@ -9,27 +9,23 @@ export PACKAGE_LIST=(
     mullvad-vpn
     visual-studio-code-bin
     jetbrains-toolbox
+    parsec-bin
 
     qflipper-git
     rpi-imager
-    simplescreenrecorder
-    celt # dep of simplescreenrecorder
     mullvad-browser-bin
     google-cloud-cli
-    libgbinder # dep of waydroid
-    python-gbinder # dep of waydroid
-    libglibutil # dep of waydroid
-    binder_linux-dkms # dep of waydroid
-    waydroid
 
     adw-gtk3-git
     gdm-prime
     libgdm-prime
+    mutter-performance
     nvm
     paru
     solo2-cli-git
     insect
     python-pyfuse3
+    pkg_scripts
 
     # radio
     spi-ch341-usb-dkms
@@ -48,9 +44,7 @@ export PACKAGE_LIST=(
     # sdr
     kalibrate-rtl-git
     airspyhf-git
-    sdrpp-git
-    sdrpp-headers-git
-    sdrpp-tetra-demodulator-git
+    soapysdrplay3-git
     libsdrplay
 
     # nfc

@@ -16,3 +16,7 @@
 20230331 17:22:02 Found 423.6875MHz MCC:Unknown country [302] MNC: Unknown network [2013] CC:32 LA:32  Control:423.2875MHz
 20230331 17:22:25 Found 412.1125MHz MCC:Unknown country [302] MNC: Unknown network [2013] CC:32 LA:32  Control:423.2875MHz
 20230816 17:25:10 Found 412.9625MHz MCC:Unknown country [302] MNC: Unknown network [2013] CC:29 LA:29 CLEAR CONTROL CHANNEL
+20231122 13:02:11 Found 412.1125MHz MCC:Unknown country [302] MNC: Unknown network [2013] CC:32 LA:32 CLEAR Control:423.6875MHz
+20231122 13:02:25 Found 412.2125MHz MCC:Unknown country [302] MNC: Unknown network [2013] CC:31 LA:31 CLEAR Control:412.0625MHz
+20231122 13:02:36 Found 412.6125MHz MCC:Unknown country [302] MNC: Unknown network [2013] CC:31 LA:31 CLEAR Control:412.0625MHz
+20231122 13:02:40 Found 412.9625MHz MCC:Unknown country [302] MNC: Unknown network [2013] CC:29 LA:29 CLEAR CONTROL CHANNEL

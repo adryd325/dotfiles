@@ -67,6 +67,10 @@ packages=(
     gnome-bluetooth-3.0
      gst-plugins-good
      gst-plugin-pipewire
+     gst-plugins-bad
+     gst-plugin-openh264
+     gstreamer-vaapi
+     glfw-x11
      "switcheroo-control"
      usbguard
 
@@ -126,7 +130,7 @@ packages=(
     "torbrowser-launcher"
 
     # Misc
-    "plymouth-git"
+    "plymouth"
     "polkit"
     "v4l2loopback-dkms"
     "acpi_call-dkms"
@@ -186,6 +190,9 @@ packages=(
     "cmake"
     "meson"
     "ninja"
+    # audio
+    pipewire{,-pulse,-alsa}
+    alsa-utils
     # virtualization
     "virt-viewer"
     "virt-manager"
@@ -222,7 +229,7 @@ packages=(
     "ttf-roboto"
 
     # Network uhh
-    "piavpn-bin"
+    "mullvad-bin"
     "nm-connection-editor"
     "wireguard-tools"
     "systemd-resolvconf"
@@ -241,12 +248,12 @@ packages=(
     "bluez"
 
     # SDR stuff
-    # "rtl-sdr"
-    #"gqrx"
+    libsdrplay
+    gqrx
+    soapysdrplay3-git
     #"kalibrate-rtl-git"
     #"x11vnc" # For controlling laptop from phone
     #"vlc" # provides an easy way of broadcasting audio via http
-    # "gqrx"
 
     # Radio stuff
     # "qdmr"
