@@ -63,8 +63,8 @@ export KEYS_TRUST=(
     93BDB53CD4EBC740                         # mingw-w64
     2F391DE6B00D619C                         # mullvad-vpn
     78CEAA8CB72E4467                         # mullvad-vpn
+    AEE9DECFD582E984                         # mullvad-vpn
     E53D989A9E2D47BF                         # mullvad-browser-bin
     243ACFA951F78E01                         # python-pyfuse3
-    CDBAA37ABC74FBA0
-    12C6F735F7A9A519                 # simplescreenrecorder
+    CDBAA37ABC74FBA0                         # i forgot, one of the dependencies of pkg_scripts
 )
