@@ -16,85 +16,8 @@ ensureInstalled git direnv rtl-sdr gr-osmosdr gqrx-sdr nodejs npm vlc dnsmasq ho
 
 mkdir -p "${HOME}/_"
 
-# tetra-kit workspace
-if ! [[ -d "${HOME}/_/tetra-kit" ]]; then
-    log info "Installing tetra-kit workspace"
-    cp -r ./tetra-kit "${HOME}/_/tetra-kit"
-    (
-    cd "${HOME}/_/tetra-kit" || exit $?
-    if ! [[ -e ./phys.py ]]; then
-        curl https://gitlab.com/larryth/tetra-kit/-/raw/master/phy/pi4dqpsk_rx.grc?inline=false -o phys.grc
-    fi
-
-    if ! [[ -d ./tetra-kit-player ]]; then
-        git clone https://github.com/sonictruth/tetra-kit-player
-        (
-            cd tetra-kit-player || exit $?
-            npm i
-        )
-    fi
-    chmod +x start.sh
-    cat > .envrc <<< "use nix"
-    )
-fi
-
-# telive workspace
-if ! [[ -d "${HOME}/_/telive" ]]; then
-    log info "Installing telive workspace"
-    cp -r ./telive "${HOME}/_/telive"
-    (
-    cd "${HOME}/_/telive" || exit
-    if ! [[ -e ./tetra.xml ]]; then
-        curl https://raw.githubusercontent.com/adryd325/telive/master/tetra.xml -o tetra.xml
-    fi
-    chmod +x start.sh
-    cat > .envrc <<< "use nix"
-    )
-fi
-
-# sdr-trunk workspace
-if ! [[ -d "${HOME}/_/sdr-trunk" ]]; then
-    log info "Installing sdr-trunk"
-    mkdir "${HOME}/_/sdr-trunk"
-    (
-    cd "${HOME}/_/sdr-trunk" || exit
-    # Latest release at time of writing
-    curl https://github.com/DSheirer/sdrtrunk/releases/download/v0.5.0/sdr-trunk-linux-aarch64-v0.5.0.zip -Lo sdrtrunk.zip
-    unzip sdrtrunk.zip
-    mv -f sdr-trunk-linux-aarch64-v0.5.0/* .
-    rm -r sdr-trunk-linux-aarch64-v0.5.0 sdrtrunk.zip
-    )
-fi
-
-
-# pm3 build
-if ! [[ -d "${HOME}/_/proxmark3" ]]; then
-    log info "Installing proxmark3"
-    ensureInstalled git ca-certificates build-essential pkg-config libreadline-dev gcc-arm-none-eabi libnewlib-dev qtbase5-dev libbz2-dev libbluetooth-dev libpython3-dev libssl-dev
-    mkdir "${HOME}/_/proxmark3"
-    (
-    cd "${HOME}/_/proxmark3" || exit
-    git clone https://github.com/RfidResearchGroup/proxmark3 .
-    # Sync version between popsicle and tetra
-    git checkout 73a80fb07db22f3cba56f8e3ef7c205f1a378441
-    sed -i "s/PLATFORM=PM3RDV4/PLATFORM=PM3GENERIC/" Makefile.platform
-    make accessrights
-    make clean && make -j
-    sudo make install
-    )
-fi
-
-if ! [[ -e "${HOME}/.config/nixpkgs/config.nix" ]]; then
-    log info "Installing nixpkgs config"
-    mkdir -p "${HOME}/.config/nixpkgs"
-    cat > "${HOME}/.config/nixpkgs/config.nix" << EOF
-{
-    permittedInsecurePackages = [
-    "python2.7-Pillow-6.2.2"
-    ];
-}
-EOF
-fi
+../../workspaces/telive/_install.sh
+../../workspaces/tetra-kit/_install.sh
 
 lockStr="## adryd-dotfiles-lock (tetra)"
 if ! grep "^${lockStr}" /etc/dhcpcd.conf &> /dev/null; then

@@ -1,2 +1,5 @@
 common/heckheating/config/ext/** filter=git-crypt diff=git-crypt
+common/heckheating/config/discord.json filter=git-crypt diff=git-crypt
+common/heckheating/config/discordptb.json filter=git-crypt diff=git-crypt
+common/heckheating/config/discordcanary.json filter=git-crypt diff=git-crypt
 common/heckheating/config/discorddevelopment.json filter=git-crypt diff=git-crypt

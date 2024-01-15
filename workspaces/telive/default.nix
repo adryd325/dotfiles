@@ -29,7 +29,7 @@ pkgs.mkShell {
     export TETRA_OUTDIR="$(pwd)/in"
     export TETRA_LOGFILE="$(pwd)/telive.log"
     #export TETRA_PORT=7379 # default
-    #export TETRA_KEYS=mwq! # mutessi, autoscan, start scanning, buffered audio
+    export TETRA_KEYS=mr! # mutessi, record, buffered audio
     #export TETRA_SSI_FILTER=
     #export TETRA_KML_FILE=$(pwd)/tetra1.kml
     #export TETRA_KML_INTERVAL=30
@@ -47,8 +47,8 @@ pkgs.mkShell {
     export TETRA_RX_BASEBAND_AUTOCORRECT=1 # default
     export TETRA_RX_BASEBAND=412.9625
     export TETRA_AUTO_TUNE=1
-    #export TETRA_RX_TUNE="412.9625;"
-    #export TETRA_REC_TIMEOUT=30 # default
+    export TETRA_RX_TUNE="412.9625;"
+    export TETRA_REC_TIMEOUT=0
     #export TETRA_SSI_TIMEOUT=60 # default
     #export TETRA_IDX_TIMEOUT=8 # default
     #export TETRA_CURPLAYING_TIMEOUT=5 # default

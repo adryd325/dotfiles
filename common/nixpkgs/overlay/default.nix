@@ -7,4 +7,5 @@ self: super: {
   sdrplay = (super.callPackage ./sdrplay {});
   gr-sdrplay = (super.gnuradio3_7Packages.callPackage ./gr-sdrplay {});
   gr-sdrplay3 = (super.gnuradio3_9Packages.callPackage ./gr-sdrplay3 {});
+  sdr-trunk = (super.callPackage ./sdr-trunk {});
 }

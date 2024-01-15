@@ -70,7 +70,6 @@ packages=(
      gst-plugins-bad
      gst-plugin-openh264
      gstreamer-vaapi
-     glfw-x11
      "switcheroo-control"
      usbguard
 
@@ -80,9 +79,11 @@ packages=(
     "file-roller"
     "gnome-calculator"
     "gnome-calendar"
+    "gnome-clocks"
     "gnome-connections"
     "gnome-contacts"
     "gnome-disk-utility"
+    "gnome-font-viewer"
     "gnome-keyring"
     "gnome-logs"
     "gnome-system-monitor"
@@ -99,6 +100,8 @@ packages=(
     "jdk8-openjdk"
     "nodejs"
     "npm"
+    "prettier"
+    "eslint"
     "pnpm"
     "python"
     "python-pip"
@@ -110,7 +113,6 @@ packages=(
     "1password"
     "obs-studio"
     "dconf-editor"
-    "easyeffects"
     "kcharselect" # better unicode char map
     "veracrypt" # multiplatform drive encryption tool
     "mpv"
@@ -164,7 +166,6 @@ packages=(
     "usbutils"
     "xclip"
     "xorg-xkill"
-    hunspell-en_US
     # performance and battery
     "powertop"
     "tlp"
@@ -172,6 +173,7 @@ packages=(
     # pacman stuff
     "pacman-contrib"
     "reflector"
+    "pkg_scripts"
     # coreutils clones
     "the_silver_searcher" # command: ag. used to find text contents of files with minimal syntax
     # archival and fs stuff
@@ -193,6 +195,8 @@ packages=(
     # audio
     pipewire{,-pulse,-alsa}
     alsa-utils
+    noise-suppression-for-voice
+    rtaudio
     # virtualization
     "virt-viewer"
     "virt-manager"
@@ -206,12 +210,14 @@ packages=(
     "swtpm" # virtual TPM
     # network
     "inetutils" # includes drill
+    "mtr"
     "nmap"
     "bind" # includes dig
     "openbsd-netcat" # open tcp sockets to anything
     "whois"
     "traceroute"
     "edk2-shell"
+    "mitmproxy"
     # wine
     wine-{gecko,mono,staging}
 
@@ -229,7 +235,7 @@ packages=(
     "ttf-roboto"
 
     # Network uhh
-    "mullvad-bin"
+    "mullvad-vpn"
     "nm-connection-editor"
     "wireguard-tools"
     "systemd-resolvconf"

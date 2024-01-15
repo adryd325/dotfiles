@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-borg mount "ssh://u292366@u292366.your-storagebox.de:23/~/backups/popsicle" /mnt/borgfs -o uid=1000,gid=1000
+BORG_PASSCOMMAND="op read \"op://personal/popsicle-borg-backups/password\"" borg mount "ssh://u292366@u292366.your-storagebox.de:23/~/backups/popsicle" /mnt/borgfs -o uid=1000,gid=1000
