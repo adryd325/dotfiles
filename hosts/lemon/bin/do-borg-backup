@@ -5,4 +5,4 @@ borg create "ssh://u292366@u292366.your-storagebox.de:23/~/backups/lemon::{utcno
     --progress \
     --json \
     --log-json \
-    --patterns-from /home/adryd/.adryd/hosts/lemon/borg.patterns
+    --patterns-from /opt/adryd-dotfiles/hosts/lemon/borg.patterns
