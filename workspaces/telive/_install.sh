@@ -6,7 +6,7 @@ AR_MODULE="telive"
 # telive workspace
 if ! [[ -d "${HOME}/_/telive" ]]; then
     log info "Installing telive workspace"
-    cp -r ./telive "${HOME}/_/telive"
+    cp -r . "${HOME}/_/telive"
     rm "${HOME}/_/telive/_install.sh"
     (
     cd "${HOME}/_/telive" || exit
