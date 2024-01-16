@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+cd "$(dirname "$0")" || exit $?
+source ../../lib/log.sh
+AR_MODULE="tetra-kit"
 
 if ! [[ -d "${HOME}/_/tetra-kit" ]]; then
     log info "Installing tetra-kit workspace"

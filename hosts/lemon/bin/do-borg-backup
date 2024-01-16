@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-borg create "ssh://u292366@u292366.your-storagebox.de:23/~/backups/lemon::{utcnow}"\
-    --rsh 'ssh -o BatchMode=yes' \
-    --compression zstd,9 \
-    --progress \
-    --json \
-    --log-json \
-    --patterns-from /opt/adryd-dotfiles/hosts/lemon/borg.patterns
