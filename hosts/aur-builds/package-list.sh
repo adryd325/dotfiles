@@ -10,15 +10,22 @@ export PACKAGE_LIST=(
     visual-studio-code-bin
     jetbrains-toolbox
     parsec-bin
+    tlpui
 
     qflipper-git
     rpi-imager
     mullvad-browser-bin
     google-cloud-cli
+    obs-studio-browser
+    ffmpeg-obs
+    cef-minimal-obs-bin
 
     adw-gtk3-git
     gdm-prime
     libgdm-prime
+    qgnomeplatform-common-git
+    qgnomeplatform-qt5-git
+    qgnomeplatform-qt6-git
     mutter-performance
     nvm
     paru
@@ -30,6 +37,7 @@ export PACKAGE_LIST=(
     python3-xcgf # pkg_scripts dep
     python3-xcpf # pkg_scripts dep
     gst-plugin-openh264
+    1password-cli
 
     # radio
     spi-ch341-usb-dkms
@@ -42,6 +50,7 @@ export PACKAGE_LIST=(
     ttf-ipa-mona
     ttf-ms-fonts
     otf-san-francisco-mono
+    otf-san-francisco
     ttf-unifont
     ocr-fonts
 
@@ -50,6 +59,9 @@ export PACKAGE_LIST=(
     airspyhf-git
     soapysdrplay3-git
     libsdrplay
+    gqrx
+    sdrangel-bin
+    sdrpp-git
 
     # nfc
     libfreefare-git
