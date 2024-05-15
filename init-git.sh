@@ -5,8 +5,8 @@ source ./lib/os.sh
 export AR_MODULE="init-git"
 
 # Keep synced to download.sh
-[[ -z "${AR_REMOTE_GIT_HTTPS}" ]] && AR_REMOTE_GIT_HTTPS="https://gitlab.com/adryd/dotfiles.git"
-[[ -z "${AR_REMOTE_GIT_SSH}" ]] && AR_REMOTE_GIT_SSH="git@gitlab.com:adryd/dotfiles.git"
+[[ -z "${AR_REMOTE_GIT_HTTPS}" ]] && AR_REMOTE_GIT_HTTPS="https://github.com/adryd325/dotfiles.git"
+[[ -z "${AR_REMOTE_GIT_SSH}" ]] && AR_REMOTE_GIT_SSH="git@github.com:adryd325/dotfiles.git"
 
 function fixOrigin {
     if [[ -f "${HOME}/.ssh/id_ed25519" ]] || [[ -f "${HOME}/.ssh/id_rsa" ]]; then

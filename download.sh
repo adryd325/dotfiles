@@ -13,9 +13,9 @@ if [[ -z "${AR_DIR}" ]]; then
 fi
 
 # Remote URLs
-[[ -z "${AR_REMOTE_HTTPS_TAR}" ]] && AR_REMOTE_HTTPS_TAR="https://gitlab.com/adryd/dotfiles/-/archive/main/dotfiles-main.tar"
-[[ -z "${AR_REMOTE_GIT_HTTPS}" ]] && AR_REMOTE_GIT_HTTPS="https://gitlab.com/adryd/dotfiles.git"
-[[ -z "${AR_REMOTE_GIT_SSH}" ]] && AR_REMOTE_GIT_SSH="git@gitlab.com:adryd/dotfiles.git"
+[[ -z "${AR_REMOTE_HTTPS_TAR}" ]] && AR_REMOTE_HTTPS_TAR="https://github.com/adryd325/dotfiles/archive/refs/heads/main.tar.gz"
+[[ -z "${AR_REMOTE_GIT_HTTPS}" ]] && AR_REMOTE_GIT_HTTPS="https://github.com/adryd325/dotfiles.git"
+[[ -z "${AR_REMOTE_GIT_SSH}" ]] && AR_REMOTE_GIT_SSH="git@github.com:adryd325/dotfiles.git"
 
 function extract() {
     if [[ -x "$(command -v tar)" ]]; then
