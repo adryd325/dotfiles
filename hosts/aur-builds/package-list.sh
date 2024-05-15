@@ -6,7 +6,7 @@ export PACKAGE_LIST=(
     1password
     aseprite
     prismlauncher
-    mullvad-vpn
+    mullvad-vpn-bin # source build OOMs
     visual-studio-code-bin
     jetbrains-toolbox
     parsec-bin
