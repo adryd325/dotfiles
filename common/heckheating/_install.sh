@@ -56,7 +56,7 @@ fi
 (
     cd "${hhDir}" || exit $?
     log info "Installing dependencies"
-    pnpm install --recursive --silent
+    pnpm -r --workspace-concurrency=1 exec -- pnpm i
     cd "${hhDir}/web" || exit $?
     log info "Building webextension"
     node buildExtension.js &> /dev/null
