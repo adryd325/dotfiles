@@ -1,0 +1,5 @@
+app_proxy = 1
+app_proxy_address = 127.0.0.1
+app_proxy_port = 13340
+app_proxy_path = /
+app_proxy_scheme = http

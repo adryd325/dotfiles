@@ -1,0 +1,13 @@
+[user]
+    name = adryd
+    email = me@adryd.com
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIhWBpvke/9fUNZpY5LeXY+dKTinUBVknn8wnlQvSyd9
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
+
+[commit]
+    gpgsign = true

@@ -1,0 +1,13 @@
+
+[Unit]
+Description=mitmproxy
+After=network.target
+
+[Service]
+Type=basic
+User=mitmproxy
+Group=mitmproxy
+ExecStart=/usr/bin/env mitmproxy -s /etc/mitmaddon.py --set listen_host=127.0.0.1 --set listen_port=13340
+
+[Install]
+WantedBy=multi-user.target
